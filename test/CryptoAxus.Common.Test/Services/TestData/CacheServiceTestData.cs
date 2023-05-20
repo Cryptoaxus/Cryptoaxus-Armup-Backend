@@ -7,6 +7,7 @@ namespace CryptoAxus.Common.Test.Services.TestData;
 
 public class CacheServiceTestData
 {
+    // Contains the test data
     protected readonly string StringCacheValue = "Test cache value";
     protected readonly string StringCacheKey = "stringCacheKey";
 
