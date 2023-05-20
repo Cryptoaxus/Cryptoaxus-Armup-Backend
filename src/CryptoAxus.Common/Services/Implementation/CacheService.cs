@@ -18,7 +18,7 @@ public class CacheService : ICacheService
     public async Task<T?> GetAsync<T>(string key)
     {
         string? value = await _distributedCache.GetStringAsync(key, default);
-        return (value != null ? JsonSerializer.Deserialize<T>(value) : default);
+        return (!string.IsNullOrEmpty(value) ? JsonSerializer.Deserialize<T>(value) : default);
     }
 
     /// <summary>
