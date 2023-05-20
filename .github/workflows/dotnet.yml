@@ -13,7 +13,7 @@ on:
       - 'feature/*'
       - 'bug-fix/*'
       - 'hot-fix/*'
-      - '!master'
+      - 'master'
 
 jobs:
   build:
