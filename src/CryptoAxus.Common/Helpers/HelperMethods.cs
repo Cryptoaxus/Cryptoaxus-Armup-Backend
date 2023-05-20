@@ -1,8 +1,4 @@
-﻿using CryptoAxus.Common.Constants;
-using CryptoAxus.Common.Response;
-using System.Net.Http.Headers;
-
-namespace CryptoAxus.Common.Helpers;
+﻿namespace CryptoAxus.Common.Helpers;
 
 public static class HelperMethods
 {

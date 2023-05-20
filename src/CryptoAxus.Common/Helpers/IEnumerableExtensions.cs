@@ -1,7 +1,4 @@
-﻿using System.Dynamic;
-using System.Reflection;
-
-namespace CryptoAxus.Common.Helpers;
+﻿namespace CryptoAxus.Common.Helpers;
 
 public static class IEnumerableExtensions
 {
