@@ -1,0 +1,13 @@
+﻿global using CryptoAxus.Common.Constants;
+global using CryptoAxus.Common.Services.Contracts;
+global using CryptoAxus.Common.Services.Implementation;
+global using Microsoft.AspNetCore.Http;
+global using Microsoft.Extensions.Caching.Distributed;
+global using Microsoft.Extensions.DependencyInjection;
+global using Microsoft.Extensions.Primitives;
+global using Newtonsoft.Json;
+global using System.Dynamic;
+global using System.Net;
+global using System.Reflection;
+global using System.Text.Json.Serialization;
+global using JsonSerializer = System.Text.Json.JsonSerializer;
