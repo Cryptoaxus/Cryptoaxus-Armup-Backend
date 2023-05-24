@@ -1,4 +1,6 @@
-﻿namespace CryptoAxus.Common.Helpers;
+﻿using MongoDB.Bson;
+
+namespace CryptoAxus.Common.Helpers;
 
 public static class StringExtensions
 {
@@ -14,5 +16,10 @@ public static class StringExtensions
         if (value is not null && value.Value.Equals(valueToMatch))
             return true;
         return false;
+    }
+
+    public static ObjectId ToObjectId(this string? value)
+    {
+        return new ObjectId(value);
     }
 }

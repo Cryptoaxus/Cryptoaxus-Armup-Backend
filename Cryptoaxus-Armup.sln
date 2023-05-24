@@ -19,11 +19,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{6FFB48
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{6F5272D6-78D6-4968-863F-FC5F3E49238E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CryptoAxus.Application", "src\CryptoAxus.Application\CryptoAxus.Application.csproj", "{FBD2A51B-0FE4-4C65-AEDA-AA2EF24B509D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CryptoAxus.Application", "src\CryptoAxus.Application\CryptoAxus.Application.csproj", "{FBD2A51B-0FE4-4C65-AEDA-AA2EF24B509D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CryptoAxus.Domain", "src\CryptoAxus.Domain\CryptoAxus.Domain.csproj", "{C6DCBEE5-912D-4594-B847-633C29E08933}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CryptoAxus.Domain", "src\CryptoAxus.Domain\CryptoAxus.Domain.csproj", "{C6DCBEE5-912D-4594-B847-633C29E08933}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CryptoAxus.Infrastructure", "src\CryptoAxus.Infrastructure\CryptoAxus.Infrastructure.csproj", "{792DADC0-9F7C-4CE5-A42A-2F37D6CEAF0E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CryptoAxus.Infrastructure", "src\CryptoAxus.Infrastructure\CryptoAxus.Infrastructure.csproj", "{792DADC0-9F7C-4CE5-A42A-2F37D6CEAF0E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CryptoAxus.Application.Features.Artist", "test\CryptoAxus.Application.Features.Artist\CryptoAxus.Application.Features.Artist.csproj", "{50BA16C3-1C1B-42F7-BA06-EA157DE4AB7F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +53,10 @@ Global
 		{792DADC0-9F7C-4CE5-A42A-2F37D6CEAF0E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{792DADC0-9F7C-4CE5-A42A-2F37D6CEAF0E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{792DADC0-9F7C-4CE5-A42A-2F37D6CEAF0E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{50BA16C3-1C1B-42F7-BA06-EA157DE4AB7F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{50BA16C3-1C1B-42F7-BA06-EA157DE4AB7F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{50BA16C3-1C1B-42F7-BA06-EA157DE4AB7F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{50BA16C3-1C1B-42F7-BA06-EA157DE4AB7F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -65,6 +71,7 @@ Global
 		{FBD2A51B-0FE4-4C65-AEDA-AA2EF24B509D} = {75AD631B-1214-4FA4-9DA5-5375175090BD}
 		{C6DCBEE5-912D-4594-B847-633C29E08933} = {6FFB4864-D0C7-4C31-8E93-3A2BEB3506B4}
 		{792DADC0-9F7C-4CE5-A42A-2F37D6CEAF0E} = {6F5272D6-78D6-4968-863F-FC5F3E49238E}
+		{50BA16C3-1C1B-42F7-BA06-EA157DE4AB7F} = {F5B77BD8-5DF0-48A2-85BA-7106ABBB3F33}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {7213905C-C641-4981-8E20-826EEF137835}

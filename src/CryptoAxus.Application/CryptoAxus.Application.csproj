@@ -6,4 +6,23 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Contracts\Repositories\" />
+    <Folder Include="Contracts\Settings\" />
+    <Folder Include="Features\Artist\Handlers\" />
+    <Folder Include="Features\Artist\Query\" />
+    <Folder Include="Mappings\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Mapster" Version="7.3.0" />
+    <PackageReference Include="Mapster.DependencyInjection" Version="1.0.0" />
+    <PackageReference Include="MediatR" Version="12.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CryptoAxus.Common\CryptoAxus.Common.csproj" />
+    <ProjectReference Include="..\CryptoAxus.Domain\CryptoAxus.Domain.csproj" />
+  </ItemGroup>
+
 </Project>

@@ -1,0 +1,22 @@
+﻿using Microsoft.Extensions.Options;
+
+namespace CryptoAxus.Infrastructure;
+
+public static class ServiceExtensions
+{
+    public static void AddServiceLayer(this IServiceCollection services, IConfiguration configuration)
+    {
+        services.Configure<MongoDbSettings>(configuration.GetSection("MongoDbSettings"));
+
+        services.AddSingleton<IMongoDbSettings>(provider => provider.GetRequiredService<IOptions<MongoDbSettings>>().Value);
+
+        services.AddScoped<IMongoClient>(ctx =>
+        {
+            var settings = ctx.GetRequiredService<IMongoDbSettings>();
+            return new MongoClient(settings.ConnectionString);
+        });
+
+        // Repositories
+        services.AddScoped(typeof(IRepository<>), typeof(IRepository<>));
+    }
+}
