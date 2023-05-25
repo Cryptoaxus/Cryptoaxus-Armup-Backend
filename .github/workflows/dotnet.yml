@@ -7,8 +7,6 @@ on:
   push:
     branches: [ "master", "feature/*" ]
   pull_request:
-    types:
-      - opened
     branches: [ "master" ]
 
 jobs:
@@ -32,13 +30,3 @@ jobs:
     
     - name: Test
       run: dotnet test --no-build --verbosity normal
-    
-    - uses: EnricoMi/publish-unit-test-result-action@v2
-    
-    - name: Publish Test Results
-      if: always()
-      with:
-        files: |
-          test/**/*.xml
-          test/**/*.trx
-          test/**/*.json
