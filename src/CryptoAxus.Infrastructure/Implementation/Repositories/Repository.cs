@@ -1,21 +1,27 @@
-﻿namespace CryptoAxus.Infrastructure.Implementation.Repositories;
+﻿using CryptoAxus.Infrastructure.Context;
+
+namespace CryptoAxus.Infrastructure.Implementation.Repositories;
 
 public class Repository<TDocument> : IRepository<TDocument> where TDocument : IBaseDocument
 {
-    private readonly IMongoCollection<TDocument> _collection;
+    protected readonly ICryptoAxusContext _context;
+    protected readonly IMongoCollection<TDocument> _collection;
 
-    public Repository(IMongoDbSettings settings, IMongoClient client)
+    public Repository(ICryptoAxusContext context)
     {
         //throw new ArgumentNullException(nameof(settings), Messages.ArgumentNullException);
 
-        IMongoDatabase database = client.GetDatabase(settings.DatabaseName);
+        //IMongoDatabase database = client.GetDatabase(settings.DatabaseName);
         //IMongoDatabase database = new MongoClient(settings.ConnectionString).GetDatabase(settings.DatabaseName);
-        _collection = database.GetCollection<TDocument>(GetCollectionName(typeof(TDocument)));
+        //_collection = database.GetCollection<TDocument>(GetCollectionName(typeof(TDocument)));
+
+        _context = context;
+        _collection = _context.GetCollection<TDocument>(GetCollectionName(typeof(TDocument)));
     }
 
-    public IQueryable<TDocument> AsQueryable()
+    public IEnumerable<TDocument> AsEnumerable()
     {
-        return _collection.AsQueryable();
+        return _collection.AsQueryable().AsEnumerable();
     }
 
     public IEnumerable<TDocument> FilterBy(Expression<Func<TDocument, bool>> filterExpression)

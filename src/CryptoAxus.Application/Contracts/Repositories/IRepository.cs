@@ -2,7 +2,7 @@
 
 public interface IRepository<TDocument> where TDocument : IBaseDocument
 {
-    IQueryable<TDocument> AsQueryable();
+    IEnumerable<TDocument> AsEnumerable();
 
     IEnumerable<TDocument> FilterBy(Expression<Func<TDocument, bool>> filterExpression);
 

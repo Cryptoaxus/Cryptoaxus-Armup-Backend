@@ -4,7 +4,7 @@ namespace CryptoAxus.Infrastructure;
 
 public static class ServiceExtensions
 {
-    public static void AddServiceLayer(this IServiceCollection services, IConfiguration configuration)
+    public static void AddInfrastructureLayer(this IServiceCollection services, IConfiguration configuration)
     {
         services.Configure<MongoDbSettings>(configuration.GetSection("MongoDbSettings"));
 

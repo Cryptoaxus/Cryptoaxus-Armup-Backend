@@ -1,28 +1,24 @@
-﻿using CryptoAxus.Application.Contracts.Settings;
-using CryptoAxus.Domain.Attributes;
+﻿using CryptoAxus.Domain.Attributes;
+using CryptoAxus.Infrastructure.Context;
 using CryptoAxus.Infrastructure.Implementation.Repositories;
-using CryptoAxus.Infrastructure.Implementation.Settings;
 using MongoDB.Driver;
 
 namespace CryptoAxus.Application.Features.Artist.Repositories;
 
 public class ArtistRepositoryTestsData
 {
-    private readonly Mock<IRepository<ArtistDocument>> _mockRepository;
-    private readonly Mock<IMongoDbSettings> _mockSettings;
-    private readonly Mock<IMongoClient> _mockClient;
-    private readonly Mock<IMongoDatabase> _mockDatabase;
     protected readonly ObjectId ArtistId;
     protected readonly string DatabaseName = "DummyDatabase";
     protected readonly string ConnectionString = "DummyConnectionString";
     private ArtistDocument mockArtistDocument;
+    private readonly Mock<IMongoCollection<ArtistDocument>> _mockCollection;
+    private readonly Mock<ICryptoAxusContext> _mockContext;
+    private readonly Mock<IAsyncCursor<ArtistDocument>> _mockCursor;
+    private readonly IList<ArtistDocument> _list;
+
 
     protected ArtistRepositoryTestsData()
     {
-        _mockRepository = new Mock<IRepository<ArtistDocument>>();
-        _mockSettings = new Mock<IMongoDbSettings>();
-        _mockClient = new Mock<IMongoClient>();
-        _mockDatabase = new Mock<IMongoDatabase>();
         ArtistId = new ObjectId("646d0779e663994062278fb8");
         mockArtistDocument = new ArtistDocument(new ObjectId("646d0779e663994062278fb8"),
                                                 "Ben Affleck",
@@ -35,46 +31,77 @@ public class ArtistRepositoryTestsData
                                                 "https://www.instagram.com/users?userId=646d0779e663994062278fb8",
                                                 "https://www.twitter.com/users?userId=646d0779e663994062278fb8",
                                                 new ObjectId("646d0779e663994062278fb8"));
+        _mockCollection = new Mock<IMongoCollection<ArtistDocument>>();
+        _mockContext = new Mock<ICryptoAxusContext>();
+        _mockCursor = new Mock<IAsyncCursor<ArtistDocument>>();
+        _list = new List<ArtistDocument>();
+        _list.Add(mockArtistDocument);
     }
 
-    public ArtistRepositoryTestsData SetupMockSettings()
+    protected ArtistRepositoryTestsData SetupMockCollection()
     {
-        IMongoDbSettings mockMongoDbSettings = new MongoDbSettings(DatabaseName, ConnectionString);
-
-        _mockSettings.Setup(x => x.DatabaseName).Returns(mockMongoDbSettings.DatabaseName);
-        _mockSettings.Setup(x => x.ConnectionString).Returns(mockMongoDbSettings.ConnectionString);
-
+        _mockCollection.Object.InsertOne(mockArtistDocument);
         return this;
     }
 
-    public ArtistRepositoryTestsData SetupMockClient()
+    public ArtistRepositoryTestsData SetupMockCursor()
     {
-        _mockClient.Setup(x => new MongoClient(ConnectionString));
-        return this;
-    }
+        _mockCursor.Setup(x => x.Current).Returns(_list);
 
-    public ArtistRepositoryTestsData SetupMockDatabase()
-    {
-        List<ArtistDocument> artistDocuments = new List<ArtistDocument>();
-        artistDocuments.Add(mockArtistDocument);
-        Mock<IAsyncCursor<ArtistDocument>> mockCursor = new Mock<IAsyncCursor<ArtistDocument>>();
-        //_mockDatabase.Setup(x => x.GetCollection<ArtistDocument>("Artist", null))
-        //             .Returns(null);
-        return this;
-    }
+        _mockCursor.SetupSequence(x => x.MoveNext(It.IsAny<CancellationToken>()))
+                   .Returns(true)
+                   .Returns(false);
 
-    public ArtistRepositoryTestsData SetupMockRepositoryFindByIdAsync()
-    {
-        _mockRepository.Setup(x => x.FindByIdAsync(It.IsAny<ObjectId>()))
-                      .ReturnsAsync(mockArtistDocument);
+        _mockCursor.SetupSequence(x => x.MoveNextAsync(It.IsAny<CancellationToken>()))
+                   .Returns(Task.FromResult(true))
+                   .Returns(Task.FromResult(false));
 
         return this;
     }
 
     public Repository<ArtistDocument> Build()
     {
-        return new Repository<ArtistDocument>(_mockSettings.Object, _mockClient.Object);
+        return new Repository<ArtistDocument>(_mockContext.Object);
     }
+
+    //public ArtistRepositoryTestsData SetupMockSettings()
+    //{
+    //    IMongoDbSettings mockMongoDbSettings = new MongoDbSettings(DatabaseName, ConnectionString);
+
+    //    _mockSettings.Setup(x => x.DatabaseName).Returns(mockMongoDbSettings.DatabaseName);
+    //    _mockSettings.Setup(x => x.ConnectionString).Returns(mockMongoDbSettings.ConnectionString);
+
+    //    return this;
+    //}
+
+    //public ArtistRepositoryTestsData SetupMockClient()
+    //{
+    //    _mockClient.Setup(x => new MongoClient(ConnectionString));
+    //    return this;
+    //}
+
+    //public ArtistRepositoryTestsData SetupMockDatabase()
+    //{
+    //    List<ArtistDocument> artistDocuments = new List<ArtistDocument>();
+    //    artistDocuments.Add(mockArtistDocument);
+    //    Mock<IAsyncCursor<ArtistDocument>> mockCursor = new Mock<IAsyncCursor<ArtistDocument>>();
+    //    //_mockDatabase.Setup(x => x.GetCollection<ArtistDocument>("Artist", null))
+    //    //             .Returns(null);
+    //    return this;
+    //}
+
+    //public ArtistRepositoryTestsData SetupMockRepositoryFindByIdAsync()
+    //{
+    //    _mockRepository.Setup(x => x.FindByIdAsync(It.IsAny<ObjectId>()))
+    //                  .ReturnsAsync(mockArtistDocument);
+
+    //    return this;
+    //}
+
+    //public Repository<ArtistDocument> Build()
+    //{
+    //    return new Repository<ArtistDocument>(_mockSettings.Object, _mockClient.Object);
+    //}
 
     private string? GetCollectionName(Type documentType)
     {
