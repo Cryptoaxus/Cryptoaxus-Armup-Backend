@@ -25,11 +25,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CryptoAxus.Domain", "src\Cr
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CryptoAxus.Infrastructure", "src\CryptoAxus.Infrastructure\CryptoAxus.Infrastructure.csproj", "{792DADC0-9F7C-4CE5-A42A-2F37D6CEAF0E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CryptoAxus.Application.Features.Artist", "test\CryptoAxus.Application.Features.Artist\CryptoAxus.Application.Features.Artist.csproj", "{50BA16C3-1C1B-42F7-BA06-EA157DE4AB7F}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "API", "API", "{E5ACCE16-1A0A-4399-B89B-9D79907548C5}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CryptoAxus.API", "src\CryptoAxus.API\CryptoAxus.API.csproj", "{B2489E6A-4396-4699-A2A6-C1FDF9AD0AA9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CryptoAxus.Application.Features.Artist", "test\CryptoAxus.Application.Features.Artist\CryptoAxus.Application.Features.Artist.csproj", "{50BA16C3-1C1B-42F7-BA06-EA157DE4AB7F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -61,10 +57,6 @@ Global
 		{50BA16C3-1C1B-42F7-BA06-EA157DE4AB7F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{50BA16C3-1C1B-42F7-BA06-EA157DE4AB7F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{50BA16C3-1C1B-42F7-BA06-EA157DE4AB7F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B2489E6A-4396-4699-A2A6-C1FDF9AD0AA9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B2489E6A-4396-4699-A2A6-C1FDF9AD0AA9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B2489E6A-4396-4699-A2A6-C1FDF9AD0AA9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B2489E6A-4396-4699-A2A6-C1FDF9AD0AA9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -80,8 +72,6 @@ Global
 		{C6DCBEE5-912D-4594-B847-633C29E08933} = {6FFB4864-D0C7-4C31-8E93-3A2BEB3506B4}
 		{792DADC0-9F7C-4CE5-A42A-2F37D6CEAF0E} = {6F5272D6-78D6-4968-863F-FC5F3E49238E}
 		{50BA16C3-1C1B-42F7-BA06-EA157DE4AB7F} = {F5B77BD8-5DF0-48A2-85BA-7106ABBB3F33}
-		{E5ACCE16-1A0A-4399-B89B-9D79907548C5} = {426BCB47-4C45-4196-BD66-FE48FB0A321C}
-		{B2489E6A-4396-4699-A2A6-C1FDF9AD0AA9} = {E5ACCE16-1A0A-4399-B89B-9D79907548C5}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {7213905C-C641-4981-8E20-826EEF137835}
