@@ -1,0 +1,15 @@
+﻿global using CryptoAxus.Application.Contracts.Repositories;
+global using CryptoAxus.Application.Dto;
+global using CryptoAxus.Application.Features.Artist.Query;
+global using CryptoAxus.Common.Constants;
+global using CryptoAxus.Common.Response;
+global using CryptoAxus.Domain.Collections;
+global using CryptoAxus.Domain.Interfaces;
+global using Mapster;
+global using MediatR;
+global using Microsoft.Extensions.DependencyInjection;
+global using Microsoft.Extensions.Logging;
+global using MongoDB.Bson;
+global using System.Linq.Expressions;
+global using System.Net;
+global using System.Reflection;
