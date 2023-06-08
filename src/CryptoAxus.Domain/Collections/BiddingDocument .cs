@@ -22,6 +22,7 @@ public class BidingDocument : BaseDocument
     public bool HighestBid { get; set; }
 
     public BidingDocument() : base()
+
     {
     }
 
@@ -42,7 +43,6 @@ public class BidingDocument : BaseDocument
                                  lastModifiedDate,
                                  lastModifiedBy,
                                  isDeleted)
-
     {
         Id = id;
         NftId = nftId;
@@ -55,10 +55,7 @@ public class BidingDocument : BaseDocument
         LastModifiedDate = lastModifiedDate;
         LastModifiedBy = lastModifiedBy;
         IsDeleted = isDeleted;
-    
-
-
-}
+    }
 }
 
 

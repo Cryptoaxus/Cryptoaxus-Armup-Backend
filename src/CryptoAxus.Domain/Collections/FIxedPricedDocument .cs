@@ -19,27 +19,25 @@ public class FixedPricedDocument : BaseDocument
     public bool SoftDelete { get; set; }
     
     public FixedPricedDocument() : base()
+   
     {
     }
 
     public FixedPricedDocument(ObjectId id,
-                          string nftCopyId,
-                          int quantity,
-                          decimal pricePerItem,
-                          DateTime fixedEndingDateTime,
-                          bool softDelete,
-                         //ateTime? deleted_at = null,
-                          ObjectId createdBy,
-                          DateTime? lastModifiedDate = null,
-                          ObjectId? lastModifiedBy = null,
-                          bool isDeleted = false)
-                          : base(id,
-                                 createdBy,
-                                 lastModifiedDate,
-                                 lastModifiedBy,
-                                 isDeleted)
-    
-
+                               string nftCopyId,
+                               int quantity,
+                               decimal pricePerItem,
+                               DateTime fixedEndingDateTime,
+                               bool softDelete,
+                               ObjectId createdBy,
+                               DateTime? lastModifiedDate = null,
+                               ObjectId? lastModifiedBy = null,
+                               bool isDeleted = false)
+                               :base(id,
+                                     createdBy,
+                                     lastModifiedDate,
+                                     lastModifiedBy,
+                                     isDeleted)
         {
     
         Id = id;
@@ -52,8 +50,5 @@ public class FixedPricedDocument : BaseDocument
         LastModifiedDate = lastModifiedDate;
         LastModifiedBy = lastModifiedBy;
         IsDeleted = isDeleted;
-    
-
-
-}
+    }
 }

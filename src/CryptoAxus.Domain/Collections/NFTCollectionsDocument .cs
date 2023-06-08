@@ -30,55 +30,51 @@ public class NFTCollectionsDocument : BaseDocument
     [BsonElement(elementName: "collectionBlockChain", Order = 10)]
     public string CollectionBlockChain { get; set; }
 
-
     [BsonElement(elementName: "explicitContent", Order = 13)]
     public bool ExplicitContent { get; set; }
    
-
-public NFTCollectionsDocument () : base()
-{
-}
-public NFTCollectionsDocument (ObjectId id,
-                string collectionLogoImageHash,
-                string collectionFeaturedImageHash,
-                string collectionBannerImageHash,
-                string collectionName,
-                string artistWalletAddress,
-                string url,
-                string description,
-                string category,
-                string collectionBlockChain,
-                bool explicitContent, 
-                 ObjectId createdBy,
-                          DateTime? lastModifiedDate = null,
-                          ObjectId? lastModifiedBy = null,
-                          string? lastUpdated = null,
-                          bool isDeleted = false)
-                          : base(id,
-                                 createdBy,
-                                 lastModifiedDate,
-                                 lastModifiedBy,
-                                 isDeleted)
+    public NFTCollectionsDocument () : base()
     
-
-        {
-    Id = id;
-    CollectionLogoImageHash = collectionLogoImageHash;
-    CollectionFeaturedImageHash = collectionFeaturedImageHash;
-    CollectionBannerImageHash = collectionBannerImageHash;
-    CollectionName = collectionName;
-    ArtistWalletAddress = artistWalletAddress;
-    Url = url;
-    Description = description;
-    Category = category;
-    CollectionBlockChain = collectionBlockChain;
-    ExplicitContent = explicitContent;
-    CreatedBy = createdBy;
-    LastModifiedDate = lastModifiedDate;
-    LastModifiedBy = lastModifiedBy;
-    IsDeleted = isDeleted;
+    {
+    }
     
-
-}
+    public NFTCollectionsDocument (ObjectId id,
+                                   string collectionLogoImageHash,
+                                   string collectionFeaturedImageHash,
+                                   string collectionBannerImageHash,
+                                   string collectionName,
+                                   string artistWalletAddress,
+                                   string url,
+                                   string description,
+                                   string category,
+                                   string collectionBlockChain,
+                                   bool explicitContent, 
+                                   ObjectId createdBy,
+                                   DateTime? lastModifiedDate = null,
+                                   ObjectId? lastModifiedBy = null,
+                                   string? lastUpdated = null,
+                                   bool isDeleted = false)
+                                   :base(id,
+                                         createdBy,
+                                         lastModifiedDate,
+                                         lastModifiedBy,
+                                         isDeleted)
+    {
+        Id = id;
+        CollectionLogoImageHash = collectionLogoImageHash;
+        CollectionFeaturedImageHash = collectionFeaturedImageHash;
+        CollectionBannerImageHash = collectionBannerImageHash;
+        CollectionName = collectionName;
+        ArtistWalletAddress = artistWalletAddress;
+        Url = url;
+        Description = description;
+        Category = category;
+        CollectionBlockChain = collectionBlockChain;
+        ExplicitContent = explicitContent;
+        CreatedBy = createdBy;
+        LastModifiedDate = lastModifiedDate;
+        LastModifiedBy = lastModifiedBy;
+        IsDeleted = isDeleted;
+    }
 }
 

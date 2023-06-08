@@ -13,7 +13,7 @@ public class AllEventDocument: BaseDocument
     public string MintingContract { get; set; }
 
     [BsonElement(elementName: "walletAddress", Order = 5)]
-    public string? WalletAddress { get; set; } 
+    public string WalletAddress { get; set; } 
 
     [BsonElement(elementName: "tokenId", Order = 6)]
     public int TokenId { get; set; }
@@ -31,7 +31,7 @@ public class AllEventDocument: BaseDocument
     public string? Buyer { get; set; } 
     
     [BsonElement(elementName: "price", Order = 11)]
-    public decimal Price{ get; set; }
+    public decimal? Price{ get; set; }
 
     [BsonElement(elementName: "offerAmount", Order = 12)]
     public decimal? OfferAmount { get; set; }
@@ -40,7 +40,7 @@ public class AllEventDocument: BaseDocument
     public DateTime? ListedAt { get; set; }
 
     [BsonElement(elementName: "listingEndAt", Order = 14)]
-    public DateTime ListingEndAt { get; set; } 
+    public DateTime? ListingEndAt { get; set; } 
 
     [BsonElement(elementName: "canceledAt", Order = 15)]
     public DateTime? CanceledAt { get; set; } 
@@ -57,41 +57,41 @@ public class AllEventDocument: BaseDocument
     [BsonElement(elementName: "rejected", Order = 19)]
     public bool Rejected { get; set; }
 
-
-
     public AllEventDocument() : base()
+
     {
     }
+
     public AllEventDocument(ObjectId id, 
-                string nftId,
-                int marketTokenId,
-                string mintingContract,
-                int tokenId,
-                int quantity,
-                string seller,
-                string eventName,
-                decimal price,
-                DateTime listingEndAt,
-                bool isSold,
-                bool accepted, 
-                bool rejected,
-                ObjectId createdBy,
-                bool isDeleted = false,
-                string? buyer = null,
-                decimal? offerAmount = null,
-                DateTime? listedAt = null,
-                DateTime? canceledAt = null,
-                DateTime? soldAt = null,
-                String? walletAddress = null,
-                DateTime? lastModifiedDate = null,
-                ObjectId? lastModifiedBy = null)
-                          : base(id,
-                                 createdBy,
-                                 lastModifiedDate,
-                                 lastModifiedBy,
-                                 isDeleted)
+                            string nftId,
+                            int marketTokenId,
+                            string mintingContract,
+                            string walletAddress,
+                            int tokenId,
+                            int quantity,
+                            string seller,
+                            string eventName,
+                            bool isSold,
+                            bool accepted, 
+                            bool rejected,
+                            ObjectId createdBy,
+                            string? buyer = null,
+                            DateTime? listingEndAt = null,
+                            decimal? price = null,
+                            bool isDeleted = false,
+                            decimal? offerAmount = null,
+                            DateTime? listedAt = null,
+                            DateTime? canceledAt = null,
+                            DateTime? soldAt = null,
+                            DateTime? lastModifiedDate = null,
+                            ObjectId? lastModifiedBy = null)
+                            : base(id,
+                                   createdBy,
+                                   lastModifiedDate,
+                                   lastModifiedBy,
+                                   isDeleted)
     {
-         Id = id;
+        Id = id;
         NftId = nftId;
         MarketTokenId = marketTokenId;
         MintingContract = mintingContract;
@@ -114,6 +114,5 @@ public class AllEventDocument: BaseDocument
         LastModifiedDate = lastModifiedDate;
         LastModifiedBy = lastModifiedBy;
         IsDeleted = isDeleted;
-    
-}
+    }
 }

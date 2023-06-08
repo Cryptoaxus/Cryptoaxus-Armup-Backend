@@ -23,9 +23,9 @@ public class AuctionDocument : BaseDocument
     
     [BsonElement(elementName: "endingDateTime", Order = 8)]
     public DateTime EndingDateTime { get; set; } 
-   
     
     public AuctionDocument() : base()
+
     {
     }
 
@@ -46,7 +46,6 @@ public class AuctionDocument : BaseDocument
                                  createdBy,
                                  lastModifiedDate,
                                  lastModifiedBy)
-
     {
         Id = id;
         NftId = nftId;
@@ -59,7 +58,6 @@ public class AuctionDocument : BaseDocument
         LastModifiedDate = lastModifiedDate;
         LastModifiedBy = lastModifiedBy;
         IsDeleted = isDeleted;
-    
-}
+    }
 }
 

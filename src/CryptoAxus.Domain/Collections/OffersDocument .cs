@@ -25,6 +25,7 @@ public class OffersDocument : BaseDocument
     public int OfferedQuantity { get; set; }
 
     public OffersDocument() : base()
+
     {
     }
 
@@ -38,7 +39,6 @@ public class OffersDocument : BaseDocument
                           DateTime? lastModifiedDate = null,
                           ObjectId? lastModifiedBy = null,
                           string? signature = null,
-                         
                           int? quantity = null,
                           bool isDeleted = false)
                           : base(id,
@@ -46,7 +46,6 @@ public class OffersDocument : BaseDocument
                                  lastModifiedDate,
                                  lastModifiedBy,
                                  isDeleted)
-
     {
         Id = id;
         NftId = nftId;
@@ -57,6 +56,5 @@ public class OffersDocument : BaseDocument
         OfferExpireAt = offerExpireAt;
         OfferedQuantity = offeredQuantity;
         CreatedBy= createdBy;
-
     }
 }

@@ -22,26 +22,27 @@ public class NFTCopiesDocument : BaseDocument
     public int MarketTokenId { get; set; }
 
     public NFTCopiesDocument() : base()
+
     {
     }
 
     public NFTCopiesDocument(ObjectId id, 
-                          string nftId,
-                          string owner,
-                          int quantity,
-                          bool isCreator,
-                          int marketTokenId,
-                          string bidderUserName,
-                          ObjectId createdBy,
-                          DateTime? lastModifiedDate = null,
-                          ObjectId? lastModifiedBy = null,
-                          bool isDeleted = false)
-                          : base(id,
-                                 createdBy,
-                                 lastModifiedDate,
-                                 lastModifiedBy,
-                                 isDeleted )
-
+                             string nftId,
+                             string owner,
+                             string ownerName,
+                             int quantity,
+                             bool isCreator,
+                             int marketTokenId,
+                             string bidderUserName,
+                             ObjectId createdBy,
+                             DateTime? lastModifiedDate = null,
+                             ObjectId? lastModifiedBy = null,
+                             bool isDeleted = false)
+                             : base(id,
+                                    createdBy,
+                                    lastModifiedDate,
+                                    lastModifiedBy,
+                                    isDeleted )
     {
         Id = id;
         NftId = nftId;
@@ -53,10 +54,7 @@ public class NFTCopiesDocument : BaseDocument
         LastModifiedDate = lastModifiedDate;
         LastModifiedBy = lastModifiedBy;
         IsDeleted = isDeleted;
-    
-
-
-}
+    }
 }
 
 

@@ -29,6 +29,7 @@ public class MainNftsDocument : BaseDocument
 
     [BsonElement(elementName: "description", Order = 10)]
     public string Description { get; set; }
+    
     [BsonElement(elementName: "collection", Order = 11)]
     public string Collection { get; set; }
 
@@ -42,33 +43,33 @@ public class MainNftsDocument : BaseDocument
     public int CreaterEarnings { get; set; }
  
     public MainNftsDocument() : base()
+   
     {
     }
-    public MainNftsDocument(ObjectId id,
-                    string contractAddress,
-                    string hash,
-                    string imageStoragelink,
-                    int tokenId,
-                    int quantity,
-                    string name,
-                    string url,
-                    string description,
-                    string collection,
-                    string collectionId,
-                    string blockchain,
-                    int createrEarnings,
-                    ObjectId createdBy,
-                    DateTime? lastModifiedDate = null,
-                    ObjectId? lastModifiedBy = null,
-                    string? signature = null,
-                     bool isDeleted = false)
-                          : base(id,
-                                 createdBy,
-                                 lastModifiedDate,
-                                 lastModifiedBy,
-                                 isDeleted)
-    
 
+    public MainNftsDocument(ObjectId id,
+                            string contractAddress,
+                            string hash,
+                            string imageStoragelink,
+                            int tokenId,
+                            int quantity,
+                            string name,
+                            string url,
+                            string description,
+                            string collection,
+                            string collectionId,
+                            string blockchain,
+                            int createrEarnings,
+                            ObjectId createdBy,
+                            DateTime? lastModifiedDate = null,
+                            ObjectId? lastModifiedBy = null,
+                            string? signature = null,
+                            bool isDeleted = false)
+                            :base(id,
+                                  createdBy,
+                                  lastModifiedDate,
+                                  lastModifiedBy,
+                                  isDeleted)
     {
         Id = id;
         ContractAddress = contractAddress;
@@ -88,6 +89,5 @@ public class MainNftsDocument : BaseDocument
         LastModifiedDate = lastModifiedDate;
         LastModifiedBy = lastModifiedBy;
         IsDeleted = isDeleted;
-    
-}
+    }
 }

@@ -13,20 +13,19 @@ public class FavoriteNftsDocument : BaseDocument
     public string CollectionId { get; set; }
     
     public FavoriteNftsDocument() : base()
+    
     {
     }
 
     public FavoriteNftsDocument(ObjectId id,
-                          string nftId,
-                          string artistWalletAddress,
-                          string collectionId)
+                                string nftId,
+                                string artistWalletAddress,
+                                string collectionId)
     {
 
         Id = id;
         NftId = nftId;
         ArtistWalletAddress = artistWalletAddress;
         CollectionId = collectionId;
-       
-
     }
 }
