@@ -43,7 +43,6 @@ public class MainNftsDocument : BaseDocument
     public int CreaterEarnings { get; set; }
  
     public MainNftsDocument() : base()
-   
     {
     }
 
@@ -65,7 +64,7 @@ public class MainNftsDocument : BaseDocument
                             ObjectId? lastModifiedBy = null,
                             string? signature = null,
                             bool isDeleted = false)
-                            :base(id,
+                            : base(id,
                                   createdBy,
                                   lastModifiedDate,
                                   lastModifiedBy,

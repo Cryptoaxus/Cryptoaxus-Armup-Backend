@@ -25,24 +25,23 @@ public class AuctionDocument : BaseDocument
     public DateTime EndingDateTime { get; set; } 
     
     public AuctionDocument() : base()
-
     {
     }
 
     public AuctionDocument(ObjectId id, 
-                          string nftId,
-                          string nftCopyId,
-                          int quantity,
-                          decimal minimumBid,
-                          bool softDelete,
-                          DateTime startingDateTime,
-                          DateTime endingDateTime,
-                          ObjectId createdBy,
-                          DateTime? lastModifiedDate = null,
-                          ObjectId? lastModifiedBy = null,
-                          DateTime? deleted_at = null,
-                          bool isDeleted = false)
-                          : base(id,
+                           string nftId,
+                           string nftCopyId,
+                           int quantity,
+                           decimal minimumBid,
+                           bool softDelete,
+                           DateTime startingDateTime,
+                           DateTime endingDateTime,
+                           ObjectId createdBy,
+                           DateTime? lastModifiedDate = null,
+                           ObjectId? lastModifiedBy = null,
+                           DateTime? deleted_at = null,
+                           bool isDeleted = false)
+                           : base(id,
                                  createdBy,
                                  lastModifiedDate,
                                  lastModifiedBy)

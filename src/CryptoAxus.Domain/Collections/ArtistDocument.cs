@@ -31,7 +31,6 @@ public class ArtistDocument : BaseDocument
     public string Twitter { get; set; }
 
     public ArtistDocument() : base()
-
     {
     }
 

@@ -13,7 +13,6 @@ public class FavoriteNftsDocument : BaseDocument
     public string CollectionId { get; set; }
     
     public FavoriteNftsDocument() : base()
-    
     {
     }
 

@@ -22,7 +22,6 @@ public class NFTCopiesDocument : BaseDocument
     public int MarketTokenId { get; set; }
 
     public NFTCopiesDocument() : base()
-
     {
     }
 

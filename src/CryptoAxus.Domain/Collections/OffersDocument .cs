@@ -25,7 +25,6 @@ public class OffersDocument : BaseDocument
     public int OfferedQuantity { get; set; }
 
     public OffersDocument() : base()
-
     {
     }
 

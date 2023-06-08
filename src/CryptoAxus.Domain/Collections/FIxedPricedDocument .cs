@@ -19,7 +19,6 @@ public class FixedPricedDocument : BaseDocument
     public bool SoftDelete { get; set; }
     
     public FixedPricedDocument() : base()
-   
     {
     }
 
@@ -33,7 +32,7 @@ public class FixedPricedDocument : BaseDocument
                                DateTime? lastModifiedDate = null,
                                ObjectId? lastModifiedBy = null,
                                bool isDeleted = false)
-                               :base(id,
+                               : base(id,
                                      createdBy,
                                      lastModifiedDate,
                                      lastModifiedBy,

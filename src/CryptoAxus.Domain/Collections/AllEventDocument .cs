@@ -58,7 +58,6 @@ public class AllEventDocument: BaseDocument
     public bool Rejected { get; set; }
 
     public AllEventDocument() : base()
-
     {
     }
 

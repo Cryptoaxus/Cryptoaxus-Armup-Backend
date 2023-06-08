@@ -34,7 +34,6 @@ public class NFTCollectionsDocument : BaseDocument
     public bool ExplicitContent { get; set; }
    
     public NFTCollectionsDocument () : base()
-    
     {
     }
     
@@ -54,7 +53,7 @@ public class NFTCollectionsDocument : BaseDocument
                                    ObjectId? lastModifiedBy = null,
                                    string? lastUpdated = null,
                                    bool isDeleted = false)
-                                   :base(id,
+                                   : base(id,
                                          createdBy,
                                          lastModifiedDate,
                                          lastModifiedBy,

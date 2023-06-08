@@ -22,7 +22,6 @@ public class BidingDocument : BaseDocument
     public bool HighestBid { get; set; }
 
     public BidingDocument() : base()
-
     {
     }
 
