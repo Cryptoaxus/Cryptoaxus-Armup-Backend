@@ -7,9 +7,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Collections\" />
-    <Folder Include="Interfaces\" />
-    <Folder Include="Attributes\" />
+	  <Folder Include="Collections\" />
+      <Folder Include="Interfaces\" />
+      <Folder Include="Attributes\" />
   </ItemGroup>
 
   <ItemGroup>
