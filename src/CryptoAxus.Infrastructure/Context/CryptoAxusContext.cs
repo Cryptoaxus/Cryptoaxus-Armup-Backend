@@ -1,6 +1,4 @@
-﻿using Microsoft.Extensions.Options;
-
-namespace CryptoAxus.Infrastructure.Context;
+﻿namespace CryptoAxus.Infrastructure.Context;
 
 public class CryptoAxusContext : ICryptoAxusContext
 {
@@ -8,10 +6,10 @@ public class CryptoAxusContext : ICryptoAxusContext
     private MongoClient _mongoClient { get; set; }
     public IClientSessionHandle Session { get; set; }
 
-    public CryptoAxusContext(IOptions<MongoDbSettings> settings)
+    public CryptoAxusContext(IMongoDbSettings settings)
     {
-        _mongoClient = new MongoClient(settings.Value.ConnectionString);
-        _database = _mongoClient.GetDatabase(settings.Value.DatabaseName);
+        _mongoClient = new MongoClient(settings.ConnectionString);
+        _database = _mongoClient.GetDatabase(settings.DatabaseName);
     }
 
     public IMongoCollection<T> GetCollection<T>(string? collectionName)

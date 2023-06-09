@@ -1,4 +1,4 @@
-﻿namespace CryptoAxus.Application.Features.Artist.Query;
+﻿namespace CryptoAxus.Application.Features.Artist.GetArtistById.Query;
 
 public class GetArtistByIdQuery : IRequest<BaseResponse<ArtistDto>>
 {

@@ -1,6 +1,6 @@
 ﻿namespace CryptoAxus.Domain.Collections;
 
-[BsonCollection("Artist")]
+[BsonCollection("Artists")]
 public class ArtistDocument : BaseDocument
 {
     [BsonElement(elementName: "username", Order = 2)]

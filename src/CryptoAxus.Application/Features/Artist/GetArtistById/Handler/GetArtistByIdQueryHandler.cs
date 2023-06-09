@@ -1,4 +1,6 @@
-﻿namespace CryptoAxus.Application.Features.Artist.Handlers;
+﻿using CryptoAxus.Application.Features.Artist.GetArtistById.Query;
+
+namespace CryptoAxus.Application.Features.Artist.GetArtistById.Handler;
 
 public class GetArtistByIdQueryHandler : BaseHandler<GetArtistByIdQueryHandler>, IRequestHandler<GetArtistByIdQuery, BaseResponse<ArtistDto>>
 {
@@ -12,9 +14,9 @@ public class GetArtistByIdQueryHandler : BaseHandler<GetArtistByIdQueryHandler>,
     public async Task<BaseResponse<ArtistDto>> Handle(GetArtistByIdQuery request,
                                                       CancellationToken cancellationToken = default)
     {
-        ArgumentNullException.ThrowIfNull(nameof(request));
+        ArgumentNullException.ThrowIfNull(request, nameof(request));
 
-        ArtistDocument artist = await _repository.FindByIdAsync(new ObjectId(request.Id));
+        ArtistDocument artist = await _repository.FindByIdAsync(request.Id.ToObjectId());
 
         if (artist is null)
             return new BaseResponse<ArtistDto>(HttpStatusCode.NotFound,
