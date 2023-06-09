@@ -2,6 +2,10 @@
 
 public class ArtistDto : BaseDto
 {
+    /// <summary>
+    /// Artist username
+    /// </summary>
+    /// <example>junaid.sultan</example>
     public string? Username { get; set; }
 
     public string? Email { get; set; }

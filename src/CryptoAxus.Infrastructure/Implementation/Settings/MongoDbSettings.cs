@@ -2,8 +2,10 @@
 
 public class MongoDbSettings : IMongoDbSettings
 {
-    public string DatabaseName { get; private set; }
-    public string ConnectionString { get; private set; }
+    public string ConnectionString { get; set; }
+
+    public string DatabaseName { get; set; }
+
 
     public MongoDbSettings()
     {

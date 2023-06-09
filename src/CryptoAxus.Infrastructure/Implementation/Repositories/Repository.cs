@@ -1,6 +1,4 @@
-﻿using CryptoAxus.Infrastructure.Context;
-
-namespace CryptoAxus.Infrastructure.Implementation.Repositories;
+﻿namespace CryptoAxus.Infrastructure.Implementation.Repositories;
 
 public class Repository<TDocument> : IRepository<TDocument> where TDocument : IBaseDocument
 {
@@ -9,11 +7,7 @@ public class Repository<TDocument> : IRepository<TDocument> where TDocument : IB
 
     public Repository(ICryptoAxusContext context)
     {
-        //throw new ArgumentNullException(nameof(settings), Messages.ArgumentNullException);
-
-        //IMongoDatabase database = client.GetDatabase(settings.DatabaseName);
-        //IMongoDatabase database = new MongoClient(settings.ConnectionString).GetDatabase(settings.DatabaseName);
-        //_collection = database.GetCollection<TDocument>(GetCollectionName(typeof(TDocument)));
+        ArgumentException.ThrowIfNullOrEmpty(context.ToString(), nameof(context));
 
         _context = context;
         _collection = _context.GetCollection<TDocument>(GetCollectionName(typeof(TDocument)));

@@ -9,6 +9,8 @@
   <ItemGroup>
     <Folder Include="Contracts\Repositories\" />
     <Folder Include="Contracts\Settings\" />
+    <Folder Include="Features\Artist\GetArtistById\Response\" />
+    <Folder Include="Features\Artist\GetArtistById\Request\" />
     <Folder Include="Features\Artist\Handlers\" />
     <Folder Include="Features\Artist\Query\" />
     <Folder Include="Mappings\" />
@@ -18,7 +20,10 @@
     <PackageReference Include="Mapster" Version="7.3.0" />
     <PackageReference Include="Mapster.DependencyInjection" Version="1.0.0" />
     <PackageReference Include="MediatR" Version="12.0.1" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="7.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="7.0.4" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="7.0.0" />
+    <PackageReference Include="Microsoft.OpenApi" Version="1.6.4" />
   </ItemGroup>
 
   <ItemGroup>

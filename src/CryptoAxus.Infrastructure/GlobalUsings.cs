@@ -1,11 +1,13 @@
 ﻿global using CryptoAxus.Application.Contracts.Repositories;
 global using CryptoAxus.Application.Contracts.Settings;
-global using CryptoAxus.Common.Constants;
 global using CryptoAxus.Domain.Attributes;
 global using CryptoAxus.Domain.Interfaces;
+global using CryptoAxus.Infrastructure.Context;
+global using CryptoAxus.Infrastructure.Implementation.Repositories;
 global using CryptoAxus.Infrastructure.Implementation.Settings;
 global using Microsoft.Extensions.Configuration;
 global using Microsoft.Extensions.DependencyInjection;
+global using Microsoft.Extensions.Options;
 global using MongoDB.Bson;
 global using MongoDB.Driver;
 global using System.Linq.Expressions;

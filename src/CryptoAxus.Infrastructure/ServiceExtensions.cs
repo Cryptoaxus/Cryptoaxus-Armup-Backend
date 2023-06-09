@@ -1,6 +1,4 @@
-﻿using Microsoft.Extensions.Options;
-
-namespace CryptoAxus.Infrastructure;
+﻿namespace CryptoAxus.Infrastructure;
 
 public static class ServiceExtensions
 {
@@ -16,7 +14,9 @@ public static class ServiceExtensions
             return new MongoClient(settings.ConnectionString);
         });
 
+        services.AddScoped<ICryptoAxusContext, CryptoAxusContext>();
+
         // Repositories
-        services.AddScoped(typeof(IRepository<>), typeof(IRepository<>));
+        services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
     }
 }
