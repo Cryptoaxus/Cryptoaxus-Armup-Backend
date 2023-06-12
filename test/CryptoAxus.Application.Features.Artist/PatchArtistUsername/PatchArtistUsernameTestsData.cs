@@ -60,7 +60,7 @@ public class PatchArtistUsernameTestsData
         return this;
     }
 
-    public PatchArtistUsernameRequest CreateRequest()
+    protected static PatchArtistUsernameRequest CreateRequest()
     {
         JsonPatchDocument<ArtistDto> patchDocument = new JsonPatchDocument<ArtistDto>();
         Operation<ArtistDto> operation = new Operation<ArtistDto>
@@ -69,6 +69,7 @@ public class PatchArtistUsernameTestsData
             path = "/username",
             value = "test.username"
         };
+        patchDocument.Operations.Add(operation);
 
         return new PatchArtistUsernameRequest("0x507f191e810c19729de860ea", patchDocument);
     }
