@@ -4,13 +4,26 @@ public abstract class BaseDto
 {
     public ObjectId? Id { get; set; }
 
-    public DateTime? CreatedDate { get; set; }
+    public DateTime? CreatedDate { get; set; } = DateTime.UtcNow;
 
-    public ObjectId? CreatedBy { get; set; }
+    public ObjectId? CreatedBy { get; set; } 
 
     public DateTime? LastModifiedDate { get; set; }
 
     public ObjectId? LastModifiedBy { get; set; }
 
-    public bool? IsDeleted { get; set; }
+    public bool? IsDeleted { get; set; } = false;
+
+    protected BaseDto()
+    {
+    }
+
+
+    protected BaseDto(ObjectId id,
+                              ObjectId? createdBy = null,
+                              DateTime? lastModifiedDate = null,
+                              ObjectId? lastModifiedBy = null,
+                              bool isDeleted = false)
+                              => (Id, CreatedBy, LastModifiedDate, LastModifiedBy, IsDeleted)
+                              = (id, createdBy, lastModifiedDate, lastModifiedBy, isDeleted);
 }

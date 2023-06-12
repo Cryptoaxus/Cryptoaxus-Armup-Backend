@@ -12,7 +12,36 @@ public class FixedPricedDto : BaseDto
 
     public bool? SoftDelete { get; set; }
 
-    public FixedPricedDto()
+    public FixedPricedDto() : base()
     {
+    }
+
+    public FixedPricedDto(ObjectId id,
+                          string? nftCopyId = null,
+                          int? quantity = null,
+                          decimal? pricePerItem = null,
+                          DateTime? fixedEndingDateTime = null,
+                          bool? softDelete = null,
+                          ObjectId? createdBy = null,
+                          DateTime? lastModifiedDate = null,
+                          ObjectId? lastModifiedBy = null,
+                          bool isDeleted = false)
+                          : base(id,
+                                 createdBy,
+                                 lastModifiedDate,
+                                 lastModifiedBy,
+                                 isDeleted)
+    {
+
+        Id = id;
+        NftCopyId = nftCopyId;
+        Quantity = quantity;
+        PricePerItem = pricePerItem;
+        FixedEndingDateTime = fixedEndingDateTime;
+        SoftDelete = softDelete;
+        CreatedBy = createdBy;
+        LastModifiedDate = lastModifiedDate;
+        LastModifiedBy = lastModifiedBy;
+        IsDeleted = isDeleted;
     }
 }

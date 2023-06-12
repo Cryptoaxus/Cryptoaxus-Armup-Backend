@@ -16,7 +16,37 @@ public class OffersDto : BaseDto
 
     public int? OfferedQuantity { get; set; }
 
-    public OffersDto()
+    public OffersDto() : base()
     {
+    }
+
+    public OffersDto(ObjectId id,
+                     string? nftId = null,
+                     decimal? offerPrice = null,
+                     int? offerFrom = null,
+                     string? offerTo = null,
+                     DateTime? offerExpireAt = null,
+                     int? offeredQuantity = null,
+                     ObjectId? createdBy = null,
+                     DateTime? lastModifiedDate = null,
+                     ObjectId? lastModifiedBy = null,
+                     string? signature = null,
+                     int? quantity = null,
+                     bool isDeleted = false)
+                     : base(id,
+                            createdBy,
+                            lastModifiedDate,
+                            lastModifiedBy,
+                            isDeleted)
+    {
+        Id = id;
+        NftId = nftId;
+        OfferPrice = offerPrice;
+        OfferFrom = offerFrom;
+        OfferTo = offerTo;
+        Quantity = quantity;
+        OfferExpireAt = offerExpireAt;
+        OfferedQuantity = offeredQuantity;
+        CreatedBy = createdBy;
     }
 }

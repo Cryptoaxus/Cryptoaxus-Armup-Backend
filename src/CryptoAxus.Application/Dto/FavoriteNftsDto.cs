@@ -8,7 +8,18 @@ public class FavoriteNftsDto : BaseDto
 
     public string? CollectionId { get; set; }
 
-    public FavoriteNftsDto()
+    public FavoriteNftsDto() : base()
     {
+    }
+    public FavoriteNftsDto(ObjectId? id = null,
+                           string? nftId = null,
+                           string? artistWalletAddress = null,
+                           string? collectionId = null)
+    {
+
+        Id = id;
+        NftId = nftId;
+        ArtistWalletAddress = artistWalletAddress;
+        CollectionId = collectionId;
     }
 }

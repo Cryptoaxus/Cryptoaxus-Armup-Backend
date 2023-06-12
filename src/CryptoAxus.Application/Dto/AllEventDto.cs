@@ -38,7 +38,61 @@ public class AllEventDto : BaseDto
 
     public bool? Rejected { get; set; }
 
-    public AllEventDto()
+    public AllEventDto() : base()
     {
+    }
+
+    public AllEventDto(ObjectId id,
+                       string? nftId = null,
+                       int? marketTokenId = null,
+                       string? mintingContract = null,
+                       string? walletAddress = null,
+                       int? tokenId = null,
+                       int? quantity = null,
+                       string? seller = null,
+                       string? eventName = null,
+                       bool isSold = false,
+                       bool accepted = false,
+                       bool rejected = false,
+                       ObjectId? createdBy = null,
+                       string? buyer = null,
+                       DateTime? listingEndAt = null,
+                       decimal? price = null,
+                       bool isDeleted = false,
+                       decimal? offerAmount = null,
+                       DateTime? listedAt = null,
+                       DateTime? canceledAt = null,
+                       DateTime? soldAt = null,
+                       DateTime? lastModifiedDate = null,
+                       ObjectId? lastModifiedBy = null)
+                       : base(id,
+                              createdBy,
+                              lastModifiedDate,
+                              lastModifiedBy,
+                              isDeleted)
+    {
+        Id = id;
+        NftId = nftId;
+        MarketTokenId = marketTokenId;
+        MintingContract = mintingContract;
+        WalletAddress = walletAddress;
+        TokenId = tokenId;
+        Quantity = quantity;
+        Seller = seller;
+        EventName = eventName;
+        Buyer = buyer;
+        Price = price;
+        OfferAmount = offerAmount;
+        ListedAt = listedAt;
+        ListingEndAt = listingEndAt;
+        CanceledAt = canceledAt;
+        SoldAt = soldAt;
+        IsSold = isSold;
+        Accepted = accepted;
+        Rejected = rejected;
+        CreatedBy = createdBy;
+        LastModifiedDate = lastModifiedDate;
+        LastModifiedBy = lastModifiedBy;
+        IsDeleted = isDeleted;
     }
 }
