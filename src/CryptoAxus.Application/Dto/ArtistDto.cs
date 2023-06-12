@@ -6,6 +6,7 @@ public class ArtistDto : BaseDto
     /// Artist username
     /// </summary>
     /// <example>junaid.sultan</example>
+    [JsonProperty("username")]
     public string? Username { get; set; }
 
     public string? Email { get; set; }

@@ -1,7 +1,6 @@
 ﻿using CryptoAxus.Domain.Attributes;
 using CryptoAxus.Infrastructure.Context;
 using CryptoAxus.Infrastructure.Implementation.Repositories;
-using MongoDB.Driver;
 
 namespace CryptoAxus.Application.Features.Artist.Repositories;
 

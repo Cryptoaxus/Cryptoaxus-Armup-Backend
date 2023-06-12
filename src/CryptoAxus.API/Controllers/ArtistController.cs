@@ -1,10 +1,5 @@
-﻿using CryptoAxus.Application.Dto;
-using CryptoAxus.Application.Features.Artist.GetArtistById.Query;
-using CryptoAxus.Common.Attributes;
-using CryptoAxus.Common.Enumerations;
-using CryptoAxus.Common.Helpers;
-using Microsoft.Net.Http.Headers;
-using System.Dynamic;
+﻿using CryptoAxus.Application.Features.Artist.PatchArtistUsername.Request;
+using Microsoft.AspNetCore.JsonPatch;
 
 namespace CryptoAxus.API.Controllers;
 
@@ -41,7 +36,7 @@ public class ArtistController : BaseController<ArtistController>
 
         if (response.StatusCode.Equals(HttpStatusCode.OK) && response.Result is not null &&
             parsedMediaType.MediaType.Value!.Contains(Constants.VndApiHateoas))
-            response.Links = CreateArtistLinks(response.Result.Id.ToString(), string.Empty);
+            response.Links = CreateArtistLinks(response.Result, string.Empty);
 
         BaseResponse<ExpandoObject> shapedResponse = new BaseResponse<ExpandoObject>(response.StatusCode,
                                                                                      response.Message,
@@ -51,24 +46,42 @@ public class ArtistController : BaseController<ArtistController>
         return Ok(shapedResponse);
     }
 
+    [HttpPatch("{userWalletAddress:required}/username", Name = "PatchArtistUsername")]
+    public async Task<IActionResult> PatchArtistUsername([FromRoute] string userWalletAddress,
+                                                         [FromBody] JsonPatchDocument<ArtistDto> artistDto)
+    {
+        var response = await Mediator.Send(new PatchArtistUsernameRequest(userWalletAddress, artistDto));
+
+        return response.StatusCode switch
+        {
+            HttpStatusCode.NotFound => NotFound(response),
+            HttpStatusCode.NoContent => Ok(response),
+            _ => BadRequest(response)
+        };
+    }
+
     #region Links Helper Region
 
-    private IReadOnlyList<Links> CreateArtistLinks(string? id, string? fields)
+    private IReadOnlyList<Links> CreateArtistLinks(ArtistDto dto, string? fields)
     {
         Links link;
         List<Links> links = new List<Links>();
         if (!string.IsNullOrWhiteSpace(fields))
         {
-            link = new Links(Url.RouteUrl("GetArtistById", new { id, fields }), "self", "GET");
+            link = new Links(Url.RouteUrl("GetArtistById", new { dto.Id, fields }), "self", "GET");
             link.Href = link.Href?.Replace("/api", $"{HttpContext?.Request.Scheme}://{HttpContext?.Request.Host}/api");
             links.Add(link);
         }
         else
         {
-            link = new Links(Url.RouteUrl("GetArtistById", new { id }), "self", "GET");
+            link = new Links(Url.RouteUrl("GetArtistById", new { dto.Id }), "self", "GET");
             link.Href = link.Href?.Replace("/api", $"{HttpContext?.Request.Scheme}://{HttpContext?.Request.Host}/api");
             links.Add(link);
         }
+
+        link = new Links(Url.RouteUrl("PatchArtistUsername", new { dto.UserWalletAddress }), "patch_username", "PATCH");
+        link.Href = link.Href?.Replace("/api", $"{HttpContext?.Request.Scheme}://{HttpContext?.Request.Host}/api");
+        links.Add(link);
 
         return links.AsReadOnly();
     }

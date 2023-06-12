@@ -26,7 +26,7 @@ builder.Services.AddControllers(options =>
 }).AddJsonOptions(options =>
 {
     options.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
-});
+}).AddNewtonsoftJson();
 
 builder.Services.AddEndpointsApiExplorer();
 
