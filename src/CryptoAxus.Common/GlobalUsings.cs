@@ -1,4 +1,5 @@
 ﻿global using CryptoAxus.Common.Constants;
+global using CryptoAxus.Common.Enumerations;
 global using CryptoAxus.Common.Response;
 global using CryptoAxus.Common.Services.Contracts;
 global using CryptoAxus.Common.Services.Implementation;

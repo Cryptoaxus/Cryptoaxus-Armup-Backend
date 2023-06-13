@@ -3,7 +3,7 @@
 public interface IBaseDocument
 {
     [BsonId]
-    [BsonRepresentation(BsonType.ObjectId)]
+    [BsonRepresentation(BsonType.String)]
     ObjectId Id { get; }
 
     DateTime CreatedDate { get; }

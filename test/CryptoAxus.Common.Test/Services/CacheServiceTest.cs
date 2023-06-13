@@ -1,7 +1,4 @@
-﻿using CryptoAxus.Common.Test.Services.TestData;
-using FluentAssertions;
-
-namespace CryptoAxus.Common.Test.Services;
+﻿namespace CryptoAxus.Common.Test.Services;
 
 public class CacheServiceTest : CacheServiceTestData
 {
@@ -17,6 +14,6 @@ public class CacheServiceTest : CacheServiceTestData
         var value = await sut.GetAsync<string?>(StringCacheKey);
 
         // Assertion
-        value.Should().BeNull();
+        value.ShouldBeNull();
     }
 }

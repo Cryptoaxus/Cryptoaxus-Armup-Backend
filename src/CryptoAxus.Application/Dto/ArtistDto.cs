@@ -2,8 +2,17 @@
 
 public class ArtistDto : BaseDto
 {
+    /// <summary>
+    /// Artist username
+    /// </summary>
+    /// <example>junaid.sultan</example>
+    [JsonProperty("username")]
     public string? Username { get; set; }
 
+    /// <summary>
+    /// Artist email
+    /// </summary>
+    /// <example>junaid.sultan@gmail.com</example>
     public string? Email { get; set; }
 
     public string? UserWalletAddress { get; set; }

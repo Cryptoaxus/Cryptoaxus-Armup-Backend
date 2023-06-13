@@ -11,6 +11,8 @@
     <Folder Include="Constants\" />
     <Folder Include="Interfaces\" />
     <Folder Include="Contracts\" />
+    <Folder Include="Attributes\" />
+    <Folder Include="Enumerations\" />
     <Folder Include="Response\" />
     <Folder Include="Services\Contracts\" />
     <Folder Include="Services\Implementation\" />

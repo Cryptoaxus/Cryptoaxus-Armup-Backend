@@ -1,6 +1,4 @@
-﻿using CryptoAxus.Infrastructure.Context;
-
-namespace CryptoAxus.Infrastructure.Implementation.Repositories;
+﻿namespace CryptoAxus.Infrastructure.Implementation.Repositories;
 
 public class Repository<TDocument> : IRepository<TDocument> where TDocument : IBaseDocument
 {
@@ -9,11 +7,7 @@ public class Repository<TDocument> : IRepository<TDocument> where TDocument : IB
 
     public Repository(ICryptoAxusContext context)
     {
-        //throw new ArgumentNullException(nameof(settings), Messages.ArgumentNullException);
-
-        //IMongoDatabase database = client.GetDatabase(settings.DatabaseName);
-        //IMongoDatabase database = new MongoClient(settings.ConnectionString).GetDatabase(settings.DatabaseName);
-        //_collection = database.GetCollection<TDocument>(GetCollectionName(typeof(TDocument)));
+        ArgumentException.ThrowIfNullOrEmpty(context.ToString(), nameof(context));
 
         _context = context;
         _collection = _context.GetCollection<TDocument>(GetCollectionName(typeof(TDocument)));
@@ -41,7 +35,7 @@ public class Repository<TDocument> : IRepository<TDocument> where TDocument : IB
 
     public Task<TDocument> FindOneAsync(Expression<Func<TDocument, bool>> filterExpression)
     {
-        return Task.Run(() => _collection.Find(filterExpression).FirstOrDefaultAsync());
+        return Task.Run(function: () => _collection.Find(filterExpression).FirstOrDefaultAsync());
     }
 
     public TDocument FindById(ObjectId id)
@@ -52,10 +46,10 @@ public class Repository<TDocument> : IRepository<TDocument> where TDocument : IB
 
     public Task<TDocument> FindByIdAsync(ObjectId id)
     {
-        return Task.Run(() =>
+        return Task.Run(function: () =>
         {
-            var filter = Builders<TDocument>.Filter.Eq(doc => doc.Id, id);
-            return _collection.Find(filter).SingleOrDefaultAsync();
+            var filter = Builders<TDocument>.Filter.Eq(field: doc => doc.Id, value: id);
+            return _collection.Find(filter: filter).SingleOrDefaultAsync();
         });
     }
 
@@ -89,6 +83,11 @@ public class Repository<TDocument> : IRepository<TDocument> where TDocument : IB
     {
         var filter = Builders<TDocument>.Filter.Eq(doc => doc.Id, document.Id);
         await _collection.FindOneAndReplaceAsync(filter, document);
+    }
+
+    public async Task<UpdateResult> UpdateOneAsync(FilterDefinition<TDocument> filterExpression, UpdateDefinition<TDocument> updateExpression)
+    {
+        return await _collection.UpdateOneAsync(filterExpression, updateExpression);
     }
 
     public void DeleteOne(Expression<Func<TDocument, bool>> filterExpression)
