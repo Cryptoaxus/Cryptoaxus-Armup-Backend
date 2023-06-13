@@ -1,3 +1,7 @@
+using CryptoAxus.API.ApiHelper;
+using CryptoAxus.Application.Features.Artist.PatchArtistUsername.Response;
+using Swashbuckle.AspNetCore.Filters;
+
 var builder = WebApplication.CreateBuilder(args);
 IConfiguration configuration = builder.Configuration;
 
@@ -30,7 +34,13 @@ builder.Services.AddControllers(options =>
 
 builder.Services.AddEndpointsApiExplorer();
 
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(options =>
+{
+    options.ExampleFilters();
+    options.IncludeXmlComments(XmlCommentsHelper.XmlCommentsFilePath(), true);
+});
+
+builder.Services.AddSwaggerExamplesFromAssemblyOf<PatchArtistUsernameResponse>();
 
 builder.Services.AddApiVersioning(options =>
 {

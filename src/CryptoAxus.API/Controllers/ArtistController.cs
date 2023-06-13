@@ -1,5 +1,7 @@
 ﻿using CryptoAxus.Application.Features.Artist.PatchArtistUsername.Request;
+using CryptoAxus.Application.Features.Artist.PatchArtistUsername.Response;
 using Microsoft.AspNetCore.JsonPatch;
+using Swashbuckle.AspNetCore.Filters;
 
 namespace CryptoAxus.API.Controllers;
 
@@ -15,6 +17,14 @@ public class ArtistController : BaseController<ArtistController>
     {
     }
 
+    /// <summary>
+    /// Returns artist by id
+    /// </summary>
+    /// <param name="id" example="507f191e810c19729de860ea"></param>
+    /// <param name="fields" example="username, email, bio"></param>
+    /// <param name="mediaType" example="application/json"></param>
+    /// <response code="200">Artist record retrieved</response>
+    /// <returns></returns>
     [HttpGet(template: "{id:required}", Name = "GetArtistById", Order = 1)]
     [RequiresParameter(Name = "id", Required = true, Source = OpenApiParameterLocation.Path, Type = typeof(string))]
     [RequiresParameter(Name = "fields", Required = false, Source = OpenApiParameterLocation.Query, Type = typeof(string))]
@@ -45,8 +55,21 @@ public class ArtistController : BaseController<ArtistController>
 
         return Ok(shapedResponse);
     }
-
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="userWalletAddress"></param>
+    /// <param name="artistDto"></param>
+    /// <response code="200">Success response with 200 code and information message about update</response>
+    /// <response code="404">Not Found response with 404 code and information message</response>
+    /// <response code="400">Bad Request response with 400 code and information message</response>
+    /// <returns></returns>
     [HttpPatch("{userWalletAddress:required}/username", Name = "PatchArtistUsername")]
+    [SwaggerRequestExample(typeof(PatchArtistUsernameRequest), typeof(PatchArtistUsernameRequestExample))]
+    [ProducesResponseType(typeof(PatchArtistUsernameResponse), (int)HttpStatusCode.OK)]
+    [ProducesResponseType(typeof(NotFoundPatchArtistUsernameResponse), (int)HttpStatusCode.NotFound)]
+    [ProducesResponseType(typeof(BadRequestPatchArtistUsernameResponse), (int)HttpStatusCode.BadRequest)]
+
     public async Task<IActionResult> PatchArtistUsername([FromRoute] string userWalletAddress,
                                                          [FromBody] JsonPatchDocument<ArtistDto> artistDto)
     {
