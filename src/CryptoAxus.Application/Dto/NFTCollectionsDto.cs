@@ -4,7 +4,6 @@ public class NFTCollectionstDto : BaseDto
 {
     public string? CollectionLogoImageHash { get; set; }
 
-
     public string? CollectionFeaturedImageHash { get; set; }
 
     public string? CollectionBannerImageHash { get; set; }
