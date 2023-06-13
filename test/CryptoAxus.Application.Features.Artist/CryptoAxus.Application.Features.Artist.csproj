@@ -26,6 +26,7 @@
 
   <ItemGroup>
     <Folder Include="GetArtistById\Handler\" />
+    <Folder Include="PatchArtistUsername\Handler\" />
     <Folder Include="Repositories\" />
   </ItemGroup>
 

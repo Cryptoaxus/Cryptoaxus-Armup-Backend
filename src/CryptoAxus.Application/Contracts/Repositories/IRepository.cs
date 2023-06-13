@@ -29,6 +29,8 @@ public interface IRepository<TDocument> where TDocument : IBaseDocument
 
     Task ReplaceOneAsync(TDocument document);
 
+    Task<UpdateResult> UpdateOneAsync(FilterDefinition<TDocument> filterExpression, UpdateDefinition<TDocument> updateExpression);
+
     void DeleteOne(Expression<Func<TDocument, bool>> filterExpression);
 
     Task DeleteOneAsync(Expression<Func<TDocument, bool>> filterExpression);

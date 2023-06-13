@@ -9,16 +9,19 @@ public class BaseResponse<TEntity>
     /// <summary>
     /// Returns the status code of the request
     /// </summary>
+    /// <example>200</example>
     public HttpStatusCode StatusCode { get; set; }
 
     /// <summary>
     /// Message description
     /// </summary>
+    /// <example>Records retrieved successfully</example>
     public string? Message { get; set; }
 
     /// <summary>
     /// Success/Fail indicator
     /// </summary>
+    /// <example>true</example>
     public bool? IsSuccessful { get; set; }
 
     /// <summary>
