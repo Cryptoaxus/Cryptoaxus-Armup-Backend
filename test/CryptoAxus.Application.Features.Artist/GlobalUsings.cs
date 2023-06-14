@@ -1,5 +1,7 @@
 global using CryptoAxus.Application.Contracts.Repositories;
 global using CryptoAxus.Application.Dto;
+global using CryptoAxus.Application.Features.Artist.GetArtistById.Handler;
+global using CryptoAxus.Application.Features.Artist.GetArtistById.Request;
 global using CryptoAxus.Application.Features.Artist.PatchArtistUsername.Handler;
 global using CryptoAxus.Application.Features.Artist.PatchArtistUsername.Request;
 global using CryptoAxus.Common.Helpers;

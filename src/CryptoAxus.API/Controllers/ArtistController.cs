@@ -1,9 +1,4 @@
-﻿using CryptoAxus.Application.Features.Artist.PatchArtistUsername.Request;
-using CryptoAxus.Application.Features.Artist.PatchArtistUsername.Response;
-using Microsoft.AspNetCore.JsonPatch;
-using Swashbuckle.AspNetCore.Filters;
-
-namespace CryptoAxus.API.Controllers;
+﻿namespace CryptoAxus.API.Controllers;
 
 [ApiVersion("1.0")]
 [Produces(contentType: Constants.ContentTypeJson, Constants.ContentTypeJsonHateoas,
@@ -39,7 +34,7 @@ public class ArtistController : BaseController<ArtistController>
                                                             Messages.BadRequest,
                                                              new List<string> { Messages.InvalidMediaType }));
 
-        var response = await Mediator.Send(new GetArtistByIdQuery(id));
+        var response = await Mediator.Send(new GetArtistByIdRequest(id));
 
         if (response.StatusCode.Equals(HttpStatusCode.NotFound))
             return NotFound(response);

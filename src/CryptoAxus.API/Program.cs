@@ -1,6 +1,4 @@
 using CryptoAxus.API.ApiHelper;
-using CryptoAxus.Application.Features.Artist.PatchArtistUsername.Response;
-using Swashbuckle.AspNetCore.Filters;
 
 var builder = WebApplication.CreateBuilder(args);
 IConfiguration configuration = builder.Configuration;

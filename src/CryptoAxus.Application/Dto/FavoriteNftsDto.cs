@@ -11,7 +11,7 @@ public class FavoriteNftsDto : BaseDto
     public FavoriteNftsDto() : base()
     {
     }
-    public FavoriteNftsDto(ObjectId? id = null,
+    public FavoriteNftsDto(ObjectId id,
                            string? nftId = null,
                            string? artistWalletAddress = null,
                            string? collectionId = null,
@@ -23,7 +23,7 @@ public class FavoriteNftsDto : BaseDto
                                   createdBy,
                                   lastModifiedDate,
                                   lastModifiedBy,
-                                  isDeleted))
+                                  isDeleted)
     {
         Id = id;
         NftId = nftId;

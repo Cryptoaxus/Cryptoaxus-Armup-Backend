@@ -9,8 +9,8 @@
   <ItemGroup>
     <Folder Include="Contracts\Repositories\" />
     <Folder Include="Contracts\Settings\" />
-    <Folder Include="Features\Artist\GetArtistById\Response\" />
     <Folder Include="Features\Artist\GetArtistById\Request\" />
+    <Folder Include="Features\Artist\GetArtistById\Response\" />
     <Folder Include="Features\Artist\Handlers\" />
     <Folder Include="Features\Artist\PatchArtistUsername\Handler\" />
     <Folder Include="Features\Artist\PatchArtistUsername\Response\" />
