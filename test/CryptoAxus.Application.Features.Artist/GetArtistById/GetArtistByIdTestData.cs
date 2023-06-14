@@ -1,7 +1,4 @@
-﻿using CryptoAxus.Application.Features.Artist.GetArtistById.Handler;
-using CryptoAxus.Application.Features.Artist.GetArtistById.Query;
-
-namespace CryptoAxus.Application.Features.Artist.GetArtistById;
+﻿namespace CryptoAxus.Application.Features.Artist.GetArtistById;
 
 public class GetArtistByIdTestData
 {
@@ -50,9 +47,9 @@ public class GetArtistByIdTestData
         return this;
     }
 
-    protected GetArtistByIdQuery CreateQuery(string id)
+    protected GetArtistByIdRequest CreateQuery(string id)
     {
-        return new GetArtistByIdQuery(id);
+        return new GetArtistByIdRequest(id);
     }
 
     public GetArtistByIdQueryHandler Build()

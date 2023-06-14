@@ -1,6 +1,4 @@
-﻿using Swashbuckle.AspNetCore.Filters;
-
-namespace CryptoAxus.Application.Features.Artist.PatchArtistUsername.Response;
+﻿namespace CryptoAxus.Application.Features.Artist.PatchArtistUsername.Response;
 
 public class BadRequestPatchArtistUsernameResponseExample : IExamplesProvider<BadRequestPatchArtistUsernameResponse>
 {
