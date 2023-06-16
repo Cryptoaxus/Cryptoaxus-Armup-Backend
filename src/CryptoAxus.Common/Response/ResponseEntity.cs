@@ -21,7 +21,7 @@ public class ResponseEntity
     {
     }
 
-    protected ResponseEntity(HttpStatusCode statusCode, string message, bool? isSuccessful)
+    public ResponseEntity(HttpStatusCode statusCode, string message, bool? isSuccessful)
     {
         StatusCode = statusCode;
         Message = message;

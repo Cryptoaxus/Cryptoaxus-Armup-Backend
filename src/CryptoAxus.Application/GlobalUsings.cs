@@ -4,6 +4,8 @@ global using CryptoAxus.Application.Features.Artist.GetArtistById.Request;
 global using CryptoAxus.Application.Features.Artist.GetArtistById.Response;
 global using CryptoAxus.Application.Features.Artist.PatchArtistUsername.Request;
 global using CryptoAxus.Application.Features.Artist.PatchArtistUsername.Response;
+global using CryptoAxus.Application.Features.Artist.PostArtist.Request;
+global using CryptoAxus.Application.Features.Artist.PostArtist.Response;
 global using CryptoAxus.Application.Features.Artist.Query;
 global using CryptoAxus.Common.Constants;
 global using CryptoAxus.Common.Helpers;

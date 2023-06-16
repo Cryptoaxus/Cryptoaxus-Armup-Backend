@@ -2,7 +2,9 @@
 
 public interface IRepository<TDocument> where TDocument : IBaseDocument
 {
-    IEnumerable<TDocument> AsEnumerable();
+    IQueryable<TDocument> AsQueryable();
+
+    Task<bool> Exists(Expression<Func<TDocument, bool>> expression, CancellationToken cancellationToken);
 
     IEnumerable<TDocument> FilterBy(Expression<Func<TDocument, bool>> filterExpression);
 

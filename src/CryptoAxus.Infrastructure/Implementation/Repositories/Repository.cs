@@ -1,9 +1,11 @@
-﻿namespace CryptoAxus.Infrastructure.Implementation.Repositories;
+﻿using MongoDB.Driver.Linq;
+
+namespace CryptoAxus.Infrastructure.Implementation.Repositories;
 
 public class Repository<TDocument> : IRepository<TDocument> where TDocument : IBaseDocument
 {
-    protected readonly ICryptoAxusContext _context;
-    protected readonly IMongoCollection<TDocument> _collection;
+    private readonly ICryptoAxusContext _context;
+    private readonly IMongoCollection<TDocument> _collection;
 
     public Repository(ICryptoAxusContext context)
     {
@@ -13,9 +15,14 @@ public class Repository<TDocument> : IRepository<TDocument> where TDocument : IB
         _collection = _context.GetCollection<TDocument>(GetCollectionName(typeof(TDocument)));
     }
 
-    public IEnumerable<TDocument> AsEnumerable()
+    public IQueryable<TDocument> AsQueryable()
     {
-        return _collection.AsQueryable().AsEnumerable();
+        return _collection.AsQueryable();
+    }
+
+    public Task<bool> Exists(Expression<Func<TDocument, bool>> expression, CancellationToken cancellationToken)
+    {
+        return Task.Run(function: () => _collection.AsQueryable().AnyAsync(expression, cancellationToken), cancellationToken);
     }
 
     public IEnumerable<TDocument> FilterBy(Expression<Func<TDocument, bool>> filterExpression)

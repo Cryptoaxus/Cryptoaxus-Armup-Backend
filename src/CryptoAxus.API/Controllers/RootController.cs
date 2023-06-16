@@ -21,7 +21,15 @@ public class RootController : ControllerBase
 
                 new Links(href: Url.RouteUrl(routeName: "GetArtistById", values: new { id = "648042e75ce6c1392e35460c" }),
                           rel: Constants.CustomerRel,
-                          method: Constants.GetMethod)
+                          method: Constants.GetMethod),
+
+                new Links(href: Url.RouteUrl("PatchArtistUsername", values: new { userWalletAddress = "0x51c330436F289192F43666e51Df72Ec06F66Dad9" }),
+                          rel: "patch_username",
+                          method: Constants.PatchMethod),
+
+                new Links(href: Url.RouteUrl("PostArtist"),
+                          rel: "post",
+                          method: Constants.PostMethod)
             };
 
             return new BaseResponse<IReadOnlyList<Links>>(statusCode: HttpStatusCode.OK, message: null, result: links.AsReadOnly());
