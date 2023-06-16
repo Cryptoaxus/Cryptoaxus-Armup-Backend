@@ -1,5 +1,7 @@
 ﻿using CryptoAxus.Application.Features.Artist.PatchArtistUsername.Request;
 using CryptoAxus.Application.Features.Artist.PatchArtistUsername.Response;
+using CryptoAxus.Application.Features.DeleteArtistById.Request;
+using CryptoAxus.Application.Features.DeleteArtistById.Response;
 using Microsoft.AspNetCore.JsonPatch;
 using Swashbuckle.AspNetCore.Filters;
 
@@ -69,7 +71,9 @@ public class ArtistController : BaseController<ArtistController>
     [ProducesResponseType(typeof(PatchArtistUsernameResponse), (int)HttpStatusCode.OK)]
     [ProducesResponseType(typeof(NotFoundPatchArtistUsernameResponse), (int)HttpStatusCode.NotFound)]
     [ProducesResponseType(typeof(BadRequestPatchArtistUsernameResponse), (int)HttpStatusCode.BadRequest)]
-
+    [ProducesResponseType(typeof(DeleteArtistByIdResponse), (int)HttpStatusCode.NoContent)]
+    [ProducesResponseType(typeof(DeleteArtistByIdResponse), (int)HttpStatusCode.NotFound)]
+    [ProducesResponseType(typeof(DeleteArtistByIdResponse), (int)HttpStatusCode.BadRequest)]
     public async Task<IActionResult> PatchArtistUsername([FromRoute] string userWalletAddress,
                                                          [FromBody] JsonPatchDocument<ArtistDto> artistDto)
     {
@@ -82,7 +86,28 @@ public class ArtistController : BaseController<ArtistController>
             _ => BadRequest(response)
         };
     }
+    /// <summary>
+    /// Delete artist by id
+    /// </summary>
+    /// <param name="id" example="507f191e810c19729de860ea"></param>
+    /// <response code="200">Delete Artist by Id</response>
+    /// <returns></returns>
+    [HttpGet(template: "{id:required}", Name = "DeleteArtistById", Order = 3)]
+    [RequiresParameter(Name = "id", Required = true, Source = OpenApiParameterLocation.Path, Type = typeof(string))]
+   
+    [ProducesResponseType(typeof(BaseResponse<ArtistDto>), (int)HttpStatusCode.OK)]
+    public async Task<IActionResult> DeleteArtistById(string id)
+    {
+        var response = await Mediator.Send(new DeleteArtistByIdRequest(id));
 
+        if (response.StatusCode.Equals(HttpStatusCode.NotFound))
+            return NotFound(response);
+       
+        if (response.StatusCode.Equals(HttpStatusCode.BadRequest))
+            return BadRequest(response);
+
+        return Ok(response);
+    }
     #region Links Helper Region
 
     private IReadOnlyList<Links> CreateArtistLinks(ArtistDto dto, string? fields)
