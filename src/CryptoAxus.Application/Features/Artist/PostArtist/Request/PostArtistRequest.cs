@@ -3,7 +3,7 @@
 public class PostArtistRequest : IRequest<PostArtistResponse>
 {
     [JsonProperty("artist")]
-    public ArtistDto Artist { get; set; }
+    public CreateArtistDto Artist { get; set; }
 
-    public PostArtistRequest(ArtistDto artist) => Artist = artist;
+    public PostArtistRequest(CreateArtistDto artist) => Artist = artist;
 }

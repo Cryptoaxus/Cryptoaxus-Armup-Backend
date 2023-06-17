@@ -1,5 +1,4 @@
 ﻿using CryptoAxus.Application.Features.Artist.PostArtist.Request;
-using CryptoAxus.Application.Features.Artist.PostArtist.Response;
 
 namespace CryptoAxus.API.Controllers;
 
@@ -63,6 +62,8 @@ public class ArtistController : BaseController<ArtistController>
     /// <response code="400">Bad Request response with 400 code and information message</response>
     /// <returns></returns>
     [HttpPatch("{userWalletAddress:required}/username", Name = "PatchArtistUsername", Order = 2)]
+    [RequiresParameter(Name = "userWalletAddress", Required = true, Source = OpenApiParameterLocation.Path, Type = typeof(string))]
+    [RequiresParameter(Name = "artistDto", Required = true, Source = OpenApiParameterLocation.Body, Type = typeof(JsonPatchDocument<ArtistDto>))]
     [SwaggerRequestExample(typeof(PatchArtistUsernameRequest), typeof(PatchArtistUsernameRequestExample))]
     [ProducesResponseType(typeof(PatchArtistUsernameResponse), (int)HttpStatusCode.OK)]
     [ProducesResponseType(typeof(NotFoundPatchArtistUsernameResponse), (int)HttpStatusCode.NotFound)]
@@ -105,18 +106,19 @@ public class ArtistController : BaseController<ArtistController>
     /// <summary>
     /// Creates a new artist in the database
     /// </summary>
-    /// <param name="artistDto"></param>
+    /// <param name="artist"></param>
     /// <returns></returns>
-    [HttpPost(Name = "PostArtist", Order = 3)]
-    [SwaggerRequestExample(typeof(PostArtistRequest), typeof(PostArtistRequestExample))]
+    [HttpPost(Name = "PostArtist", Order = 4)]
+    [RequiresParameter(Name = "artist", Required = true, Source = OpenApiParameterLocation.Body, Type = typeof(CreateArtistDto))]
+    //[SwaggerRequestExample(typeof(PostArtistRequest), typeof(PostArtistRequestExample))]
     [ProducesResponseType(typeof(PostArtistResponse), (int)HttpStatusCode.Created)]
     [ProducesResponseType(typeof(BadRequestPostArtistResponse), (int)HttpStatusCode.BadRequest)]
     [ProducesResponseType(typeof(ConflictPostArtistResponse), (int)HttpStatusCode.Conflict)]
-    public async Task<IActionResult> PostArtist([FromBody] ArtistDto artistDto)
+    public async Task<IActionResult> PostArtist([FromBody] CreateArtistDto artist)
     {
-        var response = await Mediator.Send(new PostArtistRequest(artistDto));
+        var response = await Mediator.Send(new PostArtistRequest(artist));
 
-        if (response.StatusCode == HttpStatusCode.BadRequest)
+        if (response.StatusCode == HttpStatusCode.Conflict)
             return BadRequest(response);
         return CreatedAtRoute("GetArtistById", new { id = response.Result?.Id }, response);
     }
