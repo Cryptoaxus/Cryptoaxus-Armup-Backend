@@ -7,6 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Mappings\**" />
+    <EmbeddedResource Remove="Mappings\**" />
+    <None Remove="Mappings\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="Contracts\Repositories\" />
     <Folder Include="Contracts\Settings\" />
     <Folder Include="Features\Artist\GetArtistById\Request\" />
@@ -15,7 +21,6 @@
     <Folder Include="Features\Artist\PatchArtistUsername\Handler\" />
     <Folder Include="Features\Artist\PatchArtistUsername\Response\" />
     <Folder Include="Features\Artist\Query\" />
-    <Folder Include="Mappings\" />
   </ItemGroup>
 
   <ItemGroup>

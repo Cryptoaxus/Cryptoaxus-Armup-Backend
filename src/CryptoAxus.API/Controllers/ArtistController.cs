@@ -53,7 +53,7 @@ public class ArtistController : BaseController<ArtistController>
     /// <summary>
     /// 
     /// </summary>
-    /// <param name="userWalletAddress"></param>
+    /// <param name="userWalletAddress" example="0x507f191e810c19729de860ea"></param>
     /// <param name="artistDto"></param>
     /// <response code="200">Success response with 200 code and information message about update</response>
     /// <response code="404">Not Found response with 404 code and information message</response>
@@ -64,7 +64,6 @@ public class ArtistController : BaseController<ArtistController>
     [ProducesResponseType(typeof(PatchArtistUsernameResponse), (int)HttpStatusCode.OK)]
     [ProducesResponseType(typeof(NotFoundPatchArtistUsernameResponse), (int)HttpStatusCode.NotFound)]
     [ProducesResponseType(typeof(BadRequestPatchArtistUsernameResponse), (int)HttpStatusCode.BadRequest)]
-
     public async Task<IActionResult> PatchArtistUsername([FromRoute] string userWalletAddress,
                                                          [FromBody] JsonPatchDocument<ArtistDto> artistDto)
     {
@@ -77,6 +76,28 @@ public class ArtistController : BaseController<ArtistController>
             _ => BadRequest(response)
         };
     }
+    /// <summary>
+    /// Delete artist by id
+    /// </summary>
+    /// <param name="id" example="507f191e810c19729de860ea"></param>
+    /// <response code="204">Delete Artist by Id</response>
+    /// <returns></returns>
+    [HttpDelete(template: "{id:required}", Name = "DeleteArtistById", Order = 3)]
+    [RequiresParameter(Name = "id", Required = true, Source = OpenApiParameterLocation.Path, Type = typeof(string))]
+    [ProducesResponseType(typeof(BaseResponse<ArtistDto>), (int)HttpStatusCode.OK)]
+    [ProducesResponseType(typeof(NotFoundDeleteArtistByIdResponse), (int)HttpStatusCode.NotFound)]
+    [ProducesResponseType(typeof(BadRequestDeleteArtistByIdResponse), (int)HttpStatusCode.BadRequest)]
+    public async Task<IActionResult> DeleteArtistById([FromRoute] string id)
+    {
+        var response = await Mediator.Send(new DeleteArtistByIdRequest(id));
+
+        return response.StatusCode switch
+        {
+            HttpStatusCode.NoContent => StatusCode((int)HttpStatusCode.NoContent, response),
+            HttpStatusCode.NotFound => NotFound(response),
+            _ => BadRequest(response)
+        };
+    }
 
     #region Links Helper Region
 
@@ -86,19 +107,35 @@ public class ArtistController : BaseController<ArtistController>
         List<Links> links = new List<Links>();
         if (!string.IsNullOrWhiteSpace(fields))
         {
-            link = new Links(Url.RouteUrl("GetArtistById", new { dto.Id, fields }), "self", "GET");
-            link.Href = link.Href?.Replace("/api", $"{HttpContext?.Request.Scheme}://{HttpContext?.Request.Host}/api");
+            link = new Links(Url.RouteUrl("GetArtistById", new { dto.Id, fields }),
+                             Constants.SelfRel,
+                             Constants.GetMethod);
+            link.Href = link.Href?.Replace(Constants.ApiValue,
+                                           $"{HttpContext?.Request.Scheme}://{HttpContext?.Request.Host}{Constants.ApiValue}");
             links.Add(link);
         }
         else
         {
-            link = new Links(Url.RouteUrl("GetArtistById", new { dto.Id }), "self", "GET");
-            link.Href = link.Href?.Replace("/api", $"{HttpContext?.Request.Scheme}://{HttpContext?.Request.Host}/api");
+            link = new Links(Url.RouteUrl("GetArtistById", new { dto.Id }),
+                             Constants.SelfRel,
+                             Constants.GetMethod);
+            link.Href = link.Href?.Replace(Constants.ApiValue,
+                                           $"{HttpContext?.Request.Scheme}://{HttpContext?.Request.Host}{Constants.ApiValue}");
             links.Add(link);
         }
 
-        link = new Links(Url.RouteUrl("PatchArtistUsername", new { dto.UserWalletAddress }), "patch_username", "PATCH");
-        link.Href = link.Href?.Replace("/api", $"{HttpContext?.Request.Scheme}://{HttpContext?.Request.Host}/api");
+        link = new Links(Url.RouteUrl("PatchArtistUsername", new { dto.UserWalletAddress }),
+                         "patch_username",
+                         Constants.PatchMethod);
+        link.Href = link.Href?.Replace(Constants.ApiValue,
+                                       $"{HttpContext?.Request.Scheme}://{HttpContext?.Request.Host}{Constants.ApiValue}");
+        links.Add(link);
+
+        link = new Links(href: Url.RouteUrl("DeleteArtistById", new { dto.Id }),
+                         "delete",
+                         Constants.DeleteMethod);
+        link.Href = link.Href?.Replace(Constants.ApiValue,
+                                       $"{HttpContext?.Request.Scheme}://{HttpContext?.Request.Host}{Constants.ApiValue}");
         links.Add(link);
 
         return links.AsReadOnly();

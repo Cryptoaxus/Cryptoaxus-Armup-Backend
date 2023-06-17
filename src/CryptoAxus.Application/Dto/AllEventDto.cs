@@ -19,7 +19,7 @@ public class AllEventDto : BaseDto
     public string? EventName { get; set; }
 
     public string? Buyer { get; set; }
-    
+
     public decimal? Price { get; set; }
 
     public decimal? OfferAmount { get; set; }

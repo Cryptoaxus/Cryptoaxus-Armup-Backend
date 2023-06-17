@@ -1,5 +1,3 @@
-using CryptoAxus.API.ApiHelper;
-
 var builder = WebApplication.CreateBuilder(args);
 IConfiguration configuration = builder.Configuration;
 

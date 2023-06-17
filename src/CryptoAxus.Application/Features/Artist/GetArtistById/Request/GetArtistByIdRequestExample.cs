@@ -4,6 +4,6 @@ public class GetArtistByIdRequestExample : IExamplesProvider<GetArtistByIdReques
 {
     public GetArtistByIdRequest GetExamples()
     {
-        return new GetArtistByIdRequest();
+        return new GetArtistByIdRequest("507f191e810c19729de860ea");
     }
 }

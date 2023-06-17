@@ -1,8 +1,4 @@
-﻿using CryptoAxus.Application.Dto;
-using CryptoAxus.Domain.Collections;
-using Mapster;
-
-namespace CryptoAxus.Application.Mappings;
+﻿namespace CryptoAxus.Application.Features.Mappings;
 
 public class ArtistMappings
 {
