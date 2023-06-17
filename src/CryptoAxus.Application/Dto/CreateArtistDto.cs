@@ -1,6 +1,6 @@
 ﻿namespace CryptoAxus.Application.Dto;
 
-public class ArtistDto : BaseDto
+public class CreateArtistDto
 {
     /// <summary>
     /// Artist username
@@ -65,31 +65,28 @@ public class ArtistDto : BaseDto
     [JsonProperty("twitter")]
     public string? Twitter { get; set; }
 
-    public ArtistDto() : base()
+    /// <summary>
+    /// Created by user id
+    /// </summary>
+    /// <example>648cb3a86180aab54f00c3fc</example>
+    [JsonProperty("createdBy")]
+    public string? CreatedBy { get; set; }
+
+    public CreateArtistDto()
     {
     }
 
-    public ArtistDto(ObjectId id,
-                     string? username = null,
-                     string? email = null,
-                     string? userWalletAddress = null,
-                     string? website = null,
-                     string? bio = null,
-                     string? profileImageAddress = null,
-                     string? coverImageAddress = null,
-                     string? instagram = null,
-                     string? twitter = null,
-                     string? createdBy = null,
-                     DateTime? lastModifiedDate = null,
-                     ObjectId? lastModifiedBy = null,
-                     bool isDeleted = false)
-                     : base(id,
-                            createdBy.ToObjectId(),
-                            lastModifiedDate,
-                            lastModifiedBy,
-                            isDeleted)
+    public CreateArtistDto(string? username,
+                           string? email,
+                           string? userWalletAddress,
+                           string? website,
+                           string? bio,
+                           string? profileImageAddress,
+                           string? coverImageAddress,
+                           string? instagram,
+                           string? twitter,
+                           string? createdBy)
     {
-        Id = id;
         Username = username;
         Email = email;
         UserWalletAddress = userWalletAddress;
@@ -99,9 +96,6 @@ public class ArtistDto : BaseDto
         CoverImageAddress = coverImageAddress;
         Instagram = instagram;
         Twitter = twitter;
-        //CreatedBy = createdBy;
-        //LastModifiedDate = lastModifiedDate;
-        //LastModifiedBy = lastModifiedBy;
-        //IsDeleted = isDeleted;
+        CreatedBy = createdBy;
     }
 }

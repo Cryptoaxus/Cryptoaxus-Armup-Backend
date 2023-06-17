@@ -20,12 +20,16 @@ public class RootController : ControllerBase
                           method: Constants.GetMethod),
 
                 new Links(href: Url.RouteUrl(routeName: "GetArtistById", values: new { id = "648042e75ce6c1392e35460c" }),
-                          rel: Constants.CustomerRel,
+                          rel: "artist",
                           method: Constants.GetMethod),
 
                 new Links(href: Url.RouteUrl("PatchArtistUsername", values: new { userWalletAddress = "0x51c330436F289192F43666e51Df72Ec06F66Dad9" }),
                           rel: "patch_username",
                           method: Constants.PatchMethod),
+
+                new Links(href: Url.RouteUrl("DeleteArtistById", values: new { id = "648042e75ce6c1392e35460c" }),
+                          rel: "delete_artist",
+                          method: Constants.DeleteMethod),
 
                 new Links(href: Url.RouteUrl("PostArtist"),
                           rel: "post",

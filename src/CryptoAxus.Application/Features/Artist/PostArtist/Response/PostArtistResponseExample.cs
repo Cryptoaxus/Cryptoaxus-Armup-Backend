@@ -16,6 +16,6 @@ public class PostArtistResponseExample : IExamplesProvider<PostArtistResponse>
                                                     "banner.jpg",
                                                     "https://www.instagram.com",
                                                     "https://www.twitter.com",
-                                                    "647115d2b38bc8ea242beb01".ToObjectId()));
+                                                    "647115d2b38bc8ea242beb01"));
     }
 }

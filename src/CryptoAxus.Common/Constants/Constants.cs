@@ -21,7 +21,6 @@ public static class Constants
     public const string PutMethod = "PUT";
     public const string PatchMethod = "PATCH";
     public const string DeleteMethod = "DELETE";
-    public const string PatchMethod = "PATCH";
     public const string ApiValue = "/api";
     public const string VndApiHateoas = "vnd.api.hateoas";
 }

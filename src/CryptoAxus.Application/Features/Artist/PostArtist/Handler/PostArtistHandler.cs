@@ -18,10 +18,13 @@ public class PostArtistHandler : BaseHandler<PostArtistHandler>, IRequestHandler
                                                      cancellationToken);
 
         if (artistExists)
-            return new PostArtistResponse(HttpStatusCode.BadRequest, "Artist with same wallet address already exists", request.Artist);
+            return new PostArtistResponse(HttpStatusCode.Conflict, "Artist with same wallet address already exists",
+                                          request.Artist.Adapt<ArtistDto>());
 
-        await _repository.InsertOneAsync(request.Artist.Adapt<ArtistDocument>());
+        ArtistDocument artistDocument = request.Artist.Adapt<ArtistDocument>();
 
-        return new PostArtistResponse(HttpStatusCode.Created, "Artist created successfully", request.Artist);
+        await _repository.InsertOneAsync(artistDocument);
+
+        return new PostArtistResponse(HttpStatusCode.Created, "Artist created successfully", artistDocument.Adapt<ArtistDto>());
     }
 }

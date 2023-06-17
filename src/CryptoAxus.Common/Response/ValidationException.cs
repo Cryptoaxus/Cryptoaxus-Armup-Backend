@@ -6,7 +6,7 @@ public class ValidationException : ResponseEntity
     /// Validation error list
     /// </summary>
     [JsonPropertyOrder(3)]
-    internal IReadOnlyList<ValidationError>? Errors { get; set; }
+    public IReadOnlyList<ValidationError>? Errors { get; private set; }
 
     private ValidationException() : base(statusCode: HttpStatusCode.UnprocessableEntity,
                                          message: Messages.ValidationError,
