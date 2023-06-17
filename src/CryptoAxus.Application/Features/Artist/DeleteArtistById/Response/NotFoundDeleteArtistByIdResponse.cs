@@ -1,4 +1,4 @@
-﻿namespace CryptoAxus.Application.Features.DeleteArtistById.Response;
+﻿namespace CryptoAxus.Application.Features.Artist.DeleteArtistById.Response;
 
 public class NotFoundDeleteArtistByIdResponse : BaseResponse<ArtistDto>
 {

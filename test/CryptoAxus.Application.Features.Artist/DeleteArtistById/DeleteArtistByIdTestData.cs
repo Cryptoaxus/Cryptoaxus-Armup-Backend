@@ -1,66 +1,57 @@
-﻿using CryptoAxus.Application.Features.DeleteArtistById.Handler;
-using CryptoAxus.Application.Features.DeleteArtistById.Request;
-using MongoDB.Bson;
-using Moq;
+﻿using CryptoAxus.Application.Features.Artist.DeleteArtistById.Handler;
+
+namespace CryptoAxus.Application.Features.Artist.DeleteArtistById;
 
 public class DeleteArtistByIdTestsData
 {
-    private readonly Mock<IRepository<ArtistDocument>> MockRepository;
-    private ArtistDocument? _artistDocument;
+    private readonly Mock<IRepository<ArtistDocument>> _mockRepository;
     private const string Id = "647115d2b38bc8ea242beb01";
 
     protected DeleteArtistByIdTestsData()
     {
-        MockRepository = new Mock<IRepository<ArtistDocument>>();
-        _artistDocument = new ArtistDocument(Id.ToObjectId(),
-                                            "testUsername",
-                                            "test@nftarmup.com",
-                                            "0x507f191e810c19729de860ea",
-                                            "https://www.google.com",
-                                            "testBio",
-                                            "testProfileImageAddress",
-                                            "testCoverImageAddress",
-                                            "instagramLink",
-                                            "twitterLink",
-                                            Id.ToObjectId());
+        _mockRepository = new Mock<IRepository<ArtistDocument>>();
     }
 
     protected DeleteArtistByIdTestsData SetupMockRepository()
     {
-        MockRepository.Setup(x => x.FindOneAsync(It.IsAny<Expression<Func<ArtistDocument, bool>>>()))!
-                       .ReturnsAsync(_artistDocument);
+        DeleteResult result = new DeleteResult.Acknowledged(1);
+
+        _mockRepository.Setup(x => x.FindByIdAsync(It.IsAny<ObjectId>()))
+                       .ReturnsAsync(new ArtistDocument());
+
+        _mockRepository.Setup(x => x.DeleteByIdAsync(It.IsAny<ObjectId>())).ReturnsAsync(result);
 
         return this;
     }
 
     protected DeleteArtistByIdTestsData SetupMockRepositoryArtistNotFound()
     {
-        _artistDocument = null;
-        MockRepository.Setup(x => x.FindByIdAsync(It.IsAny<ObjectId>()))!.ReturnsAsync(_artistDocument);
+        ArtistDocument? artistDocument = null;
+
+        _mockRepository.Setup(x => x.FindByIdAsync(It.IsAny<ObjectId>()))!.ReturnsAsync(artistDocument);
 
         return this;
     }
 
-    public DeleteArtistByIdTestsData SetupMockRepositoryDeleteOneAsync()
+    public DeleteArtistByIdTestsData DeleteCountIsZero()
     {
-        MockRepository.Setup(x => x.DeleteByIdAsync(It.IsAny<ObjectId>())).Returns(It.IsAny<Delegate>());
+        DeleteResult result = new DeleteResult.Acknowledged(0);
+
+        _mockRepository.Setup(x => x.FindByIdAsync(It.IsAny<ObjectId>()))
+                       .ReturnsAsync(new ArtistDocument());
+
+        _mockRepository.Setup(x => x.DeleteByIdAsync(It.IsAny<ObjectId>())).ReturnsAsync(result);
 
         return this;
     }
 
-    public DeleteArtistByIdTestsData SetupMockRepositoryReturnsBadRequest()
-    {
-        MockRepository.Setup(x => x.DeleteByIdAsync(It.IsAny<ObjectId>())).ThrowsAsync(new Exception("Invalid - Bad Request"));
-        return this;
-    }
-
-    protected DeleteArtistByIdRequest CreateQuery(string id)
+    protected DeleteArtistByIdRequest CreateRequest(string id)
     {
         return new DeleteArtistByIdRequest(id);
     }
 
     public DeleteArtistByIdHandler Build()
     {
-        return new DeleteArtistByIdHandler(MockRepository.Object);
+        return new DeleteArtistByIdHandler(_mockRepository.Object);
     }
 }

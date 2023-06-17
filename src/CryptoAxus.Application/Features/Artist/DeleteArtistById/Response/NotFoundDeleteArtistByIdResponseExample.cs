@@ -1,6 +1,4 @@
-﻿using Swashbuckle.AspNetCore.Filters;
-
-namespace CryptoAxus.Application.Features.DeleteArtistById.Response;
+﻿namespace CryptoAxus.Application.Features.Artist.DeleteArtistById.Response;
 
 public class NotFoundDeleteArtistByIdResponseExample : IExamplesProvider<NotFoundDeleteArtistByIdResponse>
 {

@@ -3,12 +3,12 @@
 public class DeleteArtistByIdHandlerTests : DeleteArtistByIdTestsData
 {
     [Fact]
-    public async Task When_Artist_Id_Is_Passed_Expect_Artist_Document_Is_Returned()
+    public async Task When_Artist_Id_Is_Provided_Expect_Delete_Result_Count_More_Than_Zero()
     {
         // Arrange
         var sut = SetupMockRepository().Build();
 
-        var request = CreateQuery("647115d2b38bc8ea242beb01");
+        var request = CreateRequest("647115d2b38bc8ea242beb01");
 
         // Act
         var response = await sut.Handle(request);
@@ -16,16 +16,17 @@ public class DeleteArtistByIdHandlerTests : DeleteArtistByIdTestsData
         // Assert
         response.StatusCode.ShouldBe(HttpStatusCode.NoContent);
         response.IsSuccessful.ShouldBe(true);
-        response.Result?.Username.ShouldBe("Test-Id");
+        response.Result.ShouldBeNull();
+        response.ShouldBeOfType<DeleteArtistByIdResponse>();
     }
 
     [Fact]
-    public async Task When_Artist_Id_Is_Passed_Expect_Not_Found_Result()
+    public async Task When_Artist_Id_Is_Provided_Expect_Not_Found_Result()
     {
         // Arrange
         var sut = SetupMockRepositoryArtistNotFound().Build();
 
-        var request = CreateQuery("647115d2b38bc8ea242beb01");
+        var request = CreateRequest("647115d2b38bc8ea242beb01");
 
         // Act
         var response = await sut.Handle(request);
@@ -37,12 +38,12 @@ public class DeleteArtistByIdHandlerTests : DeleteArtistByIdTestsData
     }
 
     [Fact]
-    public async Task When_Artist_Id_Is_Passed_Expect_Bad_Request_Result()
+    public async Task When_Artist_Id_Is_Provided_Expect_Delete_Count_Zero()
     {
         // Arrange
-        var sut = SetupMockRepositoryReturnsBadRequest().Build();
+        var sut = DeleteCountIsZero().Build();
 
-        var request = CreateQuery("647115d2b38bc8ea242beb01");
+        var request = CreateRequest("647115d2b38bc8ea242beb01");
 
         // Act
         var response = await sut.Handle(request);
@@ -51,22 +52,5 @@ public class DeleteArtistByIdHandlerTests : DeleteArtistByIdTestsData
         response.StatusCode.ShouldBe(HttpStatusCode.BadRequest);
         response.IsSuccessful.ShouldBe(false);
         response.Result.ShouldBeNull();
-    }
-
-    [Fact]
-    public async Task When_Request_Is_Null_Expect_Argument_Null_Exception()
-    {
-        // Arrange
-        var sut = SetupMockRepository().Build();
-
-        // Act // Assert
-        try
-        {
-            var response = await sut.Handle(null);
-        }
-        catch (Exception exception)
-        {
-            exception.ShouldBeOfType<ArgumentNullException>();
-        }
     }
 }

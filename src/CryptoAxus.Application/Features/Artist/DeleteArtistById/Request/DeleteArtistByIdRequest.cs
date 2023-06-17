@@ -1,6 +1,4 @@
-﻿using CryptoAxus.Application.Features.DeleteArtistById.Response;
-
-namespace CryptoAxus.Application.Features.DeleteArtistById.Request;
+﻿namespace CryptoAxus.Application.Features.Artist.DeleteArtistById.Request;
 public class DeleteArtistByIdRequest : IRequest<DeleteArtistByIdResponse>
 {
     [JsonProperty("id", Required = Required.Always)]
@@ -10,5 +8,5 @@ public class DeleteArtistByIdRequest : IRequest<DeleteArtistByIdResponse>
     {
     }
 
-    public DeleteArtistByIdRequest(string id) => (Id) = (id);
+    public DeleteArtistByIdRequest(string id) => Id = id;
 }

@@ -1,7 +1,7 @@
-﻿using CryptoAxus.Application.Features.Artist.PatchArtistUsername.Request;
+﻿using CryptoAxus.Application.Features.Artist.DeleteArtistById.Request;
+using CryptoAxus.Application.Features.Artist.DeleteArtistById.Response;
+using CryptoAxus.Application.Features.Artist.PatchArtistUsername.Request;
 using CryptoAxus.Application.Features.Artist.PatchArtistUsername.Response;
-using CryptoAxus.Application.Features.DeleteArtistById.Request;
-using CryptoAxus.Application.Features.DeleteArtistById.Response;
 using Microsoft.AspNetCore.JsonPatch;
 using Swashbuckle.AspNetCore.Filters;
 
@@ -71,9 +71,6 @@ public class ArtistController : BaseController<ArtistController>
     [ProducesResponseType(typeof(PatchArtistUsernameResponse), (int)HttpStatusCode.OK)]
     [ProducesResponseType(typeof(NotFoundPatchArtistUsernameResponse), (int)HttpStatusCode.NotFound)]
     [ProducesResponseType(typeof(BadRequestPatchArtistUsernameResponse), (int)HttpStatusCode.BadRequest)]
-    [ProducesResponseType(typeof(DeleteArtistByIdResponse), (int)HttpStatusCode.NoContent)]
-    [ProducesResponseType(typeof(DeleteArtistByIdResponse), (int)HttpStatusCode.NotFound)]
-    [ProducesResponseType(typeof(DeleteArtistByIdResponse), (int)HttpStatusCode.BadRequest)]
     public async Task<IActionResult> PatchArtistUsername([FromRoute] string userWalletAddress,
                                                          [FromBody] JsonPatchDocument<ArtistDto> artistDto)
     {
@@ -90,24 +87,25 @@ public class ArtistController : BaseController<ArtistController>
     /// Delete artist by id
     /// </summary>
     /// <param name="id" example="507f191e810c19729de860ea"></param>
-    /// <response code="200">Delete Artist by Id</response>
+    /// <response code="204">Delete Artist by Id</response>
     /// <returns></returns>
-    [HttpGet(template: "{id:required}", Name = "DeleteArtistById", Order = 3)]
+    [HttpDelete(template: "{id:required}", Name = "DeleteArtistById", Order = 3)]
     [RequiresParameter(Name = "id", Required = true, Source = OpenApiParameterLocation.Path, Type = typeof(string))]
-   
     [ProducesResponseType(typeof(BaseResponse<ArtistDto>), (int)HttpStatusCode.OK)]
-    public async Task<IActionResult> DeleteArtistById(string id)
+    [ProducesResponseType(typeof(NotFoundDeleteArtistByIdResponse), (int)HttpStatusCode.NotFound)]
+    [ProducesResponseType(typeof(BadRequestDeleteArtistByIdResponse), (int)HttpStatusCode.BadRequest)]
+    public async Task<IActionResult> DeleteArtistById([FromRoute] string id)
     {
         var response = await Mediator.Send(new DeleteArtistByIdRequest(id));
 
-        if (response.StatusCode.Equals(HttpStatusCode.NotFound))
-            return NotFound(response);
-       
-        if (response.StatusCode.Equals(HttpStatusCode.BadRequest))
-            return BadRequest(response);
-
-        return Ok(response);
+        return response.StatusCode switch
+        {
+            HttpStatusCode.NoContent => StatusCode((int)HttpStatusCode.NoContent, response),
+            HttpStatusCode.NotFound => NotFound(response),
+            _ => BadRequest(response)
+        };
     }
+
     #region Links Helper Region
 
     private IReadOnlyList<Links> CreateArtistLinks(ArtistDto dto, string? fields)
@@ -116,19 +114,35 @@ public class ArtistController : BaseController<ArtistController>
         List<Links> links = new List<Links>();
         if (!string.IsNullOrWhiteSpace(fields))
         {
-            link = new Links(Url.RouteUrl("GetArtistById", new { dto.Id, fields }), "self", "GET");
-            link.Href = link.Href?.Replace("/api", $"{HttpContext?.Request.Scheme}://{HttpContext?.Request.Host}/api");
+            link = new Links(Url.RouteUrl("GetArtistById", new { dto.Id, fields }),
+                             Constants.SelfRel,
+                             Constants.GetMethod);
+            link.Href = link.Href?.Replace(Constants.ApiValue,
+                                           $"{HttpContext?.Request.Scheme}://{HttpContext?.Request.Host}{Constants.ApiValue}");
             links.Add(link);
         }
         else
         {
-            link = new Links(Url.RouteUrl("GetArtistById", new { dto.Id }), "self", "GET");
-            link.Href = link.Href?.Replace("/api", $"{HttpContext?.Request.Scheme}://{HttpContext?.Request.Host}/api");
+            link = new Links(Url.RouteUrl("GetArtistById", new { dto.Id }),
+                             Constants.SelfRel,
+                             Constants.GetMethod);
+            link.Href = link.Href?.Replace(Constants.ApiValue,
+                                           $"{HttpContext?.Request.Scheme}://{HttpContext?.Request.Host}{Constants.ApiValue}");
             links.Add(link);
         }
 
-        link = new Links(Url.RouteUrl("PatchArtistUsername", new { dto.UserWalletAddress }), "patch_username", "PATCH");
-        link.Href = link.Href?.Replace("/api", $"{HttpContext?.Request.Scheme}://{HttpContext?.Request.Host}/api");
+        link = new Links(Url.RouteUrl("PatchArtistUsername", new { dto.UserWalletAddress }),
+                         "patch_username",
+                         Constants.PatchMethod);
+        link.Href = link.Href?.Replace(Constants.ApiValue,
+                                       $"{HttpContext?.Request.Scheme}://{HttpContext?.Request.Host}{Constants.ApiValue}");
+        links.Add(link);
+
+        link = new Links(href: Url.RouteUrl("DeleteArtistById", new { dto.Id }),
+                         "delete",
+                         Constants.DeleteMethod);
+        link.Href = link.Href?.Replace(Constants.ApiValue,
+                                       $"{HttpContext?.Request.Scheme}://{HttpContext?.Request.Host}{Constants.ApiValue}");
         links.Add(link);
 
         return links.AsReadOnly();

@@ -16,11 +16,10 @@ public static class Constants
     public const string RemoteIpAddress = "RemoteIpAddress";
     public const string XPaginationKey = "X-Pagination";
     public const string SelfRel = "self";
-    public const string CustomerRel = "customer";
-    public const string StoreRel = "store";
     public const string GetMethod = "GET";
     public const string PostMethod = "POST";
     public const string PutMethod = "PUT";
+    public const string PatchMethod = "PATCH";
     public const string DeleteMethod = "DELETE";
     public const string ApiValue = "/api";
     public const string VndApiHateoas = "vnd.api.hateoas";

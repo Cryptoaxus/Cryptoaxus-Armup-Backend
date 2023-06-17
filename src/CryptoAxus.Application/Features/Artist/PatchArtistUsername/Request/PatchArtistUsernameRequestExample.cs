@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.JsonPatch.Operations;
-using Swashbuckle.AspNetCore.Filters;
 
 namespace CryptoAxus.Application.Features.Artist.PatchArtistUsername.Request;
 

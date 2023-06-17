@@ -1,5 +1,7 @@
 ﻿global using CryptoAxus.Application.Contracts.Repositories;
 global using CryptoAxus.Application.Dto;
+global using CryptoAxus.Application.Features.Artist.DeleteArtistById.Request;
+global using CryptoAxus.Application.Features.Artist.DeleteArtistById.Response;
 global using CryptoAxus.Application.Features.Artist.PatchArtistUsername.Request;
 global using CryptoAxus.Application.Features.Artist.PatchArtistUsername.Response;
 global using CryptoAxus.Application.Features.Artist.Query;
@@ -17,6 +19,7 @@ global using Microsoft.Extensions.Logging;
 global using MongoDB.Bson;
 global using MongoDB.Driver;
 global using Newtonsoft.Json;
+global using Swashbuckle.AspNetCore.Filters;
 global using System.Linq.Expressions;
 global using System.Net;
 global using System.Reflection;
