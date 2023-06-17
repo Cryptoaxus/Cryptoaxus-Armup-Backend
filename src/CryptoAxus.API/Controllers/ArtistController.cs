@@ -1,11 +1,4 @@
-﻿using CryptoAxus.Application.Features.Artist.DeleteArtistById.Request;
-using CryptoAxus.Application.Features.Artist.DeleteArtistById.Response;
-using CryptoAxus.Application.Features.Artist.PatchArtistUsername.Request;
-using CryptoAxus.Application.Features.Artist.PatchArtistUsername.Response;
-using Microsoft.AspNetCore.JsonPatch;
-using Swashbuckle.AspNetCore.Filters;
-
-namespace CryptoAxus.API.Controllers;
+﻿namespace CryptoAxus.API.Controllers;
 
 [ApiVersion("1.0")]
 [Produces(contentType: Constants.ContentTypeJson, Constants.ContentTypeJsonHateoas,
@@ -41,7 +34,7 @@ public class ArtistController : BaseController<ArtistController>
                                                             Messages.BadRequest,
                                                              new List<string> { Messages.InvalidMediaType }));
 
-        var response = await Mediator.Send(new GetArtistByIdQuery(id));
+        var response = await Mediator.Send(new GetArtistByIdRequest(id));
 
         if (response.StatusCode.Equals(HttpStatusCode.NotFound))
             return NotFound(response);
@@ -60,7 +53,7 @@ public class ArtistController : BaseController<ArtistController>
     /// <summary>
     /// 
     /// </summary>
-    /// <param name="userWalletAddress"></param>
+    /// <param name="userWalletAddress" example="0x507f191e810c19729de860ea"></param>
     /// <param name="artistDto"></param>
     /// <response code="200">Success response with 200 code and information message about update</response>
     /// <response code="404">Not Found response with 404 code and information message</response>

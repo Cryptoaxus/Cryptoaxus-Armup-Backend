@@ -1,8 +1,6 @@
-﻿using CryptoAxus.Application.Features.Artist.GetArtistById.Query;
+﻿namespace CryptoAxus.Application.Features.Artist.GetArtistById.Handler;
 
-namespace CryptoAxus.Application.Features.Artist.GetArtistById.Handler;
-
-public class GetArtistByIdQueryHandler : BaseHandler<GetArtistByIdQueryHandler>, IRequestHandler<GetArtistByIdQuery, BaseResponse<ArtistDto>>
+public class GetArtistByIdQueryHandler : BaseHandler<GetArtistByIdQueryHandler>, IRequestHandler<GetArtistByIdRequest, GetArtistByIdResponse>
 {
     private readonly IRepository<ArtistDocument> _repository;
 
@@ -11,7 +9,7 @@ public class GetArtistByIdQueryHandler : BaseHandler<GetArtistByIdQueryHandler>,
         _repository = repository;
     }
 
-    public async Task<BaseResponse<ArtistDto>> Handle(GetArtistByIdQuery request,
+    public async Task<GetArtistByIdResponse> Handle(GetArtistByIdRequest request,
                                                       CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(request, nameof(request));
@@ -19,14 +17,14 @@ public class GetArtistByIdQueryHandler : BaseHandler<GetArtistByIdQueryHandler>,
         ArtistDocument artist = await _repository.FindByIdAsync(request.Id.ToObjectId());
 
         if (artist is null)
-            return new BaseResponse<ArtistDto>(HttpStatusCode.NotFound,
-                                               message: $"No artist found against id: {request.Id}",
-                                               result: null);
+            return new GetArtistByIdResponse(HttpStatusCode.NotFound,
+                                             message: $"No artist found against id: {request.Id}",
+                                             result: null);
 
         ArtistDto artistDto = artist.Adapt<ArtistDto>();
 
-        return new BaseResponse<ArtistDto>(HttpStatusCode.OK,
-                                           message: "Artist record found successfully",
-                                           result: artistDto);
+        return new GetArtistByIdResponse(HttpStatusCode.OK,
+                                         message: "Artist record found successfully",
+                                         result: artistDto);
     }
 }

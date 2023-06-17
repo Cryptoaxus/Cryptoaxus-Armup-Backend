@@ -4,6 +4,6 @@ public class DeleteArtistByIdRequestExample : IExamplesProvider<DeleteArtistById
 {
     public DeleteArtistByIdRequest GetExamples()
     {
-        return new DeleteArtistByIdRequest();
+        return new DeleteArtistByIdRequest("647115d2b38bc8ea242beb01");
     }
 }

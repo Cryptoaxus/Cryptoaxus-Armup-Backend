@@ -1,6 +1,4 @@
-﻿using CryptoAxus.Application.Features.Artist.DeleteArtistById.Handler;
-
-namespace CryptoAxus.Application.Features.Artist.DeleteArtistById;
+﻿namespace CryptoAxus.Application.Features.Artist.DeleteArtistById;
 
 public class DeleteArtistByIdTestsData
 {

@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.JsonPatch.Operations;
-
-namespace CryptoAxus.Application.Features.Artist.PatchArtistUsername.Request;
+﻿namespace CryptoAxus.Application.Features.Artist.PatchArtistUsername.Request;
 
 public class PatchArtistUsernameRequestExample : IExamplesProvider<PatchArtistUsernameRequest>
 {
@@ -14,6 +12,6 @@ public class PatchArtistUsernameRequestExample : IExamplesProvider<PatchArtistUs
             value = "test.username"
         });
 
-        return new PatchArtistUsernameRequest(string.Empty, patchDocument);
+        return new PatchArtistUsernameRequest("0x507f191e810c19729de860ea", patchDocument);
     }
 }
