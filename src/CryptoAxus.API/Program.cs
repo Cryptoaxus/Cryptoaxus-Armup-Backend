@@ -34,6 +34,7 @@ builder.Services.AddSwaggerGen(options =>
 {
     options.ExampleFilters();
     options.IncludeXmlComments(XmlCommentsHelper.XmlCommentsFilePath(), true);
+    options.SwaggerDoc("v1", new OpenApiInfo { Title = "CryptoAxus.API", Version = "v1" });
 });
 
 builder.Services.AddSwaggerExamplesFromAssemblyOf<PatchArtistUsernameResponse>();
@@ -61,7 +62,10 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment() || app.Environment.IsStaging() || app.Environment.IsProduction())
 {
     app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwaggerUI(c =>
+    {
+        c.SwaggerEndpoint("/swagger/v1/swagger.json", "CryptoAxus.API V1");
+    });
 }
 
 app.UseHttpsRedirection();

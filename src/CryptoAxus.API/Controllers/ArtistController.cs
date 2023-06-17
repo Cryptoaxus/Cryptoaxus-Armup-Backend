@@ -1,4 +1,7 @@
-﻿namespace CryptoAxus.API.Controllers;
+﻿using CryptoAxus.Application.Features.Artist.PostArtist.Request;
+using CryptoAxus.Application.Features.Artist.PostArtist.Response;
+
+namespace CryptoAxus.API.Controllers;
 
 [ApiVersion("1.0")]
 [Produces(contentType: Constants.ContentTypeJson, Constants.ContentTypeJsonHateoas,
@@ -59,7 +62,7 @@ public class ArtistController : BaseController<ArtistController>
     /// <response code="404">Not Found response with 404 code and information message</response>
     /// <response code="400">Bad Request response with 400 code and information message</response>
     /// <returns></returns>
-    [HttpPatch("{userWalletAddress:required}/username", Name = "PatchArtistUsername")]
+    [HttpPatch("{userWalletAddress:required}/username", Name = "PatchArtistUsername", Order = 2)]
     [SwaggerRequestExample(typeof(PatchArtistUsernameRequest), typeof(PatchArtistUsernameRequestExample))]
     [ProducesResponseType(typeof(PatchArtistUsernameResponse), (int)HttpStatusCode.OK)]
     [ProducesResponseType(typeof(NotFoundPatchArtistUsernameResponse), (int)HttpStatusCode.NotFound)]
@@ -97,6 +100,25 @@ public class ArtistController : BaseController<ArtistController>
             HttpStatusCode.NotFound => NotFound(response),
             _ => BadRequest(response)
         };
+    }
+
+    /// <summary>
+    /// Creates a new artist in the database
+    /// </summary>
+    /// <param name="artistDto"></param>
+    /// <returns></returns>
+    [HttpPost(Name = "PostArtist", Order = 3)]
+    [SwaggerRequestExample(typeof(PostArtistRequest), typeof(PostArtistRequestExample))]
+    [ProducesResponseType(typeof(PostArtistResponse), (int)HttpStatusCode.Created)]
+    [ProducesResponseType(typeof(BadRequestPostArtistResponse), (int)HttpStatusCode.BadRequest)]
+    [ProducesResponseType(typeof(ConflictPostArtistResponse), (int)HttpStatusCode.Conflict)]
+    public async Task<IActionResult> PostArtist([FromBody] ArtistDto artistDto)
+    {
+        var response = await Mediator.Send(new PostArtistRequest(artistDto));
+
+        if (response.StatusCode == HttpStatusCode.BadRequest)
+            return BadRequest(response);
+        return CreatedAtRoute("GetArtistById", new { id = response.Result?.Id }, response);
     }
 
     #region Links Helper Region

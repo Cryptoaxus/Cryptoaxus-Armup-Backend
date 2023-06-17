@@ -20,6 +20,8 @@
     <Folder Include="Features\Artist\Handlers\" />
     <Folder Include="Features\Artist\PatchArtistUsername\Handler\" />
     <Folder Include="Features\Artist\PatchArtistUsername\Response\" />
+    <Folder Include="Features\Artist\PostArtist\Handler\" />
+    <Folder Include="Features\Artist\PostArtist\Request\" />
     <Folder Include="Features\Artist\Query\" />
   </ItemGroup>
 
@@ -27,7 +29,7 @@
     <PackageReference Include="Mapster" Version="7.3.0" />
     <PackageReference Include="Mapster.DependencyInjection" Version="1.0.0" />
     <PackageReference Include="MediatR" Version="12.0.1" />
-    <PackageReference Include="Microsoft.AspNetCore.JsonPatch" Version="7.0.5" />
+    <PackageReference Include="Microsoft.AspNetCore.JsonPatch" Version="7.0.7" />
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="7.0.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="7.0.4" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="7.0.0" />

@@ -16,7 +16,7 @@ public class GetAllArtistQueryHandler : BaseHandler<GetAllArtistQueryHandler>,
     {
         return await Task.Run(() =>
         {
-            IEnumerable<ArtistDocument> result = _repository.AsEnumerable();
+            IEnumerable<ArtistDocument> result = _repository.AsQueryable();
 
             if (!result.Any())
                 return new BaseResponse<IEnumerable<ArtistDto>>(HttpStatusCode.OK, "Unable to retrieve records");
