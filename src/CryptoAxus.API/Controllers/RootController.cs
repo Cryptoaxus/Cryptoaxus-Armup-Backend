@@ -31,7 +31,6 @@ public class RootController : ControllerBase
                           rel: "post",
                           method: Constants.PostMethod)
             };
-
             return new BaseResponse<IReadOnlyList<Links>>(statusCode: HttpStatusCode.OK, message: null, result: links.AsReadOnly());
         }));
     }

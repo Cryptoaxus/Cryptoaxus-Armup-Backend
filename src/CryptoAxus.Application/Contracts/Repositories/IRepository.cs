@@ -39,7 +39,7 @@ public interface IRepository<TDocument> where TDocument : IBaseDocument
 
     void DeleteById(ObjectId id);
 
-    Task DeleteByIdAsync(ObjectId id);
+    Task<DeleteResult> DeleteByIdAsync(ObjectId id);
 
     void DeleteMany(Expression<Func<TDocument, bool>> filterExpression);
 

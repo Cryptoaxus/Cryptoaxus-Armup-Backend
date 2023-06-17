@@ -113,13 +113,9 @@ public class Repository<TDocument> : IRepository<TDocument> where TDocument : IB
         _collection.FindOneAndDelete(filter);
     }
 
-    public Task DeleteByIdAsync(ObjectId id)
+    public Task<DeleteResult> DeleteByIdAsync(ObjectId id)
     {
-        return Task.Run(() =>
-        {
-            var filter = Builders<TDocument>.Filter.Eq(doc => doc.Id, id);
-            _collection.FindOneAndDeleteAsync(filter);
-        });
+        return Task.Run(function: () => _collection.DeleteOneAsync(Builders<TDocument>.Filter.Eq(doc => doc.Id, id)));
     }
 
     public void DeleteMany(Expression<Func<TDocument, bool>> filterExpression)

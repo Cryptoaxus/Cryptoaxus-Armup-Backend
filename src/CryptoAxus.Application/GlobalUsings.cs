@@ -1,5 +1,9 @@
-﻿global using CryptoAxus.Application.Contracts.Repositories;
+﻿// Global using directives
+
+global using CryptoAxus.Application.Contracts.Repositories;
 global using CryptoAxus.Application.Dto;
+global using CryptoAxus.Application.Features.Artist.DeleteArtistById.Request;
+global using CryptoAxus.Application.Features.Artist.DeleteArtistById.Response;
 global using CryptoAxus.Application.Features.Artist.GetArtistById.Request;
 global using CryptoAxus.Application.Features.Artist.GetArtistById.Response;
 global using CryptoAxus.Application.Features.Artist.PatchArtistUsername.Request;

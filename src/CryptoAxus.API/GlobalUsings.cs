@@ -1,9 +1,12 @@
 // Global using directives
 
+global using CryptoAxus.API.ApiHelper;
 global using CryptoAxus.API.Extensions;
 global using CryptoAxus.API.Filters;
 global using CryptoAxus.Application;
 global using CryptoAxus.Application.Dto;
+global using CryptoAxus.Application.Features.Artist.DeleteArtistById.Request;
+global using CryptoAxus.Application.Features.Artist.DeleteArtistById.Response;
 global using CryptoAxus.Application.Features.Artist.GetArtistById.Request;
 global using CryptoAxus.Application.Features.Artist.PatchArtistUsername.Request;
 global using CryptoAxus.Application.Features.Artist.PatchArtistUsername.Response;
