@@ -1,4 +1,6 @@
-﻿using CryptoAxus.Application.Features.Artist.PostArtist.Request;
+﻿using CryptoAxus.Application.Features.Artist.GetArtistByWalletAddress.Request;
+using CryptoAxus.Application.Features.Artist.GetArtistByWalletAddress.Response;
+using CryptoAxus.Application.Features.Artist.PostArtist.Request;
 
 namespace CryptoAxus.API.Controllers;
 
@@ -122,6 +124,29 @@ public class ArtistController : BaseController<ArtistController>
             return BadRequest(response);
         return CreatedAtRoute("GetArtistById", new { id = response.Result?.Id }, response);
     }
+    /// </summary>
+    /// <param name="userWalletAddress" example="0x507f191e810c19729de860ea"></param>
+    /// <response code="200">Success response with 200 code and information message about update</response>
+    /// <response code="404">Not Found response with 404 code and information message</response>
+    /// <response code="400">Bad Request response with 400 code and information message</response>
+    /// <returns></returns>
+    [HttpGet("{userWalletAddress:required}/userWalletAddress", Name = "GetArtistByWalletAddressRequest", Order = 5)]
+    [RequiresParameter(Name = "userWalletAddress", Required = true, Source = OpenApiParameterLocation.Path, Type = typeof(string))]
+    [SwaggerRequestExample(typeof(GetArtistByWalletAddressRequest), typeof(GetArtistByWalletAddressRequestExample))]
+    [ProducesResponseType(typeof(GetArtistByWalletAddressResponse), (int)HttpStatusCode.OK)]
+    [ProducesResponseType(typeof(NotFoundArtistByWalletAddressResponse), (int)HttpStatusCode.NotFound)]
+    [ProducesResponseType(typeof(BadRequestArtistByWalletAddressResponse), (int)HttpStatusCode.BadRequest)]
+    public async Task<IActionResult> GetArtistByWalletAddressRequest([FromRoute] string userWalletAddress)
+    {
+        var response = await Mediator.Send(new GetArtistByWalletAddressRequest(userWalletAddress));
+
+        return response.StatusCode switch
+        {
+            HttpStatusCode.NotFound => NotFound(response),
+            HttpStatusCode.OK => Ok(response),
+            _ => BadRequest(response)
+        };
+    }
 
     #region Links Helper Region
 
@@ -158,6 +183,13 @@ public class ArtistController : BaseController<ArtistController>
         link = new Links(href: Url.RouteUrl("DeleteArtistById", new { dto.Id }),
                          "delete",
                          Constants.DeleteMethod);
+        link.Href = link.Href?.Replace(Constants.ApiValue,
+                                       $"{HttpContext?.Request.Scheme}://{HttpContext?.Request.Host}{Constants.ApiValue}");
+        links.Add(link);
+
+        link = new Links(Url.RouteUrl("GetArtistByWalletAddress", new { dto.UserWalletAddress }),
+                         "artist_walletAddress",
+                         Constants.PatchMethod);
         link.Href = link.Href?.Replace(Constants.ApiValue,
                                        $"{HttpContext?.Request.Scheme}://{HttpContext?.Request.Host}{Constants.ApiValue}");
         links.Add(link);

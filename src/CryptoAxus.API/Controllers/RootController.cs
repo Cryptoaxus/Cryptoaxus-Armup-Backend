@@ -33,7 +33,11 @@ public class RootController : ControllerBase
 
                 new Links(href: Url.RouteUrl("PostArtist"),
                           rel: "post",
-                          method: Constants.PostMethod)
+                          method: Constants.PostMethod),
+
+               new Links(href: Url.RouteUrl(routeName: "GetArtistByWalletAddress", values: new { userWalletAddress = "0x647115d2b38bc8ea242beb01" }),
+                          rel: "artist",
+                          method: Constants.GetMethod),
             };
             return new BaseResponse<IReadOnlyList<Links>>(statusCode: HttpStatusCode.OK, message: null, result: links.AsReadOnly());
         }));
