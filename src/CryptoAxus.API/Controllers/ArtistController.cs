@@ -138,19 +138,17 @@ public class ArtistController : BaseController<ArtistController>
     [ProducesResponseType(typeof(BadRequestArtistByWalletAddressResponse), (int)HttpStatusCode.BadRequest)]
     public async Task<IActionResult> GetArtistByWalletAddressRequest([FromRoute] string userWalletAddress, 
                                                                      [FromHeader(Name = "Accept")] string mediaType)
-
     {
          if (!MediaTypeHeaderValue.TryParse(mediaType, out MediaTypeHeaderValue? parsedMediaType))
             return BadRequest(new BaseResponse<ExpandoObject>(HttpStatusCode.BadRequest,
-                                                            Messages.BadRequest,
-                                                             new List<string> { Messages.InvalidMediaType }));
+                                                              Messages.BadRequest,
+                                                              new List<string> { Messages.InvalidMediaType }));
 
         var response = await Mediator.Send(new GetArtistByWalletAddressRequest(userWalletAddress));
 
         if (response.StatusCode.Equals(HttpStatusCode.OK) && response.Result is not null &&
             parsedMediaType.MediaType.Value!.Contains(Constants.VndApiHateoas))
             response.Links = CreateArtistLinks(response.Result, string.Empty);
-
 
         return response.StatusCode switch
         {
