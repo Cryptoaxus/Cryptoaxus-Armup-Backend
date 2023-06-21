@@ -4,6 +4,15 @@ public class BadRequestArtistByWalletAddressResponseExample : IExamplesProvider<
 {
     public BadRequestArtistByWalletAddressResponse GetExamples()
     {
-        return new BadRequestArtistByWalletAddressResponse(HttpStatusCode.BadRequest, "Invalid media type provided");
+        return new BadRequestArtistByWalletAddressResponse
+        {
+            ApiException = null,
+            Links = null,
+            Errors = null,
+            IsSuccessful = false,
+            Message = "Unable to delete artist against userWalletAddress: 647115d2b38bc8ea242beb01",
+            Result = null,
+            StatusCode = HttpStatusCode.BadRequest
+        };
     }
 }

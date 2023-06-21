@@ -3,7 +3,8 @@ using CryptoAxus.Application.Features.Artist.GetArtistByWalletAddress.Response;
 
 namespace CryptoAxus.Application.Features.Artist.GetArtistByWalletAddress.Handler;
 
-public class GetArtistByWalletAddressHandler : BaseHandler<GetArtistByWalletAddressHandler>, IRequestHandler<GetArtistByWalletAddressRequest, GetArtistByWalletAddressResponse>
+public class GetArtistByWalletAddressHandler : BaseHandler<GetArtistByWalletAddressHandler>, 
+                                               IRequestHandler<GetArtistByWalletAddressRequest, GetArtistByWalletAddressResponse>
 {
     private readonly IRepository<ArtistDocument> _repository;
 
@@ -13,21 +14,20 @@ public class GetArtistByWalletAddressHandler : BaseHandler<GetArtistByWalletAddr
     }
 
     public async Task<GetArtistByWalletAddressResponse> Handle(GetArtistByWalletAddressRequest request,
-                                                      CancellationToken cancellationToken = default)
+                                                               CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(request, nameof(request));
 
-        ArtistDocument artist = await _repository.FindOneAsync(x => x.UserWalletAddress.Equals(request.UserWalletAddress));
+        ArtistDocument artist = await _repository.FindOneAsync(x => x.UserWalletAddress.Equals( request.UserWalletAddress));
 
         if (artist is null)
             return new GetArtistByWalletAddressResponse(HttpStatusCode.NotFound,
-                                             message: $"No artist found against WalletAddress: {request.UserWalletAddress}",
-                                             result: null);
+                                                        message: $"No artist found against WalletAddress: {request.UserWalletAddress}");
 
         ArtistDto artistDto = artist.Adapt<ArtistDto>();
 
         return new GetArtistByWalletAddressResponse(HttpStatusCode.OK,
-                                         message: "Artist record found successfully",
-                                         result: artistDto);
+                                                    message: "Artist record found successfully",
+                                                    result: artistDto);
     }
 }

@@ -1,9 +1,4 @@
-﻿using CryptoAxus.Application.Features.Artist.GetArtistByWalletAddress.Handler;
-using CryptoAxus.Application.Features.Artist.GetArtistByWalletAddress.Request;
-using CryptoAxus.Domain.Collections;
-using Moq;
-
-namespace CryptoAxus.Application.Features.Artist.GetArtistByWalletAddress;
+﻿namespace CryptoAxus.Application.Features.Artist.GetArtistByWalletAddress;
 
 public class GetArtistByWalletAddressTestData
 {

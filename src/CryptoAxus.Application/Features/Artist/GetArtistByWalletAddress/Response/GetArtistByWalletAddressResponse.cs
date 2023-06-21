@@ -6,7 +6,13 @@ public class GetArtistByWalletAddressResponse : BaseResponse<ArtistDto>
     {
     }
 
-    public GetArtistByWalletAddressResponse(HttpStatusCode statusCode, string? message, ArtistDto? result) : base(statusCode, message, result)
+    public GetArtistByWalletAddressResponse(HttpStatusCode statusCode, string? message) : base(statusCode, message)
     {
     }
+
+    public GetArtistByWalletAddressResponse(HttpStatusCode statusCode, string? message, ArtistDto? result) : this(statusCode, message)
+    {
+        Result = result;
+    }
+    
 }

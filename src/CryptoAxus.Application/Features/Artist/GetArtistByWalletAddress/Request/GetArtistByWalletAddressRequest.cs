@@ -1,6 +1,4 @@
-﻿using CryptoAxus.Application.Features.Artist.GetArtistByWalletAddress.Response;
-
-namespace CryptoAxus.Application.Features.Artist.GetArtistByWalletAddress.Request;
+﻿namespace CryptoAxus.Application.Features.Artist.GetArtistByWalletAddress.Request;
 
 public class GetArtistByWalletAddressRequest : IRequest<GetArtistByWalletAddressResponse>
 {

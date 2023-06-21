@@ -1,8 +1,4 @@
-﻿using CryptoAxus.Application.Features.Artist.GetArtistByWalletAddress.Request;
-using CryptoAxus.Application.Features.Artist.GetArtistByWalletAddress.Response;
-using CryptoAxus.Application.Features.Artist.PostArtist.Request;
-
-namespace CryptoAxus.API.Controllers;
+﻿namespace CryptoAxus.API.Controllers;
 
 [ApiVersion("1.0")]
 [Produces(contentType: Constants.ContentTypeJson, Constants.ContentTypeJsonHateoas,
@@ -55,7 +51,7 @@ public class ArtistController : BaseController<ArtistController>
         return Ok(shapedResponse);
     }
     /// <summary>
-    /// 
+    /// Patch Artist
     /// </summary>
     /// <param name="userWalletAddress" example="0x507f191e810c19729de860ea"></param>
     /// <param name="artistDto"></param>
@@ -124,13 +120,16 @@ public class ArtistController : BaseController<ArtistController>
             return BadRequest(response);
         return CreatedAtRoute("GetArtistById", new { id = response.Result?.Id }, response);
     }
+
+    /// <summary>
+    /// Returns artist by Wallet Address
     /// </summary>
     /// <param name="userWalletAddress" example="0x507f191e810c19729de860ea"></param>
     /// <response code="200">Success response with 200 code and information message about update</response>
     /// <response code="404">Not Found response with 404 code and information message</response>
     /// <response code="400">Bad Request response with 400 code and information message</response>
     /// <returns></returns>
-    [HttpGet("{userWalletAddress:required}/userWalletAddress", Name = "GetArtistByWalletAddressRequest", Order = 5)]
+    [HttpGet("{userWalletAddress:alpha:required}/userWalletAddress", Name = "GetArtistByWalletAddressRequest", Order = 5)]
     [RequiresParameter(Name = "userWalletAddress", Required = true, Source = OpenApiParameterLocation.Path, Type = typeof(string))]
     [SwaggerRequestExample(typeof(GetArtistByWalletAddressRequest), typeof(GetArtistByWalletAddressRequestExample))]
     [ProducesResponseType(typeof(GetArtistByWalletAddressResponse), (int)HttpStatusCode.OK)]
@@ -188,8 +187,8 @@ public class ArtistController : BaseController<ArtistController>
         links.Add(link);
 
         link = new Links(Url.RouteUrl("GetArtistByWalletAddress", new { dto.UserWalletAddress }),
-                         "artist_walletAddress",
-                         Constants.PatchMethod);
+                         "get_userWalletAddress",
+                         Constants.GetMethod);
         link.Href = link.Href?.Replace(Constants.ApiValue,
                                        $"{HttpContext?.Request.Scheme}://{HttpContext?.Request.Host}{Constants.ApiValue}");
         links.Add(link);

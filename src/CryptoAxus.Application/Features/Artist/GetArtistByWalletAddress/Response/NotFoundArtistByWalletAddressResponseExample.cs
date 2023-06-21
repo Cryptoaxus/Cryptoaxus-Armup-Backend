@@ -1,6 +1,4 @@
-﻿using CryptoAxus.Common.Services.Contracts;
-
-namespace CryptoAxus.Application.Features.Artist.GetArtistByWalletAddress.Response;
+﻿namespace CryptoAxus.Application.Features.Artist.GetArtistByWalletAddress.Response;
 
 public class NotFoundArtistByWalletAddressResponseExample : IOpenApiExampleProvider<NotFoundArtistByWalletAddressResponse>
 {
@@ -12,7 +10,7 @@ public class NotFoundArtistByWalletAddressResponseExample : IOpenApiExampleProvi
             Errors = null,
             IsSuccessful = false,
             Links = null,
-            Message = "No record found against id: 0x647115d2b38bc8ea242beb01",
+            Message = "No record found against userWalletAddress: 507f191e810c19729de860ea",
             Result = null,
             StatusCode = HttpStatusCode.NotFound
         };

@@ -3,7 +3,7 @@
 public class GetArtistByWalletAddressHandlerTests : GetArtistByWalletAddressTestData
 {
     [Fact]
-    public async Task When_Artist_WalletAddress_Is_Passed_Expect_Artist_Document_Is_Returned()
+    public async Task When_Artist_Wallet_Address_Is_Passed_Expect_Artist_Document_Is_Returned()
     {
         // Arrange
         var sut = SetupMockRepository().Build();
@@ -20,7 +20,7 @@ public class GetArtistByWalletAddressHandlerTests : GetArtistByWalletAddressTest
     }
 
     [Fact]
-    public async Task When_Artist_WalletAddress_Is_Passed_Expect_Not_Found_Result()
+    public async Task When_Artist_Wallet_Address_Is_Passed_Expect_Not_Found_Result()
     {
         // Arrange
         var sut = SetupMockRepositoryNotFound().Build();
