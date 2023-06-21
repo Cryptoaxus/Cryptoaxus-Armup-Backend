@@ -125,12 +125,12 @@ public class ArtistController : BaseController<ArtistController>
     /// Returns artist by Wallet Address
     /// </summary>
     /// <param name="userWalletAddress" example="0x507f191e810c19729de860ea"></param>
-    /// /// <param name="mediaType" example="application/json"></param>
+    /// <param name="mediaType" example="application/json"></param>
     /// <response code="200">Success response with 200 code and information message about update</response>
     /// <response code="404">Not Found response with 404 code and information message</response>
     /// <response code="400">Bad Request response with 400 code and information message</response>
     /// <returns></returns>
-    [HttpGet("{userWalletAddress:alpha:required}/userWalletAddress", Name = "GetArtistByWalletAddressRequest", Order = 5)]
+    [HttpGet("{userWalletAddress:required}/userWalletAddress", Name = "GetArtistByWalletAddress", Order = 5)]
     [RequiresParameter(Name = "userWalletAddress", Required = true, Source = OpenApiParameterLocation.Path, Type = typeof(string))]
     [SwaggerRequestExample(typeof(GetArtistByWalletAddressRequest), typeof(GetArtistByWalletAddressRequestExample))]
     [ProducesResponseType(typeof(GetArtistByWalletAddressResponse), (int)HttpStatusCode.OK)]
@@ -146,6 +146,11 @@ public class ArtistController : BaseController<ArtistController>
                                                              new List<string> { Messages.InvalidMediaType }));
 
         var response = await Mediator.Send(new GetArtistByWalletAddressRequest(userWalletAddress));
+
+        if (response.StatusCode.Equals(HttpStatusCode.OK) && response.Result is not null &&
+            parsedMediaType.MediaType.Value!.Contains(Constants.VndApiHateoas))
+            response.Links = CreateArtistLinks(response.Result, string.Empty);
+
 
         return response.StatusCode switch
         {
