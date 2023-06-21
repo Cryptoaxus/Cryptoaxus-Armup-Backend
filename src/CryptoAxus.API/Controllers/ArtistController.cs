@@ -125,6 +125,7 @@ public class ArtistController : BaseController<ArtistController>
     /// Returns artist by Wallet Address
     /// </summary>
     /// <param name="userWalletAddress" example="0x507f191e810c19729de860ea"></param>
+    /// /// <param name="mediaType" example="application/json"></param>
     /// <response code="200">Success response with 200 code and information message about update</response>
     /// <response code="404">Not Found response with 404 code and information message</response>
     /// <response code="400">Bad Request response with 400 code and information message</response>
@@ -135,8 +136,15 @@ public class ArtistController : BaseController<ArtistController>
     [ProducesResponseType(typeof(GetArtistByWalletAddressResponse), (int)HttpStatusCode.OK)]
     [ProducesResponseType(typeof(NotFoundArtistByWalletAddressResponse), (int)HttpStatusCode.NotFound)]
     [ProducesResponseType(typeof(BadRequestArtistByWalletAddressResponse), (int)HttpStatusCode.BadRequest)]
-    public async Task<IActionResult> GetArtistByWalletAddressRequest([FromRoute] string userWalletAddress)
+    public async Task<IActionResult> GetArtistByWalletAddressRequest([FromRoute] string userWalletAddress, 
+                                                                     [FromHeader(Name = "Accept")] string mediaType)
+
     {
+         if (!MediaTypeHeaderValue.TryParse(mediaType, out MediaTypeHeaderValue? parsedMediaType))
+            return BadRequest(new BaseResponse<ExpandoObject>(HttpStatusCode.BadRequest,
+                                                            Messages.BadRequest,
+                                                             new List<string> { Messages.InvalidMediaType }));
+
         var response = await Mediator.Send(new GetArtistByWalletAddressRequest(userWalletAddress));
 
         return response.StatusCode switch

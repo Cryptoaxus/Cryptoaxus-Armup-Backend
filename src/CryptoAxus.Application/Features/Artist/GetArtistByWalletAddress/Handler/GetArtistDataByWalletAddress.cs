@@ -1,7 +1,4 @@
-﻿using CryptoAxus.Application.Features.Artist.GetArtistByWalletAddress.Request;
-using CryptoAxus.Application.Features.Artist.GetArtistByWalletAddress.Response;
-
-namespace CryptoAxus.Application.Features.Artist.GetArtistByWalletAddress.Handler;
+﻿namespace CryptoAxus.Application.Features.Artist.GetArtistByWalletAddress.Handler;
 
 public class GetArtistByWalletAddressHandler : BaseHandler<GetArtistByWalletAddressHandler>, 
                                                IRequestHandler<GetArtistByWalletAddressRequest, GetArtistByWalletAddressResponse>
@@ -18,7 +15,7 @@ public class GetArtistByWalletAddressHandler : BaseHandler<GetArtistByWalletAddr
     {
         ArgumentNullException.ThrowIfNull(request, nameof(request));
 
-        ArtistDocument artist = await _repository.FindOneAsync(x => x.UserWalletAddress.Equals( request.UserWalletAddress));
+        ArtistDocument artist = await _repository.FindOneAsync(x => x.UserWalletAddress.Equals(request.UserWalletAddress));
 
         if (artist is null)
             return new GetArtistByWalletAddressResponse(HttpStatusCode.NotFound,

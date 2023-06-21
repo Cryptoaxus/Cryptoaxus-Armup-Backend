@@ -10,7 +10,7 @@ public class BadRequestArtistByWalletAddressResponseExample : IExamplesProvider<
             Links = null,
             Errors = null,
             IsSuccessful = false,
-            Message = "Unable to delete artist against userWalletAddress: 647115d2b38bc8ea242beb01",
+            Message = "Invalid media type provided",
             Result = null,
             StatusCode = HttpStatusCode.BadRequest
         };
