@@ -1,6 +1,4 @@
-﻿using CryptoAxus.Application.Features.Artist.PostArtist.Request;
-
-namespace CryptoAxus.API.Controllers;
+﻿namespace CryptoAxus.API.Controllers;
 
 [ApiVersion("1.0")]
 [Produces(contentType: Constants.ContentTypeJson, Constants.ContentTypeJsonHateoas,
@@ -53,7 +51,7 @@ public class ArtistController : BaseController<ArtistController>
         return Ok(shapedResponse);
     }
     /// <summary>
-    /// 
+    /// Patch Artist
     /// </summary>
     /// <param name="userWalletAddress" example="0x507f191e810c19729de860ea"></param>
     /// <param name="artistDto"></param>
@@ -123,6 +121,43 @@ public class ArtistController : BaseController<ArtistController>
         return CreatedAtRoute("GetArtistById", new { id = response.Result?.Id }, response);
     }
 
+    /// <summary>
+    /// Returns artist by Wallet Address
+    /// </summary>
+    /// <param name="userWalletAddress" example="0x507f191e810c19729de860ea"></param>
+    /// <param name="mediaType" example="application/json"></param>
+    /// <response code="200">Success response with 200 code and information message about update</response>
+    /// <response code="404">Not Found response with 404 code and information message</response>
+    /// <response code="400">Bad Request response with 400 code and information message</response>
+    /// <returns></returns>
+    [HttpGet("{userWalletAddress:required}/userWalletAddress", Name = "GetArtistByWalletAddress", Order = 5)]
+    [RequiresParameter(Name = "userWalletAddress", Required = true, Source = OpenApiParameterLocation.Path, Type = typeof(string))]
+    [SwaggerRequestExample(typeof(GetArtistByWalletAddressRequest), typeof(GetArtistByWalletAddressRequestExample))]
+    [ProducesResponseType(typeof(GetArtistByWalletAddressResponse), (int)HttpStatusCode.OK)]
+    [ProducesResponseType(typeof(NotFoundArtistByWalletAddressResponse), (int)HttpStatusCode.NotFound)]
+    [ProducesResponseType(typeof(BadRequestArtistByWalletAddressResponse), (int)HttpStatusCode.BadRequest)]
+    public async Task<IActionResult> GetArtistByWalletAddressRequest([FromRoute] string userWalletAddress, 
+                                                                     [FromHeader(Name = "Accept")] string mediaType)
+    {
+         if (!MediaTypeHeaderValue.TryParse(mediaType, out MediaTypeHeaderValue? parsedMediaType))
+            return BadRequest(new BaseResponse<ExpandoObject>(HttpStatusCode.BadRequest,
+                                                              Messages.BadRequest,
+                                                              new List<string> { Messages.InvalidMediaType }));
+
+        var response = await Mediator.Send(new GetArtistByWalletAddressRequest(userWalletAddress));
+
+        if (response.StatusCode.Equals(HttpStatusCode.OK) && response.Result is not null &&
+            parsedMediaType.MediaType.Value!.Contains(Constants.VndApiHateoas))
+            response.Links = CreateArtistLinks(response.Result, string.Empty);
+
+        return response.StatusCode switch
+        {
+            HttpStatusCode.NotFound => NotFound(response),
+            HttpStatusCode.OK => Ok(response),
+            _ => BadRequest(response)
+        };
+    }
+
     #region Links Helper Region
 
     private IReadOnlyList<Links> CreateArtistLinks(ArtistDto dto, string? fields)
@@ -158,6 +193,13 @@ public class ArtistController : BaseController<ArtistController>
         link = new Links(href: Url.RouteUrl("DeleteArtistById", new { dto.Id }),
                          "delete",
                          Constants.DeleteMethod);
+        link.Href = link.Href?.Replace(Constants.ApiValue,
+                                       $"{HttpContext?.Request.Scheme}://{HttpContext?.Request.Host}{Constants.ApiValue}");
+        links.Add(link);
+
+        link = new Links(Url.RouteUrl("GetArtistByWalletAddress", new { dto.UserWalletAddress }),
+                         "get_userWalletAddress",
+                         Constants.GetMethod);
         link.Href = link.Href?.Replace(Constants.ApiValue,
                                        $"{HttpContext?.Request.Scheme}://{HttpContext?.Request.Host}{Constants.ApiValue}");
         links.Add(link);
