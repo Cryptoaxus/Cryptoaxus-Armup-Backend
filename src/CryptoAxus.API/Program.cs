@@ -1,7 +1,25 @@
+using Serilog;
+
 var builder = WebApplication.CreateBuilder(args);
 IConfiguration configuration = builder.Configuration;
 
-// Add services to the container.
+Log.Logger = new LoggerConfiguration()
+            .MinimumLevel.Information()
+            .Enrich.WithProperty("ICryptoAxusContext", Assembly.GetExecutingAssembly().GetName().Name ?? string.Empty)
+            .WriteTo.Console()
+            .WriteTo.Seq("http://localhost:5341", LogEventLevel.Information, apiKey: "XbKEj2UbbqQrGzFll4Ff")
+            .WriteTo.Http("http://localhost:5341", null, restrictedToMinimumLevel: LogEventLevel.Information)
+            .CreateLogger();
+
+builder.Host.UseSerilog();
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("CorsPolicy", cors => cors.AllowAnyHeader()
+                                                .AllowAnyMethod()
+                                                .AllowCredentials()
+                                                .SetIsOriginAllowed(origin => true));
+});
 
 builder.Services.AddMediatR(config => config.RegisterServicesFromAssemblies(Assembly.GetExecutingAssembly()));
 
@@ -68,9 +86,29 @@ if (app.Environment.IsDevelopment() || app.Environment.IsStaging() || app.Enviro
     });
 }
 
+app.UseSerilogRequestLogging(options =>
+{
+    options.MessageTemplate = "Handled {RequestPath}";
+});
+
+if (app.Environment.IsDevelopment())
+{
+    app.UseDeveloperExceptionPage();
+}
+
+app.UseStaticFiles();
+
+app.UseRouting();
+
 app.UseHttpsRedirection();
 
+app.UseCors("CorsPolicy");
+
 app.UseAuthorization();
+
+app.ConfigureCustomMiddleware();
+
+app.MapHealthChecks("/health");
 
 app.MapControllers();
 
