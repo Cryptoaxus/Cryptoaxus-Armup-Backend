@@ -56,6 +56,11 @@ builder.Services.AddCustomMediaTypes();
 
 builder.Services.AddScoped<RequestHeaderFilter>();
 
+builder.Services.Configure<RouteOptions>(routeOptions =>
+{
+    routeOptions.ConstraintMap.Add(nameof(ObjectIdRouteConstraint), typeof(ObjectIdRouteConstraint));
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
