@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+    cryptoaxus.redis:
+        container_name: cryptoaxus.redis
+        image: redis:latest
+        networks:
+            cryptoaxus.network:
+                ipv4_address: 172.10.0.2
+
+    cryptoaxus.api:
+        container_name: cryptoaxus.api
+        image: ${DOCKER_REGISTRY-}cryptoaxusapi
+        restart: on-failure
+        build:
+            context: .
+            dockerfile: src/CryptoAxus.API/Dockerfile
+        networks:
+            cryptoaxus.network:
+                ipv4_address: 172.10.0.3
+
+networks:
+    cryptoaxus.network:
+        driver: bridge
+        ipam:
+            driver: default
+            config:
+                - subnet: 172.10.0.0/16
+                  gateway: 172.10.0.1
