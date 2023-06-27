@@ -18,21 +18,21 @@ public class PatchArtistHandler : BaseHandler<PatchArtistHandler>, IRequestHandl
         if (artist == null)
             return new PatchArtistResponse(HttpStatusCode.NotFound, $"Unable to find artist with wallet address: {request.UserWalletAddress}");
 
-        ArtistDto artistDto = new ArtistDto();
-        request.ArtistDto.Adapt(artistDto);
+        UpdateArtistDto artistDto = new UpdateArtistDto();
+        request.ArtistDto.ApplyTo(artistDto);
         FilterDefinition<ArtistDocument> filterDefinition =
                        Builders<ArtistDocument>.Filter.Eq(x => x.UserWalletAddress, request.UserWalletAddress);
 
         UpdateDefinition<ArtistDocument> updateDefinition = Builders<ArtistDocument>.Update
-            .Set(x => x.Username, artistDto.Username)
-            .Set(x => x.Email, artistDto.Email)
-            .Set(x => x.UserWalletAddress, artistDto.UserWalletAddress)
-            .Set(x => x.ProfileImageAddress, artistDto.ProfileImageAddress)
-            .Set(x => x.Website, artistDto.Website)
-            .Set(x => x.Bio, artistDto.Bio)
-            .Set(x => x.CoverImageAddress, artistDto.CoverImageAddress)
-            .Set(x => x.Instagram, artistDto.Instagram)
-            .Set(x => x.Twitter, artistDto.Twitter);
+            .Set(x => x.Username, artistDto.Username ?? artist.Username )
+            .Set(x => x.Email, artistDto.Email?? artist.Email)
+            .Set(x => x.UserWalletAddress, artistDto.UserWalletAddress ?? artist.UserWalletAddress)
+            .Set(x => x.ProfileImageAddress, artistDto.ProfileImageAddress ?? artist.ProfileImageAddress)
+            .Set(x => x.Website, artistDto.Website ?? artist.Website)
+            .Set(x => x.Bio, artistDto.Bio ?? artist.Bio)
+            .Set(x => x.CoverImageAddress, artistDto.CoverImageAddress ?? artist.CoverImageAddress)
+            .Set(x => x.Instagram, artistDto.Instagram ?? artist.Instagram)
+            .Set(x => x.Twitter, artistDto.Twitter ?? artist.Twitter);
 
         var updateResult = await _repository.UpdateOneAsync(filterDefinition, updateDefinition);
 

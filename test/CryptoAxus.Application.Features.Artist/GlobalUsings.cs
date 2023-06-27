@@ -14,6 +14,8 @@ global using CryptoAxus.Application.Features.Artist.GetArtistByWalletAddress.Req
 global using CryptoAxus.Application.Features.Artist.PatchArtistUserWalletAddress.Handler;
 global using CryptoAxus.Application.Features.Artist.PatchArtistUserWalletAddress.Request;
 global using CryptoAxus.Application.Features.Artist.PatchArtistWalletAddress;
+global using CryptoAxus.Application.Features.Artist.PostArtist.Handler;
+global using CryptoAxus.Application.Features.Artist.PostArtist.Request;
 global using CryptoAxus.Common.Helpers;
 global using CryptoAxus.Domain.Collections;
 global using Microsoft.AspNetCore.JsonPatch;

@@ -62,15 +62,16 @@ public class PatchArtistTestsData
 
     public PatchArtistRequest CreateRequest()
     {
-        return new PatchArtistRequest(new UpdateArtistDto("tom.cruise",
-                                                         "tom.cruise@armup.com",
-                                                         "0x51c330436F289192F43666e51Df72Ec06F66Dad9",
-                                                         "https://www.tomcruise.com",
-                                                         "Versatile actor",
-                                                         "tom-cruise.png",
-                                                         "tom-cruise-cover.png",
-                                                         "https://www.instagram.com/tomcruise",
-                                                         "https://www.twitter.com/tomcruise"));
+        JsonPatchDocument<UpdateArtistDto> patchDocument = new JsonPatchDocument<UpdateArtistDto>();
+        Operation<UpdateArtistDto> operation = new Operation<UpdateArtistDto>
+        {
+            op = "replace",
+            path = "/username",
+            value = "test.username"
+        };
+        patchDocument.Operations.Add(operation);
+
+        return new PatchArtistRequest("0x507f191e810c19729de860ea", patchDocument);
     }
 
     public PatchArtistHandler Build()

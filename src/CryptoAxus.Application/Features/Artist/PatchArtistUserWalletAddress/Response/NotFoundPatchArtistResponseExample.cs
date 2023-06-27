@@ -9,7 +9,7 @@ public class NotFoundPatchArtistResponseExample : IExamplesProvider<NotFoundPatc
             Errors = null,
             IsSuccessful = false,
             Links = null,
-            Message = "No record found against UserWalletAddress: 0x647115d2b38bc8ea242beb01",
+            Message = "No record found against id: 0x647115d2b38bc8ea242beb01",
             Result = null,
             StatusCode = HttpStatusCode.NotFound
         };
