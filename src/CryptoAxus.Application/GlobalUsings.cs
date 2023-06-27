@@ -1,6 +1,5 @@
 ﻿// Global using directives
 
-global using CryptoAxus.Application.Contracts.Repositories;
 global using CryptoAxus.Application.Dto;
 global using CryptoAxus.Application.Features.Artist.DeleteArtistById.Request;
 global using CryptoAxus.Application.Features.Artist.DeleteArtistById.Response;
@@ -12,14 +11,17 @@ global using CryptoAxus.Application.Features.Artist.PostArtist.Request;
 global using CryptoAxus.Application.Features.Artist.PostArtist.Response;
 global using CryptoAxus.Application.Features.Artist.GetArtistByWalletAddress.Request;
 global using CryptoAxus.Application.Features.Artist.GetArtistByWalletAddress.Response;
+global using CryptoAxus.Application.Features.Artist.PatchArtistUserWalletAddress.Response;
+global using CryptoAxus.Application.Features.Artist.PatchArtistUserWalletAddress.Request;
 global using CryptoAxus.Common.Services.Contracts;
+global using CryptoAxus.Application.Contracts.Repositories;
 global using CryptoAxus.Application.Features.Artist.Query;
+global using CryptoAxus.Domain.Collections;
+global using Mapster;
 global using CryptoAxus.Common.Constants;
 global using CryptoAxus.Common.Helpers;
 global using CryptoAxus.Common.Response;
-global using CryptoAxus.Domain.Collections;
 global using CryptoAxus.Domain.Interfaces;
-global using Mapster;
 global using MediatR;
 global using Microsoft.AspNetCore.JsonPatch;
 global using Microsoft.AspNetCore.JsonPatch.Operations;

@@ -25,10 +25,10 @@ public class PatchArtistUsernameHandler : BaseHandler<PatchArtistUsernameHandler
         FilterDefinition<ArtistDocument> filterDefinition =
                 Builders<ArtistDocument>.Filter.Eq(x => x.UserWalletAddress, request.UserWalletAddress);
 
-        UpdateDefinition<ArtistDocument> updateDefinition =
-                Builders<ArtistDocument>.Update.Set(x => x.Username, artistDto.Username);
+        UpdateDefinition<ArtistDocument> updateDefinition = Builders<ArtistDocument>.Update
+            .Set(x => x.Username, artistDto.Username);
 
-        var updateResult = await _repository.UpdateOneAsync(filterDefinition, updateDefinition);
+        var updateResult = await _repository.UpdateOneAsync(filterDefinition, updateDefinition);        
 
         return updateResult.ModifiedCount <= 0
                 ? new PatchArtistUsernameResponse(HttpStatusCode.BadRequest, "Unable to update the username")
