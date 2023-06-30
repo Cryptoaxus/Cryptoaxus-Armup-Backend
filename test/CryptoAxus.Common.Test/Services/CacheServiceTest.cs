@@ -8,7 +8,7 @@ public class CacheServiceTest : CacheServiceTestData
     public async Task When_Cache_Returns_Null_Value()
     {
         // Arrange
-        var sut = SetupMockCacheService(StringCacheKey).Build();
+        var sut = SetupMockCacheService().Build();
 
         // Act
         var value = await sut.GetAsync<string?>(StringCacheKey);
