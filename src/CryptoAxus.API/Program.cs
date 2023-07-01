@@ -56,7 +56,6 @@ builder.Services.AddScoped<RequestHeaderFilter>();
 
 builder.Services.Configure<RouteOptions>(routeOptions =>
 {
-    routeOptions.ConstraintMap.Add("objectId", typeof(ObjectIdRouteConstraint));
     routeOptions.ConstraintMap.Add("string", typeof(StringRouteConstraint));
 });
 
