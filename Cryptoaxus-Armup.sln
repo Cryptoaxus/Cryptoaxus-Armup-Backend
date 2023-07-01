@@ -33,6 +33,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CryptoAxus.API", "src\Crypt
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{7B92A1FC-21A6-40D8-8608-7DB365D3DEF2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CryptoAxus.Api.Test", "test\CryptoAxus.Api.Test\CryptoAxus.Api.Test.csproj", "{A626674D-2999-4597-91DF-A920E28CD0CB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -71,6 +73,10 @@ Global
 		{7B92A1FC-21A6-40D8-8608-7DB365D3DEF2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7B92A1FC-21A6-40D8-8608-7DB365D3DEF2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7B92A1FC-21A6-40D8-8608-7DB365D3DEF2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A626674D-2999-4597-91DF-A920E28CD0CB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A626674D-2999-4597-91DF-A920E28CD0CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A626674D-2999-4597-91DF-A920E28CD0CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A626674D-2999-4597-91DF-A920E28CD0CB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -88,6 +94,7 @@ Global
 		{50BA16C3-1C1B-42F7-BA06-EA157DE4AB7F} = {F5B77BD8-5DF0-48A2-85BA-7106ABBB3F33}
 		{8C409CC7-305E-437B-AA08-01B066BCE49B} = {426BCB47-4C45-4196-BD66-FE48FB0A321C}
 		{7F0AF69F-E5E0-4451-8FFB-EA2F7F16B7E3} = {8C409CC7-305E-437B-AA08-01B066BCE49B}
+		{A626674D-2999-4597-91DF-A920E28CD0CB} = {F5B77BD8-5DF0-48A2-85BA-7106ABBB3F33}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {7213905C-C641-4981-8E20-826EEF137835}
