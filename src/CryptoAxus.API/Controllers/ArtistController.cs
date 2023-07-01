@@ -13,14 +13,14 @@ public class ArtistController : BaseController<ArtistController>
     }
 
     /// <summary>
-    /// Returns artist by id
+    /// Returns artist an by searched by id.
     /// </summary>
     /// <param name="id" example="507f191e810c19729de860ea"></param>
     /// <param name="fields" example="username, email, bio"></param>
     /// <param name="mediaType" example="application/json"></param>
     /// <response code="200">Artist record retrieved</response>
     /// <returns></returns>
-    [HttpGet(template: "{id:required}", Name = "GetArtistById", Order = 1)]
+    [HttpGet(template: "{id:regex(^[[A-Za-z0-9]]*$):required}", Name = "GetArtistById", Order = 1)]
     [RequiresParameter(Name = "id", Required = true, Source = OpenApiParameterLocation.Path, Type = typeof(string))]
     [RequiresParameter(Name = "fields", Required = false, Source = OpenApiParameterLocation.Query, Type = typeof(string))]
     [RequiresParameter(Name = "mediaType", Required = true, Source = OpenApiParameterLocation.Header, Type = typeof(string))]
@@ -59,7 +59,7 @@ public class ArtistController : BaseController<ArtistController>
     /// <response code="404">Not Found response with 404 code and information message</response>
     /// <response code="400">Bad Request response with 400 code and information message</response>
     /// <returns></returns>
-    [HttpPatch("{userWalletAddress:required}/username", Name = "PatchArtistUsername", Order = 2)]
+    [HttpPatch("{userWalletAddress:regex(^[[A-Za-z0-9]]*$):required}/username", Name = "PatchArtistUsername", Order = 2)]
     [RequiresParameter(Name = "userWalletAddress", Required = true, Source = OpenApiParameterLocation.Path, Type = typeof(string))]
     [RequiresParameter(Name = "artistDto", Required = true, Source = OpenApiParameterLocation.Body, Type = typeof(JsonPatchDocument<ArtistDto>))]
     [SwaggerRequestExample(typeof(PatchArtistUsernameRequest), typeof(PatchArtistUsernameRequestExample))]
@@ -84,7 +84,7 @@ public class ArtistController : BaseController<ArtistController>
     /// <param name="id" example="507f191e810c19729de860ea"></param>
     /// <response code="204">Delete Artist by Id</response>
     /// <returns></returns>
-    [HttpDelete(template: "{id:required}", Name = "DeleteArtistById", Order = 3)]
+    [HttpDelete(template: "{id:regex(^[[A-Za-z0-9]]*$):required}", Name = "DeleteArtistById", Order = 3)]
     [RequiresParameter(Name = "id", Required = true, Source = OpenApiParameterLocation.Path, Type = typeof(string))]
     [ProducesResponseType(typeof(BaseResponse<ArtistDto>), (int)HttpStatusCode.OK)]
     [ProducesResponseType(typeof(NotFoundDeleteArtistByIdResponse), (int)HttpStatusCode.NotFound)]
@@ -130,16 +130,16 @@ public class ArtistController : BaseController<ArtistController>
     /// <response code="404">Not Found response with 404 code and information message</response>
     /// <response code="400">Bad Request response with 400 code and information message</response>
     /// <returns></returns>
-    [HttpGet("{userWalletAddress:required}/userWalletAddress", Name = "GetArtistByWalletAddress", Order = 5)]
+    [HttpGet("{userWalletAddress:regex(^[[A-Za-z0-9]]*$):required}/userWalletAddress", Name = "GetArtistByWalletAddress", Order = 5)]
     [RequiresParameter(Name = "userWalletAddress", Required = true, Source = OpenApiParameterLocation.Path, Type = typeof(string))]
     [SwaggerRequestExample(typeof(GetArtistByWalletAddressRequest), typeof(GetArtistByWalletAddressRequestExample))]
     [ProducesResponseType(typeof(GetArtistByWalletAddressResponse), (int)HttpStatusCode.OK)]
     [ProducesResponseType(typeof(NotFoundArtistByWalletAddressResponse), (int)HttpStatusCode.NotFound)]
     [ProducesResponseType(typeof(BadRequestArtistByWalletAddressResponse), (int)HttpStatusCode.BadRequest)]
-    public async Task<IActionResult> GetArtistByWalletAddressRequest([FromRoute] string userWalletAddress, 
+    public async Task<IActionResult> GetArtistByWalletAddressRequest([FromRoute] string userWalletAddress,
                                                                      [FromHeader(Name = "Accept")] string mediaType)
     {
-         if (!MediaTypeHeaderValue.TryParse(mediaType, out MediaTypeHeaderValue? parsedMediaType))
+        if (!MediaTypeHeaderValue.TryParse(mediaType, out MediaTypeHeaderValue? parsedMediaType))
             return BadRequest(new BaseResponse<ExpandoObject>(HttpStatusCode.BadRequest,
                                                               Messages.BadRequest,
                                                               new List<string> { Messages.InvalidMediaType }));

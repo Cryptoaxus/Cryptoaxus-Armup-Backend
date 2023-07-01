@@ -1,8 +1,6 @@
 var builder = WebApplication.CreateBuilder(args);
 IConfiguration configuration = builder.Configuration;
 
-// Add services to the container.
-
 builder.Services.AddMediatR(config => config.RegisterServicesFromAssemblies(Assembly.GetExecutingAssembly()));
 
 builder.Services.AddHttpContextAccessor();
@@ -55,6 +53,11 @@ builder.Services.Configure<ApiBehaviorOptions>(options =>
 builder.Services.AddCustomMediaTypes();
 
 builder.Services.AddScoped<RequestHeaderFilter>();
+
+builder.Services.Configure<RouteOptions>(routeOptions =>
+{
+    routeOptions.ConstraintMap.Add("string", typeof(StringRouteConstraint));
+});
 
 var app = builder.Build();
 
