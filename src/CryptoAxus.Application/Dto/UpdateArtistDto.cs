@@ -65,6 +65,20 @@ public class UpdateArtistDto
     [JsonProperty("twitter")]
     public string? Twitter { get; set; }
 
+    /// <summary>
+    /// Artist lastModifiedBy
+    /// </summary>
+    /// <example>junaid sultan</example>
+    [JsonProperty("lastModifiedBy")]
+    public string? LastModifiedBy { get; set; }
+
+    /// <summary>
+    /// Artist lastModifiedDate
+    /// </summary>
+    /// <example>20-10-2022</example>
+    [JsonProperty("lastModifiedDate")]
+    public string? LastModifiedDate { get; set; }
+
     public UpdateArtistDto()
     {
     }
@@ -77,7 +91,9 @@ public class UpdateArtistDto
                            string? profileImageAddress,
                            string? coverImageAddress,
                            string? instagram,
-                           string? twitter)
+                           string? twitter,
+                           string? lastModifiedBy,
+                           string? lastModifiedDate)
     {
         Username = username;
         Email = email;
@@ -88,6 +104,8 @@ public class UpdateArtistDto
         CoverImageAddress = coverImageAddress;
         Instagram = instagram;
         Twitter = twitter;
+        LastModifiedBy = lastModifiedBy;
+        LastModifiedDate = lastModifiedDate;
     }
 
 }

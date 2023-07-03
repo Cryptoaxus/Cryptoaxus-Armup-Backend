@@ -1,6 +1,6 @@
-﻿namespace CryptoAxus.Application.Features.Artist.PatchArtistUserWalletAddress.Response;
+﻿namespace CryptoAxus.Application.Features.Artist.PatchArtist.Response;
 
-public class PatchArtistResponse : BaseResponse<object>
+public class PatchArtistResponse : BaseResponse<ArtistDto>
 {
     public PatchArtistResponse()
     {

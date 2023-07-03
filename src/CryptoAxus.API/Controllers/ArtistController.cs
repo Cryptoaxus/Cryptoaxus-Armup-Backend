@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc.Formatters;
-
-namespace CryptoAxus.API.Controllers;
+﻿namespace CryptoAxus.API.Controllers;
 
 [ApiVersion("1.0")]
 [Produces(contentType: Constants.ContentTypeJson, Constants.ContentTypeJsonHateoas,
@@ -165,7 +163,6 @@ public class ArtistController : BaseController<ArtistController>
     /// </summary>
     /// <param name="artist"></param>
     /// <param name="userWalletAddress"></param>
-
     /// <response code="200">Success response with 204 code and information message about update</response>
     /// <response code="404">Not Found response with 404 code and information message</response>
     /// <response code="400">Bad Request response with 400 code and information message</response>
@@ -177,9 +174,9 @@ public class ArtistController : BaseController<ArtistController>
     [ProducesResponseType(typeof(PatchArtistResponse), (int)HttpStatusCode.OK)]
     [ProducesResponseType(typeof(NotFoundPatchArtistResponse), (int)HttpStatusCode.NotFound)]
     [ProducesResponseType(typeof(BadRequestPatchArtistResponse), (int)HttpStatusCode.BadRequest)]
-    public async Task<IActionResult> PatchArtist([FromRoute] string userWalletAddress, [FromBody]  JsonPatchDocument<UpdateArtistDto> artist)
+    public async Task<IActionResult> PatchArtist([FromRoute] string userWalletAddress, [FromBody] JsonPatchDocument<UpdateArtistDto> artist)
     {
-           var response = await Mediator.Send(new PatchArtistRequest(userWalletAddress, artist));
+        var response = await Mediator.Send(new PatchArtistRequest(userWalletAddress, artist));
 
         return response.StatusCode switch
         {

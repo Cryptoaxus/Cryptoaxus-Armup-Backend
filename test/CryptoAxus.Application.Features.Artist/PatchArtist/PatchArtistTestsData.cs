@@ -1,4 +1,4 @@
-﻿namespace CryptoAxus.Application.Features.Artist.PatchArtistWalletAddress;
+﻿namespace CryptoAxus.Application.Features.Artist.PatchArtist;
 
 public class PatchArtistTestsData
 {
