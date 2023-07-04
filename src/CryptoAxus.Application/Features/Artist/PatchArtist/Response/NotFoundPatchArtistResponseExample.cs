@@ -1,4 +1,5 @@
 ﻿namespace CryptoAxus.Application.Features.Artist.PatchArtist.Response;
+
 public class NotFoundPatchArtistResponseExample : IExamplesProvider<NotFoundPatchArtistResponse>
 {
     public NotFoundPatchArtistResponse GetExamples()

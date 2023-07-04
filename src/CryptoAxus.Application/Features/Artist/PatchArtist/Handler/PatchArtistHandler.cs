@@ -26,8 +26,8 @@ public class PatchArtistHandler : BaseHandler<PatchArtistHandler>, IRequestHandl
                        Builders<ArtistDocument>.Filter.Eq(x => x.UserWalletAddress, request.UserWalletAddress);
 
         UpdateDefinition<ArtistDocument> updateDefinition = Builders<ArtistDocument>.Update
-            .Set(x => x.Username, artistDto.Username ?? artist.Username )
-            .Set(x => x.Email, artistDto.Email?? artist.Email)
+            .Set(x => x.Username, artistDto.Username ?? artist.Username)
+            .Set(x => x.Email, artistDto.Email ?? artist.Email)
             .Set(x => x.UserWalletAddress, artistDto.UserWalletAddress ?? artist.UserWalletAddress)
             .Set(x => x.ProfileImageAddress, artistDto.ProfileImageAddress ?? artist.ProfileImageAddress)
             .Set(x => x.Website, artistDto.Website ?? artist.Website)
@@ -35,8 +35,8 @@ public class PatchArtistHandler : BaseHandler<PatchArtistHandler>, IRequestHandl
             .Set(x => x.CoverImageAddress, artistDto.CoverImageAddress ?? artist.CoverImageAddress)
             .Set(x => x.Instagram, artistDto.Instagram ?? artist.Instagram)
             .Set(x => x.Twitter, artistDto.Twitter ?? artist.Twitter)
-            .Set(x => x.LastModifiedBy, artist.LastModifiedBy ?? artist.LastModifiedBy)
-            .Set(x => x.LastModifiedDate, artist.LastModifiedDate ?? artist.LastModifiedDate);
+            .Set(x => x.LastModifiedBy, artistDto.LastModifiedBy ?? artist.LastModifiedBy)
+            .Set(x => x.LastModifiedDate, DateTime.UtcNow);
 
         var updateResult = await _repository.UpdateOneAsync(filterDefinition, updateDefinition);
 

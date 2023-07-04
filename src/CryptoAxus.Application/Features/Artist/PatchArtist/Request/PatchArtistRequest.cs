@@ -4,7 +4,6 @@ public class PatchArtistRequest : IRequest<PatchArtistResponse>
 {
     [JsonProperty("userWalletAddress", Required = Required.Always)]
     public string UserWalletAddress { get; set; }
-
     [JsonProperty("artist")]
 
     public JsonPatchDocument<UpdateArtistDto> ArtistDto { get; set; }
