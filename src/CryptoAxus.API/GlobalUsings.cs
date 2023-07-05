@@ -13,6 +13,8 @@ global using CryptoAxus.Application.Features.Artist.GetArtistByWalletAddress.Res
 global using CryptoAxus.Application.Features.Artist.PatchArtistUsername.Request;
 global using CryptoAxus.Application.Features.Artist.PatchArtistUsername.Response;
 global using CryptoAxus.Application.Features.Artist.PostArtist.Request;
+global using CryptoAxus.Application.Features.Artist.PatchArtist.Request;
+global using CryptoAxus.Application.Features.Artist.PatchArtist.Response;
 global using CryptoAxus.Application.Features.Artist.PostArtist.Response;
 global using CryptoAxus.Common;
 global using CryptoAxus.Common.Attributes;

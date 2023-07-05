@@ -158,6 +158,34 @@ public class ArtistController : BaseController<ArtistController>
         };
     }
 
+    /// <summary>
+    /// Patch Artist by UserWalletAddress
+    /// </summary>
+    /// <param name="artist"></param>
+    /// <param name="userWalletAddress"></param>
+    /// <response code="200">Success response with 204 code and information message about update</response>
+    /// <response code="404">Not Found response with 404 code and information message</response>
+    /// <response code="400">Bad Request response with 400 code and information message</response>
+    /// <returns></returns>
+    [HttpPatch("{userWalletAddress:required}", Name = "PatchArtist", Order = 6)]
+    [RequiresParameter(Name = "userWalletAddress", Required = true, Source = OpenApiParameterLocation.Path, Type = typeof(string))]
+    [RequiresParameter(Name = "artistDto", Required = true, Source = OpenApiParameterLocation.Body, Type = typeof(JsonPatchDocument<UpdateArtistDto>))]
+    [SwaggerRequestExample(typeof(PatchArtistRequest), typeof(PatchArtistRequestExample))]
+    [ProducesResponseType(typeof(PatchArtistResponse), (int)HttpStatusCode.OK)]
+    [ProducesResponseType(typeof(NotFoundPatchArtistResponse), (int)HttpStatusCode.NotFound)]
+    [ProducesResponseType(typeof(BadRequestPatchArtistResponse), (int)HttpStatusCode.BadRequest)]
+    public async Task<IActionResult> PatchArtist([FromRoute] string userWalletAddress, [FromBody] JsonPatchDocument<UpdateArtistDto> artist)
+    {
+        var response = await Mediator.Send(new PatchArtistRequest(userWalletAddress, artist));
+
+        return response.StatusCode switch
+        {
+            HttpStatusCode.NotFound => NotFound(response),
+            HttpStatusCode.NoContent => Ok(response),
+            _ => BadRequest(response)
+        };
+    }
+
     #region Links Helper Region
 
     private IReadOnlyList<Links> CreateArtistLinks(ArtistDto dto, string? fields)
@@ -200,6 +228,13 @@ public class ArtistController : BaseController<ArtistController>
         link = new Links(Url.RouteUrl("GetArtistByWalletAddress", new { dto.UserWalletAddress }),
                          "get_userWalletAddress",
                          Constants.GetMethod);
+        link.Href = link.Href?.Replace(Constants.ApiValue,
+                                       $"{HttpContext?.Request.Scheme}://{HttpContext?.Request.Host}{Constants.ApiValue}");
+        links.Add(link);
+
+        link = new Links(Url.RouteUrl("PatchArtist", new { dto.UserWalletAddress }),
+                         "patch_artist",
+                         Constants.PatchMethod);
         link.Href = link.Href?.Replace(Constants.ApiValue,
                                        $"{HttpContext?.Request.Scheme}://{HttpContext?.Request.Host}{Constants.ApiValue}");
         links.Add(link);

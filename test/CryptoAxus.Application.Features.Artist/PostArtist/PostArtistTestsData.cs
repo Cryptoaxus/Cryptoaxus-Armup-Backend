@@ -1,7 +1,4 @@
-﻿using CryptoAxus.Application.Features.Artist.PostArtist.Handler;
-using CryptoAxus.Application.Features.Artist.PostArtist.Request;
-
-namespace CryptoAxus.Application.Features.Artist.PostArtist;
+﻿namespace CryptoAxus.Application.Features.Artist.PostArtist;
 
 public class PostArtistTestsData
 {
