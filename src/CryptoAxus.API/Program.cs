@@ -13,14 +13,15 @@ builder.Services.AddCommonLayer();
 
 builder.Services.AddControllers(options =>
 {
-    options.CacheProfiles.Add("120SecondsCacheProfile", new CacheProfile()
+    options.CacheProfiles.Add("300SecondsCacheProfile", new CacheProfile()
     {
-        Duration = 120,
+        Duration = 300,
         Location = ResponseCacheLocation.Any
     });
     options.Filters.Add<ModelValidationFilter>();
     options.ReturnHttpNotAcceptable = true;
     options.OutputFormatters.Add(new XmlDataContractSerializerOutputFormatter());
+    options.RespectBrowserAcceptHeader = true;
 }).AddJsonOptions(options =>
 {
     options.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
@@ -35,7 +36,7 @@ builder.Services.AddSwaggerGen(options =>
     options.SwaggerDoc("v1", new OpenApiInfo { Title = "CryptoAxus.API", Version = "v1" });
 });
 
-builder.Services.AddSwaggerExamplesFromAssemblyOf<PatchArtistUsernameResponse>();
+builder.Services.AddSwaggerExamplesFromAssemblyOf<PatchArtistResponse>();
 
 builder.Services.AddApiVersioning(options =>
 {
@@ -59,6 +60,8 @@ builder.Services.Configure<RouteOptions>(routeOptions =>
     routeOptions.ConstraintMap.Add("string", typeof(StringRouteConstraint));
 });
 
+builder.Services.AddResponseCaching();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -72,6 +75,8 @@ if (app.Environment.IsDevelopment() || app.Environment.IsStaging() || app.Enviro
 }
 
 app.UseHttpsRedirection();
+
+app.UseResponseCaching();
 
 app.UseAuthorization();
 

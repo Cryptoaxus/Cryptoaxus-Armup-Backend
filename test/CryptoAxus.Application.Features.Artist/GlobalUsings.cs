@@ -1,5 +1,3 @@
-// Global using directives
-
 global using CryptoAxus.Application.Contracts.Repositories;
 global using CryptoAxus.Application.Dto;
 global using CryptoAxus.Application.Features.Artist.DeleteArtistById.Handler;
@@ -7,13 +5,9 @@ global using CryptoAxus.Application.Features.Artist.DeleteArtistById.Request;
 global using CryptoAxus.Application.Features.Artist.DeleteArtistById.Response;
 global using CryptoAxus.Application.Features.Artist.GetArtistById.Handler;
 global using CryptoAxus.Application.Features.Artist.GetArtistById.Request;
-global using CryptoAxus.Application.Features.Artist.PatchArtistUsername.Handler;
-global using CryptoAxus.Application.Features.Artist.PatchArtistUsername.Request;
-global using CryptoAxus.Application.Features.Artist.GetArtistByWalletAddress.Handler;
-global using CryptoAxus.Application.Features.Artist.GetArtistByWalletAddress.Request;
+global using CryptoAxus.Application.Features.Artist.GetArtistByUserId.Request;
 global using CryptoAxus.Application.Features.Artist.PatchArtist.Handler;
 global using CryptoAxus.Application.Features.Artist.PatchArtist.Request;
-global using CryptoAxus.Application.Features.Artist.PatchArtist;
 global using CryptoAxus.Application.Features.Artist.PostArtist.Handler;
 global using CryptoAxus.Application.Features.Artist.PostArtist.Request;
 global using CryptoAxus.Common.Helpers;

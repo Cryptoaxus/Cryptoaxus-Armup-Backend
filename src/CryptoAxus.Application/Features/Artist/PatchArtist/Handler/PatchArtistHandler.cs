@@ -12,23 +12,21 @@ public class PatchArtistHandler : BaseHandler<PatchArtistHandler>, IRequestHandl
     public async Task<PatchArtistResponse> Handle(PatchArtistRequest request,
                                                   CancellationToken cancellationToken = default)
     {
-        ArgumentException.ThrowIfNullOrEmpty(request.UserWalletAddress, nameof(request.UserWalletAddress));
-
-        ArtistDocument artist = await _repository.FindOneAsync(x => x.UserWalletAddress.Equals(request.UserWalletAddress));
+        ArtistDocument artist = await _repository.FindOneAsync(x => x.UserId.Equals(request.UserId), cancellationToken);
 
         if (artist == null)
-            return new PatchArtistResponse(HttpStatusCode.NotFound, $"Unable to find artist with wallet address: {request.UserWalletAddress}");
+            return new PatchArtistResponse(HttpStatusCode.NotFound, $"Unable to find artist with userId: {request.UserId}");
 
         UpdateArtistDto artistDto = new UpdateArtistDto();
         request.ArtistDto.ApplyTo(artistDto);
 
-        FilterDefinition<ArtistDocument> filterDefinition =
-                       Builders<ArtistDocument>.Filter.Eq(x => x.UserWalletAddress, request.UserWalletAddress);
+        FilterDefinition<ArtistDocument> filterDefinition = Builders<ArtistDocument>.Filter
+                                                                                    .Eq(x => x.UserId, request.UserId);
 
         UpdateDefinition<ArtistDocument> updateDefinition = Builders<ArtistDocument>.Update
             .Set(x => x.Username, artistDto.Username ?? artist.Username)
             .Set(x => x.Email, artistDto.Email ?? artist.Email)
-            .Set(x => x.UserWalletAddress, artistDto.UserWalletAddress ?? artist.UserWalletAddress)
+            .Set(x => x.UserId, artistDto.UserId ?? artist.UserId)
             .Set(x => x.ProfileImageAddress, artistDto.ProfileImageAddress ?? artist.ProfileImageAddress)
             .Set(x => x.Website, artistDto.Website ?? artist.Website)
             .Set(x => x.Bio, artistDto.Bio ?? artist.Bio)
