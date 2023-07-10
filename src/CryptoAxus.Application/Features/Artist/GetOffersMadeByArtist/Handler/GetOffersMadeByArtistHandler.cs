@@ -40,7 +40,7 @@ public class GetOffersMadeByArtistHandler : BaseHandler<GetOffersMadeByArtistHan
                                                            request.PaginationParameters.PageSize);
 
         response = new GetOffersMadeByArtistResponse(HttpStatusCode.OK, "Records found successfully.",
-                                                     offersTask.Result.Adapt<List<OffersDto>>(),
+                                                     offersTask.Result.Adapt<List<OffersDtoWithLinks>>(),
                                                      paginationData);
 
         await _cacheService.SetAsync(key: $"offersMadeByArtistP{request.PaginationParameters.PageNumber}S{request.PaginationParameters.PageSize}",

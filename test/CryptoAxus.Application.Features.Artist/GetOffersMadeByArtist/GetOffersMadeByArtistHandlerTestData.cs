@@ -66,7 +66,7 @@ public class GetOffersMadeByArtistHandlerTestData
         _mockCacheService.Setup(x => x.GetAsync<GetOffersMadeByArtistResponse>(It.IsAny<string>()))
                          .ReturnsAsync(new GetOffersMadeByArtistResponse(HttpStatusCode.OK,
                                                                          "Records found successfully.",
-                                                                         _documents.Adapt<List<OffersDto>>(),
+                                                                         _documents.Adapt<List<OffersDtoWithLinks>>(),
                                                                          new PaginationData(100, 1, 25)));
 
         return this;
