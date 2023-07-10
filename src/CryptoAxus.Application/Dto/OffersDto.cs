@@ -26,12 +26,11 @@ public class OffersDto : BaseDto
                      int? offerFrom = null,
                      string? offerTo = null,
                      DateTime? offerExpireAt = null,
+                     int? quantity = null,
                      int? offeredQuantity = null,
                      ObjectId? createdBy = null,
                      DateTime? lastModifiedDate = null,
                      ObjectId? lastModifiedBy = null,
-                     string? signature = null,
-                     int? quantity = null,
                      bool isDeleted = false)
                      : base(id,
                             createdBy,

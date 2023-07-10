@@ -19,9 +19,9 @@ public class UpdateArtistDto
     /// <summary>
     /// Artist wallet address
     /// </summary>
-    /// <example>0x507f191e810c19729de860ea</example>
-    [JsonProperty("userWalletAddress")]
-    public string? UserWalletAddress { get; set; }
+    /// <example>5071</example>
+    [JsonProperty("userId")]
+    public int? UserId { get; set; }
 
     /// <summary>
     /// Artist website url
@@ -85,7 +85,7 @@ public class UpdateArtistDto
 
     public UpdateArtistDto(string? username,
                            string? email,
-                           string? userWalletAddress,
+                           int? userId,
                            string? website,
                            string? bio,
                            string? profileImageAddress,
@@ -97,7 +97,7 @@ public class UpdateArtistDto
     {
         Username = username;
         Email = email;
-        UserWalletAddress = userWalletAddress;
+        UserId = userId;
         Website = website;
         Bio = bio;
         ProfileImageAddress = profileImageAddress;

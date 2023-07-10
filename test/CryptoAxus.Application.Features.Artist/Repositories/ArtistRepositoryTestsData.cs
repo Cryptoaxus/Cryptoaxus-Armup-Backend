@@ -22,7 +22,7 @@ public class ArtistRepositoryTestsData
         mockArtistDocument = new ArtistDocument(new ObjectId("646d0779e663994062278fb8"),
                                                 "Ben Affleck",
                                                 "ben.affleck@google.com",
-                                                "646d0779e663994062278fb8",
+                                                6460,
                                                 "https://localhost:5000",
                                                 "https://localhost:5000/swagger",
                                                 "https://localhost:4000/wwwroot/images/profile/646d0779e663994062278fb8",

@@ -12,7 +12,7 @@ public class PatchArtistTestsData
         _artistDocument = new ArtistDocument(Id.ToObjectId(),
                                             "testUsername",
                                             "test@nftarmup.com",
-                                            "0x507f191e810c19729de860ea",
+                                            5071,
                                             "https://www.google.com",
                                             "testBio",
                                             "testProfileImageAddress",
@@ -24,7 +24,7 @@ public class PatchArtistTestsData
 
     protected PatchArtistTestsData SetupMockRepository()
     {
-        _mockRepository.Setup(x => x.FindOneAsync(It.IsAny<Expression<Func<ArtistDocument, bool>>>()))!
+        _mockRepository.Setup(x => x.FindOneAsync(It.IsAny<Expression<Func<ArtistDocument, bool>>>(), It.IsAny<CancellationToken>()))!
                        .ReturnsAsync(_artistDocument);
 
         return this;
@@ -33,7 +33,7 @@ public class PatchArtistTestsData
     protected PatchArtistTestsData SetupMockRepositoryArtistNotFound()
     {
         _artistDocument = null;
-        _mockRepository.Setup(x => x.FindOneAsync(It.IsAny<Expression<Func<ArtistDocument, bool>>>()))!
+        _mockRepository.Setup(x => x.FindOneAsync(It.IsAny<Expression<Func<ArtistDocument, bool>>>(), It.IsAny<CancellationToken>()))!
                        .ReturnsAsync(_artistDocument);
 
         return this;
@@ -71,7 +71,7 @@ public class PatchArtistTestsData
         };
         patchDocument.Operations.Add(operation);
 
-        return new PatchArtistRequest("0x507f191e810c19729de860ea", patchDocument);
+        return new PatchArtistRequest(5071, patchDocument);
     }
 
     public PatchArtistHandler Build()
