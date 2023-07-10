@@ -7,8 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Features\Artist\GetOffersRecivedByArtist\Response\BadRequestGetListOfOffersByArtistResponseExample.cs\**" />
     <Compile Remove="Mappings\**" />
+    <EmbeddedResource Remove="Features\Artist\GetOffersRecivedByArtist\Response\BadRequestGetListOfOffersByArtistResponseExample.cs\**" />
     <EmbeddedResource Remove="Mappings\**" />
+    <None Remove="Features\Artist\GetOffersRecivedByArtist\Response\BadRequestGetListOfOffersByArtistResponseExample.cs\**" />
     <None Remove="Mappings\**" />
   </ItemGroup>
 

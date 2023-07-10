@@ -38,6 +38,7 @@ public class OffersDocument : BaseDocument
                           ObjectId createdBy,
                           DateTime? lastModifiedDate = null,
                           ObjectId? lastModifiedBy = null,
+                          string? signature = null,
                           bool isDeleted = false)
                           : base(id,
                                  createdBy,

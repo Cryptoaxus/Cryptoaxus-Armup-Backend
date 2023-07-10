@@ -1,6 +1,4 @@
-﻿using CryptoAxus.Application.Features.Artist.GetArtistByUserId.Handler;
-
-namespace CryptoAxus.Application.Features.Artist.GetArtistByUserId;
+﻿namespace CryptoAxus.Application.Features.Artist.GetArtistByUserId;
 
 public class GetArtistByUserIdTestData
 {
