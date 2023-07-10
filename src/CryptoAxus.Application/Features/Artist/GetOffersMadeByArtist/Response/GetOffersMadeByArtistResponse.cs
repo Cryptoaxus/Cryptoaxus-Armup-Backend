@@ -1,6 +1,6 @@
 ﻿namespace CryptoAxus.Application.Features.Artist.GetOffersMadeByArtist.Response;
 
-public class GetOffersMadeByArtistResponse : PaginationResponse<List<OffersDto>>
+public class GetOffersMadeByArtistResponse : PaginationResponse<List<OffersDtoWithLinks>>
 {
     public GetOffersMadeByArtistResponse()
     {
@@ -12,7 +12,7 @@ public class GetOffersMadeByArtistResponse : PaginationResponse<List<OffersDto>>
 
     public GetOffersMadeByArtistResponse(HttpStatusCode statusCode,
                                          string message,
-                                         List<OffersDto> result,
+                                         List<OffersDtoWithLinks> result,
                                          PaginationData paginationData) :
                                          this(statusCode, message)
     {
