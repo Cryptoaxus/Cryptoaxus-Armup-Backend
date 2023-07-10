@@ -18,7 +18,7 @@ public class GetOffersMadeByArtistHandlerTests : GetOffersMadeByArtistHandlerTes
         // Assert
         response.StatusCode.ShouldBe(HttpStatusCode.OK);
         response.IsSuccessful.ShouldBe(true);
-        response.Result.ShouldBeOfType<List<OffersDto>>();
+        response.Result.ShouldBeOfType<List<OffersDtoWithLinks>>();
         response.Result.Count.ShouldBe(pageSize);
         response.PaginationData.ShouldNotBeNull();
     }
@@ -57,7 +57,7 @@ public class GetOffersMadeByArtistHandlerTests : GetOffersMadeByArtistHandlerTes
         // Assert
         response.StatusCode.ShouldBe(HttpStatusCode.OK);
         response.IsSuccessful.ShouldBe(true);
-        response.Result.ShouldBeOfType<List<OffersDto>>();
+        response.Result.ShouldBeOfType<List<OffersDtoWithLinks>>();
         response.PaginationData?.TotalRecords.ShouldBe(100);
         response.PaginationData?.TotalPages.ShouldBe(4);
         response.PaginationData?.HasPrevious.ShouldBe(false);
