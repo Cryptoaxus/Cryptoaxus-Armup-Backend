@@ -230,11 +230,20 @@ public class ArtistController : BaseController<ArtistController>
                                                         CancellationToken cancellationToken = default)
     {
         if (!MediaTypeHeaderValue.TryParse(mediaType, out MediaTypeHeaderValue? parsedMediaType))
-            return BadRequest(new BaseResponse<ExpandoObject>(HttpStatusCode.BadRequest,
-                                                              Messages.BadRequest,
-                                                              new List<string> { Messages.InvalidMediaType }));
+            return BadRequest(new BadRequestGetOffersMadeByArtistResponse(HttpStatusCode.BadRequest,
+                                                                          Messages.BadRequest,
+                                                                          new List<string> { Messages.InvalidMediaType }));
 
         var response = await Mediator.Send(new GetOffersMadeByArtistRequest(userId, paginationParameters), cancellationToken);
+
+        if (response.StatusCode.Equals(HttpStatusCode.OK) && response.Result is not null &&
+            parsedMediaType.MediaType.Value!.Contains(Constants.VndApiHateoas))
+        {
+            response.Result.ForEach(item => item.Links =
+                                            CreateArtistLinks(userId: userId,
+                                                              id: item.Id.ToString(),
+                                                              fields: paginationParameters.Fields ?? string.Empty));
+        }
 
         return response.StatusCode switch
         {
