@@ -5,8 +5,8 @@ public class GetOffersRecivedByArtistRequestExample : IExamplesProvider<GetOffer
     public GetOffersRecivedByArtistRequest GetExamples()
     {
         return new GetOffersRecivedByArtistRequest(55667,
-                                                new PaginationParameters(pageNumber: 1,
-                                                                         pageSize: 10,
-                                                                         fields: string.Empty));
+                                                   new PaginationParameters(pageNumber: 1,
+                                                                            pageSize: 10,
+                                                                            fields: string.Empty));
     }
 }

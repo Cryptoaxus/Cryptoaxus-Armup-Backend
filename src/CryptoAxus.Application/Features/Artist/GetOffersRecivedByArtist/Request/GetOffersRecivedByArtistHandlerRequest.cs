@@ -7,6 +7,6 @@ public class GetOffersRecivedByArtistRequest : IRequest<GetOffersRecivedByArtist
     internal PaginationParameters PaginationParameters { get; set; }
 
     public GetOffersRecivedByArtistRequest(int userId, PaginationParameters paginationParameters) =>
-                                           (UserId, PaginationParameters) =
-                                           (userId, paginationParameters);
+                                          (UserId, PaginationParameters) =
+                                          (userId, paginationParameters);
 }

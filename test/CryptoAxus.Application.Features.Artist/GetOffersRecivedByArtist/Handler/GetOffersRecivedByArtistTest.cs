@@ -24,8 +24,8 @@ public class GetOffersRecivedByArtistTest : GetOffersRecivedByArtistTestData
     }
 
     [Theory]
-    [InlineData(285, 4, 10)]
-    [InlineData(3590, 12, 15)]
+    [InlineData(3658, 4, 10)]
+    [InlineData(3658, 12, 15)]
     public async Task When_UserId_Is_Not_Found_Expect_Not_Found_Result(int userId, int pageNumber, int pageSize)
     {
         // Arrange
@@ -38,7 +38,7 @@ public class GetOffersRecivedByArtistTest : GetOffersRecivedByArtistTestData
         // Assert
         response.StatusCode.ShouldBe(HttpStatusCode.NotFound);
         response.IsSuccessful.ShouldBe(false);
-        response.Message.ShouldBe($"No records found against userId: {userId}.");
+        response.Message.ShouldBe($"No records found against userId: {userId}");
         response.Result.ShouldBeNull();
         response.PaginationData.ShouldBeNull();
     }

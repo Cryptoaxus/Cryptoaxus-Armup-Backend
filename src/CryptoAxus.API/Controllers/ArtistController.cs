@@ -190,7 +190,6 @@ public class ArtistController : BaseController<ArtistController>
 
         var response = await Mediator.Send(new GetOffersRecivedByArtistRequest(userId, paginationParameters), cancellationToken);
 
-
         if (response.StatusCode.Equals(HttpStatusCode.OK) && response.Result is not null &&
              parsedMediaType.MediaType.Value!.Contains(Constants.VndApiHateoas))
             foreach (var item in response.Result)

@@ -33,7 +33,7 @@ public class GetOffersRecivedByArtistHandler : BaseHandler<GetOffersRecivedByArt
 
         if (!offersTask.Result.Any())
             return new GetOffersRecivedByArtistResponse(HttpStatusCode.NotFound,
-                                                        $"No record found against userId: {request.UserId}");
+                                                        $"No records found against userId: {request.UserId}");
 
         PaginationData paginationData = new PaginationData(countTask.Result,
                                                            request.PaginationParameters.PageNumber,
