@@ -1,11 +1,11 @@
-﻿namespace CryptoAxus.Application.Features.Artist.GetOffersRecivedByArtist;
+﻿namespace CryptoAxus.Application.Features.Artist.GetOffersReceivedByArtist;
 
-public class GetOffersRecivedByArtistTestData
+public class GetOffersReceivedByArtistTestData
 {
     private readonly Mock<IRepository<OffersDocument>> _mockRepository;
     private readonly Mock<ICacheService> _mockCacheService;
     private readonly List<OffersDocument> _documents;
-    protected GetOffersRecivedByArtistTestData()
+    protected GetOffersReceivedByArtistTestData()
     {
         _mockRepository = new Mock<IRepository<OffersDocument>>();
         _mockCacheService = new Mock<ICacheService>();
@@ -112,7 +112,7 @@ public class GetOffersRecivedByArtistTestData
         };
     }
 
-    public GetOffersRecivedByArtistTestData SetupMockCacheService()
+    public GetOffersReceivedByArtistTestData SetupMockCacheService()
     {
         _mockCacheService.Setup(x => x.GetAsync<string?>(It.IsAny<string>()))
                          .ReturnsAsync("Cached value");
@@ -123,17 +123,17 @@ public class GetOffersRecivedByArtistTestData
     }
 
 
-    public GetOffersRecivedByArtistTestData SetupMockCacheServiceExists()
+    public GetOffersReceivedByArtistTestData SetupMockCacheServiceExists()
     {
-        _mockCacheService.Setup(x => x.GetAsync<GetOffersRecivedByArtistResponse>(It.IsAny<string>()))
-                         .ReturnsAsync(new GetOffersRecivedByArtistResponse(HttpStatusCode.OK,
-                                                                            "Records found successfully.",
-                                                                            _documents.Adapt<List<OffersDto>>(),
-                                                                            new PaginationData(100, 1, 25)));
+        _mockCacheService.Setup(x => x.GetAsync<GetOffersReceivedByArtistResponse>(It.IsAny<string>()))
+                         .ReturnsAsync(new GetOffersReceivedByArtistResponse(HttpStatusCode.OK,
+                                                                             "Records found successfully.",
+                                                                             _documents.Adapt<List<OffersDtoWithLinks>>(),
+                                                                             new PaginationData(100, 1, 25)));
         return this;
     }
 
-    public GetOffersRecivedByArtistTestData SetupMockRepository(int pageNumber, int pageSize)
+    public GetOffersReceivedByArtistTestData SetupMockRepository(int pageNumber, int pageSize)
     {
         _documents.AddRange(_documents);
 
@@ -153,7 +153,8 @@ public class GetOffersRecivedByArtistTestData
 
         return this;
     }
-    public GetOffersRecivedByArtistTestData SetupMockRepositoryNotFound()
+
+    public GetOffersReceivedByArtistTestData SetupMockRepositoryNotFound()
     {
         _mockRepository.SetupSequence(x => x.CountAsync(It.IsAny<Expression<Func<OffersDocument, bool>>>(),
                                                         It.IsAny<CancellationToken>()))
@@ -170,13 +171,13 @@ public class GetOffersRecivedByArtistTestData
         return this;
     }
 
-    protected GetOffersRecivedByArtistRequest CreateRequest(int userId, int pageNumber, int pageSize)
+    protected GetOffersReceivedByArtistRequest CreateRequest(int userId, int pageNumber, int pageSize)
     {
-        return new GetOffersRecivedByArtistRequest(userId, new PaginationParameters(pageNumber, pageSize, string.Empty));
+        return new GetOffersReceivedByArtistRequest(userId, new PaginationParameters(pageNumber, pageSize, string.Empty));
     }
 
-    public GetOffersRecivedByArtistHandler Build()
+    public GetOffersReceivedByArtistHandler Build()
     {
-        return new GetOffersRecivedByArtistHandler(_mockRepository.Object, _mockCacheService.Object);
+        return new GetOffersReceivedByArtistHandler(_mockRepository.Object, _mockCacheService.Object);
     }
 }

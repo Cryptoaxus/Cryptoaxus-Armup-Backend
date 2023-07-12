@@ -13,7 +13,7 @@ public class ArtistController : BaseController<ArtistController>
     }
 
     /// <summary>
-    /// Returns an artist  by searched by id.
+    /// Returns an artist by searched by id.
     /// </summary>
     /// <param name="id" example="507f191e810c19729de860ea"></param>
     /// <param name="fields" example="username, email, bio"></param>
@@ -57,7 +57,7 @@ public class ArtistController : BaseController<ArtistController>
     /// <param name="id" example="507f191e810c19729de860ea"></param>
     /// <response code="204">Delete Artist by Id</response>
     /// <returns></returns>
-    [HttpDelete(template: "{id:regex(^[[A-Za-z0-9]]*$):required}", Name = "DeleteArtistById", Order = 3)]
+    [HttpDelete(template: "{id:regex(^[[A-Za-z0-9]]*$):required}", Name = "DeleteArtistById", Order = 2)]
     [RequiresParameter(Name = "id", Required = true, Source = OpenApiParameterLocation.Path, Type = typeof(string))]
     [ProducesResponseType(typeof(BaseResponse<ArtistDto>), (int)HttpStatusCode.OK)]
     [ProducesResponseType(typeof(NotFoundDeleteArtistByIdResponse), (int)HttpStatusCode.NotFound)]
@@ -79,7 +79,7 @@ public class ArtistController : BaseController<ArtistController>
     /// </summary>
     /// <param name="artist"></param>
     /// <returns></returns>
-    [HttpPost(Name = "PostArtist", Order = 4)]
+    [HttpPost(Name = "PostArtist", Order = 3)]
     [RequiresParameter(Name = "artist", Required = true, Source = OpenApiParameterLocation.Body, Type = typeof(CreateArtistDto))]
     //[SwaggerRequestExample(typeof(PostArtistRequest), typeof(PostArtistRequestExample))]
     [ProducesResponseType(typeof(PostArtistResponse), (int)HttpStatusCode.Created)]
@@ -103,12 +103,12 @@ public class ArtistController : BaseController<ArtistController>
     /// <response code="404">Not Found response with 404 code and information message</response>
     /// <response code="400">Bad Request response with 400 code and information message</response>
     /// <returns></returns>
-    [HttpGet("{userId:int:required}/userId", Name = "GetArtistByUserId", Order = 5)]
+    [HttpGet("{userId:int:required}/userId", Name = "GetArtistByUserId", Order = 4)]
     [RequiresParameter(Name = "userId", Required = true, Source = OpenApiParameterLocation.Path, Type = typeof(int))]
     [SwaggerRequestExample(typeof(GetArtistByUserIdRequest), typeof(GetArtistByUserIdRequestExample))]
     [ProducesResponseType(typeof(GetArtistByUserIdResponse), (int)HttpStatusCode.OK)]
     [ProducesResponseType(typeof(NotFoundArtistByUserIdResponse), (int)HttpStatusCode.NotFound)]
-    [ProducesResponseType(typeof(NotFoundArtistByUserIdResponse), (int)HttpStatusCode.BadRequest)]
+    [ProducesResponseType(typeof(BadRequestArtistByUserIdResponse), (int)HttpStatusCode.BadRequest)]
     public async Task<IActionResult> GetArtistByUserId([FromRoute] int userId, [FromHeader(Name = "Accept")] string mediaType)
     {
         if (!MediaTypeHeaderValue.TryParse(mediaType, out MediaTypeHeaderValue? parsedMediaType))
@@ -139,7 +139,7 @@ public class ArtistController : BaseController<ArtistController>
     /// <response code="404">Not Found response with 404 code and information message</response>
     /// <response code="400">Bad Request response with 400 code and information message</response>
     /// <returns></returns>
-    [HttpPatch("{userId:int:required}", Name = "PatchArtist", Order = 6)]
+    [HttpPatch("{userId:int:required}", Name = "PatchArtist", Order = 5)]
     [RequiresParameter(Name = "userId", Required = true, Source = OpenApiParameterLocation.Path, Type = typeof(int))]
     [RequiresParameter(Name = "artistDto", Required = true, Source = OpenApiParameterLocation.Body, Type = typeof(JsonPatchDocument<UpdateArtistDto>))]
     [SwaggerRequestExample(typeof(PatchArtistRequest), typeof(PatchArtistRequestExample))]
@@ -159,9 +159,9 @@ public class ArtistController : BaseController<ArtistController>
     }
 
     /// <summary>
-    /// Returns Offers  Recived By Artist
+    /// Returns Offers Received By Artist
     /// </summary>
-    /// <param name="userId" example="0x507f191e810c19729de860ea"></param>
+    /// <param name="userId" example="2342"></param>
     /// <param name="paginationParameters"></param>
     /// <param name="mediaType" example="application/json"></param>
     /// <param name="cancellationToken" example="default"></param>
@@ -169,14 +169,14 @@ public class ArtistController : BaseController<ArtistController>
     /// <response code="404">Not Found response with 404 code and information message</response>
     /// <response code="400">Bad Request response with 400 code and information message</response>
     /// <returns></returns>
-    [HttpGet("{userId:int:required}/offersRecived", Name = "GetOffersReceivedByArtist", Order = 7)]
+    [HttpGet("{userId:int:required}/offersReceived", Name = "GetOffersReceivedByArtist", Order = 6)]
     [RequiresParameter(Name = "userId", Required = true, Source = OpenApiParameterLocation.Path, Type = typeof(int))]
     [RequiresParameter(Name = "paginationParameters", Required = true, Source = OpenApiParameterLocation.Query, Type = typeof(PaginationParameters))]
     [RequiresParameter(Name = "mediaType", Required = true, Source = OpenApiParameterLocation.Header, Type = typeof(string))]
-    [SwaggerRequestExample(typeof(GetOffersRecivedByArtistRequest), typeof(GetOffersRecivedByArtistRequestExample))]
-    [ProducesResponseType(typeof(GetOffersRecivedByArtistResponse), (int)HttpStatusCode.OK)]
-    [ProducesResponseType(typeof(NotFoundGetOffersRecivedByArtistResponse), (int)HttpStatusCode.NotFound)]
-    [ProducesResponseType(typeof(BadRequestGetOffersRecivedByArtistResponse), (int)HttpStatusCode.BadRequest)]
+    [SwaggerRequestExample(typeof(GetOffersReceivedByArtistRequest), typeof(GetOffersReceivedByArtistRequestExample))]
+    [ProducesResponseType(typeof(GetOffersReceivedByArtistResponse), (int)HttpStatusCode.OK)]
+    [ProducesResponseType(typeof(NotFoundGetOffersReceivedByArtistResponse), (int)HttpStatusCode.NotFound)]
+    [ProducesResponseType(typeof(BadRequestGetOffersReceivedByArtistResponse), (int)HttpStatusCode.BadRequest)]
     [ResponseCache(CacheProfileName = "300SecondsCacheProfile")]
     public async Task<IActionResult> GetOffersReceivedByArtist([FromRoute] int userId,
                                                                [FromQuery] PaginationParameters paginationParameters,
@@ -184,18 +184,21 @@ public class ArtistController : BaseController<ArtistController>
                                                                CancellationToken cancellationToken = default)
     {
         if (!MediaTypeHeaderValue.TryParse(mediaType, out MediaTypeHeaderValue? parsedMediaType))
-            return BadRequest(new BaseResponse<ExpandoObject>(HttpStatusCode.BadRequest,
-                                                              Messages.BadRequest,
-                                                              new List<string> { Messages.InvalidMediaType }));
+            return BadRequest(new BadRequestGetOffersReceivedByArtistResponse(HttpStatusCode.BadRequest,
+                                                                              Messages.BadRequest,
+                                                                              new List<string> { Messages.InvalidMediaType }));
 
-        var response = await Mediator.Send(new GetOffersRecivedByArtistRequest(userId, paginationParameters), cancellationToken);
+        var response = await Mediator.Send(new GetOffersReceivedByArtistRequest(userId, paginationParameters), cancellationToken);
 
         if (response.StatusCode.Equals(HttpStatusCode.OK) && response.Result is not null &&
              parsedMediaType.MediaType.Value!.Contains(Constants.VndApiHateoas))
-            foreach (var item in response.Result)
-            {
-                response.Links = CreateOfferLinks(item, string.Empty);
-            }
+        {
+            response.Result.ForEach(item => item.Links =
+                                            CreateOfferLinks(userId: userId,
+                                                             id: item.Id.ToString(),
+                                                             fields: paginationParameters.Fields ?? string.Empty));
+        }
+       
         return response.StatusCode switch
         {
             HttpStatusCode.NotFound => NotFound(response),
@@ -203,6 +206,7 @@ public class ArtistController : BaseController<ArtistController>
             _ => BadRequest(response)
         };
     }
+
     /// <summary>
     /// Returns list of offers made(placed) by the artist
     /// </summary>
@@ -214,11 +218,11 @@ public class ArtistController : BaseController<ArtistController>
     /// <response code="404">Not Found response with 404 code and information message</response>
     /// <response code="400">Bad Request response with 400 code and information message</response>
     /// <returns></returns>
-    [HttpGet("{userId:int:required}/offersMade", Name = "OffersMadeByArtist", Order = 8)]
+    [HttpGet("{userId:int:required}/offersMade", Name = "OffersMadeByArtist", Order = 7)]
     [RequiresParameter(Name = "userId", Required = true, Source = OpenApiParameterLocation.Path, Type = typeof(int))]
     [RequiresParameter(Name = "paginationParameters", Required = true, Source = OpenApiParameterLocation.Query, Type = typeof(PaginationParameters))]
     [RequiresParameter(Name = "mediaType", Required = true, Source = OpenApiParameterLocation.Header, Type = typeof(string))]
-    [SwaggerRequestExample(typeof(GetOffersMadeByArtistRequest), typeof(GetOffersReceivedByArtistRequestExample))]
+    [SwaggerRequestExample(typeof(GetOffersMadeByArtistRequest), typeof(GetOffersMadeByArtistResponseExample))]
     [ProducesResponseType(typeof(GetOffersMadeByArtistResponse), (int)HttpStatusCode.OK)]
     [ProducesResponseType(typeof(NotFoundGetOffersMadeByArtistResponse), (int)HttpStatusCode.NotFound)]
     [ProducesResponseType(typeof(BadRequestGetOffersMadeByArtistResponse), (int)HttpStatusCode.BadRequest)]
@@ -314,11 +318,28 @@ public class ArtistController : BaseController<ArtistController>
         return links.AsReadOnly();
     }
 
-    private IReadOnlyList<Links> CreateOfferLinks(OffersDto dto, string? field)
+    private IReadOnlyList<Links> CreateOfferLinks( int? userId = null, string? fields = "", string? id = null)
     {
         Links link;
         List<Links> links = new List<Links>();
-
+        if (!string.IsNullOrWhiteSpace(fields))
+        {
+            link = new Links(Url.RouteUrl("GetArtistOffersReceivedByArtist", new { userId }),
+                             Constants.SelfRel,
+                             Constants.GetMethod);
+            link.Href = link.Href?.Replace(Constants.ApiValue,
+                                           $"{HttpContext?.Request.Scheme}://{HttpContext?.Request.Host}{Constants.ApiValue}");
+            links.Add(link);
+        }
+        else
+        {
+            link = new Links(Url.RouteUrl("GetArtistOffersReceivedByArtist", new { userId }),
+                             Constants.SelfRel,
+                             Constants.GetMethod);
+            link.Href = link.Href?.Replace(Constants.ApiValue,
+                                           $"{HttpContext?.Request.Scheme}://{HttpContext?.Request.Host}{Constants.ApiValue}");
+            links.Add(link);
+        }
         return links.AsReadOnly();
     }
 

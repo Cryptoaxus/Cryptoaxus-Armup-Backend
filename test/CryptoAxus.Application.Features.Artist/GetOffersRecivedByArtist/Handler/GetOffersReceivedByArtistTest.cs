@@ -1,6 +1,6 @@
-﻿namespace CryptoAxus.Application.Features.Artist.GetOffersRecivedByArtist.Handler;
+﻿namespace CryptoAxus.Application.Features.Artist.GetOffersReceivedByArtist.Handler;
 
-public class GetOffersRecivedByArtistTest : GetOffersRecivedByArtistTestData
+public class GetOffersReceivedByArtistTest : GetOffersReceivedByArtistTestData
 {
     [Theory]
     [InlineData(285, 1, 8)]
@@ -18,7 +18,7 @@ public class GetOffersRecivedByArtistTest : GetOffersRecivedByArtistTestData
         // Assert
         response.StatusCode.ShouldBe(HttpStatusCode.OK);
         response.IsSuccessful.ShouldBe(true);
-        response.Result.ShouldBeOfType<List<OffersDto>>();
+        response.Result.ShouldBeOfType<List<OffersDtoWithLinks>>();
         response.Result.Count.ShouldBe(pageSize);
         response.PaginationData.ShouldNotBeNull();
     }
@@ -57,10 +57,10 @@ public class GetOffersRecivedByArtistTest : GetOffersRecivedByArtistTestData
         // Assert
         response.StatusCode.ShouldBe(HttpStatusCode.OK);
         response.IsSuccessful.ShouldBe(true);
-        response.Result.ShouldBeOfType<List<OffersDto>>();
+        response.Result.ShouldBeOfType<List<OffersDtoWithLinks>>();
         response.PaginationData?.TotalRecords.ShouldBe(100);
         response.PaginationData?.TotalPages.ShouldBe(4);
         response.PaginationData?.HasPrevious.ShouldBe(false);
         response.PaginationData?.HasNext.ShouldBe(true);
-    } 
+    }
 }

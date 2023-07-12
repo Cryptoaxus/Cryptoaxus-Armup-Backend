@@ -15,9 +15,9 @@ global using CryptoAxus.Application.Features.Artist.GetOffersMadeByArtist.Reques
 global using CryptoAxus.Application.Features.Artist.GetOffersMadeByArtist.Response;
 global using CryptoAxus.Common.Response;
 global using CryptoAxus.Common.Services.Contracts;
-global using CryptoAxus.Application.Features.Artist.GetOffersRecivedByArtist.Handler;
-global using CryptoAxus.Application.Features.Artist.GetOffersRecivedByArtist.Request;
-global using CryptoAxus.Application.Features.Artist.GetOffersRecivedByArtist.Response;
+global using CryptoAxus.Application.Features.Artist.GetOffersReceivedByArtist.Handler;
+global using CryptoAxus.Application.Features.Artist.GetOffersReceivedByArtist.Request;
+global using CryptoAxus.Application.Features.Artist.GetOffersReceivedByArtist.Response;
 global using CryptoAxus.Application.Features.Artist.GetArtistByUserId.Handler;
 global using Mapster;
 global using CryptoAxus.Common.Helpers;

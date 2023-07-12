@@ -1,22 +1,22 @@
-﻿namespace CryptoAxus.Application.Features.Artist.GetOffersRecivedByArtist.Handler;
+﻿namespace CryptoAxus.Application.Features.Artist.GetOffersReceivedByArtist.Handler;
 
-public class GetOffersRecivedByArtistHandler : BaseHandler<GetOffersRecivedByArtistHandler>, 
-                                               IRequestHandler<GetOffersRecivedByArtistRequest, GetOffersRecivedByArtistResponse>
+public class GetOffersReceivedByArtistHandler : BaseHandler<GetOffersReceivedByArtistHandler>, 
+                                               IRequestHandler<GetOffersReceivedByArtistRequest, GetOffersReceivedByArtistResponse>
 {
     private readonly IRepository<OffersDocument> _repository;
     private readonly ICacheService _cacheService;
 
-    public GetOffersRecivedByArtistHandler(IRepository<OffersDocument> repository, ICacheService cacheService)
+    public GetOffersReceivedByArtistHandler(IRepository<OffersDocument> repository, ICacheService cacheService)
     {
         _repository = repository;
         _cacheService = cacheService;
     }
 
-    public async Task<GetOffersRecivedByArtistResponse> Handle(GetOffersRecivedByArtistRequest request,
-                                                               CancellationToken cancellationToken = default)
+    public async Task<GetOffersReceivedByArtistResponse> Handle(GetOffersReceivedByArtistRequest request,
+                                                                CancellationToken cancellationToken = default)
     {
-        GetOffersRecivedByArtistResponse? response =
-                await _cacheService.GetAsync<GetOffersRecivedByArtistResponse>(
+        GetOffersReceivedByArtistResponse? response =
+                await _cacheService.GetAsync<GetOffersReceivedByArtistResponse>(
                 key: $"offersRecivedByArtistP{request.PaginationParameters.PageNumber}S{request.PaginationParameters.PageSize}");
 
         if (response is not null)
@@ -32,16 +32,16 @@ public class GetOffersRecivedByArtistHandler : BaseHandler<GetOffersRecivedByArt
         await Task.WhenAll(countTask, offersTask);
 
         if (!offersTask.Result.Any())
-            return new GetOffersRecivedByArtistResponse(HttpStatusCode.NotFound,
+            return new GetOffersReceivedByArtistResponse(HttpStatusCode.NotFound,
                                                         $"No records found against userId: {request.UserId}");
 
         PaginationData paginationData = new PaginationData(countTask.Result,
                                                            request.PaginationParameters.PageNumber,
                                                            request.PaginationParameters.PageSize);
 
-        response = new GetOffersRecivedByArtistResponse(HttpStatusCode.OK, "Records found successfully.",
-                                                        offersTask.Result.Adapt<List<OffersDto>>(),
-                                                        paginationData);
+        response = new GetOffersReceivedByArtistResponse(HttpStatusCode.OK, "Records found successfully.",
+                                                         offersTask.Result.Adapt<List<OffersDtoWithLinks>>(),
+                                                         paginationData);
 
         await _cacheService.SetAsync(key: $"offersRecivedByArtistP{request.PaginationParameters.PageNumber}S{request.PaginationParameters.PageSize}",
                                      value: JsonSerializer.Serialize(response));

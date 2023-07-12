@@ -1,10 +1,10 @@
-﻿namespace CryptoAxus.Application.Features.Artist.GetOffersRecivedByArtist.Response;
+﻿namespace CryptoAxus.Application.Features.Artist.GetOffersReceivedByArtist.Response;
 
-    public class NotFoundOffersRecivedByArtistResponseExample : IExamplesProvider<NotFoundGetOffersRecivedByArtistResponse>
+    public class NotFoundOffersReceivedByArtistResponseExample : IExamplesProvider<NotFoundGetOffersReceivedByArtistResponse>
     {
-        public NotFoundGetOffersRecivedByArtistResponse GetExamples()
+        public NotFoundGetOffersReceivedByArtistResponse GetExamples()
         {
-            return new NotFoundGetOffersRecivedByArtistResponse
+            return new NotFoundGetOffersReceivedByArtistResponse
             {
                 ApiException = null,
                 Errors = null,
