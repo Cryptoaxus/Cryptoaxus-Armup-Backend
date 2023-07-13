@@ -1,34 +1,53 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using CryptoAxus.Application.Features.Artist.GetOffersMadeByArtist.Response;
+using CryptoAxus.Common.Helpers;
+using Microsoft.AspNetCore.Mvc;
+using Shouldly;
+using System.Net;
+using Xunit;
 
 namespace CryptoAxus.Api.Test.Controllers.Artist;
 
 public class ArtistControllerTest
 {
     private readonly ArtistController _artistController;
-    
+
     public ArtistControllerTest()
     {
         var mediator = new Mock<IMediator>();
         var logger = new Mock<ILogger<ArtistController>>();
         _artistController = new ArtistController(mediator.Object, logger.Object);
-    }  
-    [Fact]
-    public async Task When_Media_Type_Provided_Is_Incorrect_Expect_Bad_Request()
+    }
+
+    [Theory]
+    [InlineData(4258, 1, 5, "", "application+html")]
+    [InlineData(256, 4, 10, "", "application_vnd.hateoas+json")]
+    [InlineData(256, 4, 10, "", "application_json")]
+    public async Task When_Invalid_Media_Type_Is_Provided_Expect_Bad_Request_Response(int userId,
+                                                                                      int pageNumber,
+                                                                                      int pageSize,
+                                                                                      string fields,
+                                                                                      string mediaType)
     {
-        // Arrange  // Act
-        var response = await _artistController.GetOffersReceivedByArtist(234,new PaginationParameters (2,3 , null), "cryptoaxus@user");
+        var result = await _artistController.OffersMadeByArtist(userId, new PaginationParameters(pageNumber, pageSize, fields), mediaType);
 
-        var mockContext = new Mock<ActionContext>();
+        var response = (BadRequestObjectResult)result;
 
-        // Assert
-        await response.ExecuteResultAsync(mockContext.Object);
+        var value = (BadRequestGetOffersMadeByArtistResponse)response.Value!;
 
-        //var value = response.ExecuteResultAsync(new Microsoft.AspNetCore.Mvc.ActionContext());
+        result.ShouldNotBeNull();
 
-        //value.StatusCode.ShouldBe(HttpStatusCode.BadRequest);
-        //value.Result.ShouldBeNull();
-        //value.IsSuccessful.ShouldBe(false);
-        //value.Message.ShouldBe("Invalid media type provided");
-        //value.PaginationData.ShouldBeNull();
+        response.ShouldNotBeNull();
+
+        response.StatusCode.ShouldBe((int)HttpStatusCode.BadRequest);
+
+        value.StatusCode.ShouldBe(HttpStatusCode.BadRequest);
+
+        value.IsSuccessful.ShouldBe(false);
+
+        value.Result.ShouldBeNull();
+
+        value.Errors?.Count.ShouldBeGreaterThan(0);
+
+        value.Errors?.ShouldContain("Invalid media type provided");
     }
 }
