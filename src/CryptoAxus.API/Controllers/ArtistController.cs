@@ -222,7 +222,7 @@ public class ArtistController : BaseController<ArtistController>
     [RequiresParameter(Name = "userId", Required = true, Source = OpenApiParameterLocation.Path, Type = typeof(int))]
     [RequiresParameter(Name = "paginationParameters", Required = true, Source = OpenApiParameterLocation.Query, Type = typeof(PaginationParameters))]
     [RequiresParameter(Name = "mediaType", Required = true, Source = OpenApiParameterLocation.Header, Type = typeof(string))]
-    [SwaggerRequestExample(typeof(GetOffersMadeByArtistRequest), typeof(GetOffersMadeByArtistResponseExample))]
+    [SwaggerRequestExample(typeof(GetOffersMadeByArtistRequest), typeof(GetOffersMadeByArtistRequestExample))]
     [ProducesResponseType(typeof(GetOffersMadeByArtistResponse), (int)HttpStatusCode.OK)]
     [ProducesResponseType(typeof(NotFoundGetOffersMadeByArtistResponse), (int)HttpStatusCode.NotFound)]
     [ProducesResponseType(typeof(BadRequestGetOffersMadeByArtistResponse), (int)HttpStatusCode.BadRequest)]
@@ -324,7 +324,7 @@ public class ArtistController : BaseController<ArtistController>
         List<Links> links = new List<Links>();
         if (!string.IsNullOrWhiteSpace(fields))
         {
-            link = new Links(Url.RouteUrl("GetArtistOffersReceivedByArtist", new { userId }),
+            link = new Links(Url.RouteUrl("GetArtistOffersReceivedByArtist", new { userId, fields }),
                              Constants.SelfRel,
                              Constants.GetMethod);
             link.Href = link.Href?.Replace(Constants.ApiValue,
@@ -340,7 +340,35 @@ public class ArtistController : BaseController<ArtistController>
                                            $"{HttpContext?.Request.Scheme}://{HttpContext?.Request.Host}{Constants.ApiValue}");
             links.Add(link);
         }
+        link = new Links(Url.RouteUrl("GetOffersReceivedByuserId", new { userId }),
+                         "get_offers",
+                         Constants.GetMethod);
+        link.Href = link.Href?.Replace(Constants.ApiValue,
+                                       $"{HttpContext?.Request.Scheme}://{HttpContext?.Request.Host}{Constants.ApiValue}");
+        links.Add(link);
+
+        link = new Links(Url.RouteUrl("PatchOffersReceivedByArtist", new { userId }),
+                         "patch_offers",
+                         Constants.PatchMethod);
+        link.Href = link.Href?.Replace(Constants.ApiValue,
+                                       $"{HttpContext?.Request.Scheme}://{HttpContext?.Request.Host}{Constants.ApiValue}");
+        links.Add(link);
+
+        link = new Links(href: Url.RouteUrl("DeleteOffersReceivedByArtist", new { userId }),
+                         "delete_offers",
+                         Constants.DeleteMethod);
+        link.Href = link.Href?.Replace(Constants.ApiValue,
+                                       $"{HttpContext?.Request.Scheme}://{HttpContext?.Request.Host}{Constants.ApiValue}");
+        links.Add(link);
+
+        link = new Links(href: Url.RouteUrl("AddOffersReceivedByArtist", new { userId }),
+                         "post_offers",
+                         Constants.PostMethod);
+        link.Href = link.Href?.Replace(Constants.ApiValue,
+                                       $"{HttpContext?.Request.Scheme}://{HttpContext?.Request.Host}{Constants.ApiValue}");
+        links.Add(link);
         return links.AsReadOnly();
+
     }
 
     #endregion

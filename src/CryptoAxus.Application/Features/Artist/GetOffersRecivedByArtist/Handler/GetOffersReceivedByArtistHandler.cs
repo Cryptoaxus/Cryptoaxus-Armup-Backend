@@ -1,7 +1,7 @@
 ﻿namespace CryptoAxus.Application.Features.Artist.GetOffersReceivedByArtist.Handler;
 
 public class GetOffersReceivedByArtistHandler : BaseHandler<GetOffersReceivedByArtistHandler>, 
-                                               IRequestHandler<GetOffersReceivedByArtistRequest, GetOffersReceivedByArtistResponse>
+                                                IRequestHandler<GetOffersReceivedByArtistRequest, GetOffersReceivedByArtistResponse>
 {
     private readonly IRepository<OffersDocument> _repository;
     private readonly ICacheService _cacheService;
@@ -17,7 +17,7 @@ public class GetOffersReceivedByArtistHandler : BaseHandler<GetOffersReceivedByA
     {
         GetOffersReceivedByArtistResponse? response =
                 await _cacheService.GetAsync<GetOffersReceivedByArtistResponse>(
-                key: $"offersRecivedByArtistP{request.PaginationParameters.PageNumber}S{request.PaginationParameters.PageSize}");
+                key: $"offersReceivedByArtistP{request.PaginationParameters.PageNumber}S{request.PaginationParameters.PageSize}");
 
         if (response is not null)
             return response;
@@ -43,7 +43,7 @@ public class GetOffersReceivedByArtistHandler : BaseHandler<GetOffersReceivedByA
                                                          offersTask.Result.Adapt<List<OffersDtoWithLinks>>(),
                                                          paginationData);
 
-        await _cacheService.SetAsync(key: $"offersRecivedByArtistP{request.PaginationParameters.PageNumber}S{request.PaginationParameters.PageSize}",
+        await _cacheService.SetAsync(key: $"offersReceivedByArtistP{request.PaginationParameters.PageNumber}S{request.PaginationParameters.PageSize}",
                                      value: JsonSerializer.Serialize(response));
 
         return response;
