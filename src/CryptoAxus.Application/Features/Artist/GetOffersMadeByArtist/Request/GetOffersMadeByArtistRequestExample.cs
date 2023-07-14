@@ -1,6 +1,6 @@
 ﻿namespace CryptoAxus.Application.Features.Artist.GetOffersMadeByArtist.Request;
 
-public class GetOffersReceivedByArtistRequestExample : IExamplesProvider<GetOffersMadeByArtistRequest>
+public class GetOffersMadeByArtistRequestExample : IExamplesProvider<GetOffersMadeByArtistRequest>
 {
     public GetOffersMadeByArtistRequest GetExamples()
     {

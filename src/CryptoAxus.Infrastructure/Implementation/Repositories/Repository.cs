@@ -32,10 +32,14 @@ public class Repository<TDocument> : IRepository<TDocument> where TDocument : IB
                                           int? pageSize = null,
                                           CancellationToken cancellationToken = default)
     {
-        return _collection.Find(filterExpression)
-                                                   .Skip(pageNumber)
-                                                   .Limit(pageSize)
-                                                   .ToListAsync(cancellationToken);
+        if (pageNumber is not null && pageSize is not null)
+            return Task.Run(function: () => _collection.Find(filterExpression)
+                                                       .Skip((pageNumber - 1) * pageSize)
+                                                       .Limit(pageSize)
+                                                       .ToListAsync());
+
+        return Task.Run(function: () => _collection.Find(filterExpression)
+                                                   .ToListAsync());
     }
 
     public IEnumerable<TProjected> FilterBy<TProjected>(Expression<Func<TDocument, bool>> filterExpression,
