@@ -340,28 +340,29 @@ public class ArtistController : BaseController<ArtistController>
                                            $"{HttpContext?.Request.Scheme}://{HttpContext?.Request.Host}{Constants.ApiValue}");
             links.Add(link);
         }
-        link = new Links(Url.RouteUrl("GetOffersReceivedByuserId", new { userId }),
+
+        link = new Links(Url.RouteUrl("GetOffersById", new { id }),
                          "get_offers",
                          Constants.GetMethod);
         link.Href = link.Href?.Replace(Constants.ApiValue,
                                        $"{HttpContext?.Request.Scheme}://{HttpContext?.Request.Host}{Constants.ApiValue}");
         links.Add(link);
 
-        link = new Links(Url.RouteUrl("PatchOffersReceivedByArtist", new { userId }),
+        link = new Links(Url.RouteUrl("PatchOffersById", new { id }),
                          "patch_offers",
                          Constants.PatchMethod);
         link.Href = link.Href?.Replace(Constants.ApiValue,
                                        $"{HttpContext?.Request.Scheme}://{HttpContext?.Request.Host}{Constants.ApiValue}");
         links.Add(link);
 
-        link = new Links(href: Url.RouteUrl("DeleteOffersReceivedByArtist", new { userId }),
+        link = new Links(href: Url.RouteUrl("DeleteOffersById", new { id }),
                          "delete_offers",
                          Constants.DeleteMethod);
         link.Href = link.Href?.Replace(Constants.ApiValue,
                                        $"{HttpContext?.Request.Scheme}://{HttpContext?.Request.Host}{Constants.ApiValue}");
         links.Add(link);
 
-        link = new Links(href: Url.RouteUrl("AddOffersReceivedByArtist", new { userId }),
+        link = new Links(href: Url.RouteUrl("AddOffersById", new { id }),
                          "post_offers",
                          Constants.PostMethod);
         link.Href = link.Href?.Replace(Constants.ApiValue,
