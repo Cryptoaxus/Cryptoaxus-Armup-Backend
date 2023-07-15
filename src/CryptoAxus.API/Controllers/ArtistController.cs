@@ -1,6 +1,4 @@
-﻿using CryptoAxus.Application.Features.Artist.GetArtistByUserId.Request;
-
-namespace CryptoAxus.API.Controllers;
+﻿namespace CryptoAxus.API.Controllers;
 
 [ApiVersion("1.0")]
 [Produces(contentType: Constants.ContentTypeJson, Constants.ContentTypeJsonHateoas,

@@ -32,8 +32,6 @@ public class FixedPricedDto : BaseDto
                                  lastModifiedBy,
                                  isDeleted)
     {
-
-        Id = id;
         NftCopyId = nftCopyId;
         Quantity = quantity;
         PricePerItem = pricePerItem;

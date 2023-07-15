@@ -23,4 +23,9 @@ public static class HelperMethods
         responseValue = new PaginationResponse<T>(statusCode: HttpStatusCode.UnsupportedMediaType, message: Messages.InvalidMediaType);
         return false;
     }
+
+    public static bool CheckIfUrlIsValid(string url)
+    {
+        return Uri.IsWellFormedUriString(url, UriKind.RelativeOrAbsolute);
+    }
 }

@@ -25,7 +25,6 @@ public class FavoriteNftsDto : BaseDto
                                   lastModifiedBy,
                                   isDeleted)
     {
-        Id = id;
         NftId = nftId;
         ArtistWalletAddress = artistWalletAddress;
         CollectionId = collectionId;

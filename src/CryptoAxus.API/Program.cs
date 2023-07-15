@@ -1,3 +1,7 @@
+using CryptoAxus.Application.Features.NFT.PostNft.Validation;
+using FluentValidation;
+using FluentValidation.AspNetCore;
+
 var builder = WebApplication.CreateBuilder(args);
 IConfiguration configuration = builder.Configuration;
 
@@ -26,6 +30,10 @@ builder.Services.AddControllers(options =>
 {
     options.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
 }).AddNewtonsoftJson();
+
+builder.Services.AddValidatorsFromAssemblyContaining<PostNftRequestValidator>();
+
+builder.Services.AddFluentValidationAutoValidation(x => x.DisableDataAnnotationsValidation = true);
 
 builder.Services.AddEndpointsApiExplorer();
 

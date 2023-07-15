@@ -89,7 +89,6 @@ public class ArtistDto : BaseDto
                             lastModifiedBy,
                             isDeleted)
     {
-        Id = id;
         Username = username;
         Email = email;
         UserId = userId;
@@ -99,9 +98,5 @@ public class ArtistDto : BaseDto
         CoverImageAddress = coverImageAddress;
         Instagram = instagram;
         Twitter = twitter;
-        //CreatedBy = createdBy;
-        //LastModifiedDate = lastModifiedDate;
-        //LastModifiedBy = lastModifiedBy;
-        //IsDeleted = isDeleted;
     }
 }
