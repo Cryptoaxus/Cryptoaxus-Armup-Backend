@@ -35,7 +35,6 @@ public class BiddingDto : BaseDto
                              lastModifiedBy,
                              isDeleted)
     {
-        Id = id;
         NftId = nftId;
         BiddingPrice = biddingPrice;
         ArtistWalletAddress = artistWalletAddress;

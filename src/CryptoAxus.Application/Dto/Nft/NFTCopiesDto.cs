@@ -1,4 +1,4 @@
-﻿namespace CryptoAxus.Application.Dto;
+﻿namespace CryptoAxus.Application.Dto.Nft;
 
 public class NFTCopiesDto : BaseDto
 {
@@ -36,7 +36,6 @@ public class NFTCopiesDto : BaseDto
                                lastModifiedBy,
                                isDeleted)
     {
-        Id = id;
         NftId = nftId;
         Owner = owner;
         Quantity = quantity;

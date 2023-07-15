@@ -18,13 +18,15 @@
     <Folder Include="Features\Artist\GetArtistById\Request\" />
     <Folder Include="Features\Artist\GetArtistById\Response\" />
     <Folder Include="Features\Artist\GetOffersMadeByArtist\Handler\" />
-    <Folder Include="Features\Artist\Handlers\" />
     <Folder Include="Features\Artist\PostArtist\Handler\" />
     <Folder Include="Features\Artist\PostArtist\Request\" />
-    <Folder Include="Features\Artist\Query\" />
+    <Folder Include="Features\NFT\PostNft\Handler\" />
+    <Folder Include="Features\NFT\PostNft\Validation\" />
+    <Folder Include="Features\NFT\PostNft\Request\" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="FluentValidation" Version="11.6.0" />
     <PackageReference Include="Mapster" Version="7.3.0" />
     <PackageReference Include="Mapster.DependencyInjection" Version="1.0.0" />
     <PackageReference Include="MediatR" Version="12.1.0" />

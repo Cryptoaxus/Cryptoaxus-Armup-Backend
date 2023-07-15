@@ -1,37 +1,39 @@
-﻿namespace CryptoAxus.Application.Features.Artist.PostArtist.Handler;
+﻿namespace CryptoAxus.Application.Features.Nft.PostNft.Handler;
 
-public class PostArtistTests : PostArtistTestsData
+public class PostNftTest : PostNftTestData
 {
     [Fact]
-    public async Task When_Artist_Data_Is_Provided_Expect_Created_Response()
+    public async Task When_Nft_Dto_Is_Passed_Expect_Nft_Document_Created()
     {
         // Arrange
         var sut = SetupMockRepository().Build();
-
         var request = CreateRequest();
 
         // Act
         var response = await sut.Handle(request);
 
         // Assert
+        response.ShouldBeOfType<PostNftResponse>();
+        response.ShouldNotBeNull();
         response.StatusCode.ShouldBe(HttpStatusCode.Created);
         response.IsSuccessful.ShouldBe(true);
-        response.Result.ShouldBeOfType<ArtistDto>();
     }
 
     [Fact]
-    public async Task When_Artist_Already_Exist_Expect_Conflict_Response()
+    public async Task When_Nft_Exists_Expect_Conflict_Response()
     {
         // Arrange
-        var sut = MockRepositoryArtistExists().Build();
-
+        var sut = SetupMockNftExists().Build();
         var request = CreateRequest();
 
         // Act
         var response = await sut.Handle(request);
 
         // Assert
+        response.ShouldBeOfType<PostNftResponse>();
+        response.ShouldNotBeNull();
         response.StatusCode.ShouldBe(HttpStatusCode.Conflict);
         response.IsSuccessful.ShouldBe(false);
+        response.Message.ShouldBe("Nft with same name already exists: Test Nft.");
     }
 }
