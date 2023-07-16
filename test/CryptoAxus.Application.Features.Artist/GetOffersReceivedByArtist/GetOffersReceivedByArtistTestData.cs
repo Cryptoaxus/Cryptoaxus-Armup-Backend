@@ -57,7 +57,7 @@ public class GetOffersReceivedByArtistTestData
                                 551,
                                 10,
                                 DateTime.UtcNow.AddHours(6),
-                                5, 
+                                5,
                                 ObjectId.GenerateNewId()),
 
              new OffersDocument(ObjectId.GenerateNewId(),
@@ -67,7 +67,7 @@ public class GetOffersReceivedByArtistTestData
                                 552,
                                 10,
                                 DateTime.UtcNow.AddHours(6),
-                                5, 
+                                5,
                                 ObjectId.GenerateNewId()),
 
              new OffersDocument(ObjectId.GenerateNewId(),
@@ -77,7 +77,7 @@ public class GetOffersReceivedByArtistTestData
                                 552,
                                 10,
                                 DateTime.UtcNow.AddHours(6),
-                                5, 
+                                5,
                                 ObjectId.GenerateNewId()),
 
              new OffersDocument(ObjectId.GenerateNewId(),
@@ -97,7 +97,7 @@ public class GetOffersReceivedByArtistTestData
                                 554,
                                 10,
                                 DateTime.UtcNow.AddHours(6),
-                                5, 
+                                5,
                                 ObjectId.GenerateNewId()),
 
              new OffersDocument(ObjectId.GenerateNewId(),
@@ -107,7 +107,7 @@ public class GetOffersReceivedByArtistTestData
                                 555,
                                 10,
                                 DateTime.UtcNow.AddHours(6),
-                                5, 
+                                5,
                                 ObjectId.GenerateNewId())
         };
     }

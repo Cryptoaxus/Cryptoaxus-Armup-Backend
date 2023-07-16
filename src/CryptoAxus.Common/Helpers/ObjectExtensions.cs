@@ -1,6 +1,4 @@
-﻿using MongoDB.Bson;
-
-namespace CryptoAxus.Common.Helpers;
+﻿namespace CryptoAxus.Common.Helpers;
 
 public static class ObjectExtensions
 {

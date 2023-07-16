@@ -1,7 +1,3 @@
-using CryptoAxus.Application.Features.NFT.PostNft.Validation;
-using FluentValidation;
-using FluentValidation.AspNetCore;
-
 var builder = WebApplication.CreateBuilder(args);
 IConfiguration configuration = builder.Configuration;
 

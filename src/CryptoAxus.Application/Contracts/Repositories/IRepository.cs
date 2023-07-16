@@ -12,7 +12,7 @@ public interface IRepository<TDocument> where TDocument : IBaseDocument
                                    int? pageNumber = null,
                                    int? pageSize = null,
                                    CancellationToken cancellationToken = default);
- 
+
     IEnumerable<TProjected> FilterBy<TProjected>(Expression<Func<TDocument, bool>> filterExpression,
                                                  Expression<Func<TDocument, TProjected>> projectionExpression);
 

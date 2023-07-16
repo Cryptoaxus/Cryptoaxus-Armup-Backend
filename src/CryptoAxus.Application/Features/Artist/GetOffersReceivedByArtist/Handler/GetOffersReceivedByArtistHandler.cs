@@ -1,6 +1,6 @@
 ﻿namespace CryptoAxus.Application.Features.Artist.GetOffersReceivedByArtist.Handler;
 
-public class GetOffersReceivedByArtistHandler : BaseHandler<GetOffersReceivedByArtistHandler>, 
+public class GetOffersReceivedByArtistHandler : BaseHandler<GetOffersReceivedByArtistHandler>,
                                                 IRequestHandler<GetOffersReceivedByArtistRequest, GetOffersReceivedByArtistResponse>
 {
     private readonly IRepository<OffersDocument> _repository;
@@ -25,15 +25,14 @@ public class GetOffersReceivedByArtistHandler : BaseHandler<GetOffersReceivedByA
         var countTask = _repository.CountAsync(x => x.OfferFrom.Equals(request.UserId), cancellationToken);
 
         var offersTask = _repository.FilterBy(x => x.OfferTo.Equals(request.UserId),
-                                                                    request.PaginationParameters.PageNumber,
-                                                                    request.PaginationParameters.PageSize,
-                                                                    cancellationToken);
+                                                                              request.PaginationParameters.PageNumber,
+                                                                              request.PaginationParameters.PageSize,
+                                                                              cancellationToken);
 
         await Task.WhenAll(countTask, offersTask);
 
         if (!offersTask.Result.Any())
-            return new GetOffersReceivedByArtistResponse(HttpStatusCode.NotFound,
-                                                        $"No records found against userId: {request.UserId}");
+            return new GetOffersReceivedByArtistResponse(HttpStatusCode.NotFound, $"No records found against userId: {request.UserId}");
 
         PaginationData paginationData = new PaginationData(countTask.Result,
                                                            request.PaginationParameters.PageNumber,

@@ -193,12 +193,9 @@ public class ArtistController : BaseController<ArtistController>
         if (response.StatusCode.Equals(HttpStatusCode.OK) && response.Result is not null &&
              parsedMediaType.MediaType.Value!.Contains(Constants.VndApiHateoas))
         {
-            response.Result.ForEach(item => item.Links =
-                                            CreateOfferLinks(userId: userId,
-                                                             id: item.Id.ToString(),
-                                                             fields: paginationParameters.Fields ?? string.Empty));
+            response.Result.ForEach(item => item.Links = CreateOfferLinks(id: item.Id.ToString(), fields: paginationParameters.Fields ?? string.Empty));
         }
-       
+
         return response.StatusCode switch
         {
             HttpStatusCode.NotFound => NotFound(response),
@@ -281,13 +278,6 @@ public class ArtistController : BaseController<ArtistController>
             links.Add(link);
         }
 
-        link = new Links(Url.RouteUrl("PatchArtistUsername", new { userId }),
-                         "patch_username",
-                         Constants.PatchMethod);
-        link.Href = link.Href?.Replace(Constants.ApiValue,
-                                       $"{HttpContext?.Request.Scheme}://{HttpContext?.Request.Host}{Constants.ApiValue}");
-        links.Add(link);
-
         link = new Links(href: Url.RouteUrl("DeleteArtistById", new { id }),
                          "delete",
                          Constants.DeleteMethod);
@@ -310,7 +300,7 @@ public class ArtistController : BaseController<ArtistController>
         links.Add(link);
 
         link = new Links(Url.RouteUrl("GetOffersReceivedByArtist", new { userId }),
-                         "get_offersRecivedByArtist",
+                         "get_offersReceivedByArtist",
                          Constants.GetMethod);
         link.Href = link.Href?.Replace(Constants.ApiValue,
                                        $"{HttpContext?.Request.Scheme}://{HttpContext?.Request.Host}{Constants.ApiValue}");
@@ -318,13 +308,13 @@ public class ArtistController : BaseController<ArtistController>
         return links.AsReadOnly();
     }
 
-    private IReadOnlyList<Links> CreateOfferLinks( int? userId = null, string? fields = "", string? id = null)
+    private IReadOnlyList<Links> CreateOfferLinks(string? id = null, string? fields = "")
     {
         Links link;
         List<Links> links = new List<Links>();
         if (!string.IsNullOrWhiteSpace(fields))
         {
-            link = new Links(Url.RouteUrl("GetArtistOffersReceivedByArtist", new { userId, fields }),
+            link = new Links(Url.RouteUrl("GetOfferById", new { id, fields }),
                              Constants.SelfRel,
                              Constants.GetMethod);
             link.Href = link.Href?.Replace(Constants.ApiValue,
@@ -333,7 +323,7 @@ public class ArtistController : BaseController<ArtistController>
         }
         else
         {
-            link = new Links(Url.RouteUrl("GetArtistOffersReceivedByArtist", new { userId }),
+            link = new Links(Url.RouteUrl("GetOfferById", new { id }),
                              Constants.SelfRel,
                              Constants.GetMethod);
             link.Href = link.Href?.Replace(Constants.ApiValue,
@@ -341,35 +331,21 @@ public class ArtistController : BaseController<ArtistController>
             links.Add(link);
         }
 
-        link = new Links(Url.RouteUrl("GetOffersById", new { id }),
-                         "get_offers",
-                         Constants.GetMethod);
-        link.Href = link.Href?.Replace(Constants.ApiValue,
-                                       $"{HttpContext?.Request.Scheme}://{HttpContext?.Request.Host}{Constants.ApiValue}");
-        links.Add(link);
-
-        link = new Links(Url.RouteUrl("PatchOffersById", new { id }),
-                         "patch_offers",
+        link = new Links(Url.RouteUrl("PatchOfferById", new { id }),
+                         "patch_offer",
                          Constants.PatchMethod);
         link.Href = link.Href?.Replace(Constants.ApiValue,
                                        $"{HttpContext?.Request.Scheme}://{HttpContext?.Request.Host}{Constants.ApiValue}");
         links.Add(link);
 
-        link = new Links(href: Url.RouteUrl("DeleteOffersById", new { id }),
-                         "delete_offers",
+        link = new Links(href: Url.RouteUrl("DeleteOfferById", new { id }),
+                         "delete",
                          Constants.DeleteMethod);
         link.Href = link.Href?.Replace(Constants.ApiValue,
                                        $"{HttpContext?.Request.Scheme}://{HttpContext?.Request.Host}{Constants.ApiValue}");
         links.Add(link);
 
-        link = new Links(href: Url.RouteUrl("AddOffersById", new { id }),
-                         "post_offers",
-                         Constants.PostMethod);
-        link.Href = link.Href?.Replace(Constants.ApiValue,
-                                       $"{HttpContext?.Request.Scheme}://{HttpContext?.Request.Host}{Constants.ApiValue}");
-        links.Add(link);
         return links.AsReadOnly();
-
     }
 
     #endregion
