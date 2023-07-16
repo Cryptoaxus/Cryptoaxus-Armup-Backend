@@ -36,7 +36,6 @@ public class OffersDto : BaseDto
                             lastModifiedBy,
                             isDeleted)
     {
-        Id = id;
         NftId = nftId;
         OfferPrice = offerPrice;
         OfferFrom = offerFrom;

@@ -1,4 +1,4 @@
-﻿namespace CryptoAxus.Application.Dto;
+﻿namespace CryptoAxus.Application.Dto.Nft;
 
 public class NFTCollectionstDto : BaseDto
 {
@@ -48,7 +48,6 @@ public class NFTCollectionstDto : BaseDto
                                      lastModifiedBy,
                                      isDeleted)
     {
-        Id = id;
         CollectionLogoImageHash = collectionLogoImageHash;
         CollectionFeaturedImageHash = collectionFeaturedImageHash;
         CollectionBannerImageHash = collectionBannerImageHash;

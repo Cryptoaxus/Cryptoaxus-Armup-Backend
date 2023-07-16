@@ -83,7 +83,7 @@ public class Repository<TDocument> : IRepository<TDocument> where TDocument : IB
 
     public Task InsertOneAsync(TDocument document)
     {
-        return Task.Run(() => _collection.InsertOneAsync(document));
+        return _collection.InsertOneAsync(document);
     }
 
     public void InsertMany(ICollection<TDocument> documents)
