@@ -1,4 +1,4 @@
-﻿namespace CryptoAxus.Application.Features.Artist.GetArtistByWalletAddress.Response;
+﻿namespace CryptoAxus.Application.Features.Artist.GetArtistByUserId.Response;
 
 public class GetArtistByUserIdResponse : BaseResponse<ArtistDto>
 {
@@ -14,5 +14,5 @@ public class GetArtistByUserIdResponse : BaseResponse<ArtistDto>
     {
         Result = result;
     }
-    
+
 }

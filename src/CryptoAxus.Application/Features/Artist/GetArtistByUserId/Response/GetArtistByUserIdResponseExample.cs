@@ -1,4 +1,4 @@
-﻿namespace CryptoAxus.Application.Features.Artist.GetArtistByWalletAddress.Response;
+﻿namespace CryptoAxus.Application.Features.Artist.GetArtistByUserId.Response;
 
 public class GetArtistByUserIdResponseExample : IExamplesProvider<GetArtistByUserIdResponse>
 {

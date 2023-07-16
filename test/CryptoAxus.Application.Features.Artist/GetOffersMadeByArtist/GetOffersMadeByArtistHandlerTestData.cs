@@ -1,11 +1,4 @@
-﻿using CryptoAxus.Application.Features.Artist.GetOffersMadeByArtist.Handler;
-using CryptoAxus.Application.Features.Artist.GetOffersMadeByArtist.Request;
-using CryptoAxus.Application.Features.Artist.GetOffersMadeByArtist.Response;
-using CryptoAxus.Common.Response;
-using CryptoAxus.Common.Services.Contracts;
-using Mapster;
-
-namespace CryptoAxus.Application.Features.Artist.GetOffersMadeByArtist;
+﻿namespace CryptoAxus.Application.Features.Artist.GetOffersMadeByArtist;
 
 public class GetOffersMadeByArtistHandlerTestData
 {
@@ -19,35 +12,96 @@ public class GetOffersMadeByArtistHandlerTestData
         _mockCacheService = new Mock<ICacheService>();
         _documents = new List<OffersDocument>
         {
-            new OffersDocument(ObjectId.GenerateNewId(), "nftId", Convert.ToDecimal(50.45), 248, 547,
-                               10, DateTime.UtcNow.AddHours(6), 5, ObjectId.GenerateNewId()),
+            new OffersDocument(ObjectId.GenerateNewId(), 
+                               "nftId",
+                               Convert.ToDecimal(50.45),
+                               248,
+                               547,
+                               10,
+                               DateTime.UtcNow.AddHours(6),
+                               5, ObjectId.GenerateNewId()),
 
-            new OffersDocument(ObjectId.GenerateNewId(), "nftId", Convert.ToDecimal(50.45), 248, 547,
-                               10, DateTime.UtcNow.AddHours(6), 5, ObjectId.GenerateNewId()),
+            new OffersDocument(ObjectId.GenerateNewId(), 
+                               "nftId",
+                               Convert.ToDecimal(50.45),
+                               248,
+                               547,
+                               10,
+                               DateTime.UtcNow.AddHours(6),
+                               5,
+                               ObjectId.GenerateNewId()),
 
-            new OffersDocument(ObjectId.GenerateNewId(), "nftId", Convert.ToDecimal(50.45), 248, 547,
-                               10, DateTime.UtcNow.AddHours(6), 5, ObjectId.GenerateNewId()),
+            new OffersDocument(ObjectId.GenerateNewId(),
+                               "nftId",
+                               Convert.ToDecimal(50.45),
+                               248,
+                               547,
+                               10, 
+                               DateTime.UtcNow.AddHours(6),
+                               5, ObjectId.GenerateNewId()),
 
-            new OffersDocument(ObjectId.GenerateNewId(), "nftId", Convert.ToDecimal(50.45), 248, 547,
-                               10, DateTime.UtcNow.AddHours(6), 5, ObjectId.GenerateNewId()),
+            new OffersDocument(ObjectId.GenerateNewId(), 
+                               "nftId",
+                               Convert.ToDecimal(50.45),
+                               248,
+                               547,
+                               10,
+                               DateTime.UtcNow.AddHours(6),
+                               5, ObjectId.GenerateNewId()),
 
-            new OffersDocument(ObjectId.GenerateNewId(), "nftId", Convert.ToDecimal(50.45), 248, 547,
-                               10, DateTime.UtcNow.AddHours(6), 5, ObjectId.GenerateNewId()),
+            new OffersDocument(ObjectId.GenerateNewId(),
+                               "nftId",
+                               Convert.ToDecimal(50.45),
+                               248,
+                               547,
+                               10,
+                               DateTime.UtcNow.AddHours(6),
+                               5, ObjectId.GenerateNewId()),
 
-            new OffersDocument(ObjectId.GenerateNewId(), "nftId", Convert.ToDecimal(50.45), 248, 547,
-                               10, DateTime.UtcNow.AddHours(6), 5, ObjectId.GenerateNewId()),
+            new OffersDocument(ObjectId.GenerateNewId(),
+                               "nftId",
+                               Convert.ToDecimal(50.45), 
+                               248,
+                               547,
+                               10,
+                               DateTime.UtcNow.AddHours(6),
+                               5, ObjectId.GenerateNewId()),
 
-            new OffersDocument(ObjectId.GenerateNewId(), "nftId", Convert.ToDecimal(50.45), 248, 547,
-                               10, DateTime.UtcNow.AddHours(6), 5, ObjectId.GenerateNewId()),
+            new OffersDocument(ObjectId.GenerateNewId(), 
+                               "nftId",
+                               Convert.ToDecimal(50.45), 
+                               248,
+                               547,
+                               10,
+                               DateTime.UtcNow.AddHours(6), 
+                               5, ObjectId.GenerateNewId()),
 
-            new OffersDocument(ObjectId.GenerateNewId(), "nftId", Convert.ToDecimal(50.45), 248, 547,
-                               10, DateTime.UtcNow.AddHours(6), 5, ObjectId.GenerateNewId()),
+            new OffersDocument(ObjectId.GenerateNewId(),
+                               "nftId",
+                               Convert.ToDecimal(50.45),
+                               248,
+                               547,
+                               10,
+                               DateTime.UtcNow.AddHours(6),
+                               5, ObjectId.GenerateNewId()),
 
-            new OffersDocument(ObjectId.GenerateNewId(), "nftId", Convert.ToDecimal(50.45), 248, 547,
-                               10, DateTime.UtcNow.AddHours(6), 5, ObjectId.GenerateNewId()),
+            new OffersDocument(ObjectId.GenerateNewId(),
+                               "nftId",
+                               Convert.ToDecimal(50.45),
+                               248,
+                               547,
+                               10,
+                               DateTime.UtcNow.AddHours(6),
+                               5, ObjectId.GenerateNewId()),
 
-            new OffersDocument(ObjectId.GenerateNewId(), "nftId", Convert.ToDecimal(50.45), 248, 547,
-                               10, DateTime.UtcNow.AddHours(6), 5, ObjectId.GenerateNewId())
+            new OffersDocument(ObjectId.GenerateNewId(),
+                               "nftId",
+                               Convert.ToDecimal(50.45),
+                               248,
+                               547,
+                               10,
+                               DateTime.UtcNow.AddHours(6),
+                               5, ObjectId.GenerateNewId())
         };
     }
 

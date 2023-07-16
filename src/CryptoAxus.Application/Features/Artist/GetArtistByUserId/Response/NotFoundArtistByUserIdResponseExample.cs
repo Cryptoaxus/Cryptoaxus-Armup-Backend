@@ -1,10 +1,10 @@
-﻿namespace CryptoAxus.Application.Features.Artist.GetArtistByWalletAddress.Response;
+﻿namespace CryptoAxus.Application.Features.Artist.GetArtistByUserId.Response;
 
-public class NotFoundArtistByUserIdResponseExample : IOpenApiExampleProvider<NotFoundArtistByWalletAddressResponse>
+public class NotFoundArtistByUserIdResponseExample : IOpenApiExampleProvider<NotFoundArtistByUserIdResponse>
 {
     public object Example()
     {
-        return new NotFoundArtistByWalletAddressResponse()
+        return new NotFoundArtistByUserIdResponse()
         {
             ApiException = null,
             Errors = null,

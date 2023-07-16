@@ -1,6 +1,4 @@
-﻿using CryptoAxus.Common.Services.Contracts;
-
-namespace CryptoAxus.Application.Features.Artist.GetArtistById.Response;
+﻿namespace CryptoAxus.Application.Features.Artist.GetArtistById.Response;
 
 public class NotFoundGetArtistByIdResponseExample : IOpenApiExampleProvider<NotFoundGetArtistByIdResponse>
 {

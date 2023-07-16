@@ -7,6 +7,7 @@ global using Microsoft.AspNetCore.Http;
 global using Microsoft.Extensions.Caching.Distributed;
 global using Microsoft.Extensions.DependencyInjection;
 global using Microsoft.Extensions.Primitives;
+global using MongoDB.Bson;
 global using Newtonsoft.Json;
 global using System.Dynamic;
 global using System.Net;

@@ -1,4 +1,6 @@
-﻿namespace CryptoAxus.Application.Features.NFT.PostNft.Validation;
+﻿using FluentValidation;
+
+namespace CryptoAxus.Application.Features.NFT.PostNft.Validation;
 
 public class PostNftRequestValidator : AbstractValidator<CreateNftDto>
 {
