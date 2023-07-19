@@ -2,18 +2,24 @@
 
 public interface IRepository<TDocument> where TDocument : IBaseDocument
 {
+    Task<long> CountAsync(Expression<Func<TDocument, bool>>? filterExpression, CancellationToken cancellationToken);
+
     IQueryable<TDocument> AsQueryable();
 
-    Task<bool> Exists(Expression<Func<TDocument, bool>> expression, CancellationToken cancellationToken);
+    Task<bool> Exists(Expression<Func<TDocument, bool>> filterExpression, CancellationToken cancellationToken = default);
 
-    IEnumerable<TDocument> FilterBy(Expression<Func<TDocument, bool>> filterExpression);
+    Task<List<TDocument>> FilterBy(Expression<Func<TDocument, bool>> filterExpression,
+                                   int? pageNumber = null,
+                                   int? pageSize = null,
+                                   CancellationToken cancellationToken = default);
 
     IEnumerable<TProjected> FilterBy<TProjected>(Expression<Func<TDocument, bool>> filterExpression,
                                                  Expression<Func<TDocument, TProjected>> projectionExpression);
 
     TDocument FindOne(Expression<Func<TDocument, bool>> filterExpression);
 
-    Task<TDocument> FindOneAsync(Expression<Func<TDocument, bool>> filterExpression);
+    Task<TDocument> FindOneAsync(Expression<Func<TDocument, bool>> filterExpression,
+                                 CancellationToken cancellationToken = default);
 
     TDocument FindById(ObjectId id);
 

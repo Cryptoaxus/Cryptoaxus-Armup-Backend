@@ -2,9 +2,9 @@
 
 public class PaginationResponse<TEntity> : BaseResponse<TEntity>
 {
-    public PaginationData? PaginationData { get; set; }
+    public PaginationData? PaginationData { get; init; }
 
-    public PaginationResponse() { }
+    protected PaginationResponse() { }
 
     public PaginationResponse(HttpStatusCode statusCode, string? message) : base(statusCode, message) { }
 

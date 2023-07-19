@@ -14,7 +14,7 @@ public class PostArtistHandler : BaseHandler<PostArtistHandler>, IRequestHandler
     {
         ArgumentException.ThrowIfNullOrEmpty(request.Artist.ToString(), nameof(request.Artist));
 
-        bool artistExists = await _repository.Exists(x => x.UserWalletAddress.Equals(request.Artist.UserWalletAddress),
+        bool artistExists = await _repository.Exists(x => x.UserId.Equals(request.Artist.UserWalletAddress),
                                                      cancellationToken);
 
         if (artistExists)

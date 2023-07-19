@@ -38,7 +38,6 @@ public class AuctionDto : BaseDto
                              lastModifiedDate,
                              lastModifiedBy)
     {
-        Id = id;
         NftId = nftId;
         NftCopyId = nftCopyId;
         Quantity = quantity;

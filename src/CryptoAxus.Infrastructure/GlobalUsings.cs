@@ -10,4 +10,5 @@ global using Microsoft.Extensions.DependencyInjection;
 global using Microsoft.Extensions.Options;
 global using MongoDB.Bson;
 global using MongoDB.Driver;
+global using MongoDB.Driver.Linq;
 global using System.Linq.Expressions;

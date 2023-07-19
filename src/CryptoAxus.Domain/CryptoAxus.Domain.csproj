@@ -7,13 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-	  <Folder Include="Collections\" />
       <Folder Include="Interfaces\" />
       <Folder Include="Attributes\" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="MongoDB.Bson" Version="2.19.2" />
+    <PackageReference Include="MongoDB.Bson" Version="2.20.0" />
   </ItemGroup>
 
 </Project>

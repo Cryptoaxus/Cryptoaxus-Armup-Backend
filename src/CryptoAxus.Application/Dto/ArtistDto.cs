@@ -20,8 +20,8 @@ public class ArtistDto : BaseDto
     /// Artist wallet address
     /// </summary>
     /// <example>0x507f191e810c19729de860ea</example>
-    [JsonProperty("userWalletAddress")]
-    public string? UserWalletAddress { get; set; }
+    [JsonProperty("userId")]
+    public int? UserId { get; set; }
 
     /// <summary>
     /// Artist website url
@@ -72,7 +72,7 @@ public class ArtistDto : BaseDto
     public ArtistDto(ObjectId id,
                      string? username = null,
                      string? email = null,
-                     string? userWalletAddress = null,
+                     int? userId = null,
                      string? website = null,
                      string? bio = null,
                      string? profileImageAddress = null,
@@ -89,19 +89,14 @@ public class ArtistDto : BaseDto
                             lastModifiedBy,
                             isDeleted)
     {
-        Id = id;
         Username = username;
         Email = email;
-        UserWalletAddress = userWalletAddress;
+        UserId = userId;
         Website = website;
         Bio = bio;
         ProfileImageAddress = profileImageAddress;
         CoverImageAddress = coverImageAddress;
         Instagram = instagram;
         Twitter = twitter;
-        //CreatedBy = createdBy;
-        //LastModifiedDate = lastModifiedDate;
-        //LastModifiedBy = lastModifiedBy;
-        //IsDeleted = isDeleted;
     }
 }

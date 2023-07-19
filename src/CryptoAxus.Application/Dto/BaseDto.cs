@@ -2,7 +2,7 @@
 
 public abstract class BaseDto
 {
-    public ObjectId? Id { get; set; }
+    public ObjectId? Id { get; private init; }
 
     public DateTime? CreatedDate { get; set; }
 
@@ -18,7 +18,7 @@ public abstract class BaseDto
     {
     }
 
-    protected BaseDto(ObjectId id,
+    protected BaseDto(ObjectId? id = null,
                       ObjectId? createdBy = null,
                       DateTime? lastModifiedDate = null,
                       ObjectId? lastModifiedBy = null,

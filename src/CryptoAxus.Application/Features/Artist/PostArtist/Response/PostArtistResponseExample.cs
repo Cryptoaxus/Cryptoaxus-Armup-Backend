@@ -9,7 +9,7 @@ public class PostArtistResponseExample : IExamplesProvider<PostArtistResponse>
                                       new ArtistDto("647115d2b38bc8ea242beb01".ToObjectId(),
                                                     "Ben Affleck",
                                                     "ben.affleck@gmail.com",
-                                                    "0x647115d2b38bc8ea242beb01",
+                                                    6471,
                                                     "https://www.google.com",
                                                     "Bio text goes here",
                                                     "3.gif",

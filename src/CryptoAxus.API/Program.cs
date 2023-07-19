@@ -1,5 +1,3 @@
-using Serilog;
-
 var builder = WebApplication.CreateBuilder(args);
 IConfiguration configuration = builder.Configuration;
 
@@ -33,18 +31,23 @@ builder.Services.AddCommonLayer();
 
 builder.Services.AddControllers(options =>
 {
-    options.CacheProfiles.Add("120SecondsCacheProfile", new CacheProfile()
+    options.CacheProfiles.Add("300SecondsCacheProfile", new CacheProfile()
     {
-        Duration = 120,
+        Duration = 300,
         Location = ResponseCacheLocation.Any
     });
     options.Filters.Add<ModelValidationFilter>();
     options.ReturnHttpNotAcceptable = true;
     options.OutputFormatters.Add(new XmlDataContractSerializerOutputFormatter());
+    options.RespectBrowserAcceptHeader = true;
 }).AddJsonOptions(options =>
 {
     options.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
 }).AddNewtonsoftJson();
+
+builder.Services.AddValidatorsFromAssemblyContaining<PostNftRequestValidator>();
+
+builder.Services.AddFluentValidationAutoValidation(x => x.DisableDataAnnotationsValidation = true);
 
 builder.Services.AddEndpointsApiExplorer();
 
@@ -55,7 +58,7 @@ builder.Services.AddSwaggerGen(options =>
     options.SwaggerDoc("v1", new OpenApiInfo { Title = "CryptoAxus.API", Version = "v1" });
 });
 
-builder.Services.AddSwaggerExamplesFromAssemblyOf<PatchArtistUsernameResponse>();
+builder.Services.AddSwaggerExamplesFromAssemblyOf<PatchArtistResponse>();
 
 builder.Services.AddApiVersioning(options =>
 {
@@ -73,6 +76,13 @@ builder.Services.Configure<ApiBehaviorOptions>(options =>
 builder.Services.AddCustomMediaTypes();
 
 builder.Services.AddScoped<RequestHeaderFilter>();
+
+builder.Services.Configure<RouteOptions>(routeOptions =>
+{
+    routeOptions.ConstraintMap.Add("string", typeof(StringRouteConstraint));
+});
+
+builder.Services.AddResponseCaching();
 
 var app = builder.Build();
 
@@ -101,6 +111,8 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseHttpsRedirection();
+
+app.UseResponseCaching();
 
 app.UseCors("CorsPolicy");
 

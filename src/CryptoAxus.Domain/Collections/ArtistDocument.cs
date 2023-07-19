@@ -9,8 +9,8 @@ public class ArtistDocument : BaseDocument
     [BsonElement(elementName: "email", Order = 3)]
     public string Email { get; set; }
 
-    [BsonElement(elementName: "userWalletAddress", Order = 4)]
-    public string UserWalletAddress { get; set; }
+    [BsonElement(elementName: "userId", Order = 4)]
+    public int UserId { get; set; }
 
     [BsonElement(elementName: "website", Order = 5)]
     public string Website { get; set; }
@@ -37,7 +37,7 @@ public class ArtistDocument : BaseDocument
     public ArtistDocument(ObjectId id,
                           string username,
                           string email,
-                          string userWalletAddress,
+                          int userId,
                           string website,
                           string bio,
                           string profileImageAddress,
@@ -57,7 +57,7 @@ public class ArtistDocument : BaseDocument
         Id = id;
         Username = username;
         Email = email;
-        UserWalletAddress = userWalletAddress;
+        UserId = userId;
         Website = website;
         Bio = bio;
         ProfileImageAddress = profileImageAddress;

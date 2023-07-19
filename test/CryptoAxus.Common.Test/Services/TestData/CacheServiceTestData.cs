@@ -20,15 +20,16 @@ public class CacheServiceTestData
         MockDistributedCache = new Mock<IDistributedCache>();
     }
 
-    public CacheServiceTestData SetupMockCacheService(string key)
+    public CacheServiceTestData SetupMockCacheService()
     {
-        MockCacheService.Setup(x => x.GetAsync<string?>(key)).ReturnsAsync(StringCacheValue);
+        MockCacheService.Setup(x => x.GetAsync<string?>(It.IsAny<string>())).ReturnsAsync(StringCacheValue);
         return this;
     }
 
-    public CacheServiceTestData SetupMockDistributedCacheService(string key)
+    public CacheServiceTestData SetupMockDistributedCacheService()
     {
-        MockDistributedCache.Setup(x => x.GetStringAsync(key, default)).ReturnsAsync(StringCacheValue);
+        MockDistributedCache.Setup(x => x.GetStringAsync(It.IsAny<string>(), It.IsAny<CancellationToken>()))
+                            .ReturnsAsync(StringCacheValue);
         return this;
     }
 

@@ -58,4 +58,9 @@ public static class ObjectExtensions
         // Return the list
         return dataShapedObject;
     }
+
+    public static ObjectId ToObjectId(this object? value)
+    {
+        return new ObjectId(value?.ToString());
+    }
 }

@@ -13,14 +13,14 @@ public class OffersDocument : BaseDocument
     public int OfferFrom { get; set; }
 
     [BsonElement(elementName: "offerTo", Order = 5)]
-    public string OfferTo { get; set; }
+    public int OfferTo { get; set; }
 
     [BsonElement(elementName: "quantity", Order = 6)]
-    public int? Quantity  { get; set; }
+    public int? Quantity { get; set; }
 
     [BsonElement(elementName: "offerExpireAt", Order = 7)]
     public DateTime OfferExpireAt { get; set; }
-    
+
     [BsonElement(elementName: "offeredQuantity", Order = 9)]
     public int OfferedQuantity { get; set; }
 
@@ -30,15 +30,14 @@ public class OffersDocument : BaseDocument
 
     public OffersDocument(ObjectId id, string nftId,
                           decimal offerPrice,
-                          int  offerFrom,
-                          string offerTo,
+                          int offerFrom,
+                          int offerTo,
+                          int? quantity,
                           DateTime offerExpireAt,
                           int offeredQuantity,
                           ObjectId createdBy,
                           DateTime? lastModifiedDate = null,
                           ObjectId? lastModifiedBy = null,
-                          string? signature = null,
-                          int? quantity = null,
                           bool isDeleted = false)
                           : base(id,
                                  createdBy,
@@ -54,6 +53,6 @@ public class OffersDocument : BaseDocument
         Quantity = quantity;
         OfferExpireAt = offerExpireAt;
         OfferedQuantity = offeredQuantity;
-        CreatedBy= createdBy;
+        CreatedBy = createdBy;
     }
 }

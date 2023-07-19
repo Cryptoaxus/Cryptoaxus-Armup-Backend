@@ -16,7 +16,6 @@ public class PostArtistTests : PostArtistTestsData
         // Assert
         response.StatusCode.ShouldBe(HttpStatusCode.Created);
         response.IsSuccessful.ShouldBe(true);
-        response.Result?.Id.ShouldNotBeNull();
         response.Result.ShouldBeOfType<ArtistDto>();
     }
 

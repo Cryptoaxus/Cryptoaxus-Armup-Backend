@@ -71,7 +71,6 @@ public class AllEventDto : BaseDto
                               lastModifiedBy,
                               isDeleted)
     {
-        Id = id;
         NftId = nftId;
         MarketTokenId = marketTokenId;
         MintingContract = mintingContract;

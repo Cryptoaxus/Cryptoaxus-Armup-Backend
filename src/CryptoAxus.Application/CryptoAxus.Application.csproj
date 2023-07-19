@@ -7,8 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Features\Artist\GetOffersReceivedByArtist\Response\BadRequestGetListOfOffersByArtistResponseExample.cs\**" />
     <Compile Remove="Mappings\**" />
+    <EmbeddedResource Remove="Features\Artist\GetOffersReceivedByArtist\Response\BadRequestGetListOfOffersByArtistResponseExample.cs\**" />
     <EmbeddedResource Remove="Mappings\**" />
+    <None Remove="Features\Artist\GetOffersReceivedByArtist\Response\BadRequestGetListOfOffersByArtistResponseExample.cs\**" />
     <None Remove="Mappings\**" />
   </ItemGroup>
 
@@ -17,24 +20,26 @@
     <Folder Include="Contracts\Settings\" />
     <Folder Include="Features\Artist\GetArtistById\Request\" />
     <Folder Include="Features\Artist\GetArtistById\Response\" />
-    <Folder Include="Features\Artist\Handlers\" />
-    <Folder Include="Features\Artist\PatchArtistUsername\Handler\" />
-    <Folder Include="Features\Artist\PatchArtistUsername\Response\" />
+    <Folder Include="Features\Artist\GetOffersMadeByArtist\Handler\" />
     <Folder Include="Features\Artist\PostArtist\Handler\" />
     <Folder Include="Features\Artist\PostArtist\Request\" />
-    <Folder Include="Features\Artist\Query\" />
+    <Folder Include="Features\NFT\PostNft\Handler\" />
+    <Folder Include="Features\NFT\PostNft\Validation\" />
+    <Folder Include="Features\NFT\PostNft\Request\" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="FluentValidation" Version="11.6.0" />
     <PackageReference Include="Mapster" Version="7.3.0" />
     <PackageReference Include="Mapster.DependencyInjection" Version="1.0.0" />
-    <PackageReference Include="MediatR" Version="12.0.1" />
-    <PackageReference Include="Microsoft.AspNetCore.JsonPatch" Version="7.0.7" />
+    <PackageReference Include="MediatR" Version="12.1.0" />
+    <PackageReference Include="Microsoft.AspNetCore.JsonPatch" Version="7.0.8" />
+    <PackageReference Include="Microsoft.Extensions.Caching.StackExchangeRedis" Version="7.0.8" />
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="7.0.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="7.0.4" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="7.0.0" />
-    <PackageReference Include="Microsoft.OpenApi" Version="1.6.4" />
-    <PackageReference Include="MongoDB.Driver" Version="2.19.2" />
+    <PackageReference Include="Microsoft.OpenApi" Version="1.6.5" />
+    <PackageReference Include="MongoDB.Driver" Version="2.20.0" />
     <PackageReference Include="Swashbuckle.AspNetCore.Filters" Version="7.0.6" />
   </ItemGroup>
 

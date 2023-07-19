@@ -13,7 +13,7 @@ public class GetArtistByIdTestData
         artistDocument = new ArtistDocument("507f191e810c19729de860ea".ToObjectId(),
                                              "testUsername",
                                              "test@nftarmup.com",
-                                             "0x507f191e810c19729de860ea",
+                                             5071,
                                              "https://www.google.com",
                                              "testBio",
                                              "testProfileImageAddress",

@@ -1,18 +1,19 @@
-﻿using MongoDB.Driver.Linq;
-
-namespace CryptoAxus.Infrastructure.Implementation.Repositories;
+﻿namespace CryptoAxus.Infrastructure.Implementation.Repositories;
 
 public class Repository<TDocument> : IRepository<TDocument> where TDocument : IBaseDocument
 {
-    private readonly ICryptoAxusContext _context;
     private readonly IMongoCollection<TDocument> _collection;
 
     public Repository(ICryptoAxusContext context)
     {
         ArgumentException.ThrowIfNullOrEmpty(context.ToString(), nameof(context));
 
-        _context = context;
-        _collection = _context.GetCollection<TDocument>(GetCollectionName(typeof(TDocument)));
+        _collection = context.GetCollection<TDocument>(GetCollectionName(typeof(TDocument)));
+    }
+
+    public Task<long> CountAsync(Expression<Func<TDocument, bool>>? filterExpression, CancellationToken cancellationToken)
+    {
+        return _collection.CountDocumentsAsync(filter: filterExpression, cancellationToken: cancellationToken);
     }
 
     public IQueryable<TDocument> AsQueryable()
@@ -20,19 +21,33 @@ public class Repository<TDocument> : IRepository<TDocument> where TDocument : IB
         return _collection.AsQueryable();
     }
 
-    public Task<bool> Exists(Expression<Func<TDocument, bool>> expression, CancellationToken cancellationToken)
+    public Task<bool> Exists(Expression<Func<TDocument, bool>> filterExpression, CancellationToken cancellationToken = default)
     {
-        return Task.Run(function: () => _collection.AsQueryable().AnyAsync(expression, cancellationToken), cancellationToken);
+        return Task.Run(function: () => _collection.AsQueryable()
+                                                   .AnyAsync(filterExpression, cancellationToken), cancellationToken);
     }
 
-    public IEnumerable<TDocument> FilterBy(Expression<Func<TDocument, bool>> filterExpression)
+    public Task<List<TDocument>> FilterBy(Expression<Func<TDocument, bool>> filterExpression,
+                                          int? pageNumber = null,
+                                          int? pageSize = null,
+                                          CancellationToken cancellationToken = default)
     {
-        return _collection.Find(filterExpression).ToEnumerable();
+        if (pageNumber is not null && pageSize is not null)
+            return Task.Run(function: () => _collection.Find(filterExpression)
+                                                       .Skip((pageNumber - 1) * pageSize)
+                                                       .Limit(pageSize)
+                                                       .ToListAsync());
+
+        return Task.Run(function: () => _collection.Find(filterExpression)
+                                                   .ToListAsync());
     }
 
-    public IEnumerable<TProjected> FilterBy<TProjected>(Expression<Func<TDocument, bool>> filterExpression, Expression<Func<TDocument, TProjected>> projectionExpression)
+    public IEnumerable<TProjected> FilterBy<TProjected>(Expression<Func<TDocument, bool>> filterExpression,
+                                                        Expression<Func<TDocument, TProjected>> projectionExpression)
     {
-        return _collection.Find(filterExpression).Project(projectionExpression).ToEnumerable();
+        return _collection.Find(filterExpression)
+                          .Project(projectionExpression)
+                          .ToEnumerable();
     }
 
     public TDocument FindOne(Expression<Func<TDocument, bool>> filterExpression)
@@ -40,9 +55,10 @@ public class Repository<TDocument> : IRepository<TDocument> where TDocument : IB
         return _collection.Find(filterExpression).FirstOrDefault();
     }
 
-    public Task<TDocument> FindOneAsync(Expression<Func<TDocument, bool>> filterExpression)
+    public Task<TDocument> FindOneAsync(Expression<Func<TDocument, bool>> filterExpression,
+                                        CancellationToken cancellationToken = default)
     {
-        return Task.Run(function: () => _collection.Find(filterExpression).FirstOrDefaultAsync());
+        return Task.Run(function: () => _collection.Find(filterExpression).FirstOrDefaultAsync(cancellationToken), cancellationToken);
     }
 
     public TDocument FindById(ObjectId id)
@@ -67,7 +83,7 @@ public class Repository<TDocument> : IRepository<TDocument> where TDocument : IB
 
     public Task InsertOneAsync(TDocument document)
     {
-        return Task.Run(() => _collection.InsertOneAsync(document));
+        return _collection.InsertOneAsync(document);
     }
 
     public void InsertMany(ICollection<TDocument> documents)
