@@ -29,7 +29,7 @@ public class ArtistRepositoryTestsData
                                                 "https://localhost:4000/wwwroot/images/cover/646d0779e663994062278fb8",
                                                 "https://www.instagram.com/users?userId=646d0779e663994062278fb8",
                                                 "https://www.twitter.com/users?userId=646d0779e663994062278fb8",
-                                                64607);
+                                                ObjectId.GenerateNewId());
         _mockCollection = new Mock<IMongoCollection<ArtistDocument>>();
         _mockContext = new Mock<ICryptoAxusContext>();
         _mockCursor = new Mock<IAsyncCursor<ArtistDocument>>();

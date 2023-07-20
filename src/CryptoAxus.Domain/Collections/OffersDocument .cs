@@ -35,9 +35,9 @@ public class OffersDocument : BaseDocument
                           int? quantity,
                           DateTime offerExpireAt,
                           int offeredQuantity,
-                          int createdBy,
+                          ObjectId createdBy,
                           DateTime? lastModifiedDate = null,
-                          int? lastModifiedBy = null,
+                          ObjectId? lastModifiedBy = null,
                           bool isDeleted = false)
                           : base(id,
                                  createdBy,

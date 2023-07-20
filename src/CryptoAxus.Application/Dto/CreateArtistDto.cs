@@ -20,8 +20,8 @@ public class CreateArtistDto
     /// Artist wallet address
     /// </summary>
     /// <example>0x507f191e810c19729de860ea</example>
-    [JsonProperty("userWalletAddress")]
-    public string? UserWalletAddress { get; set; }
+    [JsonProperty("userId")]
+    public int? UserId { get; set; }
 
     /// <summary>
     /// Artist website url
@@ -70,7 +70,7 @@ public class CreateArtistDto
     /// </summary>
     /// <example>648cb3a86180aab54f00c3fc</example>
     [JsonProperty("createdBy")]
-    public int? CreatedBy { get; set; }
+    public ObjectId? CreatedBy { get; set; }
 
     public CreateArtistDto()
     {
@@ -78,18 +78,18 @@ public class CreateArtistDto
 
     public CreateArtistDto(string? username,
                            string? email,
-                           string? userWalletAddress,
+                           int? userId,
                            string? website,
                            string? bio,
                            string? profileImageAddress,
                            string? coverImageAddress,
                            string? instagram,
                            string? twitter,
-                           int? createdBy)
+                           ObjectId? createdBy)
     {
         Username = username;
         Email = email;
-        UserWalletAddress = userWalletAddress;
+        UserId = userId;
         Website = website;
         Bio = bio;
         ProfileImageAddress = profileImageAddress;

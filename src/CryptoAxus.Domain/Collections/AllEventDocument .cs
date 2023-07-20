@@ -73,7 +73,7 @@ public class AllEventDocument : BaseDocument
                             bool isSold,
                             bool accepted,
                             bool rejected,
-                            int createdBy,
+                            ObjectId createdBy,
                             string? buyer = null,
                             DateTime? listingEndAt = null,
                             decimal? price = null,
@@ -83,7 +83,7 @@ public class AllEventDocument : BaseDocument
                             DateTime? canceledAt = null,
                             DateTime? soldAt = null,
                             DateTime? lastModifiedDate = null,
-                            int? lastModifiedBy = null)
+                            ObjectId? lastModifiedBy = null)
                             : base(id,
                                    createdBy,
                                    lastModifiedDate,

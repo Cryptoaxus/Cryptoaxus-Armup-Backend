@@ -34,14 +34,14 @@ public class PostArtistTestsData
     {
         return new PostArtistRequest(new CreateArtistDto("tom.cruise",
                                                          "tom.cruise@armup.com",
-                                                         "0x51c330436F289192F43666e51Df72Ec06F66Dad9",
+                                                         5133,
                                                          "https://www.tomcruise.com",
                                                          "Versatile actor",
                                                          "tom-cruise.png",
                                                          "tom-cruise-cover.png",
                                                          "https://www.instagram.com/tomcruise",
                                                          "https://www.twitter.com/tomcruise",
-                                                         507191));
+                                                         ObjectId.GenerateNewId()));
     }
 
     public PostArtistHandler Build()

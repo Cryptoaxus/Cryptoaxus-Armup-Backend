@@ -28,9 +28,9 @@ public class FixedPricedDocument : BaseDocument
                                decimal pricePerItem,
                                DateTime fixedEndingDateTime,
                                bool softDelete,
-                               int createdBy,
+                               ObjectId createdBy,
                                DateTime? lastModifiedDate = null,
-                               int? lastModifiedBy = null,
+                               ObjectId? lastModifiedBy = null,
                                bool isDeleted = false)
                                : base(id,
                                      createdBy,
