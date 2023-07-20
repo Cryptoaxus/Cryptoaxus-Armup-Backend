@@ -25,7 +25,7 @@ public class NFTCopiesDocument : BaseDocument
     {
     }
 
-    public NFTCopiesDocument(ObjectId id, 
+    public NFTCopiesDocument(ObjectId id,
                              string nftId,
                              string owner,
                              string ownerName,
@@ -33,15 +33,15 @@ public class NFTCopiesDocument : BaseDocument
                              bool isCreator,
                              int marketTokenId,
                              string bidderUserName,
-                             ObjectId createdBy,
+                             int createdBy,
                              DateTime? lastModifiedDate = null,
-                             ObjectId? lastModifiedBy = null,
+                             int? lastModifiedBy = null,
                              bool isDeleted = false)
                              : base(id,
                                     createdBy,
                                     lastModifiedDate,
                                     lastModifiedBy,
-                                    isDeleted )
+                                    isDeleted)
     {
         Id = id;
         NftId = nftId;

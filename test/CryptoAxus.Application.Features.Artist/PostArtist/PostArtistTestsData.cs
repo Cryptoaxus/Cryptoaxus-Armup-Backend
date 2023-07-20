@@ -41,7 +41,7 @@ public class PostArtistTestsData
                                                          "tom-cruise-cover.png",
                                                          "https://www.instagram.com/tomcruise",
                                                          "https://www.twitter.com/tomcruise",
-                                                         ObjectId.GenerateNewId().ToString()));
+                                                         507191));
     }
 
     public PostArtistHandler Build()

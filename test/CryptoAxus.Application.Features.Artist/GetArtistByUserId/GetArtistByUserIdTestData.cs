@@ -20,13 +20,13 @@ public class GetArtistByUserIdTestData
                                              "testCoverImageAddress",
                                              "instagramLink",
                                              "twitterLink",
-                                             "507f191e810c19729de860ea".ToObjectId());
+                                             50719);
     }
 
     protected GetArtistByUserIdTestData SetupMockRepository()
     {
         _mockRepository.Setup(x => x.FindOneAsync(It.IsAny<Expression<Func<ArtistDocument, bool>>>(), It.IsAny<CancellationToken>()))!
-                      .ReturnsAsync(artistDocument);
+                       .ReturnsAsync(artistDocument);
 
         return this;
     }

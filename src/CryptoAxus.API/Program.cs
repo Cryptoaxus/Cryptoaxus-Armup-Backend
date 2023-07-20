@@ -2,21 +2,22 @@ var builder = WebApplication.CreateBuilder(args);
 IConfiguration configuration = builder.Configuration;
 
 Log.Logger = new LoggerConfiguration()
-            .MinimumLevel.Information()
+            .MinimumLevel.Warning()
             .Enrich.WithProperty("ICryptoAxusContext", Assembly.GetExecutingAssembly().GetName().Name ?? string.Empty)
-            .WriteTo.Console()
-            .WriteTo.Seq("http://localhost:5341", LogEventLevel.Information, apiKey: "XbKEj2UbbqQrGzFll4Ff")
-            .WriteTo.Http("http://localhost:5341", null, restrictedToMinimumLevel: LogEventLevel.Information)
+            //.WriteTo.Console()
+            .WriteTo.Seq("http://38.17.54.230:5341", LogEventLevel.Warning, apiKey: "GT8UdE3BVHDQnUEzlLc1")
+            .WriteTo.Http("http://38.17.54.230:5341", null, restrictedToMinimumLevel: LogEventLevel.Warning)
             .CreateLogger();
 
 builder.Host.UseSerilog();
 
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("CorsPolicy", cors => cors.AllowAnyHeader()
-                                                .AllowAnyMethod()
-                                                .AllowCredentials()
-                                                .SetIsOriginAllowed(origin => true));
+    options.AddPolicy("CorsPolicy", cors => cors
+                                           .AllowAnyHeader()
+                                           .AllowAnyMethod()
+                                           .AllowCredentials()
+                                           .SetIsOriginAllowed(origin => true));
 });
 
 builder.Services.AddMediatR(config => config.RegisterServicesFromAssemblies(Assembly.GetExecutingAssembly()));
@@ -28,6 +29,8 @@ builder.Services.AddApplicationLayer(configuration);
 builder.Services.AddInfrastructureLayer(configuration);
 
 builder.Services.AddCommonLayer();
+
+builder.Services.AddSingleton(Log.Logger);
 
 builder.Services.AddControllers(options =>
 {
@@ -83,6 +86,8 @@ builder.Services.Configure<RouteOptions>(routeOptions =>
 });
 
 builder.Services.AddResponseCaching();
+
+builder.Services.AddHealthChecks();
 
 var app = builder.Build();
 

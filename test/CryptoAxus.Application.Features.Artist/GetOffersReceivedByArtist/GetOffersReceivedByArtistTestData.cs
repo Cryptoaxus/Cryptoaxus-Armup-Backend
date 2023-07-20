@@ -18,7 +18,7 @@ public class GetOffersReceivedByArtistTestData
                                 10,
                                 DateTime.UtcNow.AddHours(6),
                                 5,
-                                ObjectId.GenerateNewId()),
+                                507191),
 
              new OffersDocument(ObjectId.GenerateNewId(),
                                 "nftId",
@@ -28,7 +28,7 @@ public class GetOffersReceivedByArtistTestData
                                 10,
                                 DateTime.UtcNow.AddHours(6),
                                 5,
-                                ObjectId.GenerateNewId()),
+                                507191),
 
              new OffersDocument(ObjectId.GenerateNewId(),
                                 "nftId",
@@ -38,7 +38,7 @@ public class GetOffersReceivedByArtistTestData
                                 10,
                                 DateTime.UtcNow.AddHours(6),
                                 5,
-                                ObjectId.GenerateNewId()),
+                                507191),
 
              new OffersDocument(ObjectId.GenerateNewId(),
                                 "nftId",
@@ -48,7 +48,7 @@ public class GetOffersReceivedByArtistTestData
                                 10,
                                 DateTime.UtcNow.AddHours(6),
                                 5,
-                                ObjectId.GenerateNewId()),
+                                507191),
 
              new OffersDocument(ObjectId.GenerateNewId(),
                                 "nftId",
@@ -58,7 +58,7 @@ public class GetOffersReceivedByArtistTestData
                                 10,
                                 DateTime.UtcNow.AddHours(6),
                                 5,
-                                ObjectId.GenerateNewId()),
+                                507191),
 
              new OffersDocument(ObjectId.GenerateNewId(),
                                 "nftId",
@@ -68,7 +68,7 @@ public class GetOffersReceivedByArtistTestData
                                 10,
                                 DateTime.UtcNow.AddHours(6),
                                 5,
-                                ObjectId.GenerateNewId()),
+                                507191),
 
              new OffersDocument(ObjectId.GenerateNewId(),
                                 "nftId",
@@ -78,7 +78,7 @@ public class GetOffersReceivedByArtistTestData
                                 10,
                                 DateTime.UtcNow.AddHours(6),
                                 5,
-                                ObjectId.GenerateNewId()),
+                                507191),
 
              new OffersDocument(ObjectId.GenerateNewId(),
                                 "nftId",
@@ -88,7 +88,7 @@ public class GetOffersReceivedByArtistTestData
                                 10,
                                 DateTime.UtcNow.AddHours(6),
                                 5,
-                                ObjectId.GenerateNewId()),
+                                507191),
 
              new OffersDocument(ObjectId.GenerateNewId(),
                                 "nftId",
@@ -98,7 +98,7 @@ public class GetOffersReceivedByArtistTestData
                                 10,
                                 DateTime.UtcNow.AddHours(6),
                                 5,
-                                ObjectId.GenerateNewId()),
+                                507191),
 
              new OffersDocument(ObjectId.GenerateNewId(),
                                 "nftId",
@@ -108,7 +108,7 @@ public class GetOffersReceivedByArtistTestData
                                 10,
                                 DateTime.UtcNow.AddHours(6),
                                 5,
-                                ObjectId.GenerateNewId())
+                                507191)
         };
     }
 

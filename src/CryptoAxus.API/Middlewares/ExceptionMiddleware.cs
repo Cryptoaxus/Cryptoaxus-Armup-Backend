@@ -1,4 +1,6 @@
-﻿namespace CryptoAxus.API.Middlewares;
+﻿using ILogger = Serilog.ILogger;
+
+namespace CryptoAxus.API.Middlewares;
 
 public class ExceptionMiddleware
 {
@@ -9,7 +11,7 @@ public class ExceptionMiddleware
         _next = next;
     }
 
-    public async Task InvokeAsync(HttpContext httpContext)
+    public async Task InvokeAsync(HttpContext httpContext, ILogger logger)
     {
         try
         {
@@ -17,11 +19,11 @@ public class ExceptionMiddleware
         }
         catch (Exception exception)
         {
-            await HandleExceptionAsync(httpContext, exception);
+            await HandleExceptionAsync(httpContext, exception, logger);
         }
     }
 
-    private async Task<Task> HandleExceptionAsync(HttpContext httpContext, Exception exception)
+    private async Task<Task> HandleExceptionAsync(HttpContext httpContext, Exception exception, ILogger logger)
     {
         httpContext.Response.ContentType = "application/json";
 
@@ -32,6 +34,8 @@ public class ExceptionMiddleware
             ApiException = new ApiException(null, "Internal Server Error Occurred", exception.Message,
                                             exception.InnerException?.Message!, exception.HelpLink)
         };
+
+        logger.Error(exception, exception.Message);
 
         return httpContext.Response.WriteAsync(JsonConvert.SerializeObject(response));
     }

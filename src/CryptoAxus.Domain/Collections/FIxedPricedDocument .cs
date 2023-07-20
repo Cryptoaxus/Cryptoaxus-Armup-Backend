@@ -17,7 +17,7 @@ public class FixedPricedDocument : BaseDocument
 
     [BsonElement(elementName: "softDelete", Order = 7)]
     public bool SoftDelete { get; set; }
-    
+
     public FixedPricedDocument() : base()
     {
     }
@@ -28,17 +28,17 @@ public class FixedPricedDocument : BaseDocument
                                decimal pricePerItem,
                                DateTime fixedEndingDateTime,
                                bool softDelete,
-                               ObjectId createdBy,
+                               int createdBy,
                                DateTime? lastModifiedDate = null,
-                               ObjectId? lastModifiedBy = null,
+                               int? lastModifiedBy = null,
                                bool isDeleted = false)
                                : base(id,
                                      createdBy,
                                      lastModifiedDate,
                                      lastModifiedBy,
                                      isDeleted)
-        {
-    
+    {
+
         Id = id;
         NftCopyId = nftCopyId;
         Quantity = quantity;

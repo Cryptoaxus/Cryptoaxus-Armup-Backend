@@ -4,12 +4,12 @@ public class PatchArtistTestsData
 {
     private readonly Mock<IRepository<ArtistDocument>> _mockRepository;
     private ArtistDocument? _artistDocument;
-    private const string Id = "507f191e810c19729de860ea";
+    private const int Id = 50719;
 
     protected PatchArtistTestsData()
     {
         _mockRepository = new Mock<IRepository<ArtistDocument>>();
-        _artistDocument = new ArtistDocument(Id.ToObjectId(),
+        _artistDocument = new ArtistDocument(ObjectId.GenerateNewId(),
                                             "testUsername",
                                             "test@nftarmup.com",
                                             5071,
@@ -19,7 +19,7 @@ public class PatchArtistTestsData
                                             "testCoverImageAddress",
                                             "instagramLink",
                                             "twitterLink",
-                                            Id.ToObjectId());
+                                            Id);
     }
 
     protected PatchArtistTestsData SetupMockRepository()

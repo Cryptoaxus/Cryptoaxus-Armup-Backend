@@ -16,7 +16,7 @@ public class BidingDocument : BaseDocument
     public string FromWalletAddress { get; set; }
 
     [BsonElement(elementName: "bidderUserName", Order = 6)]
-    public string? BidderUserName { get; set; } 
+    public string? BidderUserName { get; set; }
 
     [BsonElement(elementName: "highestBid", Order = 7)]
     public bool HighestBid { get; set; }
@@ -25,16 +25,16 @@ public class BidingDocument : BaseDocument
     {
     }
 
-    public BidingDocument(ObjectId id, 
+    public BidingDocument(ObjectId id,
                           string nftId,
                           decimal biddingPrice,
                           string minimumBid,
                           string artistWalletAddress,
                           string fromWalletAddress,
                           bool highestBid,
-                          ObjectId createdBy,
+                          int createdBy,
                           DateTime? lastModifiedDate = null,
-                          ObjectId? lastModifiedBy = null,
+                          int? lastModifiedBy = null,
                           string? bidderUserName = null,
                           bool isDeleted = false)
                           : base(id,

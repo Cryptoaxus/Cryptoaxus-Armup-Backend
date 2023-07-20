@@ -70,7 +70,7 @@ public class UpdateArtistDto
     /// </summary>
     /// <example>junaid sultan</example>
     [JsonProperty("lastModifiedBy")]
-    public ObjectId? LastModifiedBy { get; set; }
+    public int? LastModifiedBy { get; set; }
 
     /// <summary>
     /// Artist lastModifiedDate
@@ -92,7 +92,7 @@ public class UpdateArtistDto
                            string? coverImageAddress,
                            string? instagram,
                            string? twitter,
-                           ObjectId? lastModifiedBy,
+                           int? lastModifiedBy,
                            DateTime? lastModifiedDate)
     {
         Username = username;
@@ -107,5 +107,4 @@ public class UpdateArtistDto
         LastModifiedBy = lastModifiedBy;
         LastModifiedDate = lastModifiedDate;
     }
-
 }

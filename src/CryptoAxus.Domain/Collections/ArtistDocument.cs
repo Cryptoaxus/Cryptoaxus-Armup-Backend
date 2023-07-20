@@ -44,9 +44,9 @@ public class ArtistDocument : BaseDocument
                           string coverImageAddress,
                           string instagram,
                           string twitter,
-                          ObjectId createdBy,
+                          int createdBy,
                           DateTime? lastModifiedDate = null,
-                          ObjectId? lastModifiedBy = null,
+                          int? lastModifiedBy = null,
                           bool isDeleted = false)
                           : base(id,
                                  createdBy,
@@ -64,7 +64,6 @@ public class ArtistDocument : BaseDocument
         CoverImageAddress = coverImageAddress;
         Instagram = instagram;
         Twitter = twitter;
-        CreatedBy = createdBy;
         LastModifiedDate = lastModifiedDate;
         LastModifiedBy = lastModifiedBy;
         IsDeleted = isDeleted;
