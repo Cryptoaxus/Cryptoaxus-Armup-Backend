@@ -9,13 +9,13 @@ public abstract class BaseDocument : IBaseDocument
     public DateTime CreatedDate { get; private set; } = DateTime.UtcNow;
 
     [BsonElement(elementName: "createdBy"), BsonRequired]
-    public int CreatedBy { get; set; }
+    public ObjectId CreatedBy { get; set; }
 
     [BsonElement(elementName: "lastModifiedDate")]
     public DateTime? LastModifiedDate { get; set; } = null;
 
     [BsonElement(elementName: "lastModifiedBy")]
-    public int? LastModifiedBy { get; set; } = null;
+    public ObjectId? LastModifiedBy { get; set; } = null;
 
     [BsonElement(elementName: "isDeleted")]
     public bool IsDeleted { get; set; } = false;
@@ -25,9 +25,9 @@ public abstract class BaseDocument : IBaseDocument
     }
 
     protected BaseDocument(ObjectId id,
-                           int createdBy,
+                           ObjectId createdBy,
                            DateTime? lastModifiedDate = null,
-                           int? lastModifiedBy = null,
+                           ObjectId? lastModifiedBy = null,
                            bool isDeleted = false)
                            => (Id, CreatedBy, LastModifiedDate, LastModifiedBy, IsDeleted)
                            = (id, createdBy, lastModifiedDate, lastModifiedBy, isDeleted);

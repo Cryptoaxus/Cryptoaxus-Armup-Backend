@@ -20,7 +20,7 @@ public class GetArtistByUserIdTestData
                                              "testCoverImageAddress",
                                              "instagramLink",
                                              "twitterLink",
-                                             50719);
+                                             ObjectId.GenerateNewId());
     }
 
     protected GetArtistByUserIdTestData SetupMockRepository()

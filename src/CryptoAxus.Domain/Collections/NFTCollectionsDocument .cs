@@ -48,9 +48,9 @@ public class NFTCollectionsDocument : BaseDocument
                                    string category,
                                    string collectionBlockChain,
                                    bool explicitContent,
-                                   int createdBy,
+                                   ObjectId createdBy,
                                    DateTime? lastModifiedDate = null,
-                                   int? lastModifiedBy = null,
+                                   ObjectId? lastModifiedBy = null,
                                    string? lastUpdated = null,
                                    bool isDeleted = false)
                                    : base(id,

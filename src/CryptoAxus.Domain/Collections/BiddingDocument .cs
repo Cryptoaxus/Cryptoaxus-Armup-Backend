@@ -32,9 +32,9 @@ public class BidingDocument : BaseDocument
                           string artistWalletAddress,
                           string fromWalletAddress,
                           bool highestBid,
-                          int createdBy,
+                          ObjectId createdBy,
                           DateTime? lastModifiedDate = null,
-                          int? lastModifiedBy = null,
+                          ObjectId? lastModifiedBy = null,
                           string? bidderUserName = null,
                           bool isDeleted = false)
                           : base(id,

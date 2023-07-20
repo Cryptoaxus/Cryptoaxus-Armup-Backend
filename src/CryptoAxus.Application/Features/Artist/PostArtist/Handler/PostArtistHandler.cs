@@ -14,11 +14,11 @@ public class PostArtistHandler : BaseHandler<PostArtistHandler>, IRequestHandler
     {
         ArgumentException.ThrowIfNullOrEmpty(request.Artist.ToString(), nameof(request.Artist));
 
-        bool artistExists = await _repository.Exists(x => x.UserId.Equals(request.Artist.UserWalletAddress),
+        bool artistExists = await _repository.Exists(x => x.UserId.Equals(request.Artist.UserId),
                                                      cancellationToken);
 
         if (artistExists)
-            return new PostArtistResponse(HttpStatusCode.Conflict, "Artist with same wallet address already exists",
+            return new PostArtistResponse(HttpStatusCode.Conflict, "Artist with same userId already exists",
                                           request.Artist.Adapt<ArtistDto>());
 
         ArtistDocument artistDocument = request.Artist.Adapt<ArtistDocument>();

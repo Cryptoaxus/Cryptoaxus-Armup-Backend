@@ -19,7 +19,7 @@ public class PatchArtistTestsData
                                             "testCoverImageAddress",
                                             "instagramLink",
                                             "twitterLink",
-                                            Id);
+                                            ObjectId.GenerateNewId());
     }
 
     protected PatchArtistTestsData SetupMockRepository()
