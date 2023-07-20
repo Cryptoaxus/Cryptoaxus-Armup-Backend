@@ -20,7 +20,7 @@ public class GetArtistByIdTestData
                                              "testCoverImageAddress",
                                              "instagramLink",
                                              "twitterLink",
-                                             "507f191e810c19729de860ea".ToObjectId());
+                                             50719);
     }
 
     protected GetArtistByIdTestData SetupMockRepository()

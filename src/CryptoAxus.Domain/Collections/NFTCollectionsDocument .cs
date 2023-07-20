@@ -13,7 +13,7 @@ public class NFTCollectionsDocument : BaseDocument
     public string CollectionBannerImageHash { get; set; }
 
     [BsonElement(elementName: "collectionName", Order = 5)]
-    public string  CollectionName { get; set; }
+    public string CollectionName { get; set; }
 
     [BsonElement(elementName: "artistWalletAddress", Order = 6)]
     public string ArtistWalletAddress { get; set; }
@@ -32,12 +32,12 @@ public class NFTCollectionsDocument : BaseDocument
 
     [BsonElement(elementName: "explicitContent", Order = 13)]
     public bool ExplicitContent { get; set; }
-   
-    public NFTCollectionsDocument () : base()
+
+    public NFTCollectionsDocument() : base()
     {
     }
-    
-    public NFTCollectionsDocument (ObjectId id,
+
+    public NFTCollectionsDocument(ObjectId id,
                                    string collectionLogoImageHash,
                                    string collectionFeaturedImageHash,
                                    string collectionBannerImageHash,
@@ -47,10 +47,10 @@ public class NFTCollectionsDocument : BaseDocument
                                    string description,
                                    string category,
                                    string collectionBlockChain,
-                                   bool explicitContent, 
-                                   ObjectId createdBy,
+                                   bool explicitContent,
+                                   int createdBy,
                                    DateTime? lastModifiedDate = null,
-                                   ObjectId? lastModifiedBy = null,
+                                   int? lastModifiedBy = null,
                                    string? lastUpdated = null,
                                    bool isDeleted = false)
                                    : base(id,

@@ -9,15 +9,15 @@ public static class ExceptionMiddlewareExtensions
             appError.Run(async context =>
             {
                 context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
-                context.Response.ContentType = "application/json";
+                context.Response.ContentType = Constants.ContentTypeJson;
 
                 var contextFeature = context.Features.Get<IExceptionHandlerFeature>();
-                if (contextFeature != null)
+                if (contextFeature is not null)
                 {
                     await context.Response.WriteAsync(new ApiException(null,
                                                                        "Internal Server Error from the custom middleware.",
-                                                                       null,
-                                                                       null,
+                                                                       string.Empty,
+                                                                       string.Empty,
                                                                        null).ToString() ?? string.Empty);
                 }
             });

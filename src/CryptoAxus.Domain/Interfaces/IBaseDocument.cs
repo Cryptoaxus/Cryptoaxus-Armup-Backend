@@ -8,11 +8,11 @@ public interface IBaseDocument
 
     DateTime CreatedDate { get; }
 
-    ObjectId CreatedBy { get; set; }
+    int CreatedBy { get; set; }
 
     public DateTime? LastModifiedDate { get; }
 
-    public ObjectId? LastModifiedBy { get; }
+    public int? LastModifiedBy { get; }
 
     public bool IsDeleted { get; }
 }

@@ -10,7 +10,7 @@ public class AuctionDocument : BaseDocument
     public string NftCopyId { get; set; }
 
     [BsonElement(elementName: "quantity", Order = 4)]
-    public int Quantity{ get; set; }
+    public int Quantity { get; set; }
 
     [BsonElement(elementName: "minimumBid", Order = 5)]
     public decimal MinimumBid { get; set; }
@@ -20,15 +20,15 @@ public class AuctionDocument : BaseDocument
 
     [BsonElement(elementName: "startingDateTime", Order = 7)]
     public DateTime StartingDateTime { get; set; }
-    
+
     [BsonElement(elementName: "endingDateTime", Order = 8)]
-    public DateTime EndingDateTime { get; set; } 
-    
+    public DateTime EndingDateTime { get; set; }
+
     public AuctionDocument() : base()
     {
     }
 
-    public AuctionDocument(ObjectId id, 
+    public AuctionDocument(ObjectId id,
                            string nftId,
                            string nftCopyId,
                            int quantity,
@@ -36,9 +36,9 @@ public class AuctionDocument : BaseDocument
                            bool softDelete,
                            DateTime startingDateTime,
                            DateTime endingDateTime,
-                           ObjectId createdBy,
+                           int createdBy,
                            DateTime? lastModifiedDate = null,
-                           ObjectId? lastModifiedBy = null,
+                           int? lastModifiedBy = null,
                            DateTime? deleted_at = null,
                            bool isDeleted = false)
                            : base(id,

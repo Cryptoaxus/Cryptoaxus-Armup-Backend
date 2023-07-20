@@ -60,9 +60,9 @@ public class NftDocument : BaseDocument
                        string blockChain,
                        int creatorEarnings,
                        string? signature,
-                       ObjectId createdBy,
+                       int createdBy,
                        DateTime? lastModifiedDate = null,
-                       ObjectId? lastModifiedBy = null,
+                       int? lastModifiedBy = null,
                        bool isDeleted = false) :
                        base(id,
                             createdBy,

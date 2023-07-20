@@ -1,7 +1,7 @@
 ﻿namespace CryptoAxus.Domain.Collections;
 
 [BsonCollection("AllEvent")]
-public class AllEventDocument: BaseDocument
+public class AllEventDocument : BaseDocument
 {
     [BsonElement(elementName: "nftId", Order = 2)]
     public string NftId { get; set; }
@@ -13,7 +13,7 @@ public class AllEventDocument: BaseDocument
     public string MintingContract { get; set; }
 
     [BsonElement(elementName: "walletAddress", Order = 5)]
-    public string WalletAddress { get; set; } 
+    public string WalletAddress { get; set; }
 
     [BsonElement(elementName: "tokenId", Order = 6)]
     public int TokenId { get; set; }
@@ -28,10 +28,10 @@ public class AllEventDocument: BaseDocument
     public string EventName { get; set; }
 
     [BsonElement(elementName: "buyer", Order = 10)]
-    public string? Buyer { get; set; } 
-    
+    public string? Buyer { get; set; }
+
     [BsonElement(elementName: "price", Order = 11)]
-    public decimal? Price{ get; set; }
+    public decimal? Price { get; set; }
 
     [BsonElement(elementName: "offerAmount", Order = 12)]
     public decimal? OfferAmount { get; set; }
@@ -40,16 +40,16 @@ public class AllEventDocument: BaseDocument
     public DateTime? ListedAt { get; set; }
 
     [BsonElement(elementName: "listingEndAt", Order = 14)]
-    public DateTime? ListingEndAt { get; set; } 
+    public DateTime? ListingEndAt { get; set; }
 
     [BsonElement(elementName: "canceledAt", Order = 15)]
-    public DateTime? CanceledAt { get; set; } 
+    public DateTime? CanceledAt { get; set; }
 
     [BsonElement(elementName: "soldAt", Order = 16)]
-    public DateTime? SoldAt{ get; set; } 
+    public DateTime? SoldAt { get; set; }
 
     [BsonElement(elementName: "isSold", Order = 17)]
-    public bool  IsSold { get; set; }
+    public bool IsSold { get; set; }
 
     [BsonElement(elementName: "accepted", Order = 18)]
     public bool Accepted { get; set; }
@@ -61,7 +61,7 @@ public class AllEventDocument: BaseDocument
     {
     }
 
-    public AllEventDocument(ObjectId id, 
+    public AllEventDocument(ObjectId id,
                             string nftId,
                             int marketTokenId,
                             string mintingContract,
@@ -71,9 +71,9 @@ public class AllEventDocument: BaseDocument
                             string seller,
                             string eventName,
                             bool isSold,
-                            bool accepted, 
+                            bool accepted,
                             bool rejected,
-                            ObjectId createdBy,
+                            int createdBy,
                             string? buyer = null,
                             DateTime? listingEndAt = null,
                             decimal? price = null,
@@ -83,7 +83,7 @@ public class AllEventDocument: BaseDocument
                             DateTime? canceledAt = null,
                             DateTime? soldAt = null,
                             DateTime? lastModifiedDate = null,
-                            ObjectId? lastModifiedBy = null)
+                            int? lastModifiedBy = null)
                             : base(id,
                                    createdBy,
                                    lastModifiedDate,
@@ -100,7 +100,7 @@ public class AllEventDocument: BaseDocument
         Seller = seller;
         EventName = eventName;
         Buyer = buyer;
-        Price= price;
+        Price = price;
         OfferAmount = offerAmount;
         ListedAt = listedAt;
         ListingEndAt = listingEndAt;
