@@ -1,4 +1,6 @@
-﻿namespace CryptoAxus.API.Controllers;
+﻿using CryptoAxus.Application.Features.NFT.GetNftById.Request;
+
+namespace CryptoAxus.API.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
@@ -8,7 +10,20 @@ public class NftController : BaseController<NftController>
     {
     }
 
-    [HttpPost(Name = "CreateNft", Order = 1)]
+    [HttpGet("{id:regex(^[[A-Za-z0-9]]*$):required}", Name = "GetNftById", Order = 1)]
+    public async Task<IActionResult> GetNftById([FromRoute] string id)
+    {
+        var response = await Mediator.Send(new GetNftByIdRequest(id));
+
+        return response.StatusCode switch
+        {
+            HttpStatusCode.OK => Ok(response),
+            HttpStatusCode.NotFound => NotFound(response),
+            _ => BadRequest(response)
+        };
+    }
+
+    [HttpPost(Name = "CreateNft", Order = 2)]
     public async Task<IActionResult> PostNft([FromBody] CreateNftDto nft,
                                              CancellationToken cancellationToken = default)
     {

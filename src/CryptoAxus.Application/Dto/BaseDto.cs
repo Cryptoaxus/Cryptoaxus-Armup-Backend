@@ -2,7 +2,7 @@
 
 public abstract class BaseDto
 {
-    public ObjectId? Id { get; private init; }
+    public ObjectId? Id { get; set; }
 
     public DateTime? CreatedDate { get; set; }
 
