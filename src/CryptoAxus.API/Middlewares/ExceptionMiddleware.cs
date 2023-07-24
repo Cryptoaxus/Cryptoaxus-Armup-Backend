@@ -23,17 +23,19 @@ public class ExceptionMiddleware
         }
     }
 
-    private async Task<Task> HandleExceptionAsync(HttpContext httpContext, Exception exception, ILogger logger)
+    private Task HandleExceptionAsync(HttpContext httpContext, Exception exception, ILogger logger)
     {
-        httpContext.Response.ContentType = "application/json";
+        httpContext.Response.ContentType = Constants.ContentTypeJson;
 
         httpContext.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
 
-        var response = new BaseResponse<object>(HttpStatusCode.InternalServerError, "InternalServerError", null)
-        {
-            ApiException = new ApiException(null, "Internal Server Error Occurred", exception.Message,
-                                            exception.InnerException?.Message!, exception.HelpLink)
-        };
+        var response = new BaseResponse<object>(HttpStatusCode.InternalServerError, "Internal Server Error", null);
+
+        response.ApiException = new ApiException(null,
+                                                 "Internal Server Error Occurred",
+                                                 exception.Message,
+                                                 exception.InnerException?.Message!,
+                                                 exception.HelpLink);
 
         logger.Error(exception, exception.Message);
 
