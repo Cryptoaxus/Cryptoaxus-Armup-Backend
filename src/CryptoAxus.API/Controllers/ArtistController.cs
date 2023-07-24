@@ -90,7 +90,7 @@ public class ArtistController : BaseController<ArtistController>
         var response = await Mediator.Send(new PostArtistRequest(artist));
 
         if (response.StatusCode == HttpStatusCode.Conflict)
-            return BadRequest(response);
+            return Conflict(response);
         return CreatedAtRoute("GetArtistById", new { id = response.Result?.Id }, response);
     }
 
