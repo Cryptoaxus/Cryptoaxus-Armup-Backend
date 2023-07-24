@@ -70,7 +70,7 @@ public class CreateArtistDto
     /// </summary>
     /// <example>648cb3a86180aab54f00c3fc</example>
     [JsonProperty("createdBy")]
-    public ObjectId? CreatedBy { get; set; }
+    public string? CreatedBy { get; set; }
 
     public CreateArtistDto()
     {
@@ -85,7 +85,7 @@ public class CreateArtistDto
                            string? coverImageAddress,
                            string? instagram,
                            string? twitter,
-                           ObjectId? createdBy)
+                           string? createdBy)
     {
         Username = username;
         Email = email;
