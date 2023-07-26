@@ -265,7 +265,7 @@ public class ArtistController : BaseController<ArtistController>
                              Constants.SelfRel,
                              Constants.GetMethod);
             link.Href = link.Href?.Replace(Constants.ApiValue,
-                                           $"{HttpContext?.Request.Scheme}://{HttpContext?.Request.Host}{Constants.ApiValue}");
+                                           $"{Request.Scheme}://{Request.Host}{Constants.ApiValue}");
             links.Add(link);
         }
         else
@@ -274,7 +274,7 @@ public class ArtistController : BaseController<ArtistController>
                              Constants.SelfRel,
                              Constants.GetMethod);
             link.Href = link.Href?.Replace(Constants.ApiValue,
-                                           $"{HttpContext?.Request.Scheme}://{HttpContext?.Request.Host}{Constants.ApiValue}");
+                                           $"{Request.Scheme}://{Request.Host}{Constants.ApiValue}");
             links.Add(link);
         }
 
@@ -282,28 +282,28 @@ public class ArtistController : BaseController<ArtistController>
                          "delete",
                          Constants.DeleteMethod);
         link.Href = link.Href?.Replace(Constants.ApiValue,
-                                       $"{HttpContext?.Request.Scheme}://{HttpContext?.Request.Host}{Constants.ApiValue}");
+                                       $"{Request.Scheme}://{Request.Host}{Constants.ApiValue}");
         links.Add(link);
 
         link = new Links(Url.RouteUrl("GetArtistByWalletAddress", new { userId }),
                          "get_userWalletAddress",
                          Constants.GetMethod);
         link.Href = link.Href?.Replace(Constants.ApiValue,
-                                       $"{HttpContext?.Request.Scheme}://{HttpContext?.Request.Host}{Constants.ApiValue}");
+                                       $"{Request.Scheme}://{Request.Host}{Constants.ApiValue}");
         links.Add(link);
 
         link = new Links(Url.RouteUrl("PatchArtist", new { userId }),
                          "patch_artist",
                          Constants.PatchMethod);
         link.Href = link.Href?.Replace(Constants.ApiValue,
-                                       $"{HttpContext?.Request.Scheme}://{HttpContext?.Request.Host}{Constants.ApiValue}");
+                                       $"{Request.Scheme}://{Request.Host}{Constants.ApiValue}");
         links.Add(link);
 
         link = new Links(Url.RouteUrl("GetOffersReceivedByArtist", new { userId }),
                          "get_offersReceivedByArtist",
                          Constants.GetMethod);
         link.Href = link.Href?.Replace(Constants.ApiValue,
-                                       $"{HttpContext?.Request.Scheme}://{HttpContext?.Request.Host}{Constants.ApiValue}");
+                                       $"{Request.Scheme}://{Request.Host}{Constants.ApiValue}");
         links.Add(link);
         return links.AsReadOnly();
     }
@@ -318,7 +318,7 @@ public class ArtistController : BaseController<ArtistController>
                              Constants.SelfRel,
                              Constants.GetMethod);
             link.Href = link.Href?.Replace(Constants.ApiValue,
-                                           $"{HttpContext?.Request.Scheme}://{HttpContext?.Request.Host}{Constants.ApiValue}");
+                                           $"{Request.Scheme}://{Request.Host}{Constants.ApiValue}");
             links.Add(link);
         }
         else
@@ -327,7 +327,7 @@ public class ArtistController : BaseController<ArtistController>
                              Constants.SelfRel,
                              Constants.GetMethod);
             link.Href = link.Href?.Replace(Constants.ApiValue,
-                                           $"{HttpContext?.Request.Scheme}://{HttpContext?.Request.Host}{Constants.ApiValue}");
+                                           $"{Request.Scheme}://{Request.Host}{Constants.ApiValue}");
             links.Add(link);
         }
 
@@ -335,14 +335,14 @@ public class ArtistController : BaseController<ArtistController>
                          "patch_offer",
                          Constants.PatchMethod);
         link.Href = link.Href?.Replace(Constants.ApiValue,
-                                       $"{HttpContext?.Request.Scheme}://{HttpContext?.Request.Host}{Constants.ApiValue}");
+                                       $"{Request.Scheme}://{Request.Host}{Constants.ApiValue}");
         links.Add(link);
 
         link = new Links(href: Url.RouteUrl("DeleteOfferById", new { id }),
                          "delete",
                          Constants.DeleteMethod);
         link.Href = link.Href?.Replace(Constants.ApiValue,
-                                       $"{HttpContext?.Request.Scheme}://{HttpContext?.Request.Host}{Constants.ApiValue}");
+                                       $"{Request.Scheme}://{Request.Host}{Constants.ApiValue}");
         links.Add(link);
 
         return links.AsReadOnly();

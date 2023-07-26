@@ -69,11 +69,8 @@ public class Repository<TDocument> : IRepository<TDocument> where TDocument : IB
 
     public Task<TDocument> FindByIdAsync(ObjectId id)
     {
-        return Task.Run(function: () =>
-        {
-            var filter = Builders<TDocument>.Filter.Eq(field: doc => doc.Id, value: id);
-            return _collection.Find(filter: filter).SingleOrDefaultAsync();
-        });
+        var filter = Builders<TDocument>.Filter.Eq(field: doc => doc.Id, value: id);
+        return _collection.Find(filter: filter).SingleOrDefaultAsync();
     }
 
     public void InsertOne(TDocument document)

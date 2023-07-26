@@ -24,6 +24,8 @@ global using CryptoAxus.Application.Features.Artist.PatchArtist.Request;
 global using CryptoAxus.Application.Features.Artist.PatchArtist.Response;
 global using CryptoAxus.Application.Features.Artist.PostArtist.Request;
 global using CryptoAxus.Application.Features.Artist.PostArtist.Response;
+global using CryptoAxus.Application.Features.NFT.GetNftById.Request;
+global using CryptoAxus.Application.Features.NFT.GetNftById.Response;
 global using CryptoAxus.Application.Features.NFT.PostNft.Request;
 global using CryptoAxus.Application.Features.NFT.PostNft.Validation;
 global using CryptoAxus.Common;
