@@ -2,13 +2,12 @@
 
 public class PatchArtistRequest : IRequest<PatchArtistResponse>
 {
-    [JsonProperty("userId", Required = Required.Always)]
-    public int UserId { get; set; }
+    internal int? UserId { get; set; }
 
     [JsonProperty("artist")]
     public JsonPatchDocument<UpdateArtistDto> ArtistDto { get; set; }
 
-    public PatchArtistRequest(int userId, JsonPatchDocument<UpdateArtistDto> artist) =>
+    public PatchArtistRequest(int? userId, JsonPatchDocument<UpdateArtistDto> artist) =>
                              (UserId, ArtistDto) = (userId, artist);
 
 }
