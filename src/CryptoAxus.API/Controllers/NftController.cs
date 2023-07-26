@@ -1,26 +1,54 @@
-﻿using CryptoAxus.Application.Features.NFT.GetNftById.Request;
+﻿namespace CryptoAxus.API.Controllers;
 
-namespace CryptoAxus.API.Controllers;
-
-[Route("api/[controller]")]
-[ApiController]
+[ApiVersion("1.0")]
+[Produces(contentType: Constants.ContentTypeJson, Constants.ContentTypeJsonHateoas,
+             Constants.ContentTypeTextPlain,
+             Constants.ContentTypeTextJson)]
 public class NftController : BaseController<NftController>
 {
     public NftController(IMediator mediator, ILogger<NftController> logger) : base(mediator, logger)
     {
     }
 
+    /// <summary>
+    /// Returns the nft searched by id
+    /// </summary>
+    /// <param name="id" example="507f191e810c19729de860ea"></param>
+    /// <param name="fields" example="id, name, url"></param>
+    /// <param name="mediaType" example="application/json"></param>
+    /// <returns></returns>
     [HttpGet("{id:regex(^[[A-Za-z0-9]]*$):required}", Name = "GetNftById", Order = 1)]
-    public async Task<IActionResult> GetNftById([FromRoute] string id)
+    [RequiresParameter(Name = "id", Required = true, Source = OpenApiParameterLocation.Path, Type = typeof(string))]
+    [RequiresParameter(Name = "fields", Required = false, Source = OpenApiParameterLocation.Query, Type = typeof(string))]
+    [RequiresParameter(Name = "mediaType", Required = true, Source = OpenApiParameterLocation.Header, Type = typeof(string))]
+    //[SwaggerRequestExample(typeof(GetNftByIdRequest), typeof(GetNftByIdRequestExample))]
+    [ProducesResponseType(typeof(GetNftByIdResponse), (int)HttpStatusCode.OK)]
+    [ProducesResponseType(typeof(NotFoundGetNftByIdResponse), (int)HttpStatusCode.NotFound)]
+    [ProducesResponseType(typeof(BadRequestGetNftByIdResponse), (int)HttpStatusCode.BadRequest)]
+    public async Task<IActionResult> GetNftById([FromRoute] string id,
+                                                [FromQuery] string? fields,
+                                                [FromHeader(Name = "Accept")] string mediaType)
     {
+        if (!MediaTypeHeaderValue.TryParse(mediaType, out MediaTypeHeaderValue? parsedMediaType))
+            return BadRequest(new BaseResponse<ExpandoObject>(HttpStatusCode.BadRequest,
+                                                              Messages.BadRequest,
+                                                              new List<string> { Messages.InvalidMediaType }));
+
         var response = await Mediator.Send(new GetNftByIdRequest(id));
 
-        return response.StatusCode switch
-        {
-            HttpStatusCode.OK => Ok(response),
-            HttpStatusCode.NotFound => NotFound(response),
-            _ => BadRequest(response)
-        };
+        if (response.StatusCode.Equals(HttpStatusCode.NotFound))
+            return NotFound(response);
+
+        if (response.StatusCode.Equals(HttpStatusCode.OK) && response.Result is not null &&
+            parsedMediaType.MediaType.Value!.Contains(Constants.VndApiHateoas))
+            response.Links = CreateNftLinks(id: id, fields: fields);
+
+        BaseResponse<ExpandoObject> shapedResponse = new BaseResponse<ExpandoObject>(response.StatusCode,
+                 response.Message,
+                 response.Result?.ShapeData(fields ?? string.Empty))
+        { Links = response.Links };
+
+        return Ok(shapedResponse);
     }
 
     [HttpPost(Name = "CreateNft", Order = 2)]
@@ -36,4 +64,38 @@ public class NftController : BaseController<NftController>
             _ => BadRequest(response)
         };
     }
+
+    #region Links Helper Region
+
+    private IReadOnlyList<Links> CreateNftLinks(string? id = null, string fields = "")
+    {
+        Links link;
+        List<Links> links = new List<Links>();
+        if (!string.IsNullOrWhiteSpace(fields))
+        {
+            link = new Links(Url.RouteUrl("GetNftById", new { id, fields }),
+                             Constants.SelfRel,
+                             Constants.GetMethod);
+            link.Href = link.Href?.Replace(Constants.ApiValue,
+                                           $"{Request.Scheme}://{Request.Host}{Constants.ApiValue}");
+            links.Add(link);
+        }
+        else
+        {
+            link = new Links(Url.RouteUrl("GetNftById", new { id }),
+                             Constants.SelfRel,
+                             Constants.GetMethod);
+            link.Href = link.Href?.Replace(Constants.ApiValue,
+                                           $"{Request.Scheme}://{Request.Host}{Constants.ApiValue}");
+            links.Add(link);
+        }
+
+        link = new Links(Url.RouteUrl("PostNft"), "post_nft", Constants.PostMethod);
+        link.Href = link.Href?.Replace(Constants.ApiValue,
+                                       $"{Request.Scheme}://{Request.Host}{Constants.ApiValue}");
+        links.Add(link);
+        return links.AsReadOnly();
+    }
+
+    #endregion
 }

@@ -40,6 +40,6 @@ public class PatchArtistRequestExample : IExamplesProvider<PatchArtistRequest>
             value = "tom@gmail.com"
         });
 
-        return new PatchArtistRequest(5133, patchDocument);
+        return new PatchArtistRequest(null, patchDocument);
     }
 }

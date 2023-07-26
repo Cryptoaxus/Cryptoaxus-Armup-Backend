@@ -34,13 +34,19 @@ public class NftDocument : BaseDocument
     public string Collection { get; set; }
 
     [BsonElement(elementName: "collectionId", Order = 12)]
-    public string CollectionId { get; set; }
+    public ObjectId CollectionId { get; set; }
 
     [BsonElement(elementName: "blockChain", Order = 13)]
     public string BlockChain { get; set; }
 
     [BsonElement(elementName: "creatorEarnings", Order = 14)]
     public int CreatorEarnings { get; set; }
+
+    [BsonElement(elementName: "favorites", Order = 15)]
+    public List<string>? Favorites { get; set; }
+
+    [BsonElement(elementName: "likes", Order = 16)]
+    public List<string>? Likes { get; set; }
 
     public NftDocument() : base()
     {
@@ -56,7 +62,7 @@ public class NftDocument : BaseDocument
                        string url,
                        string description,
                        string collection,
-                       string collectionId,
+                       ObjectId collectionId,
                        string blockChain,
                        int creatorEarnings,
                        string? signature,

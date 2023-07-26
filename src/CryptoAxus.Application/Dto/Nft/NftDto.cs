@@ -28,6 +28,10 @@ public class NftDto : BaseDto
 
     public int? CreatorEarnings { get; set; }
 
+    public List<string>? Favorites { get; set; }
+
+    public List<string>? Likes { get; set; }
+
     public NftDto() : base()
     {
     }
