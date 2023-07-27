@@ -7,6 +7,7 @@ public static class ObjectExtensions
         ArgumentNullException.ThrowIfNull(argument: source, paramName: nameof(source));
 
         ExpandoObject dataShapedObject = new ExpandoObject();
+
         if (string.IsNullOrWhiteSpace(value: fields))
         {
             // All public properties should be in the ExpandoObject 
