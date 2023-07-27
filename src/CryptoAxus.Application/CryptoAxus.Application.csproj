@@ -23,6 +23,9 @@
     <Folder Include="Features\Artist\GetOffersMadeByArtist\Handler\" />
     <Folder Include="Features\Artist\PostArtist\Handler\" />
     <Folder Include="Features\Artist\PostArtist\Request\" />
+    <Folder Include="Features\NFT\DeleteNftById\Handler\" />
+    <Folder Include="Features\NFT\DeleteNftById\Response\" />
+    <Folder Include="Features\NFT\DeleteNftById\Request\" />
     <Folder Include="Features\NFT\GetAllNft\Handler\" />
     <Folder Include="Features\NFT\GetAllNft\Response\" />
     <Folder Include="Features\NFT\GetNftById\Handler\" />
