@@ -1,4 +1,7 @@
-﻿namespace CryptoAxus.API.Controllers;
+﻿using CryptoAxus.Application.Features.NFT.GetAllNft.Request;
+using CryptoAxus.Application.Features.NFT.GetAllNft.Response;
+
+namespace CryptoAxus.API.Controllers;
 
 [ApiVersion("1.0")]
 [Produces(contentType: Constants.ContentTypeJson, Constants.ContentTypeJsonHateoas,
@@ -44,9 +47,44 @@ public class NftController : BaseController<NftController>
             response.Links = CreateNftLinks(id: id, fields: fields);
 
         BaseResponse<ExpandoObject> shapedResponse = new BaseResponse<ExpandoObject>(response.StatusCode,
-                 response.Message,
-                 response.Result?.ShapeData(fields ?? string.Empty))
+                                                                                     response.Message,
+                                                                                     response.Result?.ShapeData(fields ?? string.Empty))
         { Links = response.Links };
+
+        return Ok(shapedResponse);
+    }
+
+    /// <summary>
+    /// Returns the list of nft with pagination data
+    /// </summary>
+    /// <param name="paginationParameters"></param>
+    /// <param name="mediaType"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    [HttpGet(Name = "GetAllNft")]
+    [RequiresParameter(Name = "paginationParameters", Required = true, Source = OpenApiParameterLocation.Query, Type = typeof(PaginationParameters))]
+    [RequiresParameter(Name = "mediaType", Required = true, Source = OpenApiParameterLocation.Header, Type = typeof(string))]
+    [ProducesResponseType(typeof(GetAllNftResponse), (int)HttpStatusCode.OK)]
+    [ProducesResponseType(typeof(NotFoundGetAllNftResponse), (int)HttpStatusCode.NotFound)]
+    [ProducesResponseType(typeof(BadRequestGetAllNftResponse), (int)HttpStatusCode.BadRequest)]
+    [ResponseCache(CacheProfileName = "300SecondsCacheProfile")]
+    public async Task<IActionResult> GetAllNft([FromQuery] PaginationParameters paginationParameters,
+                                               [FromHeader(Name = "Accept")] string mediaType,
+                                               CancellationToken cancellationToken = default)
+    {
+        if (!MediaTypeHeaderValue.TryParse(mediaType, out MediaTypeHeaderValue? parsedMediaType))
+            return BadRequest(new BadRequestGetAllNftResponse());
+
+        var response = await Mediator.Send(new GetAllNftRequest(paginationParameters), cancellationToken);
+
+        if (response.StatusCode.Equals(HttpStatusCode.NotFound))
+            return NotFound(new NotFoundGetAllNftResponse());
+
+        PaginationResponse<List<ExpandoObject>> shapedResponse =
+                new PaginationResponse<List<ExpandoObject>>(response.StatusCode,
+                                                            response.Message,
+                                                            response.Result?.ShapeData(paginationParameters.Fields ?? string.Empty),
+                                                            response.PaginationData);
 
         return Ok(shapedResponse);
     }

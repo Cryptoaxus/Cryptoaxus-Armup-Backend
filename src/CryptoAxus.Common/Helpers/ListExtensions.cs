@@ -1,8 +1,8 @@
 ﻿namespace CryptoAxus.Common.Helpers;
 
-public static class IEnumerableExtensions
+public static class ListExtensions
 {
-    public static IEnumerable<ExpandoObject> ShapeData<TSource>(this IEnumerable<TSource> source, string? fields)
+    public static List<ExpandoObject> ShapeData<TSource>(this List<TSource> source, string? fields)
     {
         ArgumentNullException.ThrowIfNull(argument: source, paramName: nameof(source));
 

@@ -12,13 +12,13 @@ public abstract class BaseDocument : IBaseDocument
     public ObjectId CreatedBy { get; set; }
 
     [BsonElement(elementName: "lastModifiedDate")]
-    public DateTime? LastModifiedDate { get; set; } = null;
+    public DateTime? LastModifiedDate { get; set; }
 
     [BsonElement(elementName: "lastModifiedBy")]
-    public ObjectId? LastModifiedBy { get; set; } = null;
+    public ObjectId? LastModifiedBy { get; set; }
 
     [BsonElement(elementName: "isDeleted")]
-    public bool IsDeleted { get; set; } = false;
+    public bool IsDeleted { get; set; }
 
     protected BaseDocument()
     {

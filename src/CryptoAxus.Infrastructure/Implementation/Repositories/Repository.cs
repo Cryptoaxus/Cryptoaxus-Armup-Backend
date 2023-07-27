@@ -33,13 +33,13 @@ public class Repository<TDocument> : IRepository<TDocument> where TDocument : IB
                                           CancellationToken cancellationToken = default)
     {
         if (pageNumber is not null && pageSize is not null)
-            return Task.Run(function: () => _collection.Find(filterExpression)
-                                                       .Skip((pageNumber - 1) * pageSize)
-                                                       .Limit(pageSize)
-                                                       .ToListAsync());
+            return _collection.Find(filterExpression)
+                              .Skip((pageNumber - 1) * pageSize)
+                              .Limit(pageSize)
+                              .ToListAsync(cancellationToken);
 
-        return Task.Run(function: () => _collection.Find(filterExpression)
-                                                   .ToListAsync());
+        return _collection.Find(filterExpression)
+                          .ToListAsync(cancellationToken);
     }
 
     public IEnumerable<TProjected> FilterBy<TProjected>(Expression<Func<TDocument, bool>> filterExpression,
