@@ -37,6 +37,8 @@ global using Swashbuckle.AspNetCore.Filters;
 global using System.Linq.Expressions;
 global using System.Net;
 global using System.Reflection;
+global using CryptoAxus.Application.Features.NFT.DeleteNftById.Request;
+global using CryptoAxus.Application.Features.NFT.DeleteNftById.Response;
 global using CryptoAxus.Application.Features.NFT.GetAllNft.Request;
 global using CryptoAxus.Application.Features.NFT.GetAllNft.Response;
 global using CryptoAxus.Application.Features.NFT.GetNftById.Request;

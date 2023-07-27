@@ -1,5 +1,8 @@
-﻿using CryptoAxus.Application.Features.NFT.GetAllNft.Request;
+﻿using CryptoAxus.Application.Features.NFT.DeleteNftById.Request;
+using CryptoAxus.Application.Features.NFT.DeleteNftById.Response;
+using CryptoAxus.Application.Features.NFT.GetAllNft.Request;
 using CryptoAxus.Application.Features.NFT.GetAllNft.Response;
+using CryptoAxus.Application.Features.NFT.PostNft.Response;
 
 namespace CryptoAxus.API.Controllers;
 
@@ -19,6 +22,9 @@ public class NftController : BaseController<NftController>
     /// <param name="id" example="507f191e810c19729de860ea"></param>
     /// <param name="fields" example="id, name, url"></param>
     /// <param name="mediaType" example="application/json"></param>
+    /// <response code="200">Success response with 200 code and information message</response>
+    /// <response code="404">Not Found response with 404 code and information message</response>
+    /// <response code="400">Bad Request response with 400 code and information message</response>
     /// <returns></returns>
     [HttpGet("{id:regex(^[[A-Za-z0-9]]*$):required}", Name = "GetNftById", Order = 1)]
     [RequiresParameter(Name = "id", Required = true, Source = OpenApiParameterLocation.Path, Type = typeof(string))]
@@ -58,10 +64,13 @@ public class NftController : BaseController<NftController>
     /// Returns the list of nft with pagination data
     /// </summary>
     /// <param name="paginationParameters"></param>
-    /// <param name="mediaType"></param>
+    /// <param name="mediaType" example="application/json"></param>
     /// <param name="cancellationToken"></param>
+    /// <response code="200">Success response with 200 code and information message</response>
+    /// <response code="404">Not Found response with 404 code and information message</response>
+    /// <response code="400">Bad Request response with 400 code and information message</response>
     /// <returns></returns>
-    [HttpGet(Name = "GetAllNft")]
+    [HttpGet(Name = "GetAllNft", Order = 2)]
     [RequiresParameter(Name = "paginationParameters", Required = true, Source = OpenApiParameterLocation.Query, Type = typeof(PaginationParameters))]
     [RequiresParameter(Name = "mediaType", Required = true, Source = OpenApiParameterLocation.Header, Type = typeof(string))]
     [ProducesResponseType(typeof(GetAllNftResponse), (int)HttpStatusCode.OK)]
@@ -89,7 +98,21 @@ public class NftController : BaseController<NftController>
         return Ok(shapedResponse);
     }
 
-    [HttpPost(Name = "CreateNft", Order = 2)]
+    /// <summary>
+    /// Creates new nft in the system
+    /// </summary>
+    /// <param name="nft"></param>
+    /// <param name="cancellationToken"></param>
+    /// <response code="200">Success response with 200 code and information message</response>
+    /// <response code="409">Conflict response with 409 code and information message</response>
+    /// <response code="400">Bad Request response with 400 code and information message</response>
+    /// <returns></returns>
+    [HttpPost(Name = "CreateNft", Order = 3)]
+    [RequiresParameter(Name = "nft", Required = true, Source = OpenApiParameterLocation.Body, Type = typeof(CreateNftDto))]
+    [SwaggerRequestExample(typeof(PostNftResponse), typeof(PostNftResponseExample))]
+    [ProducesResponseType(typeof(PostNftResponse), (int)HttpStatusCode.Created)]
+    [ProducesResponseType(typeof(ConflictPostNftResponse), (int)HttpStatusCode.Conflict)]
+    [ProducesResponseType(typeof(BadRequestPostNftResponse), (int)HttpStatusCode.BadRequest)]
     public async Task<IActionResult> PostNft([FromBody] CreateNftDto nft,
                                              CancellationToken cancellationToken = default)
     {
@@ -99,6 +122,32 @@ public class NftController : BaseController<NftController>
         {
             HttpStatusCode.Conflict => Conflict(response),
             HttpStatusCode.Created => CreatedAtRoute("GetOfferById", new { id = response.Result?.Id }, response),
+            _ => BadRequest(response)
+        };
+    }
+
+    /// <summary>
+    /// Deletes Nft by id
+    /// </summary>
+    /// <param name="id" example="507f191e810c19729de860ea"></param>
+    /// <param name="cancellationToken"></param>
+    /// <response code="200">Success response with 200 code and information message about delete</response>
+    /// <response code="404">Not Found response with 404 code and information message</response>
+    /// <response code="400">Bad Request response with 400 code and information message</response>
+    /// <returns></returns>
+    [HttpDelete("{id:regex(^[[A-Za-z0-9]]*$):required}", Name = "DeleteNftById", Order = 4)]
+    [RequiresParameter(Name = "id", Required = true, Source = OpenApiParameterLocation.Path, Type = typeof(string))]
+    [ProducesResponseType(typeof(DeleteNftByIdResponse), (int)HttpStatusCode.NoContent)]
+    [ProducesResponseType(typeof(NotFoundDeleteNftByIdResponse), (int)HttpStatusCode.NotFound)]
+    [ProducesResponseType(typeof(BadRequestDeleteNftByIdResponse), (int)HttpStatusCode.BadRequest)]
+    public async Task<IActionResult> DeleteNftById([FromRoute] string id, CancellationToken cancellationToken = default)
+    {
+        var response = await Mediator.Send(new DeleteNftByIdRequest(id), cancellationToken);
+
+        return response.StatusCode switch
+        {
+            HttpStatusCode.NoContent => Ok(response),
+            HttpStatusCode.NotFound => NotFound(response),
             _ => BadRequest(response)
         };
     }
