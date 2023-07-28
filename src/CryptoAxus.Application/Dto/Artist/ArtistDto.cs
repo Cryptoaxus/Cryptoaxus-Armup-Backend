@@ -1,4 +1,4 @@
-﻿namespace CryptoAxus.Application.Dto;
+﻿namespace CryptoAxus.Application.Dto.Artist;
 
 public class ArtistDto : BaseDto
 {

@@ -1,4 +1,6 @@
-﻿namespace CryptoAxus.API.Controllers;
+﻿using CryptoAxus.Application.Dto.Artist;
+
+namespace CryptoAxus.API.Controllers;
 
 [ApiVersion("1.0")]
 [Produces(contentType: Constants.ContentTypeJson, Constants.ContentTypeJsonHateoas,

@@ -31,4 +31,5 @@ global using Moq;
 global using Shouldly;
 global using System.Linq.Expressions;
 global using System.Net;
+global using CryptoAxus.Application.Dto.Artist;
 global using Xunit;

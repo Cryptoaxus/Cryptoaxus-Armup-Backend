@@ -1,8 +1,8 @@
 ﻿namespace CryptoAxus.Application.Features.Artist.GetArtistById.Response;
 
-public class NotFoundGetArtistByIdResponseExample : IOpenApiExampleProvider<NotFoundGetArtistByIdResponse>
+public class NotFoundGetArtistByIdResponseExample : IExamplesProvider<NotFoundGetArtistByIdResponse>
 {
-    public object Example()
+    public NotFoundGetArtistByIdResponse GetExamples()
     {
         return new NotFoundGetArtistByIdResponse()
         {
