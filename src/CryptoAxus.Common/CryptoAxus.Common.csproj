@@ -9,7 +9,6 @@
   <ItemGroup>
     <Folder Include="Helpers\" />
     <Folder Include="Constants\" />
-    <Folder Include="Interfaces\" />
     <Folder Include="Contracts\" />
     <Folder Include="Attributes\" />
     <Folder Include="Response\" />

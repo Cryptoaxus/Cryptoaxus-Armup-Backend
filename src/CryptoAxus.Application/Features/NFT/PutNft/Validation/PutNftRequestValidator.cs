@@ -1,8 +1,8 @@
-﻿namespace CryptoAxus.Application.Features.NFT.PostNft.Validation;
+﻿namespace CryptoAxus.Application.Features.NFT.PutNft.Validation;
 
-public class PostNftRequestValidator : AbstractValidator<CreateNftDto>
+public class PutNftRequestValidator : AbstractValidator<UpdateNftDto>
 {
-    public PostNftRequestValidator()
+    public PutNftRequestValidator()
     {
         RuleFor(x => x.ContractAddress)
                .NotEmpty()
@@ -91,5 +91,11 @@ public class PostNftRequestValidator : AbstractValidator<CreateNftDto>
                .WithMessage("{PropertyName} can not be null.")
                .GreaterThan(0)
                .WithMessage("{PropertyName} should be greater than 0.");
+
+        RuleFor(x => x.LastUpdatedBy)
+               .NotNull()
+               .WithMessage("{PropertyName} can not be null.")
+               .NotEmpty()
+               .WithMessage("{PropertyName} can not be empty.");
     }
 }

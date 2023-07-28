@@ -18,6 +18,8 @@ public static class StringExtensions
 
     public static ObjectId ToObjectId(this string? value)
     {
-        return new ObjectId(value);
+        if (!string.IsNullOrEmpty(value))
+            return new ObjectId(value);
+        return new ObjectId();
     }
 }

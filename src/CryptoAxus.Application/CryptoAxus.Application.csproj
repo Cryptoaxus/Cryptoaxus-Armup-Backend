@@ -33,6 +33,10 @@
     <Folder Include="Features\NFT\PostNft\Handler\" />
     <Folder Include="Features\NFT\PostNft\Validation\" />
     <Folder Include="Features\NFT\PostNft\Request\" />
+    <Folder Include="Features\NFT\PutNft\Handler\" />
+    <Folder Include="Features\NFT\PutNft\Validation\" />
+    <Folder Include="Features\NFT\PutNft\Response\" />
+    <Folder Include="Features\NFT\PutNft\Request\" />
   </ItemGroup>
 
   <ItemGroup>

@@ -1,8 +1,5 @@
-﻿using CryptoAxus.Application.Features.NFT.DeleteNftById.Request;
-using CryptoAxus.Application.Features.NFT.DeleteNftById.Response;
-using CryptoAxus.Application.Features.NFT.GetAllNft.Request;
-using CryptoAxus.Application.Features.NFT.GetAllNft.Response;
-using CryptoAxus.Application.Features.NFT.PostNft.Response;
+﻿using CryptoAxus.Application.Features.NFT.PutNft.Request;
+using CryptoAxus.Application.Features.NFT.PutNft.Response;
 
 namespace CryptoAxus.API.Controllers;
 
@@ -109,7 +106,6 @@ public class NftController : BaseController<NftController>
     /// <returns></returns>
     [HttpPost(Name = "CreateNft", Order = 3)]
     [RequiresParameter(Name = "nft", Required = true, Source = OpenApiParameterLocation.Body, Type = typeof(CreateNftDto))]
-    [SwaggerRequestExample(typeof(PostNftResponse), typeof(PostNftResponseExample))]
     [ProducesResponseType(typeof(PostNftResponse), (int)HttpStatusCode.Created)]
     [ProducesResponseType(typeof(ConflictPostNftResponse), (int)HttpStatusCode.Conflict)]
     [ProducesResponseType(typeof(BadRequestPostNftResponse), (int)HttpStatusCode.BadRequest)]
@@ -143,6 +139,38 @@ public class NftController : BaseController<NftController>
     public async Task<IActionResult> DeleteNftById([FromRoute] string id, CancellationToken cancellationToken = default)
     {
         var response = await Mediator.Send(new DeleteNftByIdRequest(id), cancellationToken);
+
+        return response.StatusCode switch
+        {
+            HttpStatusCode.NoContent => Ok(response),
+            HttpStatusCode.NotFound => NotFound(response),
+            _ => BadRequest(response)
+        };
+    }
+
+    /// <summary>
+    /// Updates Nft by id
+    /// </summary>
+    /// <param name="id" example="507f191e810c19729de860ea"></param>
+    /// <param name="dto"></param>
+    /// <param name="cancellationToken"></param>
+    /// <response code="200">Success response with 200 code and information message about update</response>
+    /// <response code="404">Not Found response with 404 code and information message</response>
+    /// <response code="400">Bad Request response with 400 code and information message</response>
+    /// <returns></returns>
+    [HttpPut("{id:regex(^[[A-Za-z0-9]]*$):required}", Name = "PutNftById", Order = 5)]
+    [RequiresParameter(Name = "id", Required = true, Source = OpenApiParameterLocation.Path, Type = typeof(string))]
+    [RequiresParameter(Name = "dto", Required = true, Source = OpenApiParameterLocation.Body, Type = typeof(UpdateNftDto))]
+    [SwaggerRequestExample(typeof(PutNftRequest), typeof(PutNftRequestExample))]
+    //[SwaggerRequestExample(typeof(PutNftRequest), typeof(PutNftRequestExample))]
+    [ProducesResponseType(typeof(PutNftResponse), (int)HttpStatusCode.NoContent)]
+    [ProducesResponseType(typeof(NotFoundPutNftResponse), (int)HttpStatusCode.NotFound)]
+    [ProducesResponseType(typeof(BadRequestPutNftResponse), (int)HttpStatusCode.BadRequest)]
+    public async Task<IActionResult> PutNftById([FromRoute] string id,
+                                                [FromBody] UpdateNftDto dto,
+                                                CancellationToken cancellationToken = default)
+    {
+        var response = await Mediator.Send(new PutNftRequest(id, dto), cancellationToken);
 
         return response.StatusCode switch
         {
