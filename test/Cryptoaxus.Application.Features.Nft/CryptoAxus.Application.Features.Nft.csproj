@@ -27,6 +27,7 @@
     <Folder Include="DeleteNftById\Handler\" />
     <Folder Include="GetAllNft\Handler\" />
     <Folder Include="PostNft\Handler\" />
+    <Folder Include="PutLikeFavoriteNft\Handler\" />
   </ItemGroup>
 
   <ItemGroup>
