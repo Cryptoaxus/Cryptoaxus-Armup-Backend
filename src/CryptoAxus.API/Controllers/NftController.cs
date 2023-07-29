@@ -1,5 +1,5 @@
-﻿using CryptoAxus.Application.Features.NFT.PutNft.Request;
-using CryptoAxus.Application.Features.NFT.PutNft.Response;
+﻿using CryptoAxus.Application.Features.NFT.PutLikeFavoriteNft.Request;
+using CryptoAxus.Application.Features.NFT.PutLikeFavoriteNft.Response;
 
 namespace CryptoAxus.API.Controllers;
 
@@ -162,7 +162,6 @@ public class NftController : BaseController<NftController>
     [RequiresParameter(Name = "id", Required = true, Source = OpenApiParameterLocation.Path, Type = typeof(string))]
     [RequiresParameter(Name = "dto", Required = true, Source = OpenApiParameterLocation.Body, Type = typeof(UpdateNftDto))]
     [SwaggerRequestExample(typeof(PutNftRequest), typeof(PutNftRequestExample))]
-    //[SwaggerRequestExample(typeof(PutNftRequest), typeof(PutNftRequestExample))]
     [ProducesResponseType(typeof(PutNftResponse), (int)HttpStatusCode.NoContent)]
     [ProducesResponseType(typeof(NotFoundPutNftResponse), (int)HttpStatusCode.NotFound)]
     [ProducesResponseType(typeof(BadRequestPutNftResponse), (int)HttpStatusCode.BadRequest)]
@@ -171,6 +170,36 @@ public class NftController : BaseController<NftController>
                                                 CancellationToken cancellationToken = default)
     {
         var response = await Mediator.Send(new PutNftRequest(id, dto), cancellationToken);
+
+        return response.StatusCode switch
+        {
+            HttpStatusCode.NoContent => Ok(response),
+            HttpStatusCode.NotFound => NotFound(response),
+            _ => BadRequest(response)
+        };
+    }
+
+    /// <summary>
+    /// Like/Favorite Nft by id
+    /// </summary>
+    /// <param name="id" example="507f191e810c19729de860ea"></param>
+    /// <param name="type" example="1"></param>
+    /// <param name="userId" example="489f191e810c19729de911bi"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    [HttpPut("{id:regex(^[[A-Za-z0-9]]*$):required}/likeFavoriteNft", Name = "LikeFavoriteNft", Order = 6)]
+    [RequiresParameter(Name = "id", Required = true, Source = OpenApiParameterLocation.Path, Type = typeof(string))]
+    [RequiresParameter(Name = "type", Required = true, Source = OpenApiParameterLocation.Query, Type = typeof(LikeFavoriteTypeEnum))]
+    [RequiresParameter(Name = "userId", Required = true, Source = OpenApiParameterLocation.Query, Type = typeof(string))]
+    [ProducesResponseType(typeof(PutLikeFavoriteNftResponse), (int)HttpStatusCode.OK)]
+    [ProducesResponseType(typeof(NotFoundPutLikeFavoriteNftResponse), (int)HttpStatusCode.NotFound)]
+    [ProducesResponseType(typeof(BadRequestPutLikeFavoriteNftResponse), (int)HttpStatusCode.BadRequest)]
+    public async Task<IActionResult> LikeFavoriteNft([FromRoute] string id,
+                                                     [FromQuery] LikeFavoriteTypeEnum type,
+                                                     [FromQuery] string userId,
+                                                     CancellationToken cancellationToken = default)
+    {
+        var response = await Mediator.Send(new PutLikeFavoriteNftRequest(type, id, userId), cancellationToken);
 
         return response.StatusCode switch
         {

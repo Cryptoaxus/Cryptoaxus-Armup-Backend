@@ -12,6 +12,7 @@ public class GetNftByIdTestData
                                        "contractAddress",
                                        "hash",
                                        "https://www.google.com/",
+                                       "signature",
                                        45020,
                                        10,
                                        "Test Nft",
@@ -21,7 +22,6 @@ public class GetNftByIdTestData
                                        ObjectId.GenerateNewId(),
                                        "Ethereum",
                                        450,
-                                       "signature",
                                        ObjectId.GenerateNewId());
     }
 

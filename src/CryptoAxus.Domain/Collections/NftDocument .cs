@@ -56,6 +56,7 @@ public class NftDocument : BaseDocument
                        string contractAddress,
                        string hash,
                        string imageStorageLink,
+                       string? signature,
                        int tokenId,
                        int quantity,
                        string name,
@@ -65,8 +66,9 @@ public class NftDocument : BaseDocument
                        ObjectId collectionId,
                        string blockChain,
                        int creatorEarnings,
-                       string? signature,
                        ObjectId createdBy,
+                       List<string>? favorites = null,
+                       List<string>? likes = null,
                        DateTime? lastModifiedDate = null,
                        ObjectId? lastModifiedBy = null,
                        bool isDeleted = false) :
@@ -89,6 +91,7 @@ public class NftDocument : BaseDocument
         CollectionId = collectionId;
         BlockChain = blockChain;
         CreatorEarnings = creatorEarnings;
-        Signature = signature;
+        Favorites = favorites;
+        Likes = likes;
     }
 }

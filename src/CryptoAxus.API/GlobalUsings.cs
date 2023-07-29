@@ -33,6 +33,8 @@ global using CryptoAxus.Application.Features.NFT.GetNftById.Response;
 global using CryptoAxus.Application.Features.NFT.PostNft.Request;
 global using CryptoAxus.Application.Features.NFT.PostNft.Response;
 global using CryptoAxus.Application.Features.NFT.PostNft.Validation;
+global using CryptoAxus.Application.Features.NFT.PutNft.Request;
+global using CryptoAxus.Application.Features.NFT.PutNft.Response;
 global using CryptoAxus.Common;
 global using CryptoAxus.Common.Attributes;
 global using CryptoAxus.Common.Constants;
