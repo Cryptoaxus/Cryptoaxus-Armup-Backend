@@ -1,6 +1,4 @@
-﻿using CryptoAxus.Application.Features.NFT.PutLikeFavoriteNft.Response;
-
-namespace CryptoAxus.Application.Features.Nft.PutLikeFavoriteNft.Handler;
+﻿namespace CryptoAxus.Application.Features.Nft.PutLikeFavoriteNft.Handler;
 
 public class PutLikeFavoriteNftHandlerTests : PutLikeFavoriteNftTestsData
 {
