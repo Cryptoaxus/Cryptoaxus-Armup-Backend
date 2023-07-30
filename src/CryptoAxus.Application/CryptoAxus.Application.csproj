@@ -28,6 +28,9 @@
     <Folder Include="Features\NFT\DeleteNftById\Request\" />
     <Folder Include="Features\NFT\GetAllNft\Handler\" />
     <Folder Include="Features\NFT\GetAllNft\Response\" />
+    <Folder Include="Features\NFT\GetLikeFavoriteNftByArtists\Handler\" />
+    <Folder Include="Features\NFT\GetLikeFavoriteNftByArtists\Response\" />
+    <Folder Include="Features\NFT\GetLikeFavoriteNftByArtists\Request\" />
     <Folder Include="Features\NFT\GetNftByCollectionId\Handler\" />
     <Folder Include="Features\NFT\GetNftByCollectionId\Response\" />
     <Folder Include="Features\NFT\GetNftByCollectionId\Request\" />

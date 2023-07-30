@@ -3,7 +3,6 @@
 public abstract class BaseHandler<THandler> where THandler : class
 {
     protected readonly ILogger<THandler>? Logger;
-    protected List<Task>? Tasks { get; set; } = null;
 
     protected BaseHandler()
     {
