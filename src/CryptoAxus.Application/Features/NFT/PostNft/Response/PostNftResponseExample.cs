@@ -15,9 +15,11 @@ public class PostNftResponseExample : IExamplesProvider<PostNftResponse>
                                               "https://www.google.com/",
                                               "State of the art muscle sports car that can cruise the streets",
                                               "Exotic cars collection",
-                                              ObjectId.GenerateNewId(),
+                                              ObjectId.GenerateNewId().ToString(),
                                               "Ethereum",
                                               450,
+                                              null,
+                                              null,
                                               ObjectId.GenerateNewId()));
     }
 }

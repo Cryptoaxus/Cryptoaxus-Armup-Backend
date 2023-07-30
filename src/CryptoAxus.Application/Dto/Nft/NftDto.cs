@@ -22,7 +22,7 @@ public class NftDto : BaseDto
 
     public string? Collection { get; set; }
 
-    public ObjectId? CollectionId { get; set; }
+    public string? CollectionId { get; set; }
 
     public string? BlockChain { get; set; }
 
@@ -47,9 +47,11 @@ public class NftDto : BaseDto
                   string? url = null,
                   string? description = null,
                   string? collection = null,
-                  ObjectId? collectionId = null,
+                  string? collectionId = null,
                   string? blockChain = null,
                   int? creatorEarnings = null,
+                  List<string>? likes = null,
+                  List<string>? favorite = null,
                   ObjectId? createdBy = null,
                   DateTime? lastModifiedDate = null,
                   ObjectId? lastModifiedBy = null,
@@ -73,5 +75,7 @@ public class NftDto : BaseDto
         CollectionId = collectionId;
         BlockChain = blockChain;
         CreatorEarnings = creatorEarnings;
+        Likes = likes;
+        Favorites = favorite;
     }
 }

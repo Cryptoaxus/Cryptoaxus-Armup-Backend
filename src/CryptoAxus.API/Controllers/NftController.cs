@@ -1,4 +1,6 @@
-﻿using CryptoAxus.Application.Features.NFT.GetNftByCollectionId.Request;
+﻿using CryptoAxus.Application.Features.NFT.GetLikeFavoriteNftByArtists.Request;
+using CryptoAxus.Application.Features.NFT.GetLikeFavoriteNftByArtists.Response;
+using CryptoAxus.Application.Features.NFT.GetNftByCollectionId.Request;
 using CryptoAxus.Application.Features.NFT.GetNftByCollectionId.Response;
 
 namespace CryptoAxus.API.Controllers;
@@ -226,6 +228,29 @@ public class NftController : BaseController<NftController>
     public async Task<IActionResult> GetNftByCollectionId([FromRoute] string id)
     {
         var response = await Mediator.Send(new GetNftByCollectionIdRequest(id));
+
+        if (response.StatusCode.Equals(HttpStatusCode.NotFound))
+            return NotFound(response);
+
+        return Ok(response);
+    }
+
+    /// <summary>
+    /// Returns lists of Nft like/favorite by artist
+    /// </summary>
+    /// <param name="id" example="507f191e810c19729de860ea"></param>
+    /// <param name="cancellationToken"></param>
+    /// <response code="200">Success response with 200 code and information message</response>
+    /// <response code="404">Not Found response with 404 code and information message</response>
+    /// <returns></returns>
+    [HttpGet("{id:regex(^[[A-Za-z0-9]]*$):required}/likeFavoriteNft", Name = "GetLikeFavoriteNftByArtist")]
+    [RequiresParameter(Name = "id", Required = true, Source = OpenApiParameterLocation.Path, Type = typeof(string))]
+    [ProducesResponseType(typeof(GetLikeFavoriteNftByArtistResponse), (int)HttpStatusCode.OK)]
+    [ProducesResponseType(typeof(NotFoundGetLikeFavoriteNftByArtistResponse), (int)HttpStatusCode.NotFound)]
+    public async Task<IActionResult> GetLikeFavoriteNftByArtist([FromRoute] string id,
+                                                                CancellationToken cancellationToken = default)
+    {
+        var response = await Mediator.Send(new GetLikeFavoriteNftByArtistRequest(id), cancellationToken);
 
         if (response.StatusCode.Equals(HttpStatusCode.NotFound))
             return NotFound(response);

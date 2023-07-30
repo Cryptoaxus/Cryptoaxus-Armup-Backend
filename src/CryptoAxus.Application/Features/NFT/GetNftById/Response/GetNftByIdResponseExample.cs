@@ -17,9 +17,11 @@ public class GetNftByIdResponseExample : IExamplesProvider<GetNftByIdResponse>
                                                  "https://www.google.com/",
                                                  "Example description",
                                                  "Example collection",
-                                                 ObjectId.GenerateNewId(),
+                                                 ObjectId.GenerateNewId().ToString(),
                                                  "Ethereum",
                                                  450,
+                                                 null,
+                                                 null,
                                                  ObjectId.GenerateNewId()));
     }
 }

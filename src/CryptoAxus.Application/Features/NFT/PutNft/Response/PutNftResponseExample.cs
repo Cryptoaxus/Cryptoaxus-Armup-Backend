@@ -17,9 +17,11 @@ public class PutNftResponseExample : IExamplesProvider<PutNftResponse>
                                              "https://www.google.com/",
                                              "Example Description",
                                              "Example Collection",
-                                             ObjectId.GenerateNewId(),
+                                             ObjectId.GenerateNewId().ToString(),
                                              "Ethereum",
                                              100,
+                                             null,
+                                             null,
                                              ObjectId.GenerateNewId(),
                                              DateTime.UtcNow,
                                              ObjectId.GenerateNewId()));
