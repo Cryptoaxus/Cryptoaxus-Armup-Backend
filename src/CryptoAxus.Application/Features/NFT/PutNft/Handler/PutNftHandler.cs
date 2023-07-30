@@ -29,7 +29,7 @@ public class PutNftHandler : BaseHandler<PutNftHandler>, IRequestHandler<PutNftR
             .Set(x => x.Url, request.NftDto.Url ?? document.Url)
             .Set(x => x.Description, request.NftDto.Description ?? document.Description)
             .Set(x => x.Collection, request.NftDto.Collection ?? document.Collection)
-            .Set(x => x.CollectionId, request.NftDto.CollectionId.ToObjectId())
+            .Set(x => x.CollectionId, request.NftDto.CollectionId)
             .Set(x => x.BlockChain, request.NftDto.BlockChain ?? document.BlockChain)
             .Set(x => x.CreatorEarnings, request.NftDto.CreatorEarnings ?? document.CreatorEarnings)
             .Set(x => x.LastModifiedBy, request.NftDto.LastUpdatedBy)

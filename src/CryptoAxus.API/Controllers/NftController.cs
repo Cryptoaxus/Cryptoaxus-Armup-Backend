@@ -1,5 +1,5 @@
-﻿using CryptoAxus.Application.Features.NFT.PutLikeFavoriteNft.Request;
-using CryptoAxus.Application.Features.NFT.PutLikeFavoriteNft.Response;
+﻿using CryptoAxus.Application.Features.NFT.GetNftByCollectionId.Request;
+using CryptoAxus.Application.Features.NFT.GetNftByCollectionId.Response;
 
 namespace CryptoAxus.API.Controllers;
 
@@ -186,6 +186,9 @@ public class NftController : BaseController<NftController>
     /// <param name="type" example="1"></param>
     /// <param name="userId" example="489f191e810c19729de911bi"></param>
     /// <param name="cancellationToken"></param>
+    /// <response code="200">Success response with 200 code and information message about delete</response>
+    /// <response code="404">Not Found response with 404 code and information message</response>
+    /// <response code="400">Bad Request response with 400 code and information message</response>
     /// <returns></returns>
     [HttpPut("{id:regex(^[[A-Za-z0-9]]*$):required}/likeFavoriteNft", Name = "LikeFavoriteNft", Order = 6)]
     [RequiresParameter(Name = "id", Required = true, Source = OpenApiParameterLocation.Path, Type = typeof(string))]
@@ -207,6 +210,27 @@ public class NftController : BaseController<NftController>
             HttpStatusCode.NotFound => NotFound(response),
             _ => BadRequest(response)
         };
+    }
+
+    /// <summary>
+    /// Returns a list of nft by collection id
+    /// </summary>
+    /// <param name="id" example="507f191e810c19729de860ea"></param>
+    /// <response code="200">Success response with 200 code and information message</response>
+    /// <response code="404">Not Found response with 404 code and information message</response>
+    /// <returns></returns>
+    [HttpGet("{id:regex(^[[A-Za-z0-9]]*$):required}/getByCollection", Name = "GetNftByCollectionId")]
+    [RequiresParameter(Name = "id", Required = true, Source = OpenApiParameterLocation.Path, Type = typeof(string))]
+    [ProducesResponseType(typeof(GetNftByCollectionIdResponse), (int)HttpStatusCode.OK)]
+    [ProducesResponseType(typeof(NotFoundGetNftByCollectionIdResponse), (int)HttpStatusCode.NotFound)]
+    public async Task<IActionResult> GetNftByCollectionId([FromRoute] string id)
+    {
+        var response = await Mediator.Send(new GetNftByCollectionIdRequest(id));
+
+        if (response.StatusCode.Equals(HttpStatusCode.NotFound))
+            return NotFound(response);
+
+        return Ok(response);
     }
 
     #region Links Helper Region

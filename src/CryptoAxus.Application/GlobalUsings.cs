@@ -52,4 +52,6 @@ global using Swashbuckle.AspNetCore.Filters;
 global using System.Linq.Expressions;
 global using System.Net;
 global using System.Reflection;
+global using CryptoAxus.Application.Features.NFT.GetNftByCollectionId.Request;
+global using CryptoAxus.Application.Features.NFT.GetNftByCollectionId.Response;
 global using JsonSerializer = System.Text.Json.JsonSerializer;
