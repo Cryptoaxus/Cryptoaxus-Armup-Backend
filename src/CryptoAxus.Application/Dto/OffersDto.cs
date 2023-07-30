@@ -26,9 +26,9 @@ public class OffersDto : BaseDto
                      int? quantity = null,
                      int? offeredQuantity = null,
                      DateTime? offerExpireAt = null,
-                     ObjectId? createdBy = null,
+                     string? createdBy = null,
                      DateTime? lastModifiedDate = null,
-                     ObjectId? lastModifiedBy = null,
+                     string? lastModifiedBy = null,
                      bool isDeleted = false)
                      : base(id,
                             createdBy,

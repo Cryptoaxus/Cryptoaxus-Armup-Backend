@@ -22,7 +22,7 @@ public class GetNftByIdTestData
                                        ObjectId.GenerateNewId().ToString(),
                                        "Ethereum",
                                        450,
-                                       ObjectId.GenerateNewId());
+                                       ObjectId.GenerateNewId().ToString());
     }
 
     public GetNftByIdTestData SetupMockRepository()

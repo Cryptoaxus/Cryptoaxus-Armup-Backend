@@ -15,9 +15,9 @@ public class GetOffersMadeByArtistResponseExample : IExamplesProvider<GetOffersM
                                    2,
                                    DateTime.UtcNow.AddHours(6),
                                    null,
-                                   ObjectId.GenerateNewId(),
+                                   ObjectId.GenerateNewId().ToString(),
                                    DateTime.UtcNow.AddDays(-5),
-                                   ObjectId.GenerateNewId(),
+                                   ObjectId.GenerateNewId().ToString(),
                                    false),
 
             new OffersDtoWithLinks(ObjectId.GenerateNewId(),
@@ -29,9 +29,9 @@ public class GetOffersMadeByArtistResponseExample : IExamplesProvider<GetOffersM
                                    2,
                                    DateTime.UtcNow.AddHours(6),
                                    null,
-                                   ObjectId.GenerateNewId(),
+                                   ObjectId.GenerateNewId().ToString(),
                                    DateTime.UtcNow.AddDays(-5),
-                                   ObjectId.GenerateNewId(),
+                                   ObjectId.GenerateNewId().ToString(),
                                    false),
         }, new PaginationData(5, 1, 2, "http://cryptoaxus.com/api/artist/5428/offersMade"));
     }

@@ -28,9 +28,9 @@ public class AuctionDto : BaseDto
                       bool? softDelete = null,
                       DateTime? startingDateTime = null,
                       DateTime? endingDateTime = null,
-                      ObjectId? createdBy = null,
+                      string? createdBy = null,
                       DateTime? lastModifiedDate = null,
-                      ObjectId? lastModifiedBy = null,
+                      string? lastModifiedBy = null,
                       DateTime? deleted_at = null,
                       bool isDeleted = false)
                       : base(id,

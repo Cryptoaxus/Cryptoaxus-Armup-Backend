@@ -22,9 +22,9 @@ public class FixedPricedDto : BaseDto
                           decimal? pricePerItem = null,
                           DateTime? fixedEndingDateTime = null,
                           bool? softDelete = null,
-                          ObjectId? createdBy = null,
+                          string? createdBy = null,
                           DateTime? lastModifiedDate = null,
-                          ObjectId? lastModifiedBy = null,
+                          string? lastModifiedBy = null,
                           bool isDeleted = false)
                           : base(id,
                                  createdBy,

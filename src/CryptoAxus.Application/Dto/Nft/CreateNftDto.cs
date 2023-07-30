@@ -93,7 +93,7 @@ public class CreateNftDto : BaseDto
                         string? collectionId,
                         string? blockChain,
                         int? creatorEarnings,
-                        string? createdBy) : base(createdBy: createdBy.ToObjectId())
+                        string? createdBy) : base(createdBy: createdBy)
     {
         ContractAddress = contractAddress;
         Hash = hash;

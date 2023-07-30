@@ -36,9 +36,9 @@ public class AuctionDocument : BaseDocument
                            bool softDelete,
                            DateTime startingDateTime,
                            DateTime endingDateTime,
-                           ObjectId createdBy,
+                           string createdBy,
                            DateTime? lastModifiedDate = null,
-                           ObjectId? lastModifiedBy = null,
+                           string? lastModifiedBy = null,
                            DateTime? deleted_at = null,
                            bool isDeleted = false)
                            : base(id,

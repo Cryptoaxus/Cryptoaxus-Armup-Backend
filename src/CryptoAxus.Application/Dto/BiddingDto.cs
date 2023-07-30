@@ -24,9 +24,9 @@ public class BiddingDto : BaseDto
                       string? artistWalletAddress = null,
                       string? fromWalletAddress = null,
                       bool? highestBid = null,
-                      ObjectId? createdBy = null,
+                      string? createdBy = null,
                       DateTime? lastModifiedDate = null,
-                      ObjectId? lastModifiedBy = null,
+                      string? lastModifiedBy = null,
                       string? bidderUserName = null,
                       bool isDeleted = false)
                       : base(id,

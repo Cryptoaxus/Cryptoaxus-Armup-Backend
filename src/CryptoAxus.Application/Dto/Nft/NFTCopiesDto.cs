@@ -26,9 +26,9 @@ public class NFTCopiesDto : BaseDto
                         bool? isCreator = null,
                         int? marketTokenId = null,
                         string? bidderUserName = null,
-                        ObjectId? createdBy = null,
+                        string? createdBy = null,
                         DateTime? lastModifiedDate = null,
-                        ObjectId? lastModifiedBy = null,
+                        string? lastModifiedBy = null,
                         bool isDeleted = false)
                         : base(id,
                                createdBy,

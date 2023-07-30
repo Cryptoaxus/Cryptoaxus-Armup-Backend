@@ -22,8 +22,8 @@ public class PutNftResponseExample : IExamplesProvider<PutNftResponse>
                                              100,
                                              null,
                                              null,
-                                             ObjectId.GenerateNewId(),
+                                             ObjectId.GenerateNewId().ToString(),
                                              DateTime.UtcNow,
-                                             ObjectId.GenerateNewId()));
+                                             ObjectId.GenerateNewId().ToString()));
     }
 }

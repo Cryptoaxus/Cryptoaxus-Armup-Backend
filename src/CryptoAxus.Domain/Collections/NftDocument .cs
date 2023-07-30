@@ -66,11 +66,11 @@ public class NftDocument : BaseDocument
                        string collectionId,
                        string blockChain,
                        int creatorEarnings,
-                       ObjectId createdBy,
+                       string createdBy,
                        List<string>? favorites = null,
                        List<string>? likes = null,
                        DateTime? lastModifiedDate = null,
-                       ObjectId? lastModifiedBy = null,
+                       string? lastModifiedBy = null,
                        bool isDeleted = false) :
                        base(id,
                             createdBy,

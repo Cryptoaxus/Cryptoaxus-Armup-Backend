@@ -20,7 +20,7 @@ public class GetOffersMadeByArtistHandlerTestData
                                10,
                                DateTime.UtcNow.AddHours(6),
                                5,
-                               ObjectId.GenerateNewId()),
+                               ObjectId.GenerateNewId().ToString()),
 
             new OffersDocument(ObjectId.GenerateNewId(),
                                "nftId",
@@ -30,7 +30,7 @@ public class GetOffersMadeByArtistHandlerTestData
                                10,
                                DateTime.UtcNow.AddHours(6),
                                5,
-                               ObjectId.GenerateNewId()),
+                               ObjectId.GenerateNewId().ToString()),
 
             new OffersDocument(ObjectId.GenerateNewId(),
                                "nftId",
@@ -40,7 +40,7 @@ public class GetOffersMadeByArtistHandlerTestData
                                10,
                                DateTime.UtcNow.AddHours(6),
                                5,
-                               ObjectId.GenerateNewId()),
+                               ObjectId.GenerateNewId().ToString()),
 
             new OffersDocument(ObjectId.GenerateNewId(),
                                "nftId",
@@ -50,7 +50,7 @@ public class GetOffersMadeByArtistHandlerTestData
                                10,
                                DateTime.UtcNow.AddHours(6),
                                5,
-                               ObjectId.GenerateNewId()),
+                               ObjectId.GenerateNewId().ToString()),
 
             new OffersDocument(ObjectId.GenerateNewId(),
                                "nftId",
@@ -60,7 +60,7 @@ public class GetOffersMadeByArtistHandlerTestData
                                10,
                                DateTime.UtcNow.AddHours(6),
                                5,
-                               ObjectId.GenerateNewId()),
+                               ObjectId.GenerateNewId().ToString()),
 
             new OffersDocument(ObjectId.GenerateNewId(),
                                "nftId",
@@ -70,7 +70,7 @@ public class GetOffersMadeByArtistHandlerTestData
                                10,
                                DateTime.UtcNow.AddHours(6),
                                5,
-                               ObjectId.GenerateNewId()),
+                               ObjectId.GenerateNewId().ToString()),
 
             new OffersDocument(ObjectId.GenerateNewId(),
                                "nftId",
@@ -80,7 +80,7 @@ public class GetOffersMadeByArtistHandlerTestData
                                10,
                                DateTime.UtcNow.AddHours(6),
                                5,
-                               ObjectId.GenerateNewId()),
+                               ObjectId.GenerateNewId().ToString()),
 
             new OffersDocument(ObjectId.GenerateNewId(),
                                "nftId",
@@ -90,7 +90,7 @@ public class GetOffersMadeByArtistHandlerTestData
                                10,
                                DateTime.UtcNow.AddHours(6),
                                5,
-                               ObjectId.GenerateNewId()),
+                               ObjectId.GenerateNewId().ToString()),
 
             new OffersDocument(ObjectId.GenerateNewId(),
                                "nftId",
@@ -100,7 +100,7 @@ public class GetOffersMadeByArtistHandlerTestData
                                10,
                                DateTime.UtcNow.AddHours(6),
                                5,
-                               ObjectId.GenerateNewId()),
+                               ObjectId.GenerateNewId().ToString()),
 
             new OffersDocument(ObjectId.GenerateNewId(),
                                "nftId",
@@ -110,7 +110,7 @@ public class GetOffersMadeByArtistHandlerTestData
                                10,
                                DateTime.UtcNow.AddHours(6),
                                5,
-                               ObjectId.GenerateNewId())
+                               ObjectId.GenerateNewId().ToString())
         };
     }
 

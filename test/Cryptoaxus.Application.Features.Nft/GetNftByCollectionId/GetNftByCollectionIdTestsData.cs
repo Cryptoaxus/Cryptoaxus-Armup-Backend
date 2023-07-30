@@ -13,7 +13,7 @@ public class GetNftByCollectionIdTestsData
                                                "https://www.google.com", "signature", 425692, 10,
                                                "Mock Nft", "https://www.google.com", "Mock Description",
                                                "Mock Collection", ObjectId.GenerateNewId().ToString(), "Ethereum",
-                                               450, ObjectId.GenerateNewId());
+                                               450, ObjectId.GenerateNewId().ToString());
         for (int i = 0; i < 10; i++)
         {
             _mockDocument.Add(document);

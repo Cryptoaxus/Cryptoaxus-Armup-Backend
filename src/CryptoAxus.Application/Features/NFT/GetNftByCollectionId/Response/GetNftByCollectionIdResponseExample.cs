@@ -26,7 +26,7 @@ public class GetNftByCollectionIdResponseExample : IExamplesProvider<GetNftByCol
                                                                        { ObjectId.GenerateNewId().ToString() },
                                                                new List<string>
                                                                        { ObjectId.GenerateNewId().ToString() },
-                                                               ObjectId.GenerateNewId()),
+                                                               ObjectId.GenerateNewId().ToString()),
                                                     new NftDto(ObjectId.GenerateNewId(),
                                                                "contractAddress",
                                                                "hash",
@@ -45,7 +45,7 @@ public class GetNftByCollectionIdResponseExample : IExamplesProvider<GetNftByCol
                                                                        { ObjectId.GenerateNewId().ToString() },
                                                                new List<string>
                                                                        { ObjectId.GenerateNewId().ToString() },
-                                                               ObjectId.GenerateNewId())
+                                                               ObjectId.GenerateNewId().ToString())
                                                 });
     }
 }

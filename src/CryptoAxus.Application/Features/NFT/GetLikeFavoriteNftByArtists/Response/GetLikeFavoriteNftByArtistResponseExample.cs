@@ -26,7 +26,7 @@ public class GetLikeFavoriteNftByArtistResponseExample : IExamplesProvider<GetLi
                                                                            { ObjectId.GenerateNewId().ToString() },
                                                                            new List<string>
                                                                            { ObjectId.GenerateNewId().ToString() },
-                                                                           ObjectId.GenerateNewId())
+                                                                           ObjectId.GenerateNewId().ToString())
                                                             },
                                                             favoriteNft: new List<NftDto>
                                                             {
@@ -48,7 +48,7 @@ public class GetLikeFavoriteNftByArtistResponseExample : IExamplesProvider<GetLi
                                                                            { ObjectId.GenerateNewId().ToString() },
                                                                            new List<string>
                                                                            { ObjectId.GenerateNewId().ToString() },
-                                                                           ObjectId.GenerateNewId())
+                                                                           ObjectId.GenerateNewId().ToString())
                                                             }));
     }
 }

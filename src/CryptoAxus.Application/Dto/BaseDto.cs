@@ -6,11 +6,11 @@ public abstract class BaseDto
 
     public DateTime? CreatedDate { get; set; }
 
-    public ObjectId? CreatedBy { get; set; }
+    public string? CreatedBy { get; set; }
 
     public DateTime? LastModifiedDate { get; set; }
 
-    public ObjectId? LastModifiedBy { get; set; }
+    public string? LastModifiedBy { get; set; }
 
     public bool? IsDeleted { get; set; }
 
@@ -19,9 +19,9 @@ public abstract class BaseDto
     }
 
     protected BaseDto(ObjectId? id = null,
-                      ObjectId? createdBy = null,
+                      string? createdBy = null,
                       DateTime? lastModifiedDate = null,
-                      ObjectId? lastModifiedBy = null,
+                      string? lastModifiedBy = null,
                       bool isDeleted = false)
                       => (Id, CreatedBy, LastModifiedDate, LastModifiedBy, IsDeleted)
                       = (id, createdBy, lastModifiedDate, lastModifiedBy, isDeleted);
