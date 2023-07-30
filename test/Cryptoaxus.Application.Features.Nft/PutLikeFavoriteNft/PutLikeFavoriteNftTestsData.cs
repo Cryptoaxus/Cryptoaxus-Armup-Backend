@@ -11,7 +11,7 @@ public class PutLikeFavoriteNftTestsData
         mockDocument = new NftDocument(ObjectId.GenerateNewId(), "contractAddress", "hash",
                                        "https://www.google.com", "signature", 24526, 10, "Mock Nft",
                                        "https://www.google.com", "Mock Description", "Mock Collection",
-                                       ObjectId.GenerateNewId(), "Ethereum", 450, ObjectId.GenerateNewId(),
+                                       ObjectId.GenerateNewId().ToString(), "Ethereum", 450, ObjectId.GenerateNewId(),
                                        new List<string>
                                        {
                                            "64c5357e1e4e37e918060a7f", "64c5357e1e4e37e918060a80", "64c5357e1e4e37e918060a81",

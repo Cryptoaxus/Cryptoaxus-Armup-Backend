@@ -19,7 +19,7 @@ public class GetNftByIdTestData
                                        "https://www.google.com/",
                                        "Test Description",
                                        "Test Collection",
-                                       ObjectId.GenerateNewId(),
+                                       ObjectId.GenerateNewId().ToString(),
                                        "Ethereum",
                                        450,
                                        ObjectId.GenerateNewId());
