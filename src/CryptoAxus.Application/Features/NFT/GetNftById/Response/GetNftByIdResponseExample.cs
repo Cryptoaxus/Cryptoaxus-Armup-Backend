@@ -22,6 +22,6 @@ public class GetNftByIdResponseExample : IExamplesProvider<GetNftByIdResponse>
                                                  450,
                                                  null,
                                                  null,
-                                                 ObjectId.GenerateNewId()));
+                                                 ObjectId.GenerateNewId().ToString()));
     }
 }

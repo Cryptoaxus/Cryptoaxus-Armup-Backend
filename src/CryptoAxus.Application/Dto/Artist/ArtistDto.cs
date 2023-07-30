@@ -81,10 +81,10 @@ public class ArtistDto : BaseDto
                      string? twitter = null,
                      string? createdBy = null,
                      DateTime? lastModifiedDate = null,
-                     ObjectId? lastModifiedBy = null,
+                     string? lastModifiedBy = null,
                      bool isDeleted = false)
                      : base(id,
-                            createdBy.ToObjectId(),
+                            createdBy,
                             lastModifiedDate,
                             lastModifiedBy,
                             isDeleted)

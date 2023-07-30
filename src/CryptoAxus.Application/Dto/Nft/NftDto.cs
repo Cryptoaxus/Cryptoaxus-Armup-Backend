@@ -52,9 +52,9 @@ public class NftDto : BaseDto
                   int? creatorEarnings = null,
                   List<string>? likes = null,
                   List<string>? favorite = null,
-                  ObjectId? createdBy = null,
+                  string? createdBy = null,
                   DateTime? lastModifiedDate = null,
-                  ObjectId? lastModifiedBy = null,
+                  string? lastModifiedBy = null,
                   bool isDeleted = false) :
                   base(id,
                        createdBy,

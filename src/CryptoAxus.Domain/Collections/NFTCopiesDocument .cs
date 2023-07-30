@@ -33,9 +33,9 @@ public class NFTCopiesDocument : BaseDocument
                              bool isCreator,
                              int marketTokenId,
                              string bidderUserName,
-                             ObjectId createdBy,
+                             string createdBy,
                              DateTime? lastModifiedDate = null,
-                             ObjectId? lastModifiedBy = null,
+                             string? lastModifiedBy = null,
                              bool isDeleted = false)
                              : base(id,
                                     createdBy,

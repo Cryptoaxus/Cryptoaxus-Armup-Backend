@@ -37,10 +37,9 @@ public class NFTCollectionstDto : BaseDto
                               string? category = null,
                               string? collectionBlockChain = null,
                               bool explicitContent = false,
-                              ObjectId? createdBy = null,
+                              string? createdBy = null,
                               DateTime? lastModifiedDate = null,
-                              ObjectId? lastModifiedBy = null,
-                              string? lastUpdated = null,
+                              string? lastModifiedBy = null,
                               bool isDeleted = false)
                               : base(id,
                                      createdBy,

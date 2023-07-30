@@ -20,6 +20,6 @@ public class PostNftResponseExample : IExamplesProvider<PostNftResponse>
                                               450,
                                               null,
                                               null,
-                                              ObjectId.GenerateNewId()));
+                                              ObjectId.GenerateNewId().ToString()));
     }
 }

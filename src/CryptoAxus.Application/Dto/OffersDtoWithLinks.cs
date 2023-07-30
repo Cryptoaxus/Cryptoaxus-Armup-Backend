@@ -17,9 +17,9 @@ public class OffersDtoWithLinks : OffersDto
                               int? offeredQuantity = null,
                               DateTime? offerExpireAt = null,
                               IReadOnlyList<Links>? links = null,
-                              ObjectId? createdBy = null,
+                              string? createdBy = null,
                               DateTime? lastModifiedDate = null,
-                              ObjectId? lastModifiedBy = null,
+                              string? lastModifiedBy = null,
                               bool isDeleted = false) :
                               base(id,
                                    nftId,

@@ -83,7 +83,7 @@ public class UpdateNftDto
     /// <summary>
     /// Set's the id of the user who updated the record
     /// </summary>
-    public ObjectId? LastUpdatedBy { get; set; }
+    public string? LastUpdatedBy { get; set; }
 
     public UpdateNftDto(string? contractAddress,
                         string? hash,
@@ -113,6 +113,6 @@ public class UpdateNftDto
         CollectionId = collectionId;
         BlockChain = blockChain;
         CreatorEarnings = creatorEarnings;
-        LastUpdatedBy = lastUpdatedBy.ToObjectId();
+        LastUpdatedBy = lastUpdatedBy;
     }
 }

@@ -54,7 +54,7 @@ public class AllEventDto : BaseDto
                        bool isSold = false,
                        bool accepted = false,
                        bool rejected = false,
-                       ObjectId? createdBy = null,
+                       string? createdBy = null,
                        string? buyer = null,
                        DateTime? listingEndAt = null,
                        decimal? price = null,
@@ -64,7 +64,7 @@ public class AllEventDto : BaseDto
                        DateTime? canceledAt = null,
                        DateTime? soldAt = null,
                        DateTime? lastModifiedDate = null,
-                       ObjectId? lastModifiedBy = null)
+                       string? lastModifiedBy = null)
                        : base(id,
                               createdBy,
                               lastModifiedDate,
