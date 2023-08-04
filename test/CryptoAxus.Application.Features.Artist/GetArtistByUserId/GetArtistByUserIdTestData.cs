@@ -14,6 +14,7 @@ public class GetArtistByUserIdTestData
                                              "testUsername",
                                              "test@nftarmup.com",
                                              5071,
+                                             "walletAddress",
                                              "https://www.google.com",
                                              "testBio",
                                              "testProfileImageAddress",

@@ -52,6 +52,8 @@ global using Swashbuckle.AspNetCore.Filters;
 global using System.Linq.Expressions;
 global using System.Net;
 global using System.Reflection;
+global using CryptoAxus.Application.Features.Artist.PostUpsertArtist.Request;
+global using CryptoAxus.Application.Features.Artist.PostUpsertArtist.Response;
 global using CryptoAxus.Application.Features.NFT.GetLikeFavoriteNftByArtists.Request;
 global using CryptoAxus.Application.Features.NFT.GetLikeFavoriteNftByArtists.Response;
 global using CryptoAxus.Application.Features.NFT.GetNftByCollectionId.Request;
