@@ -1,6 +1,6 @@
 ﻿namespace CryptoAxus.Application.Dto.Nft;
 
-public class NFTCollectionstDto : BaseDto
+public class NftCollectionsDto : BaseDto
 {
     public string? CollectionLogoImageHash { get; set; }
 
@@ -22,30 +22,30 @@ public class NFTCollectionstDto : BaseDto
 
     public bool? ExplicitContent { get; set; }
 
-    public NFTCollectionstDto() : base()
+    public NftCollectionsDto() : base()
     {
     }
 
-    public NFTCollectionstDto(ObjectId id,
-                              string? collectionLogoImageHash = null,
-                              string? collectionFeaturedImageHash = null,
-                              string? collectionBannerImageHash = null,
-                              string? collectionName = null,
-                              string? artistWalletAddress = null,
-                              string? url = null,
-                              string? description = null,
-                              string? category = null,
-                              string? collectionBlockChain = null,
-                              bool explicitContent = false,
-                              string? createdBy = null,
-                              DateTime? lastModifiedDate = null,
-                              string? lastModifiedBy = null,
-                              bool isDeleted = false)
-                              : base(id,
-                                     createdBy,
-                                     lastModifiedDate,
-                                     lastModifiedBy,
-                                     isDeleted)
+    public NftCollectionsDto(ObjectId id,
+                             string? collectionLogoImageHash = null,
+                             string? collectionFeaturedImageHash = null,
+                             string? collectionBannerImageHash = null,
+                             string? collectionName = null,
+                             string? artistWalletAddress = null,
+                             string? url = null,
+                             string? description = null,
+                             string? category = null,
+                             string? collectionBlockChain = null,
+                             bool explicitContent = false,
+                             string? createdBy = null,
+                             DateTime? lastModifiedDate = null,
+                             string? lastModifiedBy = null,
+                             bool isDeleted = false)
+                             : base(id,
+                                    createdBy,
+                                    lastModifiedDate,
+                                    lastModifiedBy,
+                                    isDeleted)
     {
         CollectionLogoImageHash = collectionLogoImageHash;
         CollectionFeaturedImageHash = collectionFeaturedImageHash;
@@ -63,4 +63,3 @@ public class NFTCollectionstDto : BaseDto
         IsDeleted = isDeleted;
     }
 }
-

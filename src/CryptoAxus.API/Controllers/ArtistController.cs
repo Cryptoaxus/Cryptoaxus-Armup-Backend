@@ -1,7 +1,4 @@
-﻿using CryptoAxus.Application.Dto.Artist;
-using CryptoAxus.Application.Features.Artist.PostUpsertArtist.Request;
-
-namespace CryptoAxus.API.Controllers;
+﻿namespace CryptoAxus.API.Controllers;
 
 [ApiVersion("1.0")]
 [Produces(contentType: Constants.ContentTypeJson, Constants.ContentTypeJsonHateoas,
