@@ -1,4 +1,6 @@
-﻿namespace CryptoAxus.Application.Dto.Artist;
+﻿using Microsoft.AspNetCore.Http;
+
+namespace CryptoAxus.Application.Dto.Artist;
 
 public class ArtistDto : BaseDto
 {
@@ -47,16 +49,26 @@ public class ArtistDto : BaseDto
     /// <summary>
     /// Artist profile image link
     /// </summary>
-    /// <example>https://www.google.com/image?query=tom%20crusie</example>
+    /// <example>profile-image.png</example>
     [JsonProperty("profileImageAddress")]
     public string? ProfileImageAddress { get; set; }
 
     /// <summary>
+    /// Profile image
+    /// </summary>
+    public IFormFile? ProfileImage { get; set; }
+
+    /// <summary>
     /// Artist profile cover image link
     /// </summary>
-    /// <example>https://www.google.com/image?query=tom%20crusie</example>
+    /// <example>cover-image.png</example>
     [JsonProperty("coverImageAddress")]
     public string? CoverImageAddress { get; set; }
+
+    /// <summary>
+    /// Cover image
+    /// </summary>
+    public IFormFile? CoverImage { get; set; }
 
     /// <summary>
     /// Instagram profile link
@@ -84,7 +96,9 @@ public class ArtistDto : BaseDto
                      string? website = null,
                      string? bio = null,
                      string? profileImageAddress = null,
+                     IFormFile? profileImage = null,
                      string? coverImageAddress = null,
+                     IFormFile? coverImage = null,
                      string? instagram = null,
                      string? twitter = null,
                      string? createdBy = null,
@@ -104,7 +118,9 @@ public class ArtistDto : BaseDto
         Website = website;
         Bio = bio;
         ProfileImageAddress = profileImageAddress;
+        ProfileImage = profileImage;
         CoverImageAddress = coverImageAddress;
+        CoverImage = coverImage;
         Instagram = instagram;
         Twitter = twitter;
     }

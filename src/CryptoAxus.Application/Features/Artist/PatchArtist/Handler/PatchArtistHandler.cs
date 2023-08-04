@@ -27,6 +27,7 @@ public class PatchArtistHandler : BaseHandler<PatchArtistHandler>, IRequestHandl
             .Set(x => x.Username, artistDto.Username ?? artist.Username)
             .Set(x => x.Email, artistDto.Email ?? artist.Email)
             .Set(x => x.UserId, artistDto.UserId ?? artist.UserId)
+            .Set(x => x.WalletAddress, artistDto.WalletAddress ?? artist.WalletAddress)
             .Set(x => x.ProfileImageAddress, artistDto.ProfileImageAddress ?? artist.ProfileImageAddress)
             .Set(x => x.Website, artistDto.Website ?? artist.Website)
             .Set(x => x.Bio, artistDto.Bio ?? artist.Bio)
@@ -35,6 +36,16 @@ public class PatchArtistHandler : BaseHandler<PatchArtistHandler>, IRequestHandl
             .Set(x => x.Twitter, artistDto.Twitter ?? artist.Twitter)
             .Set(x => x.LastModifiedBy, artistDto.LastModifiedBy ?? artist.LastModifiedBy)
             .Set(x => x.LastModifiedDate, DateTime.UtcNow);
+
+        if (artistDto.ProfileImage != null)
+        {
+            string uploadedProfilePath = FileManagerHelper.WriteFile(artistDto.ProfileImage, UploadFileType.ProfileImage);
+        }
+
+        if (artistDto.CoverImage != null)
+        {
+            string uploadedCoverPath = FileManagerHelper.WriteFile(artistDto.CoverImage, UploadFileType.CoverImage);
+        }
 
         var updateResult = await _repository.UpdateOneAsync(filterDefinition, updateDefinition);
 

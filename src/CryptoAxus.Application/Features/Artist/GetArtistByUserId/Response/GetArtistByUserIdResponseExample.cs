@@ -11,8 +11,10 @@ public class GetArtistByUserIdResponseExample : IExamplesProvider<GetArtistByUse
                                             "0x507f191e810c19729de860ea",
                                             "https://www.google.com",
                                             "https://www.cryptaxus.com",
-                                            "profileimage.gif",
-                                            "coverimage.jpg",
+                                            "profileImage.gif",
+                                            null,
+                                            "coverImage.jpg",
+                                            null,
                                             "https://www.insta.com",
                                             "https://www.twitter.com",
                                             ObjectId.GenerateNewId().ToString());

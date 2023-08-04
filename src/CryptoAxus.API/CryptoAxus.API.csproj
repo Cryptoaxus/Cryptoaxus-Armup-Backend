@@ -52,6 +52,8 @@
     <Folder Include="Filters\" />
     <Folder Include="ApiHelper\" />
     <Folder Include="Middlewares\" />
+    <Folder Include="Upload\CoverImages\" />
+    <Folder Include="Upload\ProfileImages\" />
   </ItemGroup>
 
 </Project>
