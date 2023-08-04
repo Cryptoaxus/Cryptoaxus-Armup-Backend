@@ -1,6 +1,6 @@
 ﻿namespace CryptoAxus.Application.Dto.Artist;
 
-public class ArtistDto : BaseDto
+public class UpsertArtistDto
 {
     /// <summary>
     /// Artist username
@@ -17,9 +17,9 @@ public class ArtistDto : BaseDto
     public string? Email { get; set; }
 
     /// <summary>
-    /// Artist user id
+    /// Artist wallet address
     /// </summary>
-    /// <example>1428</example>
+    /// <example>5071</example>
     [JsonProperty("userId")]
     public int? UserId { get; set; }
 
@@ -72,30 +72,28 @@ public class ArtistDto : BaseDto
     [JsonProperty("twitter")]
     public string? Twitter { get; set; }
 
-    public ArtistDto() : base()
+    /// <summary>
+    /// Created by user id
+    /// </summary>
+    /// <example>648cb3a86180aab54f00c3fc</example>
+    [JsonProperty("createdBy")]
+    public string? CreatedBy { get; set; }
+
+    public UpsertArtistDto()
     {
     }
 
-    public ArtistDto(ObjectId id,
-                     string? username = null,
-                     string? email = null,
-                     int? userId = null,
-                     string? walletAddress = null,
-                     string? website = null,
-                     string? bio = null,
-                     string? profileImageAddress = null,
-                     string? coverImageAddress = null,
-                     string? instagram = null,
-                     string? twitter = null,
-                     string? createdBy = null,
-                     DateTime? lastModifiedDate = null,
-                     string? lastModifiedBy = null,
-                     bool isDeleted = false)
-                     : base(id,
-                            createdBy,
-                            lastModifiedDate,
-                            lastModifiedBy,
-                            isDeleted)
+    public UpsertArtistDto(string? username,
+                           string? email,
+                           int? userId,
+                           string? walletAddress,
+                           string? website,
+                           string? bio,
+                           string? profileImageAddress,
+                           string? coverImageAddress,
+                           string? instagram,
+                           string? twitter,
+                           string? createdBy)
     {
         Username = username;
         Email = email;
@@ -107,5 +105,6 @@ public class ArtistDto : BaseDto
         CoverImageAddress = coverImageAddress;
         Instagram = instagram;
         Twitter = twitter;
+        CreatedBy = createdBy;
     }
 }

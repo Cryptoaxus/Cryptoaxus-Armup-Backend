@@ -1,15 +1,8 @@
-﻿using CryptoAxus.Domain.Attributes;
-using CryptoAxus.Infrastructure.Context;
-using CryptoAxus.Infrastructure.Implementation.Repositories;
-
-namespace CryptoAxus.Application.Features.Artist.Repositories;
+﻿namespace CryptoAxus.Application.Features.Artist.Repositories;
 
 public class ArtistRepositoryTestsData
 {
-    protected readonly ObjectId ArtistId;
-    protected readonly string DatabaseName = "DummyDatabase";
-    protected readonly string ConnectionString = "DummyConnectionString";
-    private ArtistDocument mockArtistDocument;
+    private ArtistDocument _mockArtistDocument;
     private readonly Mock<IMongoCollection<ArtistDocument>> _mockCollection;
     private readonly Mock<ICryptoAxusContext> _mockContext;
     private readonly Mock<IAsyncCursor<ArtistDocument>> _mockCursor;
@@ -18,11 +11,12 @@ public class ArtistRepositoryTestsData
 
     protected ArtistRepositoryTestsData()
     {
-        ArtistId = new ObjectId("646d0779e663994062278fb8");
-        mockArtistDocument = new ArtistDocument(new ObjectId("646d0779e663994062278fb8"),
+        new ObjectId("646d0779e663994062278fb8");
+        _mockArtistDocument = new ArtistDocument(new ObjectId("646d0779e663994062278fb8"),
                                                 "Ben Affleck",
                                                 "ben.affleck@google.com",
                                                 6460,
+                                                "walletAddress",
                                                 "https://localhost:5000",
                                                 "https://localhost:5000/swagger",
                                                 "https://localhost:4000/wwwroot/images/profile/646d0779e663994062278fb8",
@@ -34,12 +28,12 @@ public class ArtistRepositoryTestsData
         _mockContext = new Mock<ICryptoAxusContext>();
         _mockCursor = new Mock<IAsyncCursor<ArtistDocument>>();
         _list = new List<ArtistDocument>();
-        _list.Add(mockArtistDocument);
+        _list.Add(_mockArtistDocument);
     }
 
     protected ArtistRepositoryTestsData SetupMockCollection()
     {
-        _mockCollection.Object.InsertOne(mockArtistDocument);
+        _mockCollection.Object.InsertOne(_mockArtistDocument);
         return this;
     }
 
@@ -82,7 +76,7 @@ public class ArtistRepositoryTestsData
     //public ArtistRepositoryTestsData SetupMockDatabase()
     //{
     //    List<ArtistDocument> artistDocuments = new List<ArtistDocument>();
-    //    artistDocuments.Add(mockArtistDocument);
+    //    artistDocuments.Add(_mockArtistDocument);
     //    Mock<IAsyncCursor<ArtistDocument>> mockCursor = new Mock<IAsyncCursor<ArtistDocument>>();
     //    //_mockDatabase.Setup(x => x.GetCollection<ArtistDocument>("Artist", null))
     //    //             .Returns(null);
@@ -92,7 +86,7 @@ public class ArtistRepositoryTestsData
     //public ArtistRepositoryTestsData SetupMockRepositoryFindByIdAsync()
     //{
     //    _mockRepository.Setup(x => x.FindByIdAsync(It.IsAny<ObjectId>()))
-    //                  .ReturnsAsync(mockArtistDocument);
+    //                  .ReturnsAsync(_mockArtistDocument);
 
     //    return this;
     //}

@@ -1,4 +1,5 @@
 ﻿using CryptoAxus.Application.Dto.Artist;
+using CryptoAxus.Application.Features.Artist.PostUpsertArtist.Request;
 
 namespace CryptoAxus.API.Controllers;
 
@@ -251,6 +252,20 @@ public class ArtistController : BaseController<ArtistController>
         {
             HttpStatusCode.NotFound => NotFound(response),
             HttpStatusCode.OK => Ok(response),
+            _ => BadRequest(response)
+        };
+    }
+
+    [HttpPost("upsertArtist", Name = "UpsertArtist", Order = 8)]
+    public async Task<IActionResult> UpsertArtist([FromBody] UpsertArtistDto artist,
+                                                  CancellationToken cancellationToken = default)
+    {
+        var response = await Mediator.Send(new PostUpsertArtistRequest(artist), cancellationToken);
+
+        return response.StatusCode switch
+        {
+            HttpStatusCode.Created => CreatedAtRoute("GetArtistById", new { id = response.Result?.Id }, response),
+            HttpStatusCode.NoContent => Ok(response),
             _ => BadRequest(response)
         };
     }

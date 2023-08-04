@@ -10,6 +10,7 @@ public class PostArtistResponseExample : IExamplesProvider<PostArtistResponse>
                                                     "Ben Affleck",
                                                     "ben.affleck@gmail.com",
                                                     6471,
+                                                    "0x507f191e810c19729de860ea",
                                                     "https://www.google.com",
                                                     "Bio text goes here",
                                                     "3.gif",

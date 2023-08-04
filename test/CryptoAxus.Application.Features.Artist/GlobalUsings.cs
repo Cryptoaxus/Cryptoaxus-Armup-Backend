@@ -32,4 +32,7 @@ global using Shouldly;
 global using System.Linq.Expressions;
 global using System.Net;
 global using CryptoAxus.Application.Dto.Artist;
+global using CryptoAxus.Domain.Attributes;
+global using CryptoAxus.Infrastructure.Context;
+global using CryptoAxus.Infrastructure.Implementation.Repositories;
 global using Xunit;

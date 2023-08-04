@@ -8,6 +8,7 @@ public class GetArtistByUserIdResponseExample : IExamplesProvider<GetArtistByUse
                                             "tom.cruise",
                                             "tom.cruise@armup.com",
                                             5071,
+                                            "0x507f191e810c19729de860ea",
                                             "https://www.google.com",
                                             "https://www.cryptaxus.com",
                                             "profileimage.gif",
