@@ -1,4 +1,6 @@
-﻿namespace CryptoAxus.Application.Dto.Artist;
+﻿using Microsoft.AspNetCore.Http;
+
+namespace CryptoAxus.Application.Dto.Artist;
 
 public class UpdateArtistDto
 {
@@ -23,6 +25,9 @@ public class UpdateArtistDto
     [JsonProperty("userId")]
     public int? UserId { get; set; }
 
+    [JsonProperty("walletAddress")]
+    public string? WalletAddress { get; set; }
+
     /// <summary>
     /// Artist website url
     /// </summary>
@@ -44,12 +49,18 @@ public class UpdateArtistDto
     [JsonProperty("profileImageAddress")]
     public string? ProfileImageAddress { get; set; }
 
+    [JsonProperty("profileImage")]
+    public IFormFile? ProfileImage { get; set; }
+
     /// <summary>
     /// Artist profile cover image link
     /// </summary>
     /// <example>https://www.google.com/image?query=tom%20crusie</example>
     [JsonProperty("coverImageAddress")]
     public string? CoverImageAddress { get; set; }
+
+    [JsonProperty("coverImage")]
+    public IFormFile? CoverImage { get; set; }
 
     /// <summary>
     /// Instagram profile link
@@ -86,10 +97,13 @@ public class UpdateArtistDto
     public UpdateArtistDto(string? username,
                            string? email,
                            int? userId,
+                           string? walletAddress,
                            string? website,
                            string? bio,
                            string? profileImageAddress,
+                           IFormFile? profileImage,
                            string? coverImageAddress,
+                           IFormFile? coverImage,
                            string? instagram,
                            string? twitter,
                            string? lastModifiedBy,
@@ -98,10 +112,13 @@ public class UpdateArtistDto
         Username = username;
         Email = email;
         UserId = userId;
+        WalletAddress = walletAddress;
         Website = website;
         Bio = bio;
         ProfileImageAddress = profileImageAddress;
+        ProfileImage = profileImage;
         CoverImageAddress = coverImageAddress;
+        CoverImage = coverImage;
         Instagram = instagram;
         Twitter = twitter;
         LastModifiedBy = lastModifiedBy;
