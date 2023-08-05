@@ -23,6 +23,6 @@ public class NftCollectionController : BaseController<NftCollectionController>
         if (response.StatusCode.Equals(HttpStatusCode.Conflict))
             return Conflict(response);
 
-        return CreatedAtRoute("PostNftCollection", new { id = response.Result?.Id }, response);
+        return CreatedAtRoute("GetNftCollectionById", new { id = response.Result?.Id }, response);
     }
 }
