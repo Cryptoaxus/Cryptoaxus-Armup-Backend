@@ -1,7 +1,7 @@
 ﻿namespace CryptoAxus.Domain.Collections;
 
-[BsonCollection("NFTCollections")]
-public class NFTCollectionsDocument : BaseDocument
+[BsonCollection("NftCollections")]
+public class NftCollectionsDocument : BaseDocument
 {
     [BsonElement(elementName: "collectionLogoImageHash", Order = 2)]
     public string CollectionLogoImageHash { get; set; }
@@ -33,11 +33,11 @@ public class NFTCollectionsDocument : BaseDocument
     [BsonElement(elementName: "explicitContent", Order = 13)]
     public bool ExplicitContent { get; set; }
 
-    public NFTCollectionsDocument() : base()
+    public NftCollectionsDocument() : base()
     {
     }
 
-    public NFTCollectionsDocument(ObjectId id,
+    public NftCollectionsDocument(ObjectId id,
                                    string collectionLogoImageHash,
                                    string collectionFeaturedImageHash,
                                    string collectionBannerImageHash,
