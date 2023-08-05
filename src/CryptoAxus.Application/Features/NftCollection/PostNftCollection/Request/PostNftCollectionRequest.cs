@@ -2,7 +2,7 @@
 
 public class PostNftCollectionRequest : IRequest<PostNftCollectionResponse>
 {
-    internal CreateNftCollectionsDto NftCollection { get; set; }
+    public CreateNftCollectionsDto NftCollection { get; set; }
 
     public PostNftCollectionRequest(CreateNftCollectionsDto dto) => NftCollection = dto;
 }

@@ -2,8 +2,6 @@
 
 [ApiVersion("1.0")]
 [Produces(contentType: Constants.ContentTypeJson, Constants.ContentTypeJsonHateoas,
-             Constants.ContentTypeXmlHateoas,
-             Constants.ContentTypeXml,
              Constants.ContentTypeTextPlain,
              Constants.ContentTypeTextJson)]
 public class NftCollectionController : BaseController<NftCollectionController>

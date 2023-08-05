@@ -81,7 +81,7 @@ public class ArtistController : BaseController<ArtistController>
     /// <returns></returns>
     [HttpPost(Name = "PostArtist", Order = 3)]
     [RequiresParameter(Name = "artist", Required = true, Source = OpenApiParameterLocation.Body, Type = typeof(CreateArtistDto))]
-    //[SwaggerRequestExample(typeof(PostArtistRequest), typeof(PostArtistRequestExample))]
+    [SwaggerRequestExample(typeof(PostArtistRequest), typeof(PostArtistRequestExample))]
     [ProducesResponseType(typeof(PostArtistResponse), (int)HttpStatusCode.Created)]
     [ProducesResponseType(typeof(BadRequestPostArtistResponse), (int)HttpStatusCode.BadRequest)]
     [ProducesResponseType(typeof(ConflictPostArtistResponse), (int)HttpStatusCode.Conflict)]
@@ -105,7 +105,6 @@ public class ArtistController : BaseController<ArtistController>
     /// <returns></returns>
     [HttpGet("{userId:int:required}/userId", Name = "GetArtistByUserId", Order = 4)]
     [RequiresParameter(Name = "userId", Required = true, Source = OpenApiParameterLocation.Path, Type = typeof(int))]
-    [SwaggerRequestExample(typeof(GetArtistByUserIdRequest), typeof(GetArtistByUserIdRequestExample))]
     [ProducesResponseType(typeof(GetArtistByUserIdResponse), (int)HttpStatusCode.OK)]
     [ProducesResponseType(typeof(NotFoundArtistByUserIdResponse), (int)HttpStatusCode.NotFound)]
     [ProducesResponseType(typeof(BadRequestArtistByUserIdResponse), (int)HttpStatusCode.BadRequest)]

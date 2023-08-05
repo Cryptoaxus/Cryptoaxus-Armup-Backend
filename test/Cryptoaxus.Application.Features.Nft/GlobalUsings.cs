@@ -23,6 +23,8 @@ global using CryptoAxus.Application.Features.NFT.PutLikeFavoriteNft.Request;
 global using CryptoAxus.Application.Features.NFT.PutLikeFavoriteNft.Response;
 global using CryptoAxus.Application.Features.NFT.PutNft.Handler;
 global using CryptoAxus.Application.Features.NFT.PutNft.Request;
+global using CryptoAxus.Application.Features.NftCollection.PostNftCollection.Handler;
+global using CryptoAxus.Application.Features.NftCollection.PostNftCollection.Request;
 global using CryptoAxus.Common.Enumerations;
 global using CryptoAxus.Common.Helpers;
 global using CryptoAxus.Common.Response;

@@ -28,6 +28,7 @@
     <Folder Include="GetAllNft\Handler\" />
     <Folder Include="GetLikeFavoriteNftByArtist\Handler\" />
     <Folder Include="GetNftByCollectionId\Handler\" />
+    <Folder Include="PostNftCollection\Handler\" />
     <Folder Include="PostNft\Handler\" />
     <Folder Include="PutLikeFavoriteNft\Handler\" />
   </ItemGroup>
