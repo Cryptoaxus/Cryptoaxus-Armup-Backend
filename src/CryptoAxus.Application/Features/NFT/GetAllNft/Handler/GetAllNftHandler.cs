@@ -42,8 +42,8 @@ public class GetAllNftHandler : BaseHandler<GetAllNftHandler>, IRequestHandler<G
                                          nftTask.Result.Adapt<List<NftDto>>(),
                                          paginationData);
 
-        _cacheService.SetAsync(key: $"allNftP{request.PaginationParameters.PageNumber}S{request.PaginationParameters.PageSize}",
-                               value: JsonSerializer.Serialize(response));
+        await _cacheService.SetAsync(key: $"allNftP{request.PaginationParameters.PageNumber}S{request.PaginationParameters.PageSize}",
+                                     value: JsonSerializer.Serialize(response));
 
         return response;
     }

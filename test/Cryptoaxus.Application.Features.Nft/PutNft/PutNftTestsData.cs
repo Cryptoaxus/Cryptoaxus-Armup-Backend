@@ -3,17 +3,17 @@
 public class PutNftTestsData
 {
     private readonly Mock<IRepository<NftDocument>> _mockRepository;
-    private ObjectId id;
+    private readonly ObjectId _id;
 
     public PutNftTestsData()
     {
         _mockRepository = new Mock<IRepository<NftDocument>>();
-        id = ObjectId.GenerateNewId();
+        _id = ObjectId.GenerateNewId();
     }
 
     public PutNftTestsData SetupMockRepository()
     {
-        UpdateResult updateResult = new UpdateResult.Acknowledged(1, 1, id);
+        UpdateResult updateResult = new UpdateResult.Acknowledged(1, 1, _id);
 
         _mockRepository.Setup(x => x.FindByIdAsync(It.IsAny<ObjectId>())).ReturnsAsync(new NftDocument());
 
@@ -35,7 +35,7 @@ public class PutNftTestsData
 
     public PutNftTestsData SetupMockRepositoryUnableToUpdate()
     {
-        UpdateResult updateResult = new UpdateResult.Acknowledged(1, 0, id);
+        UpdateResult updateResult = new UpdateResult.Acknowledged(1, 0, _id);
 
         _mockRepository.Setup(x => x.FindByIdAsync(It.IsAny<ObjectId>())).ReturnsAsync(new NftDocument());
 

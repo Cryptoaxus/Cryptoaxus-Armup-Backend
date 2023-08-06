@@ -38,8 +38,9 @@ public static class ListExtensions
             foreach (PropertyInfo? propertyInfo in propertyInfoList)
             {
                 object? propertyValue = propertyInfo.GetValue(obj: sourceObject);
-                (dataShapedObject as IDictionary<string, object>).Add(key: propertyInfo.Name,
-                                                                      value: propertyValue ?? null);
+                if (propertyValue != null)
+                    (dataShapedObject as IDictionary<string, object>).Add(key: propertyInfo.Name,
+                                                                          value: propertyValue);
             }
             expandoObjectList.Add(item: dataShapedObject);
         }

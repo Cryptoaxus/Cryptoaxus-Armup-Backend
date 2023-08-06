@@ -41,7 +41,7 @@ public class ArtistController : BaseController<ArtistController>
 
         if (response.StatusCode.Equals(HttpStatusCode.OK) && response.Result is not null &&
             parsedMediaType.MediaType.Value!.Contains(Constants.VndApiHateoas))
-            response.Links = CreateArtistLinks(id: id, fields: fields);
+            response.Links = CreateArtistLinks(id: id, fields: fields ?? string.Empty);
 
         BaseResponse<ExpandoObject> shapedResponse = new BaseResponse<ExpandoObject>(response.StatusCode,
                                                                                      response.Message,

@@ -49,7 +49,7 @@ public class NftController : BaseController<NftController>
 
         if (response.StatusCode.Equals(HttpStatusCode.OK) && response.Result is not null &&
             parsedMediaType.MediaType.Value!.Contains(Constants.VndApiHateoas))
-            response.Links = CreateNftLinks(id: id, fields: fields);
+            response.Links = CreateNftLinks(id: id, fields: fields ?? string.Empty);
 
         BaseResponse<ExpandoObject> shapedResponse = new BaseResponse<ExpandoObject>(response.StatusCode,
                                                                                      response.Message,

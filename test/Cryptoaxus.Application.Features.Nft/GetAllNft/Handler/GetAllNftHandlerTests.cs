@@ -19,7 +19,7 @@ public class GetAllNftHandlerTests : GetAllNftTestData
         response.StatusCode.ShouldBe(HttpStatusCode.OK);
         response.IsSuccessful.ShouldBe(true);
         response.Result.ShouldBeOfType<List<NftDto>>();
-        response.Result.Count().ShouldBe(pageSize);
+        response.Result.Count.ShouldBe(pageSize);
         response.PaginationData.ShouldNotBeNull();
     }
 

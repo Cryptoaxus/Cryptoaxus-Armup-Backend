@@ -2,6 +2,5 @@
 
 public interface ICryptoAxusContext
 {
-    IMongoCollection<ArtistDocument> GetCollection<ArtistDocument>(string? collectionName);
-
+    IMongoCollection<T> GetCollection<T>(string? collectionName);
 }

@@ -1,6 +1,6 @@
 ﻿namespace CryptoAxus.Application.Dto.Nft;
 
-public class NFTCopiesDto : BaseDto
+public class NftCopiesDto : BaseDto
 {
     public string? NftId { get; set; }
 
@@ -14,11 +14,11 @@ public class NFTCopiesDto : BaseDto
 
     public int? MarketTokenId { get; set; }
 
-    public NFTCopiesDto() : base()
+    public NftCopiesDto() : base()
     {
     }
 
-    public NFTCopiesDto(ObjectId id,
+    public NftCopiesDto(ObjectId id,
                         string? nftId = null,
                         string? owner = null,
                         string? ownerName = null,

@@ -11,19 +11,18 @@ public class ArtistRepositoryTestsData
 
     protected ArtistRepositoryTestsData()
     {
-        new ObjectId("646d0779e663994062278fb8");
         _mockArtistDocument = new ArtistDocument(new ObjectId("646d0779e663994062278fb8"),
-                                                "Ben Affleck",
-                                                "ben.affleck@google.com",
-                                                6460,
-                                                "walletAddress",
-                                                "https://localhost:5000",
-                                                "https://localhost:5000/swagger",
-                                                "https://localhost:4000/wwwroot/images/profile/646d0779e663994062278fb8",
-                                                "https://localhost:4000/wwwroot/images/cover/646d0779e663994062278fb8",
-                                                "https://www.instagram.com/users?userId=646d0779e663994062278fb8",
-                                                "https://www.twitter.com/users?userId=646d0779e663994062278fb8",
-                                                ObjectId.GenerateNewId().ToString());
+                                                 "Ben Affleck",
+                                                 "ben.affleck@google.com",
+                                                 6460,
+                                                 "walletAddress",
+                                                 "https://localhost:5000",
+                                                 "https://localhost:5000/swagger",
+                                                 "https://localhost:4000/wwwroot/images/profile/646d0779e663994062278fb8",
+                                                 "https://localhost:4000/wwwroot/images/cover/646d0779e663994062278fb8",
+                                                 "https://www.instagram.com/users?userId=646d0779e663994062278fb8",
+                                                 "https://www.twitter.com/users?userId=646d0779e663994062278fb8",
+                                                 ObjectId.GenerateNewId().ToString());
         _mockCollection = new Mock<IMongoCollection<ArtistDocument>>();
         _mockContext = new Mock<ICryptoAxusContext>();
         _mockCursor = new Mock<IAsyncCursor<ArtistDocument>>();

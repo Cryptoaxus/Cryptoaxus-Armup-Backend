@@ -31,7 +31,6 @@ public class AuctionDto : BaseDto
                       string? createdBy = null,
                       DateTime? lastModifiedDate = null,
                       string? lastModifiedBy = null,
-                      DateTime? deleted_at = null,
                       bool isDeleted = false)
                       : base(id,
                              createdBy,

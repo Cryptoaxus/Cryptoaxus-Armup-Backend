@@ -1,15 +1,10 @@
 // Global using directives
 
-global using System.Dynamic;
-global using System.Net;
-global using System.Reflection;
-global using System.Text.Json;
 global using CryptoAxus.API.ApiHelper;
 global using CryptoAxus.API.Extensions;
 global using CryptoAxus.API.Filters;
 global using CryptoAxus.API.Middlewares;
 global using CryptoAxus.Application;
-global using CryptoAxus.Application.Dto;
 global using CryptoAxus.Application.Dto.Artist;
 global using CryptoAxus.Application.Dto.Nft;
 global using CryptoAxus.Application.Features.Artist.DeleteArtistById.Request;
@@ -64,4 +59,8 @@ global using Newtonsoft.Json;
 global using Serilog;
 global using Serilog.Events;
 global using Swashbuckle.AspNetCore.Filters;
+global using System.Dynamic;
+global using System.Net;
+global using System.Reflection;
+global using System.Text.Json;
 global using ValidationException = CryptoAxus.Common.Response.ValidationException;

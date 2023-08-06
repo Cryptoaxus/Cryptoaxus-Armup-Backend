@@ -1,7 +1,7 @@
 ﻿namespace CryptoAxus.Domain.Collections;
 
-[BsonCollection("NFTCopies")]
-public class NFTCopiesDocument : BaseDocument
+[BsonCollection("NftCopies")]
+public class NftCopiesDocument : BaseDocument
 {
     [BsonElement(elementName: "nftId", Order = 2)]
     public string NftId { get; set; }
@@ -21,11 +21,11 @@ public class NFTCopiesDocument : BaseDocument
     [BsonElement(elementName: "marketTokenId", Order = 7)]
     public int MarketTokenId { get; set; }
 
-    public NFTCopiesDocument() : base()
+    public NftCopiesDocument() : base()
     {
     }
 
-    public NFTCopiesDocument(ObjectId id,
+    public NftCopiesDocument(ObjectId id,
                              string nftId,
                              string owner,
                              string ownerName,
