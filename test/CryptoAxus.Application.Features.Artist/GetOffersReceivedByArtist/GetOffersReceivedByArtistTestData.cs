@@ -143,7 +143,7 @@ public class GetOffersReceivedByArtistTestData
                        .ReturnsAsync(50)
                        .ReturnsAsync(485);
 
-        _mockRepository.SetupSequence(x => x.FilterBy(It.IsAny<Expression<Func<OffersDocument, bool>>>(),
+        _mockRepository.SetupSequence(x => x.FilterByAsync(It.IsAny<Expression<Func<OffersDocument, bool>>>(),
                                                       It.IsAny<int?>(),
                                                       It.IsAny<int?>(),
                                                       It.IsAny<CancellationToken>()))
@@ -161,7 +161,7 @@ public class GetOffersReceivedByArtistTestData
                        .ReturnsAsync(0)
                        .ReturnsAsync(0);
 
-        _mockRepository.SetupSequence(x => x.FilterBy(It.IsAny<Expression<Func<OffersDocument, bool>>>(),
+        _mockRepository.SetupSequence(x => x.FilterByAsync(It.IsAny<Expression<Func<OffersDocument, bool>>>(),
                                                       It.IsAny<int?>(),
                                                       It.IsAny<int?>(),
                                                       It.IsAny<CancellationToken>()))

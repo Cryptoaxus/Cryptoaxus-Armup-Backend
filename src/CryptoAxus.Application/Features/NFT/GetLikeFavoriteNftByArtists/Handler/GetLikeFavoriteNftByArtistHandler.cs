@@ -13,12 +13,12 @@ public class GetLikeFavoriteNftByArtistHandler : BaseHandler<GetLikeFavoriteNftB
     public async Task<GetLikeFavoriteNftByArtistResponse> Handle(GetLikeFavoriteNftByArtistRequest request,
                                                                  CancellationToken cancellationToken)
     {
-        var likeTask = _repository.FilterBy(filterExpression: x => x.Likes != null && x.Likes.Contains(request.UserId),
+        var likeTask = _repository.FilterByAsync(filterExpression: x => x.Likes != null && x.Likes.Contains(request.UserId),
                                             pageNumber: null,
                                             pageSize: null,
                                             cancellationToken: cancellationToken);
 
-        var favoriteTask = _repository.FilterBy(filterExpression: x => x.Favorites != null && x.Favorites.Contains(request.UserId),
+        var favoriteTask = _repository.FilterByAsync(filterExpression: x => x.Favorites != null && x.Favorites.Contains(request.UserId),
                                                 pageNumber: null,
                                                 pageSize: null,
                                                 cancellationToken: cancellationToken);

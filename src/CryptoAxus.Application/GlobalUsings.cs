@@ -58,5 +58,9 @@ global using CryptoAxus.Application.Features.NFT.GetLikeFavoriteNftByArtists.Req
 global using CryptoAxus.Application.Features.NFT.GetLikeFavoriteNftByArtists.Response;
 global using CryptoAxus.Application.Features.NFT.GetNftByCollectionId.Request;
 global using CryptoAxus.Application.Features.NFT.GetNftByCollectionId.Response;
+global using CryptoAxus.Application.Features.NftCollection.GetNftCollectionById.Request;
+global using CryptoAxus.Application.Features.NftCollection.GetNftCollectionById.Response;
+global using CryptoAxus.Application.Features.NftCollection.GetNftCollections.Request;
+global using CryptoAxus.Application.Features.NftCollection.GetNftCollections.Response;
 global using CryptoAxus.Application.Features.NftCollection.PostNftCollection.Response;
 global using JsonSerializer = System.Text.Json.JsonSerializer;

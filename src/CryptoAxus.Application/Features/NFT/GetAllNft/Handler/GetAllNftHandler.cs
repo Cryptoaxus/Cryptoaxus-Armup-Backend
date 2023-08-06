@@ -22,7 +22,7 @@ public class GetAllNftHandler : BaseHandler<GetAllNftHandler>, IRequestHandler<G
 
         var countTask = _repository.CountAsync(x => x.IsDeleted.Equals(false), cancellationToken);
 
-        var nftTask = _repository.FilterBy(x => x.IsDeleted.Equals(false),
+        var nftTask = _repository.FilterByAsync(x => x.IsDeleted.Equals(false),
                                            request.PaginationParameters.PageNumber,
                                            request.PaginationParameters.PageSize,
                                            cancellationToken);

@@ -13,7 +13,7 @@ public class GetNftByCollectionIdHandler : BaseHandler<GetNftByCollectionIdHandl
     public async Task<GetNftByCollectionIdResponse> Handle(GetNftByCollectionIdRequest request,
                                                            CancellationToken cancellationToken)
     {
-        List<NftDocument> result = await _repository.FilterBy(x => x.CollectionId == request.CollectionId,
+        List<NftDocument> result = await _repository.FilterByAsync(x => x.CollectionId == request.CollectionId,
                                                               pageNumber: null,
                                                               pageSize: null,
                                                               cancellationToken);
