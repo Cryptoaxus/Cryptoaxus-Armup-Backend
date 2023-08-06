@@ -212,6 +212,12 @@ public class NftCollectionController : BaseController<NftCollectionController>
         link.Href = link.Href?.Replace(Constants.ApiValue, $"{Request.Scheme}://{Request.Host}{Constants.ApiValue}");
         links.Add(link);
 
+        link = new Links(Url.RouteUrl("DeleteNftCollectionById", new { id }),
+                         "delete",
+                         Constants.DeleteMethod);
+        link.Href = link.Href?.Replace(Constants.ApiValue, $"{Request.Scheme}://{Request.Host}{Constants.ApiValue}");
+        links.Add(link);
+
         return links.AsReadOnly();
     }
 }
