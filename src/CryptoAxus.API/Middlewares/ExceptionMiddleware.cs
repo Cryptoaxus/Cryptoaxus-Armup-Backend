@@ -29,13 +29,14 @@ public class ExceptionMiddleware
 
         httpContext.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
 
-        var response = new BaseResponse<object>(HttpStatusCode.InternalServerError, "Internal Server Error", null);
-
-        response.ApiException = new ApiException(null,
-                                                 "Internal Server Error Occurred",
-                                                 exception.Message,
-                                                 exception.InnerException?.Message!,
-                                                 exception.HelpLink);
+        var response = new BaseResponse<object>(HttpStatusCode.InternalServerError, "Internal Server Error", null)
+        {
+            ApiException = new ApiException(null,
+                                            "Internal Server Error Occurred",
+                                            exception.Message,
+                                            exception.InnerException?.Message!,
+                                            exception.HelpLink)
+        };
 
         logger.Error(exception, exception.Message);
 

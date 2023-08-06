@@ -4,7 +4,6 @@ public static class FileManagerHelper
 {
     public static string WriteFile(IFormFile file, UploadFileType fileType)
     {
-        string fileName;
         if (file.Length > 0)
         {
             using var ms = new MemoryStream();

@@ -41,14 +41,14 @@ public class ArtistControllerTest
 
         value.Errors?.Count.ShouldBeGreaterThan(0);
 
-        value.Errors?.ShouldContain("Invalid media type provided");
+        value.Errors?.ShouldContain("Invalid media type provided.");
     }
 
     [Theory]
     [InlineData(5060, 2, 9, "", "application+html")]
     [InlineData(290, 7, 4, "", "application_vnd.hateoas+json")]
     [InlineData(240, 3, 8, "", "application_json")]
-    public async Task When_Invalid_Media_Type_Is_Provided_To_Offers_Recieved_By_Artist_Expect_Bad_Request_Response(int userId,
+    public async Task When_Invalid_Media_Type_Is_Provided_To_Offers_Received_By_Artist_Expect_Bad_Request_Response(int userId,
                                                                                                                    int pageNumber,
                                                                                                                    int pageSize,
                                                                                                                    string fields,
@@ -74,6 +74,6 @@ public class ArtistControllerTest
 
         value.Errors?.Count.ShouldBeGreaterThan(0);
 
-        value.Errors?.ShouldContain("Invalid media type provided");
+        value.Errors?.ShouldContain("Invalid media type provided.");
     }
 }

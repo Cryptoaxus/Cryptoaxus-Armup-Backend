@@ -1,8 +1,5 @@
 // Global using directives
 
-global using System.Dynamic;
-global using System.Linq.Expressions;
-global using System.Net;
 global using CryptoAxus.Application.Contracts.Repositories;
 global using CryptoAxus.Application.Dto.Nft;
 global using CryptoAxus.Application.Features.NFT.DeleteNftById.Handler;
@@ -35,4 +32,6 @@ global using MongoDB.Bson;
 global using MongoDB.Driver;
 global using Moq;
 global using Shouldly;
+global using System.Linq.Expressions;
+global using System.Net;
 global using Xunit;

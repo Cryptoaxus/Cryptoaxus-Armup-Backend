@@ -39,7 +39,6 @@ public class AuctionDocument : BaseDocument
                            string createdBy,
                            DateTime? lastModifiedDate = null,
                            string? lastModifiedBy = null,
-                           DateTime? deleted_at = null,
                            bool isDeleted = false)
                            : base(id,
                                  createdBy,

@@ -40,8 +40,8 @@ public class GetNftCollectionsHandler : BaseHandler<GetNftCollectionsHandler>,
         response = new GetNftCollectionsResponse(nftCollectionTask.Result.Adapt<List<NftCollectionsDto>>(),
                                                  paginationData);
 
-        _cacheService.SetAsync(key: $"allNftCollectionP{request.PaginationParameters.PageNumber}S{request.PaginationParameters.PageSize}",
-                               value: JsonSerializer.Serialize(response));
+        await _cacheService.SetAsync(key: $"allNftCollectionP{request.PaginationParameters.PageNumber}S{request.PaginationParameters.PageSize}",
+                                     value: JsonSerializer.Serialize(response));
 
         return response;
     }

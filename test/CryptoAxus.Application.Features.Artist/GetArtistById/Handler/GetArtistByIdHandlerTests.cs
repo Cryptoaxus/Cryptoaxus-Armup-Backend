@@ -35,21 +35,4 @@ public class GetArtistByIdHandlerTests : GetArtistByIdTestData
         response.IsSuccessful.ShouldBe(false);
         response.Result.ShouldBeNull();
     }
-
-    [Fact]
-    public async Task When_Request_Is_Null_Expect_Argument_Null_Exception()
-    {
-        // Arrange
-        var sut = SetupMockRepository().Build();
-
-        // Act // Assert
-        try
-        {
-            var response = await sut.Handle(null);
-        }
-        catch (Exception exception)
-        {
-            exception.ShouldBeOfType<ArgumentNullException>();
-        }
-    }
 }

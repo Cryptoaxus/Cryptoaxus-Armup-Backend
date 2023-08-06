@@ -9,7 +9,7 @@ public class ModelValidationFilter : IAsyncActionFilter
             context.HttpContext.Response.ContentType = "application/json";
             context.HttpContext.Response.StatusCode = (int)HttpStatusCode.UnprocessableEntity;
 
-            ValidationException response = new ValidationException(errors: context.ModelState.Keys.SelectMany(selector: key
+            ValidationException response = new ValidationException(context.ModelState.Keys.SelectMany(key
                                                                            => context.ModelState[key]?.Errors.Select(x
                                                                                    => new ValidationError(key, x.ErrorMessage)) ??
                                                                            Array.Empty<ValidationError>()).ToList().AsReadOnly());

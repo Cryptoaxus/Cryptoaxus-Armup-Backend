@@ -10,10 +10,8 @@ public class GetArtistByIdQueryHandler : BaseHandler<GetArtistByIdQueryHandler>,
     }
 
     public async Task<GetArtistByIdResponse> Handle(GetArtistByIdRequest request,
-                                                      CancellationToken cancellationToken = default)
+                                                    CancellationToken cancellationToken = default)
     {
-        ArgumentNullException.ThrowIfNull(request, nameof(request));
-
         ArtistDocument artist = await _repository.FindByIdAsync(request.Id.ToObjectId());
 
         if (artist is null)

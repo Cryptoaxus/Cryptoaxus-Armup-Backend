@@ -1,6 +1,6 @@
 ﻿namespace CryptoAxus.Common.Helpers;
 
-public static class IEnumerableExtensions
+public static class EnumerableExtensions
 {
     public static IEnumerable<ExpandoObject> ShapeData<TSource>(this IEnumerable<TSource> source, string? fields)
     {
@@ -38,8 +38,9 @@ public static class IEnumerableExtensions
             foreach (PropertyInfo? propertyInfo in propertyInfoList)
             {
                 object? propertyValue = propertyInfo.GetValue(obj: sourceObject);
-                (dataShapedObject as IDictionary<string, object>).Add(key: propertyInfo.Name,
-                                                                      value: propertyValue ?? null);
+                if (propertyValue != null)
+                    (dataShapedObject as IDictionary<string, object>).Add(key: propertyInfo.Name,
+                                                                          value: propertyValue);
             }
             expandoObjectList.Add(item: dataShapedObject);
         }

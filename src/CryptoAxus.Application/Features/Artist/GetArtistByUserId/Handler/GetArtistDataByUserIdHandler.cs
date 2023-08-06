@@ -13,8 +13,6 @@ public class GetArtistByUserIdHandler : BaseHandler<GetArtistByUserIdHandler>,
     public async Task<GetArtistByUserIdResponse> Handle(GetArtistByUserIdRequest request,
                                                                CancellationToken cancellationToken = default)
     {
-        ArgumentNullException.ThrowIfNull(request, nameof(request));
-
         ArtistDocument artist = await _repository.FindOneAsync(x => x.UserId.Equals(request.UserId), cancellationToken);
 
         if (artist is null)

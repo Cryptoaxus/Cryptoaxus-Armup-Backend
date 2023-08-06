@@ -4,13 +4,13 @@ public class GetArtistByUserIdTestData
 {
     private readonly Mock<IRepository<ArtistDocument>> _mockRepository;
     private readonly Mock<ILogger<GetArtistByUserIdHandler>> _mockLogger;
-    private ArtistDocument? artistDocument;
+    private ArtistDocument? _artistDocument;
 
     protected GetArtistByUserIdTestData()
     {
         _mockRepository = new Mock<IRepository<ArtistDocument>>();
         _mockLogger = new Mock<ILogger<GetArtistByUserIdHandler>>();
-        artistDocument = new ArtistDocument("507f191e810c19729de860ea".ToObjectId(),
+        _artistDocument = new ArtistDocument("507f191e810c19729de860ea".ToObjectId(),
                                              "testUsername",
                                              "test@nftarmup.com",
                                              5071,
@@ -27,17 +27,17 @@ public class GetArtistByUserIdTestData
     protected GetArtistByUserIdTestData SetupMockRepository()
     {
         _mockRepository.Setup(x => x.FindOneAsync(It.IsAny<Expression<Func<ArtistDocument, bool>>>(), It.IsAny<CancellationToken>()))!
-                       .ReturnsAsync(artistDocument);
+                       .ReturnsAsync(_artistDocument);
 
         return this;
     }
 
     protected GetArtistByUserIdTestData SetupMockRepositoryNotFound()
     {
-        artistDocument = null;
+        _artistDocument = null;
 
         _mockRepository.Setup(x => x.FindOneAsync(It.IsAny<Expression<Func<ArtistDocument, bool>>>(), It.IsAny<CancellationToken>()))!
-                      .ReturnsAsync(artistDocument);
+                      .ReturnsAsync(_artistDocument);
 
         return this;
     }

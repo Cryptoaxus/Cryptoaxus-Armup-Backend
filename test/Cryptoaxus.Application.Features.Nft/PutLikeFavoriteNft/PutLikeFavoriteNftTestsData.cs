@@ -3,12 +3,12 @@
 public class PutLikeFavoriteNftTestsData
 {
     private readonly Mock<IRepository<NftDocument>> _mockRepository;
-    private NftDocument? mockDocument;
+    private NftDocument? _mockDocument;
 
     public PutLikeFavoriteNftTestsData()
     {
         _mockRepository = new Mock<IRepository<NftDocument>>();
-        mockDocument = new NftDocument(ObjectId.GenerateNewId(), "contractAddress", "hash",
+        _mockDocument = new NftDocument(ObjectId.GenerateNewId(), "contractAddress", "hash",
                                        "https://www.google.com", "signature", 24526, 10, "Mock Nft",
                                        "https://www.google.com", "Mock Description", "Mock Collection",
                                        ObjectId.GenerateNewId().ToString(), "Ethereum", 450, ObjectId.GenerateNewId().ToString(),
@@ -27,10 +27,10 @@ public class PutLikeFavoriteNftTestsData
     public PutLikeFavoriteNftTestsData SetupMockRepositoryFindOneAsync(bool exist)
     {
         if (!exist)
-            mockDocument = null;
+            _mockDocument = null;
 
         _mockRepository.Setup(x => x.FindByIdAsync(It.IsAny<ObjectId>()))!
-                       .ReturnsAsync(mockDocument);
+                       .ReturnsAsync(_mockDocument);
 
         return this;
     }

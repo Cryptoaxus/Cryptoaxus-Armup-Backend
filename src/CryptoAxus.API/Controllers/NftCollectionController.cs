@@ -1,7 +1,11 @@
-﻿using CryptoAxus.Application.Features.NftCollection.GetNftCollectionById.Request;
+﻿using CryptoAxus.Application.Features.NftCollection.DeleteNftCollectionById.Request;
+using CryptoAxus.Application.Features.NftCollection.DeleteNftCollectionById.Response;
+using CryptoAxus.Application.Features.NftCollection.GetNftCollectionById.Request;
 using CryptoAxus.Application.Features.NftCollection.GetNftCollectionById.Response;
 using CryptoAxus.Application.Features.NftCollection.GetNftCollections.Request;
 using CryptoAxus.Application.Features.NftCollection.GetNftCollections.Response;
+using CryptoAxus.Application.Features.NftCollection.GetNftCollectionsByWalletAddress.Request;
+using CryptoAxus.Application.Features.NftCollection.GetNftCollectionsByWalletAddress.Response;
 
 namespace CryptoAxus.API.Controllers;
 
@@ -82,11 +86,78 @@ public class NftCollectionController : BaseController<NftCollectionController>
             return NotFound(response);
 
         if (!string.IsNullOrEmpty(paginationParameters.Fields))
-            return Ok(new PaginationResponse<List<ExpandoObject>>(response.StatusCode, response.Message,
+            return Ok(new PaginationResponse<List<ExpandoObject>>(response.StatusCode,
+                                                                  response.Message,
                                                                   response.Result?.ShapeData(paginationParameters.Fields),
                                                                   response.PaginationData));
 
         return Ok(response);
+    }
+
+    /// <summary>
+    /// Returns the list of nft collections by wallet address
+    /// </summary>
+    /// <param name="walletAddress" example="0x5071ace58s9d2s8e2"></param>
+    /// <param name="mediaType" example="application/json"></param>
+    /// <param name="fields" example="id, createdBy"></param>
+    /// <param name="cancellationToken" example="default"></param>
+    /// <response code="200">Success response with 200 code and information message</response>
+    /// <response code="404">Not Found response with 404 code and information message</response>
+    /// <response code="400">Bad Request response with 400 code and information message</response>
+    /// <returns></returns>
+    [HttpGet("{walletAddress:required}/walletAddress", Name = "GetNftCollectionsByWalletAddress", Order = 3)]
+    [RequiresParameter(Name = "walletAddress", Required = true, Source = OpenApiParameterLocation.Path, Type = typeof(string))]
+    [RequiresParameter(Name = "mediaType", Required = true, Source = OpenApiParameterLocation.Header, Type = typeof(string))]
+    [RequiresParameter(Name = "fields", Required = true, Source = OpenApiParameterLocation.Query, Type = typeof(string))]
+    [ProducesResponseType(typeof(GetNftCollectionsByWalletAddressResponse), (int)HttpStatusCode.OK)]
+    [ProducesResponseType(typeof(NotFoundGetNftCollectionsByWalletAddressResponse), (int)HttpStatusCode.NotFound)]
+    [ProducesResponseType(typeof(BadRequestGetNftCollectionsByWalletAddressResponse), (int)HttpStatusCode.BadRequest)]
+    public async Task<IActionResult> GetNftCollectionsByWalletAddress([FromRoute] string walletAddress,
+                                                                      [FromHeader] string mediaType,
+                                                                      [FromQuery] string? fields = null,
+                                                                      CancellationToken cancellationToken = default)
+    {
+        if (!MediaTypeHeaderValue.TryParse(mediaType, out MediaTypeHeaderValue? parsedMediaType))
+            return BadRequest(new BadRequestGetNftCollectionsByWalletAddressResponse());
+
+        var response = await Mediator.Send(new GetNftCollectionsByWalletAddressRequest(walletAddress), cancellationToken);
+
+        if (response.StatusCode.Equals(HttpStatusCode.NotFound))
+            return NotFound(response);
+
+        if (!string.IsNullOrEmpty(fields))
+            return Ok(new BaseResponse<List<ExpandoObject>>(response.StatusCode,
+                                                            response.Message,
+                                                            response.Result?.ShapeData(fields)));
+
+        return Ok(response);
+    }
+
+    /// <summary>
+    /// Returns the nft collection record via id
+    /// </summary>
+    /// <param name="id" example="507f191e810c19729de860ea"></param>
+    /// <param name="cancellationToken"></param>
+    /// <response code="200">Success response with 200 code and information message</response>
+    /// <response code="404">Not Found response with 404 code and information message</response>
+    /// <response code="400">Bad Request response with 400 code and information message</response>
+    /// <returns></returns>
+    [HttpGet("{id:regex(^[[A-Za-z0-9]]*$):required}", Name = "DeleteNftCollectionById", Order = 4)]
+    [RequiresParameter(Name = "id", Required = true, Source = OpenApiParameterLocation.Path, Type = typeof(string))]
+    [ProducesResponseType(typeof(DeleteNftCollectionByIdResponse), (int)HttpStatusCode.OK)]
+    [ProducesResponseType(typeof(NotFoundDeleteNftCollectionByIdResponse), (int)HttpStatusCode.NotFound)]
+    [ProducesResponseType(typeof(BadRequestDeleteNftCollectionByIdResponse), (int)HttpStatusCode.BadRequest)]
+    public async Task<IActionResult> DeleteNftCollectionById([FromRoute] string id,
+                                                             CancellationToken cancellationToken = default)
+    {
+        var response = await Mediator.Send(new DeleteNftCollectionByIdRequest(id), cancellationToken);
+
+        return response.StatusCode switch
+        {
+            HttpStatusCode.NoContent => Ok(response),
+            HttpStatusCode.NotFound => NotFound(),
+            _ => BadRequest(response)
+        };
     }
 
     /// <summary>
@@ -138,6 +209,12 @@ public class NftCollectionController : BaseController<NftCollectionController>
         link = new Links(href: Url.RouteUrl("GetNftCollections"),
                          "get_nftCollections",
                          Constants.GetMethod);
+        link.Href = link.Href?.Replace(Constants.ApiValue, $"{Request.Scheme}://{Request.Host}{Constants.ApiValue}");
+        links.Add(link);
+
+        link = new Links(Url.RouteUrl("DeleteNftCollectionById", new { id }),
+                         "delete",
+                         Constants.DeleteMethod);
         link.Href = link.Href?.Replace(Constants.ApiValue, $"{Request.Scheme}://{Request.Host}{Constants.ApiValue}");
         links.Add(link);
 
