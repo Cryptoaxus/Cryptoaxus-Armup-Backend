@@ -2,7 +2,7 @@
 
 public class NotFoundGetNftCollectionsResponse : GetNftCollectionsResponse
 {
-    public NotFoundGetNftCollectionsResponse() : base(HttpStatusCode.NotFound, "No record exist in system.")
+    public NotFoundGetNftCollectionsResponse() : base(HttpStatusCode.NotFound, "No record exist in the system.")
     {
     }
 }
