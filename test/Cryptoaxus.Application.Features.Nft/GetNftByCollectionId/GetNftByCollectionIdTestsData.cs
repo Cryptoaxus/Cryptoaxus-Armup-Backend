@@ -26,7 +26,7 @@ public class GetNftByCollectionIdTestsData
             _mockDocument = new List<NftDocument>();
 
         _mockRepository
-               .Setup(x => x.FilterBy(It.IsAny<Expression<Func<NftDocument, bool>>>(),
+               .Setup(x => x.FilterByAsync(It.IsAny<Expression<Func<NftDocument, bool>>>(),
                                                            null, null, It.IsAny<CancellationToken>()))
                .ReturnsAsync(_mockDocument);
 

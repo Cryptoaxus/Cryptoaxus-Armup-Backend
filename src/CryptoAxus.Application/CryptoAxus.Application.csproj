@@ -25,6 +25,12 @@
     <Folder Include="Features\Artist\PostArtist\Request\" />
     <Folder Include="Features\Artist\PostUpsertArtist\Handler\" />
     <Folder Include="Features\Artist\PostUpsertArtist\Response\" />
+    <Folder Include="Features\NftCollection\GetNftCollectionById\Handler\" />
+    <Folder Include="Features\NftCollection\GetNftCollectionById\Response\" />
+    <Folder Include="Features\NftCollection\GetNftCollectionById\Request\" />
+    <Folder Include="Features\NftCollection\GetNftCollections\Handler\" />
+    <Folder Include="Features\NftCollection\GetNftCollections\Response\" />
+    <Folder Include="Features\NftCollection\GetNftCollections\Request\" />
     <Folder Include="Features\NftCollection\PostNftCollection\Handler\" />
     <Folder Include="Features\NftCollection\PostNftCollection\Response\" />
     <Folder Include="Features\NftCollection\PostNftCollection\Request\" />

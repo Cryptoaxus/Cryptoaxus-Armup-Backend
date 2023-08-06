@@ -39,7 +39,7 @@ public class GetLikeFavoriteNftByArtistTestsData
         if (!exist)
             _mockDocuments = new List<NftDocument>();
 
-        _mockRepository.Setup(x => x.FilterBy(It.IsAny<Expression<Func<NftDocument, bool>>>(),
+        _mockRepository.Setup(x => x.FilterByAsync(It.IsAny<Expression<Func<NftDocument, bool>>>(),
                                               null,
                                               null,
                                               It.IsAny<CancellationToken>()))!

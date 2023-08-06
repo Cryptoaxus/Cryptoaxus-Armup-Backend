@@ -24,7 +24,7 @@ public class GetOffersMadeByArtistHandler : BaseHandler<GetOffersMadeByArtistHan
 
         var countTask = _repository.CountAsync(x => x.OfferFrom.Equals(request.UserId), cancellationToken);
 
-        var offersTask = _repository.FilterBy(offer => offer.OfferFrom.Equals(request.UserId),
+        var offersTask = _repository.FilterByAsync(offer => offer.OfferFrom.Equals(request.UserId),
                                                                               request.PaginationParameters.PageNumber,
                                                                               request.PaginationParameters.PageSize,
                                                                               cancellationToken);
