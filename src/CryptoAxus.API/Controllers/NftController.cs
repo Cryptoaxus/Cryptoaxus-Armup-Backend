@@ -1,9 +1,4 @@
-﻿using CryptoAxus.Application.Features.NFT.GetLikeFavoriteNftByArtists.Request;
-using CryptoAxus.Application.Features.NFT.GetLikeFavoriteNftByArtists.Response;
-using CryptoAxus.Application.Features.NFT.GetNftByCollectionId.Request;
-using CryptoAxus.Application.Features.NFT.GetNftByCollectionId.Response;
-
-namespace CryptoAxus.API.Controllers;
+﻿namespace CryptoAxus.API.Controllers;
 
 [ApiVersion("1.0")]
 [Produces(contentType: Constants.ContentTypeJson, Constants.ContentTypeJsonHateoas,
@@ -119,7 +114,7 @@ public class NftController : BaseController<NftController>
         return response.StatusCode switch
         {
             HttpStatusCode.Conflict => Conflict(response),
-            HttpStatusCode.Created => CreatedAtRoute("GetOfferById", new { id = response.Result?.Id }, response),
+            HttpStatusCode.Created => CreatedAtRoute("GetNftById", new { id = response.Result?.Id }, response),
             _ => BadRequest(response)
         };
     }
