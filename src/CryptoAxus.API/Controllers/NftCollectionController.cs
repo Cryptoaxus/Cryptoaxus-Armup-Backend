@@ -4,6 +4,8 @@ using CryptoAxus.Application.Features.NftCollection.GetNftCollectionById.Request
 using CryptoAxus.Application.Features.NftCollection.GetNftCollectionById.Response;
 using CryptoAxus.Application.Features.NftCollection.GetNftCollections.Request;
 using CryptoAxus.Application.Features.NftCollection.GetNftCollections.Response;
+using CryptoAxus.Application.Features.NftCollection.GetNftCollectionsByCategory.Request;
+using CryptoAxus.Application.Features.NftCollection.GetNftCollectionsByCategory.Response;
 using CryptoAxus.Application.Features.NftCollection.GetNftCollectionsByWalletAddress.Request;
 using CryptoAxus.Application.Features.NftCollection.GetNftCollectionsByWalletAddress.Response;
 
@@ -134,6 +136,45 @@ public class NftCollectionController : BaseController<NftCollectionController>
     }
 
     /// <summary>
+    /// Returns the list of nft collections by category
+    /// </summary>
+    /// <param name="category" example="art"></param>
+    /// <param name="mediaType" example="application/json"></param>
+    /// <param name="paginationParameters" example="id, createdBy"></param>
+    /// <param name="cancellationToken" example="default"></param>
+    /// <response code="200">Success response with 200 code and information message</response>
+    /// <response code="404">Not Found response with 404 code and information message</response>
+    /// <response code="400">Bad Request response with 400 code and information message</response>
+    /// <returns></returns>
+    [HttpGet("{category:required}/category", Name = "GetNftCollectionsByCategory", Order = 4)]
+    [RequiresParameter(Name = "category", Required = true, Source = OpenApiParameterLocation.Path, Type = typeof(string))]
+    [RequiresParameter(Name = "mediaType", Required = true, Source = OpenApiParameterLocation.Header, Type = typeof(string))]
+    [RequiresParameter(Name = "paginationParameters", Required = true, Source = OpenApiParameterLocation.Query, Type = typeof(PaginationParameters))]
+    [ProducesResponseType(typeof(GetNftCollectionsByWalletAddressResponse), (int)HttpStatusCode.OK)]
+    [ProducesResponseType(typeof(NotFoundGetNftCollectionsByWalletAddressResponse), (int)HttpStatusCode.NotFound)]
+    [ProducesResponseType(typeof(BadRequestGetNftCollectionsByWalletAddressResponse), (int)HttpStatusCode.BadRequest)]
+    public async Task<IActionResult> GetNftCollectionsByCategory([FromRoute] string category,
+                                                                 [FromHeader] string mediaType,
+                                                                 [FromQuery] PaginationParameters paginationParameters,
+                                                                 CancellationToken cancellationToken = default)
+    {
+        if (!MediaTypeHeaderValue.TryParse(mediaType, out MediaTypeHeaderValue? parsedMediaType))
+            return BadRequest(new BadRequestGetNftCollectionsByCategoryResponse());
+
+        var response = await Mediator.Send(new GetNftCollectionsByCategoryRequest(category, paginationParameters), cancellationToken);
+
+        if (response.StatusCode.Equals(HttpStatusCode.NotFound))
+            return NotFound(response);
+
+        if (!string.IsNullOrEmpty(paginationParameters.Fields))
+            return Ok(new BaseResponse<List<ExpandoObject>>(response.StatusCode,
+                                                            response.Message,
+                                                            response.Result?.ShapeData(paginationParameters.Fields)));
+
+        return Ok(response);
+    }
+
+    /// <summary>
     /// Returns the nft collection record via id
     /// </summary>
     /// <param name="id" example="507f191e810c19729de860ea"></param>
@@ -142,7 +183,7 @@ public class NftCollectionController : BaseController<NftCollectionController>
     /// <response code="404">Not Found response with 404 code and information message</response>
     /// <response code="400">Bad Request response with 400 code and information message</response>
     /// <returns></returns>
-    [HttpGet("{id:regex(^[[A-Za-z0-9]]*$):required}", Name = "DeleteNftCollectionById", Order = 4)]
+    [HttpDelete("{id:regex(^[[A-Za-z0-9]]*$):required}", Name = "DeleteNftCollectionById", Order = 5)]
     [RequiresParameter(Name = "id", Required = true, Source = OpenApiParameterLocation.Path, Type = typeof(string))]
     [ProducesResponseType(typeof(DeleteNftCollectionByIdResponse), (int)HttpStatusCode.OK)]
     [ProducesResponseType(typeof(NotFoundDeleteNftCollectionByIdResponse), (int)HttpStatusCode.NotFound)]

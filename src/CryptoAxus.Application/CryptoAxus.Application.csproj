@@ -30,6 +30,8 @@
     <Folder Include="Features\NftCollection\GetNftCollectionById\Handler\" />
     <Folder Include="Features\NftCollection\GetNftCollectionById\Response\" />
     <Folder Include="Features\NftCollection\GetNftCollectionById\Request\" />
+    <Folder Include="Features\NftCollection\GetNftCollectionsByCategory\Handler\" />
+    <Folder Include="Features\NftCollection\GetNftCollectionsByCategory\Response\" />
     <Folder Include="Features\NftCollection\GetNftCollectionsByWalletAddress\Handler\" />
     <Folder Include="Features\NftCollection\GetNftCollectionsByWalletAddress\Response\" />
     <Folder Include="Features\NftCollection\GetNftCollectionsByWalletAddress\Request\" />
