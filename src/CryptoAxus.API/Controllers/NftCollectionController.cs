@@ -29,7 +29,7 @@ public class NftCollectionController : BaseController<NftCollectionController>
     [ProducesResponseType(typeof(NotFoundGetNftCollectionByIdResponse), (int)HttpStatusCode.NotFound)]
     [ProducesResponseType(typeof(BadRequestGetNftCollectionByIdResponse), (int)HttpStatusCode.BadRequest)]
     public async Task<IActionResult> GetNftCollectionById([FromRoute] string id,
-                                                          [FromHeader] string mediaType,
+                                                          [FromHeader(Name = "Accept")] string mediaType,
                                                           [FromQuery] string fields,
                                                           CancellationToken cancellationToken = default)
     {
@@ -65,7 +65,7 @@ public class NftCollectionController : BaseController<NftCollectionController>
     [ProducesResponseType(typeof(NotFoundGetNftCollectionsResponse), (int)HttpStatusCode.NotFound)]
     [ProducesResponseType(typeof(BadRequestGetNftCollectionsResponse), (int)HttpStatusCode.BadRequest)]
     public async Task<IActionResult> GetNftCollections([FromQuery] PaginationParameters paginationParameters,
-                                                       [FromHeader] string mediaType,
+                                                       [FromHeader(Name = "Accept")] string mediaType,
                                                        CancellationToken cancellationToken = default)
     {
         if (!MediaTypeHeaderValue.TryParse(mediaType, out MediaTypeHeaderValue? parsedMediaType))
@@ -104,7 +104,7 @@ public class NftCollectionController : BaseController<NftCollectionController>
     [ProducesResponseType(typeof(NotFoundGetNftCollectionsByWalletAddressResponse), (int)HttpStatusCode.NotFound)]
     [ProducesResponseType(typeof(BadRequestGetNftCollectionsByWalletAddressResponse), (int)HttpStatusCode.BadRequest)]
     public async Task<IActionResult> GetNftCollectionsByWalletAddress([FromRoute] string walletAddress,
-                                                                      [FromHeader] string mediaType,
+                                                                      [FromHeader(Name = "Accept")] string mediaType,
                                                                       [FromQuery] string? fields = null,
                                                                       CancellationToken cancellationToken = default)
     {
@@ -143,7 +143,7 @@ public class NftCollectionController : BaseController<NftCollectionController>
     [ProducesResponseType(typeof(NotFoundGetNftCollectionsByWalletAddressResponse), (int)HttpStatusCode.NotFound)]
     [ProducesResponseType(typeof(BadRequestGetNftCollectionsByWalletAddressResponse), (int)HttpStatusCode.BadRequest)]
     public async Task<IActionResult> GetNftCollectionsByCategory([FromRoute] string category,
-                                                                 [FromHeader] string mediaType,
+                                                                 [FromHeader(Name = "Accept")] string mediaType,
                                                                  [FromQuery] PaginationParameters paginationParameters,
                                                                  CancellationToken cancellationToken = default)
     {

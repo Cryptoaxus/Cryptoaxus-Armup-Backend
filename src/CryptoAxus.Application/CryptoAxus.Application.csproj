@@ -41,6 +41,9 @@
     <Folder Include="Features\NftCollection\PostNftCollection\Handler\" />
     <Folder Include="Features\NftCollection\PostNftCollection\Response\" />
     <Folder Include="Features\NftCollection\PostNftCollection\Request\" />
+    <Folder Include="Features\NftCollection\PutNftCollectionById\Handler\" />
+    <Folder Include="Features\NftCollection\PutNftCollectionById\Response\" />
+    <Folder Include="Features\NftCollection\PutNftCollectionById\Request\" />
     <Folder Include="Features\NFT\DeleteNftById\Handler\" />
     <Folder Include="Features\NFT\DeleteNftById\Response\" />
     <Folder Include="Features\NFT\DeleteNftById\Request\" />

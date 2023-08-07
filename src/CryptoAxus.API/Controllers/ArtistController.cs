@@ -108,7 +108,8 @@ public class ArtistController : BaseController<ArtistController>
     [ProducesResponseType(typeof(GetArtistByUserIdResponse), (int)HttpStatusCode.OK)]
     [ProducesResponseType(typeof(NotFoundArtistByUserIdResponse), (int)HttpStatusCode.NotFound)]
     [ProducesResponseType(typeof(BadRequestArtistByUserIdResponse), (int)HttpStatusCode.BadRequest)]
-    public async Task<IActionResult> GetArtistByUserId([FromRoute] int userId, [FromHeader(Name = "Accept")] string mediaType)
+    public async Task<IActionResult> GetArtistByUserId([FromRoute] int userId,
+                                                       [FromHeader(Name = "Accept")] string mediaType)
     {
         if (!MediaTypeHeaderValue.TryParse(mediaType, out MediaTypeHeaderValue? parsedMediaType))
             return BadRequest(new BaseResponse<ExpandoObject>(HttpStatusCode.BadRequest,
