@@ -1,15 +1,4 @@
-﻿using CryptoAxus.Application.Features.NftCollection.DeleteNftCollectionById.Request;
-using CryptoAxus.Application.Features.NftCollection.DeleteNftCollectionById.Response;
-using CryptoAxus.Application.Features.NftCollection.GetNftCollectionById.Request;
-using CryptoAxus.Application.Features.NftCollection.GetNftCollectionById.Response;
-using CryptoAxus.Application.Features.NftCollection.GetNftCollections.Request;
-using CryptoAxus.Application.Features.NftCollection.GetNftCollections.Response;
-using CryptoAxus.Application.Features.NftCollection.GetNftCollectionsByCategory.Request;
-using CryptoAxus.Application.Features.NftCollection.GetNftCollectionsByCategory.Response;
-using CryptoAxus.Application.Features.NftCollection.GetNftCollectionsByWalletAddress.Request;
-using CryptoAxus.Application.Features.NftCollection.GetNftCollectionsByWalletAddress.Response;
-
-namespace CryptoAxus.API.Controllers;
+﻿namespace CryptoAxus.API.Controllers;
 
 [ApiVersion("1.0")]
 [Produces(Constants.ContentTypeJson, Constants.ContentTypeJsonHateoas,
