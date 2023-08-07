@@ -13,11 +13,11 @@ builder.Host.UseSerilog();
 
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("CorsPolicy", cors => cors
-                                           .AllowAnyHeader()
-                                           .AllowAnyMethod()
-                                           .AllowCredentials()
-                                           .SetIsOriginAllowed(origin => true));
+    options.AddPolicy("CorsPolicy",
+                      cors => cors.AllowAnyHeader()
+                                                .AllowAnyMethod()
+                                                .AllowCredentials()
+                                                .SetIsOriginAllowed(origin => true));
 });
 
 builder.Services.AddMediatR(config => config.RegisterServicesFromAssemblies(Assembly.GetExecutingAssembly()));
@@ -88,6 +88,8 @@ builder.Services.Configure<RouteOptions>(routeOptions =>
 builder.Services.AddResponseCaching();
 
 builder.Services.AddHealthChecks();
+
+builder.Services.AddRouting(options => options.LowercaseUrls = true);
 
 var app = builder.Build();
 
