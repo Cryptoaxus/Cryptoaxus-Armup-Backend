@@ -69,4 +69,6 @@ global using CryptoAxus.Application.Features.NftCollection.GetNftCollectionsByCa
 global using CryptoAxus.Application.Features.NftCollection.GetNftCollectionsByWalletAddress.Request;
 global using CryptoAxus.Application.Features.NftCollection.GetNftCollectionsByWalletAddress.Response;
 global using CryptoAxus.Application.Features.NftCollection.PostNftCollection.Response;
+global using CryptoAxus.Application.Features.NftCollection.PutNftCollectionById.Request;
+global using CryptoAxus.Application.Features.NftCollection.PutNftCollectionById.Response;
 global using JsonSerializer = System.Text.Json.JsonSerializer;

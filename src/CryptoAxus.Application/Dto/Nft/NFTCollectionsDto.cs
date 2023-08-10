@@ -57,9 +57,5 @@ public class NftCollectionsDto : BaseDto
         Category = category;
         CollectionBlockChain = collectionBlockChain;
         ExplicitContent = explicitContent;
-        CreatedBy = createdBy;
-        LastModifiedDate = lastModifiedDate;
-        LastModifiedBy = lastModifiedBy;
-        IsDeleted = isDeleted;
     }
 }
